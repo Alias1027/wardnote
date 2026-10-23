@@ -1,0 +1,15 @@
+{
+  "cleanedAt": "2026-10-23T18:50:29+08:00",
+  "removedArchives": [
+    {
+      "file": "microsoft-jdk-17.0.20.1-windows-x64.zip",
+      "bytes": 186915383
+    },
+    {
+      "file": "commandlinetools-win-15859902_latest.zip",
+      "bytes": 155655386
+    }
+  ],
+  "removedRedundantLog": "android-build-initial.log",
+  "preserved": "Extracted JDK, SDK and private signing key/password files retained. Existing data/C: templates untouched."
+}

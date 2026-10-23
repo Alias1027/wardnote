@@ -1,0 +1,10 @@
+{
+  "time": "2026-10-23T12:35:36.160Z",
+  "environment": "Desktop Chromium persistent-profile asset/storage upgrade simulation; not Android installer/device validation",
+  "checks": [
+    "Cold browser restart from retained previous assets to current assets preserves both account modes, records, revisions and 18 MiB audio",
+    "Multi-part backup above a 16 MiB part boundary verifies and restores exact synthetic audio bytes",
+    "No external traffic or page errors; network authorization stays off after restart"
+  ],
+  "errors": []
+}

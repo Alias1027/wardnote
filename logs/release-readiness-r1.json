@@ -1,0 +1,66 @@
+{
+  "checkedAt": "2026-10-23T20:49:30.226569+08:00",
+  "status": "passed-local-release-preparation",
+  "version": "0.1.2-preview",
+  "versionCode": 3,
+  "publicationRevision": "r1",
+  "scope": "Local release preparation; no repository creation or publication. Runtime and official APK unchanged.",
+  "checks": {
+    "coreTests": {
+      "passed": 15,
+      "failed": 0,
+      "alsoRunFromExtractedSource": true
+    },
+    "desktopBrowserSimulation": {
+      "passed": 18,
+      "failed": 0,
+      "time": "2026-10-23T12:35:04.994Z"
+    },
+    "desktopUpgradeSimulation": {
+      "passed": 3,
+      "failed": 0,
+      "time": "2026-10-23T12:35:36.160Z"
+    },
+    "publicBoundaryTests": {
+      "passed": 12,
+      "failed": 0,
+      "alsoRunFromExtractedSource": true,
+      "includesRealWindowsJunction": true
+    },
+    "bundledHistoricalFixtureEntries": 112,
+    "isolatedTemporarySigningBuild": {
+      "passed": true,
+      "webAssetsByteMatched": 57,
+      "secretsAndTemporaryApkDeleted": true
+    },
+    "privateSigningRecovery": {
+      "passed": 5,
+      "failed": 0,
+      "publicEvidenceHasNoSecrets": true
+    },
+    "workflowConfiguration": "Local JSON-compatible YAML/contract and PowerShell syntax checks passed; no GitHub-hosted run",
+    "publicFilesAllowlisted": 138,
+    "markdownRelativeLinksCheckedAfterExtraction": 93,
+    "independentReadOnlyReview": "Passed; allowlist, nested baseline integrity, unchanged APK assets and secret/data exclusion reviewed"
+  },
+  "preservation": {
+    "existingDeliveryFilesMatched": 183,
+    "runtimeFilesMatched": 66,
+    "existingUserData": "Not accessed or modified",
+    "cDriveTemplates": "Not accessed or modified"
+  },
+  "officialApk": {
+    "file": "wardnote-android-0.1.2-preview.apk",
+    "bytes": 496314,
+    "sha256": "81a5621619b4bb72149606f2257b51bf3d8f78d7fa3ee4d5a34e3c63809c3d31",
+    "certificateSha256": "439f90db648ace45e2c7652161f77a06bc9f2c732d9d287f6e9b04faa82df090"
+  },
+  "packageIntegrity": "Final source ZIP hash is in source-package-r1-verification.json and the .sha256 sidecar; delivery hashes are in DELIVERY-CHECK.json. Avoids self-referential archive hashes.",
+  "limitations": [
+    "No GitHub-hosted workflow execution or hosted issue-form rendering",
+    "No Android emulator/physical-device installation, OEM recorder or document-provider validation",
+    "No clinical, native-language clinical, low-resource full-shift or Apple-platform validation",
+    "Signing backup is encrypted with a separately stored key and restricted ACLs, but both remain on the same local drive; no off-device recovery copy",
+    "Public-file checks are explicit allowlist and credential-indicator checks, not a universal secret-detection guarantee"
+  ]
+}

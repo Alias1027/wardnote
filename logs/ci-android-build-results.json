@@ -1,0 +1,22 @@
+{
+  "version": "0.1.2-preview",
+  "versionCode": 3,
+  "upgrade": null,
+  "checkedAt": "2026-10-23T20:26:44+08:00",
+  "file": "wardnote-android-0.1.2-preview.apk",
+  "bytes": 496314,
+  "sha256": "baa73b6a73e21201fbd1830cd97bde4d253585b4af196e96f4aa6064e0a82528",
+  "webAssetsByteMatched": 57,
+  "packageName": "org.wardnote.offline.preview",
+  "minimumSdk": 26,
+  "targetSdk": 35,
+  "requestedPermissions": [],
+  "debuggable": false,
+  "automaticBackup": false,
+  "cleartextTraffic": false,
+  "signatureVerification": "Verifies\nVerified using v1 scheme (JAR signing): false\nVerified using v2 scheme (APK Signature Scheme v2): true\nVerified using v3 scheme (APK Signature Scheme v3): true\nVerified using v3.1 scheme (APK Signature Scheme v3.1): false\nVerified using v4 scheme (APK Signature Scheme v4): false\nVerified for SourceStamp: false\nNumber of signers: 1\nSigner #1 certificate DN: CN=WardNote Android Preview, OU=Evaluation only, O=WardNote\nSigner #1 certificate SHA-256 digest: 7a60fd1e8842c421df74ae2bcb1a6895f1200d3462b5fa6b5d5f31a1283754e3\nSigner #1 certificate SHA-1 digest: e8c4bc9fce5c2919a3022960d17037a937ff4666\nSigner #1 certificate MD5 digest: 2bf56d2f6f4abb246aa5d11e8931eb91\nSigner #1 key algorithm: RSA\nSigner #1 key size (bits): 3072\nSigner #1 public key SHA-256 digest: 62adf3b9fe0ddb61d9d49838b2e14e38924ec914b2c4978f99e72b4785b8f9cd\nSigner #1 public key SHA-1 digest: 9730cfd525cacd41ee31b692bee5365e98508923\nSigner #1 public key MD5 digest: c3444358e9eb151e0fe6145f84308800",
+  "zipAlignment": "passed",
+  "scope": "Host-side package verification only; no emulator, real Android device, clinical or OEM recorder validation.",
+  "signingPurpose": "Ephemeral CI identity, not a released upgrade-signing identity. APK/key/password are deleted after checks.",
+  "sourceArtifactsUntouched": true
+}

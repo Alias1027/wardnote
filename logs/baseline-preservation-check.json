@@ -1,0 +1,21 @@
+{
+  "verifiedAt": "2026-10-23T19:57:24.358153+08:00",
+  "results": [
+    {
+      "baseline": "frozen-baseline.json",
+      "count": 3,
+      "changed": 0
+    },
+    {
+      "baseline": "web-baseline.json",
+      "count": 55,
+      "changed": 0
+    }
+  ],
+  "previousAndroidFilesUnchanged": 77,
+  "previousAndroidVersions": [
+    "0.1.0",
+    "0.1.1"
+  ],
+  "data": "Existing patient data and C-drive templates were not accessed or modified."
+}

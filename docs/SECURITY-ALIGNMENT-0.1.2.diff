@@ -1,0 +1,513 @@
+--- 0.1.1/android/app/src/main/java/org/wardnote/offline/preview/DocumentGuard.java
++++ 0.1.2/android/app/src/main/java/org/wardnote/offline/preview/DocumentGuard.java
+@@ -0,0 +1,43 @@
++package org.wardnote.offline.preview;
++
++import java.io.OutputStream;
++import java.util.Set;
++
++/** Checks run before destructive provider operations; no Android dependency for fault tests. */
++final class DocumentGuard {
++    interface Provider<T> {
++        T create() throws Exception;
++        String identity(T document) throws Exception;
++        String name(T document) throws Exception;
++        long size(T document) throws Exception;
++        OutputStream open(T document) throws Exception;
++        boolean delete(T document) throws Exception;
++    }
++    interface Delete { boolean run() throws Exception; }
++    static final class CleanupIncomplete extends Exception { }
++    static final class Opened<T> {
++        final T document; final OutputStream output;
++        Opened(T document, OutputStream output) { this.document=document; this.output=output; }
++    }
++    static <T> Opened<T> createFresh(Provider<T> provider, Set<String> existing, String name) throws Exception {
++        T document = provider.create();
++        if (document == null) throw new IllegalArgumentException();
++        String identity = provider.identity(document);
++        // Unverified/aliased targets must never be opened for writing OR deleted.
++        if (identity == null || identity.isEmpty() || existing.contains(identity)
++            || provider.size(document) != 0 || !name.equals(provider.name(document))) throw new IllegalArgumentException();
++        try {
++            OutputStream output = provider.open(document);
++            if (output == null) throw new IllegalArgumentException();
++            return new Opened<>(document, output);
++        } catch (Exception error) {
++            if (!discard(null, () -> provider.delete(document))) throw new CleanupIncomplete();
++            throw error;
++        }
++    }
++    static boolean discard(OutputStream output, Delete delete) {
++        // Closing can fail; still attempt deletion, and never claim success without confirmation.
++        try { if (output != null) output.close(); } catch (Exception ignored) { }
++        try { return delete.run(); } catch (Exception ignored) { return false; }
++    }
++}
+--- 0.1.1/android/app/src/main/java/org/wardnote/offline/preview/MainActivity.java
++++ 0.1.2/android/app/src/main/java/org/wardnote/offline/preview/MainActivity.java
+@@ -39,6 +39,8 @@
+ import java.nio.charset.StandardCharsets;
+ import java.security.MessageDigest;
+ import java.util.HashMap;
++import java.util.HashSet;
++import java.util.Set;
+ import java.util.Map;
+ import java.util.UUID;
+ import java.util.concurrent.ExecutorService;
+@@ -100,7 +102,7 @@
+                 picker.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, params.getMode() == FileChooserParams.MODE_OPEN_MULTIPLE);
+                 picker.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                 try { startActivityForResult(picker, OPEN); }
+-                catch (ActivityNotFoundException e) { fileChooser = null; callback.onReceiveValue(null); notice("picker"); }
++                catch (ActivityNotFoundException | SecurityException e) { fileChooser = null; callback.onReceiveValue(null); notice("picker"); }
+                 return true;
+             }
+         });
+@@ -267,18 +269,29 @@
+ 
+     @Override protected void onActivityResult(int request, int result, Intent data) {
+         super.onActivityResult(request, result, data);
++        try { handleActivityResult(request, result, data); }
++        catch (RuntimeException error) {
++            // A malformed provider result must not crash the workspace or expose its payload.
++            if (request == OPEN) { ValueCallback<Uri[]> callback=fileChooser; fileChooser=null; if(callback!=null)callback.onReceiveValue(null); }
++            String id=request==RECORD?pendingRecord:request==FOLDER?pendingFolder:request==SAVE?pendingSave:null;
++            if(request==RECORD)pendingRecord=null;
++            if(request==FOLDER)pendingFolder=null;
++            if(request==SAVE){pendingSave=null;pendingSaveName=null;}
++            if(id!=null)reject(id,"FILE_ACCESS","The system result could not be used.");
++        }
++    }
++    private void handleActivityResult(int request, int result, Intent data) {
+         Uri uri = data == null ? null : data.getData();
+         if (uri == null && data != null && data.getClipData() != null && data.getClipData().getItemCount() == 1) uri = data.getClipData().getItemAt(0).getUri();
+         if (request == OPEN) {
+-            ValueCallback<Uri[]> callback = fileChooser; fileChooser = null;
+-            if (callback == null) return;
+-            if (result != RESULT_OK || data == null) { callback.onReceiveValue(null); return; }
++            if (fileChooser == null) return;
++            if (result != RESULT_OK || data == null) { completeFileChoice(null); return; }
+             ClipData clip = data.getClipData();
+             if (clip != null && clip.getItemCount() > 0 && clip.getItemCount() <= 10001) {
+                 Uri[] uris = new Uri[clip.getItemCount()];
+-                for (int i = 0; i < uris.length; i++) { uris[i] = clip.getItemAt(i).getUri(); if (!contentUri(uris[i])) { callback.onReceiveValue(null); return; } }
+-                callback.onReceiveValue(uris);
+-            } else callback.onReceiveValue(contentUri(uri) ? new Uri[]{uri} : null);
++                for (int i = 0; i < uris.length; i++) { uris[i] = clip.getItemAt(i).getUri(); if (!contentUri(uris[i])) { completeFileChoice(null); return; } }
++                completeFileChoice(uris);
++            } else completeFileChoice(contentUri(uri) ? new Uri[]{uri} : null);
+             return;
+         }
+         String id = request == RECORD ? pendingRecord : request == FOLDER ? pendingFolder : request == SAVE ? pendingSave : null;
+@@ -308,7 +321,11 @@
+             } catch (Exception e) { reject(id, "FILE_ACCESS", "The selected file or folder could not be read or written."); }
+         });
+     }
+-    private static boolean contentUri(Uri uri) { return uri != null && "content".equals(uri.getScheme()); }
++    private void completeFileChoice(Uri[] uris) {
++        ValueCallback<Uri[]> callback=fileChooser;fileChooser=null;
++        if(callback!=null)callback.onReceiveValue(uris);
++    }
++    private static boolean contentUri(Uri uri) { return uri != null && "content".equals(uri.getScheme()) && uri.getAuthority()!=null && !uri.getAuthority().isEmpty() && uri.getFragment()==null; }
+ 
+     private void fileOperation(String id, String method, JSONObject args) {
+         String selected = args.optString("token");
+@@ -346,19 +363,27 @@
+                     if (tree == null) throw new IllegalArgumentException();
+                     String parentId = DocumentsContract.getTreeDocumentId(tree);
+                     Uri childList = DocumentsContract.buildChildDocumentsUriUsingTree(tree, parentId);
+-                    try (Cursor cursor = getContentResolver().query(childList, new String[]{DocumentsContract.Document.COLUMN_DISPLAY_NAME}, null, null, null)) {
++                    Set<String> existing = new HashSet<>();
++                    try (Cursor cursor = getContentResolver().query(childList, new String[]{DocumentsContract.Document.COLUMN_DOCUMENT_ID, DocumentsContract.Document.COLUMN_DISPLAY_NAME}, null, null, null)) {
+                         if (cursor == null) throw new IllegalArgumentException();
+-                        while (cursor.moveToNext()) if (name.equals(cursor.getString(0))) { reject(id, "FILE_EXISTS", "A backup file with this name already exists. Choose an empty folder."); return; }
++                        while (cursor.moveToNext()) {
++                            String childId=cursor.getString(0); if(childId==null)throw new IllegalArgumentException(); existing.add(childId);
++                            if (name.equals(cursor.getString(1))) { reject(id, "FILE_EXISTS", "A backup file with this name already exists. Choose an empty folder."); return; }
++                        }
+                     }
+                     Uri parent = DocumentsContract.buildDocumentUriUsingTree(tree, parentId);
+-                    Uri created = DocumentsContract.createDocument(getContentResolver(), parent, safeType(args.optString("type")), name);
+-                    if (created == null) throw new IllegalArgumentException();
+-                    try {
+-                        if (!name.equals(displayName(created, ""))) throw new IllegalArgumentException();
+-                        OutputStream output = getContentResolver().openOutputStream(created, "w");
+-                        if (output == null) throw new IllegalArgumentException();
+-                        String token = token(); writes.put(token, new WriteFile(created, name, output)); respond(id, object("token", token));
+-                    } catch (Exception e) { DocumentsContract.deleteDocument(getContentResolver(), created); throw e; }
++                    DocumentGuard.Opened<Uri> opened = DocumentGuard.createFresh(new DocumentGuard.Provider<Uri>() {
++                        public Uri create() throws Exception { return DocumentsContract.createDocument(getContentResolver(), parent, safeType(args.optString("type")), name); }
++                        public String identity(Uri document) {
++                            if (!contentUri(document) || !tree.getAuthority().equals(document.getAuthority())) throw new IllegalArgumentException();
++                            return DocumentsContract.getDocumentId(document);
++                        }
++                        public String name(Uri document) { return displayName(document, ""); }
++                        public long size(Uri document) { return existingSize(document); }
++                        public OutputStream open(Uri document) throws Exception { return getContentResolver().openOutputStream(document, "w"); }
++                        public boolean delete(Uri document) throws Exception { return DocumentsContract.deleteDocument(getContentResolver(), document); }
++                    }, existing, name);
++                    String token = token(); writes.put(token, new WriteFile(opened.document, name, opened.output)); respond(id, object("token", token));
+                     break;
+                 }
+                 case "writeChunk": {
+@@ -379,14 +404,14 @@
+                     }
+                     String hash = hex(digest.digest()), expected = args.optString("sha256");
+                     if (size != file.size || (!expected.isEmpty() && !hash.equalsIgnoreCase(expected))) {
+-                        discard(selected); reject(id, "VERIFY_FAILED", "The exported file failed readback verification and was removed."); return;
++                        boolean removed=discard(selected); reject(id, removed?"VERIFY_FAILED":"CLEANUP_INCOMPLETE", "Export verification failed; cleanup confirmation is required if removal failed."); return;
+                     }
+                     writes.remove(selected); respond(id, object("size", size, "sha256", hash)); break;
+                 }
+-                case "abortFile": discard(selected); respond(id, object("removed", true)); break;
++                case "abortFile": respond(id, object("removed", discard(selected))); break;
+                 default: throw new IllegalArgumentException();
+             }
+-        } catch (Exception e) { reject(id, "FILE_ACCESS", "The file operation failed. The original patient records remain in this app."); }
++        } catch (Exception e) { reject(id, e instanceof DocumentGuard.CleanupIncomplete?"CLEANUP_INCOMPLETE":"FILE_ACCESS", "The file operation failed. The original patient records remain in this app."); }
+     }
+ 
+     private ReadFile describe(Uri uri) throws Exception {
+@@ -421,9 +446,9 @@
+         return name;
+     }
+     private static String safeType(String type) { return type != null && type.matches("[a-zA-Z0-9.+-]+/[a-zA-Z0-9.+-]+") ? type : "application/octet-stream"; }
+-    private void discard(String token) throws Exception {
++    private boolean discard(String token) {
+         WriteFile file = writes.remove(token);
+-        if (file != null) { if (file.output != null) file.output.close(); DocumentsContract.deleteDocument(getContentResolver(), file.uri); }
++        return file != null && DocumentGuard.discard(file.output, () -> DocumentsContract.deleteDocument(getContentResolver(), file.uri));
+     }
+     private static String token() { return UUID.randomUUID().toString(); }
+     private static String hex(byte[] bytes) { StringBuilder value = new StringBuilder(); for (byte b : bytes) value.append(String.format(java.util.Locale.ROOT, "%02x", b & 0xff)); return value.toString(); }
+--- 0.1.1/web/android-platform.js
++++ 0.1.2/web/android-platform.js
+@@ -3,9 +3,9 @@
+ import {androidText} from './android-strings.js';
+ export const nt=key=>androidText(key,language());
+ export const isAndroid=()=>typeof globalThis.WardNoteNative?.postMessage==='function';
+-const calls=new Map();let serial=0;
+-export function nativeBusy(){return calls.size>0;}
+-function failure(code){return new Error(nt(code==='CANCELLED'?'cancelled':code==='NO_RECORDER'?'noRecorder':code==='INVALID_FILE'||code==='TOO_LARGE'?'fileCheck':'failed'));}
++const calls=new Map();let serial=0,transfers=0;
++export function nativeBusy(){return calls.size>0||transfers>0;}
++function failure(code){return Object.assign(new Error(nt(code==='CLEANUP_INCOMPLETE'?'cleanup':code==='CANCELLED'?'cancelled':code==='NO_RECORDER'?'noRecorder':code==='INVALID_FILE'||code==='TOO_LARGE'?'fileCheck':'failed')),{code});}
+ // Only this packaged top-level page receives the native bridge.
+ globalThis.__wardnoteNativeResult=message=>{
+  if(typeof message==='string'){try{message=JSON.parse(message);}catch{return;}}
+@@ -37,6 +37,7 @@
+  return mime;
+ }
+ export async function importNativeAudio(file,{check,create,append,finalize}){
++ transfers++;try{
+  const mime=audioType(file);check();
+  const record=await create(mime);let sequence=0;
+  for(let offset=0;offset<file.size;){
+@@ -45,25 +46,28 @@
+   if(!bytes.length||bytes.length>256*1024||offset+bytes.length>file.size||result.eof!==(offset+bytes.length===file.size))throw new Error(nt('fileCheck'));
+   check();await append(record.id,sequence++,new Blob([bytes],{type:mime}));offset+=bytes.length;
+  }
+- check();return finalize(record.id,sequence);
++ check();return await finalize(record.id,sequence);
++ }finally{transfers--;}
+ }
+ export async function releaseNativeFile(token){if(token)await nativeCall('releaseFile',{token}).catch(()=>{});}
+ const b64=bytes=>{let text='';for(let p=0;p<bytes.length;p+=8192)text+=String.fromCharCode(...bytes.subarray(p,p+8192));return btoa(text);};
+ const sha=async blob=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',await blob.arrayBuffer())),x=>x.toString(16).padStart(2,'0')).join('');
+ export async function writeNativeFile(blob,name,{folder,check=()=>{}}={}){
+- check();const opened=await nativeCall(folder?'beginFile':'chooseSaveFile',{...(folder?{folder}:{}),name,type:blob.type||'application/octet-stream'},0);
+- const token=opened.token;if(!token)throw new Error(nt('failed'));
++ let token;transfers++;
+  try{
+-  for(let offset=0;offset<blob.size;offset+=256*1024){check();const bytes=new Uint8Array(await blob.slice(offset,offset+256*1024).arrayBuffer());await nativeCall('writeChunk',{token,base64:b64(bytes)});}
+-  check();const expected=await sha(blob),result=await nativeCall('finishFile',{token,sha256:expected,size:blob.size});
++  check();const opened=await nativeCall(folder?'beginFile':'chooseSaveFile',{...(folder?{folder}:{}),name,type:blob.type||'application/octet-stream'},0);
++  token=opened.token;if(!token)throw new Error(nt('failed'));check();
++  for(let offset=0;offset<blob.size;offset+=256*1024){check();const bytes=new Uint8Array(await blob.slice(offset,offset+256*1024).arrayBuffer());check();await nativeCall('writeChunk',{token,base64:b64(bytes)});check();}
++  check();const expected=await sha(blob);check();const result=await nativeCall('finishFile',{token,sha256:expected,size:blob.size});
+   if(result.size!==blob.size||result.sha256!==expected)throw new Error(nt('failed'));
+   check();return result;
+- }catch(error){await nativeCall('abortFile',{token}).catch(()=>{});throw error;}
++ }catch(error){if(token&&error.code!=='VERIFY_FAILED'){try{const cleanup=await nativeCall('abortFile',{token});if(cleanup.removed!==true)throw new Error(nt('cleanup'));}catch{throw new Error(nt('cleanup'));}}throw error;}
++ finally{transfers--;}
+ }
+ export function nativeGuide(id='android-guide'){
+  return `<details class="panel fold" id="${id}"><summary>${nt('title')}</summary><p>${nt('guide')}</p><p>${nt('boundary')}</p><p>${nt('data')}</p><p>${nt('backup')}</p><p>${nt('update')}</p><p class="muted">${nt('validation')}</p></details>`;
+ }
+-export function easyStartHTML(){return `<div class="notice">${nt('title')} · 0.1.1-preview<br>${nt('guide')}</div>`;}
++export function easyStartHTML(){return `<div class="notice">${nt('title')} · 0.1.2-preview<br>${nt('guide')}</div>`;}
+ export const bindEasyStart=()=>({dispose(){}});
+-export const updateEntryHTML=()=>`<p class="muted">Android 0.1.1-preview · Web 0.6.15 r1</p>`;
++export const updateEntryHTML=()=>`<p class="muted">Android 0.1.2-preview · Web 0.6.15 r1</p>`;
+ export function setupUpdates(){/* Native packages update atomically; never fetch a web shell or activate a service worker. */}
+--- 0.1.1/web/android-strings.js
++++ 0.1.2/web/android-strings.js
+@@ -2,6 +2,8 @@
+ export const codes=['zh','en','es','fr','ru','ar','hi','ur'];
+ // OS-owned recorder and file picker dialogs follow the device's language.
+ const rows={
++ cleanup:['未能确认已清理未完成的导出文件。请检查所选文件夹；应用内原始资料保留。','Cleanup of the incomplete export could not be confirmed. Check the selected folder; original in-app data is retained.','No se pudo confirmar la eliminación de la exportación incompleta. Revise la carpeta elegida; los datos originales de la aplicación se conservan.','La suppression de l’export incomplet n’a pas pu être confirmée. Vérifiez le dossier choisi ; les données originales de l’application sont conservées.','Не удалось подтвердить удаление незавершённого экспорта. Проверьте выбранную папку; исходные данные в приложении сохранены.','تعذر تأكيد حذف ملف التصدير غير المكتمل. تحقق من المجلد المحدد؛ البيانات الأصلية داخل التطبيق محفوظة.','अधूरे निर्यात की सफाई की पुष्टि नहीं हो सकी। चुना हुआ फ़ोल्डर जाँचें; ऐप का मूल डेटा सुरक्षित है।','نامکمل برآمد کی صفائی کی تصدیق نہیں ہو سکی۔ منتخب فولڈر دیکھیں؛ ایپ میں اصل ڈیٹا محفوظ ہے۔'],
++ working:['请等待当前录音或文件操作完成后再切换。','Wait for the current recording or file operation to finish before switching.','Espere a que termine la grabación o la operación de archivos antes de cambiar.','Attendez la fin de l’enregistrement ou de l’opération sur les fichiers avant de changer.','Перед переключением дождитесь завершения записи или операции с файлом.','انتظر انتهاء التسجيل أو عملية الملف قبل التبديل.','बदलने से पहले वर्तमान रिकॉर्डिंग या फ़ाइल कार्य पूरा होने दें।','تبدیل کرنے سے پہلے موجودہ ریکارڈنگ یا فائل کا عمل مکمل ہونے دیں۔'],
+  title:['Android 脱机安装版','Android offline edition','Edición Android sin conexión','Édition Android hors ligne','Автономная версия Android','إصدار Android دون اتصال','Android ऑफ़लाइन संस्करण','Android آف لائن نسخہ'],
+  guide:['首次打开即可脱机使用；程序已包含在安装包内，无需访问 HTTPS 站点。','The app is bundled for offline first use; no HTTPS website is needed.','La aplicación está incluida para el primer uso sin conexión; no necesita un sitio HTTPS.','L’application est incluse pour une première utilisation hors ligne, sans site HTTPS.','Приложение включено в пакет: первый запуск без сети и сайта HTTPS.','التطبيق مضمّن للاستخدام الأول دون اتصال؛ لا حاجة لموقع HTTPS.','ऐप पैकेज में शामिल है; पहली बार ऑफ़लाइन उपयोग के लिए HTTPS वेबसाइट नहीं चाहिए।','ایپ پیکیج میں شامل ہے؛ پہلی بار آف لائن استعمال کے لیے HTTPS ویب سائٹ درکار نہیں۔'],
+  boundary:['此预览版不提供联网、云同步或语音转文字。录音优先调用手机已有的录音应用。','This preview has no network services, cloud sync or speech-to-text. Recording uses an existing phone recorder app.','Esta versión no ofrece red, sincronización ni transcripción. Utiliza una grabadora existente del teléfono.','Cet aperçu ne propose ni services réseau, ni synchronisation, ni transcription. Il utilise une application d’enregistrement du téléphone.','В этой версии нет сетевых сервисов, облачной синхронизации и распознавания речи. Используется диктофон телефона.','لا يوفر هذا الإصدار خدمات شبكة أو مزامنة سحابية أو تحويل الكلام إلى نص. يستخدم تطبيق التسجيل الموجود على الهاتف.','इस पूर्वावलोकन में नेटवर्क सेवाएँ, क्लाउड सिंक या वाक्-से-पाठ नहीं हैं। रिकॉर्डिंग के लिए फ़ोन का मौजूदा ऐप उपयोग होता है।','اس پیش منظر میں نیٹ ورک، کلاؤڈ ہم وقت سازی یا آواز سے متن نہیں ہے۔ ریکارڈنگ کے لیے فون کی موجودہ ایپ استعمال ہوتی ہے۔'],
+--- 0.1.1/web/app.js
++++ 0.1.2/web/app.js
+@@ -72,7 +72,7 @@
+ function shell(content){
+  const nav=[['dashboard','home',tr('今日工作台')],['patients','people',tr('患者管理')],['data','data',tr('数据管理')],['settings','settings',tr('设置与帮助')]];
+  const current=S.selected?tr('患者管理'):S.view==='learning'?tr('未关联的学习记录'):nav.find(n=>n[0]===S.view)?.[2];
+- $('#app').innerHTML=ui`<div class="shell"><aside class="sidebar"><div class="brand"><img src="/icons/icon.svg" alt=""><div><strong>循记临床</strong><small>WARDNOTE</small></div></div><div class="nav-label">工作区</div>${nav.map(([id,ic,label])=>`<button class="nav-item ${(S.selected?'patients':S.view)===id?'active':''}" data-action="nav" data-view="${id}">${icon(ic)}${label}</button>`).join('')}<div class="sidebar-bottom"><strong>${esc(S.workspace.clinician)}</strong>${S.workspace.username&&S.workspace.username!==S.workspace.clinician?`<span class="account-name" dir="auto">${esc(S.workspace.username)}</span>`:''}单工作区 · 本地保存<br>V006b 模板 / App ${VERSION} r1 · Android 0.1.1-preview</div></aside><main class="main"><header class="topbar"><div class="topbar-left">${btn('menu','☰','quiet small mobile-menu',tr('aria-label="打开导航"'))}${S.selected?ui`<div class="patient-context"><strong>${esc(record(S.selected).data.displayName)} · ${esc(record(S.selected).data.bed||tr('未填床位'))}</strong><small>住院标识 ${esc(record(S.selected).data.caseId||tr('未填'))}</small></div>`:ui`<span class="trail">工作区 &nbsp; / &nbsp; ${esc(current)}</span>`}</div><div class="topbar-right">${languageButton()}<span class="statusline save-state">已保存到工作区</span><small class="device-mode">${modeLabel()}</small><span class="pill">评估版</span>${btn('lock',tr('注销'),'quiet small')}</div></header><div class="content ${S.teaching?'teaching':''}">${content}<div class="footer-note">WARDNOTE · 把信息串成病程，把判断留给临床</div></div></main></div><div id="print-area" class="print-only"></div>`;
++ $('#app').innerHTML=ui`<div class="shell"><aside class="sidebar"><div class="brand"><img src="/icons/icon.svg" alt=""><div><strong>循记临床</strong><small>WARDNOTE</small></div></div><div class="nav-label">工作区</div>${nav.map(([id,ic,label])=>`<button class="nav-item ${(S.selected?'patients':S.view)===id?'active':''}" data-action="nav" data-view="${id}">${icon(ic)}${label}</button>`).join('')}<div class="sidebar-bottom"><strong>${esc(S.workspace.clinician)}</strong>${S.workspace.username&&S.workspace.username!==S.workspace.clinician?`<span class="account-name" dir="auto">${esc(S.workspace.username)}</span>`:''}单工作区 · 本地保存<br>V006b 模板 / App ${VERSION} r1 · Android 0.1.2-preview</div></aside><main class="main"><header class="topbar"><div class="topbar-left">${btn('menu','☰','quiet small mobile-menu',tr('aria-label="打开导航"'))}${S.selected?ui`<div class="patient-context"><strong>${esc(record(S.selected).data.displayName)} · ${esc(record(S.selected).data.bed||tr('未填床位'))}</strong><small>住院标识 ${esc(record(S.selected).data.caseId||tr('未填'))}</small></div>`:ui`<span class="trail">工作区 &nbsp; / &nbsp; ${esc(current)}</span>`}</div><div class="topbar-right">${languageButton()}<span class="statusline save-state">已保存到工作区</span><small class="device-mode">${modeLabel()}</small><span class="pill">评估版</span>${btn('lock',tr('注销'),'quiet small')}</div></header><div class="content ${S.teaching?'teaching':''}">${content}<div class="footer-note">WARDNOTE · 把信息串成病程，把判断留给临床</div></div></main></div><div id="print-area" class="print-only"></div>`;
+  saveStatus();renderPanels();bindEasyEntry();
+ }
+ function patientCard(e){const d=e.data,n=related('note',e.id).find(n=>n.data.kind==='daily'&&n.data.date===dateLocal()), tasks=related('task',e.id).filter(t=>!t.data.done).length;const [label,color]=acuity[d.acuity]||acuity.stable;return ui`<button class="patient-card" data-patient-entry data-action="open-patient" data-id="${e.id}" data-search="${esc(`${d.displayName} ${d.bed} ${d.caseId}`.toLowerCase())}"><div class="card-top"><span class="bed">${esc(d.bed||tr('未分配床位'))} · ${esc(d.service||tr('未填科室'))}</span>${badge(d.discharged?tr('已出院'):label,d.discharged?'':color)}</div><div class="patient-name">${esc(d.displayName)}</div><div class="card-line"><span>${esc(d.caseId||tr('未填住院标识'))}</span><span>·</span><span>入院 ${dateValue(d.admitted)}</span>${d.demo?badge(tr('虚构演示')):''}</div><div class="card-bottom"><span>${n?(n.data.review?tr('✓ 今日记录已复核'):tr('○ 今日记录待复核')):tr('○ 今日尚无记录')}</span><span>${tasks} 项待办 &nbsp; ↗</span></div></button>`;}
+@@ -239,7 +239,8 @@
+ function select(name,label,options,value){return `<div class="field"><label for="m-${name}">${tr(label)}</label><select id="m-${name}" name="${name}">${options.map(([v,l])=>`<option value="${v}" ${v===value?'selected':''}>${l}</option>`).join('')}</select></div>`;}
+ function check(name,label,value=false){return `<label><input type="checkbox" name="${name}" ${value?'checked':''}>${tr(label)}</label>`;}
+ function utf8base64(text){const b=new TextEncoder().encode(text);let s='';for(let i=0;i<b.length;i+=32768)s+=String.fromCharCode(...b.subarray(i,i+32768));return btoa(s);}
+-async function download(data,name,type='application/json'){try{await writeNativeFile(data instanceof Blob?data:new Blob([data],{type}),name);toast(nt('saved'));}catch(error){toast(error.message,true);}}
++function exportGuard(){const context=device.context(),encounterId=S.selected,generation=viewGeneration;return ()=>{device.assertContext(context);if(encounterId!==S.selected||generation!==viewGeneration)throw new Error(nt('changed'));};}
++async function download(data,name,type='application/json',check=exportGuard()){try{check();await writeNativeFile(data instanceof Blob?data:new Blob([data],{type}),name,{check});check();toast(nt('saved'));}catch(error){toast(error.message,true);}}
+ async function patientForm(id){const r=id?record(id):null,d=r?.data||{admitted:dateLocal(),acuity:'stable'};modal(r?tr('更新患者信息'):tr('新建患者'),`<div class="field-grid">${input('displayName',tr('姓名 / 研究代号'),d.displayName,'text',true)}${input('caseId',tr('本次住院 / 就诊标识'),d.caseId)}${input('dob',tr('出生日期'),d.dob,'date')}${input('admitted',tr('入院 / 就诊日期'),d.admitted,'date',true)}${input('bed',tr('床位'),d.bed)}${input('service',tr('科室 / 团队'),d.service)}${select('acuity',tr('病情状态'),[['stable',tr('稳定')],['serious',tr('病重')],['critical',tr('病危')],...(['watch','urgent'].includes(d.acuity)?[[d.acuity,tr('旧状态待确认')]]:[])],d.acuity)}${input('discharged',tr('出院日期（在院留空）'),d.discharged,'date')}</div><p id="discharge-followup" class="notice" role="status" aria-live="polite" hidden></p>${input('codeStatus',tr('复苏医嘱状态 / Code status'),d.codeStatus)}<div class="checks">${check('codeVerified',tr('已核对当前正式医嘱'),d.codeVerified)}</div>${input('allergySummary',tr('重要过敏 / 反应'),d.allergySummary)}${input('precautions',tr('隔离 / 防护及原因'),d.precautions)}`,r?tr('保存更新'):tr('建立患者'),async(f)=>{const data={...d,...f,codeVerified:!!f.codeVerified};const saved=r?put(await json(`/records/${id}`,'PUT',{version:r.version,data})):await create('encounter','',data);S.selected=saved.id;S.view='patients';S.tab='daily';S.noteId=null;render();});
+  const date=$('#m-discharged'),notice=$('#discharge-followup');
+  date.setAttribute('aria-describedby','discharge-followup');
+@@ -399,9 +400,10 @@
+ function confirmedToken(value,kind){const native=kind==='send'?'发送本次住院记录':'清理已审核录音',token=language()==='zh'?native:language()==='en'?(kind==='send'?'SEND THIS ENCOUNTER':'DELETE REVIEWED AUDIO'):(kind==='send'?'SEND':'DELETE');return value.trim()===token?native:'';}
+ document.addEventListener('click',async e=>{
+  const b=e.target.closest('[data-action]');if(!b)return;const a=b.dataset.action,id=b.dataset.id;
++ const exportCheck=['draft-export','audio-download','export-json','export-csv','export-eml','backup'].includes(a)?exportGuard():null;
+  if(a==='close-note-tools'){closeNoteTools();return;}if(a==='note-tools'){openNoteTools(b);return;}
+  if(a==='close-modal'){if($('#modal form')?.dataset.saving==='true')return;$('#modal').close();return;}if(a==='menu'){$('.sidebar').classList.toggle('open');return;}
+- if(S.capture&&(['nav','patient-list','open-patient','back','lock','open-timeline','new-patient','edit-patient','link-reflection'].includes(a)||(a==='open-note'&&record(id)?.encounterId!==S.selected))){toast(tr('请先结束并保存当前录音。'),true);return;}
++ if((S.capture||nativeBusy())&&(['nav','patient-list','open-patient','back','lock','open-timeline','new-patient','edit-patient','link-reflection'].includes(a)||(a==='open-note'&&record(id)?.encounterId!==S.selected))){toast(nt('working'),true);return;}
+  if(!['draft-export','retry-save','stop-record','retry-audio','unlock-session'].includes(a)&&!await flush())return;
+  b.disabled=true;updateActions++;
+  try{
+@@ -419,7 +421,7 @@
+   if(a==='add-problem'){const n=record(id);n.data.problems.push({});n.data.review=null;schedule(id);render();}
+   if(a==='remove-problem'){const n=record(id);modal(tr('移除此问题'),ui`<p>将从当前草稿移除「${esc(n.data.problems[Number(b.dataset.index)].title||tr('未命名问题'))}」。先前保存的版本保留在记录历史中。</p>`,tr('移除'),async()=>{n.data.problems.splice(Number(b.dataset.index),1);n.data.review=null;schedule(id);await save(id);render();});}
+   if(a==='retry-save'){await flush();toast([...pending.values()].some(p=>p.error)?tr('仍未保存，请导出草稿后处理连接或版本冲突。'):tr('记录已保存'));}
+-  if(a==='draft-export')download(JSON.stringify({format:'wardnote-unsaved-draft/1',records:clinicalRecords(S.records,S.selected)},null,2),`wardnote-draft-${dateLocal()}.json`);
++  if(a==='draft-export')await download(JSON.stringify({format:'wardnote-unsaved-draft/1',records:clinicalRecords(S.records,S.selected)},null,2),`wardnote-draft-${dateLocal()}.json`,'application/json',exportCheck);
+   if(a==='verify-note'||a==='verify-summary'||a==='brief-verify'){const r=record(id);modal(tr('确认已核对记录'),tr('<p>请确认已核对原始资料、重要遗漏、临床判断及后续计划。此操作是工作区复核记录，不代替医院正式电子签章。</p>'),tr('确认复核'),async()=>{put(await json(`/records/${id}/verify`,'POST',{version:r.version}));render();});}
+   if(a==='new-lab'||a==='edit-lab')await labForm(id);if(a==='new-task'||a==='edit-task')await taskForm(id);
+   if(a==='brief-generate')await generateBrief();if(a==='brief-edit')editPatientBrief(id);if(a==='brief-open-source')await openBriefSource(id);if(a==='brief-sources'){const r=record(id);if(r?.type==='brief'&&r.encounterId===S.selected)modal(tr('摘要来源与版本'),briefSourcesContent(r,S.records),null);}
+@@ -449,13 +451,13 @@
+   if(a==='audio-meta')await audioMeta(id);if(a==='clip')await clipAudio(id);
+   if(a==='transcribe'){const encounterId=S.selected,generation=viewGeneration;toast(tr('正在向已配置的语音服务提交此录音…'));const audio=put(await json(`/recordings/${id}/transcribe`,'POST',{language:draft()?.data.recognitionLanguage||'auto'}));if(generation!==viewGeneration||encounterId!==S.selected)throw new Error(tr('来源属于其他患者'));if(!draft()?.data.text.trim()){const d=await ensureDraft();d.data.text=audio.data.transcript;d.data.sourceId=audio.id;d.data.sourceVersion=audio.version;d.data.language='original';schedule(d.id);if(await save(d.id))await voiceCandidates();}render();toast(tr('转写已保存，请核对后用于备忘或查房记录。'));}
+   if(a==='transcript'){const r=record(id);modal(tr('语音识别原文'),area('transcript',tr('待核对转写'),r.data.transcript)+ui`<p class="muted">填入记录：先打开对应查房或初诊记录，再使用「粘贴转写并归类」。</p>`,tr('复制到剪贴板'),async()=>{await navigator.clipboard.writeText(r.data.transcript);toast(tr('转写已复制'));});}
+-  if(a==='audio-download'){const r=record(id),blob=await(await api(`/recordings/${id}/audio`)).blob();download(blob,`wardnote-audio-${id}.${({'audio/wav':'wav','audio/x-wav':'wav','audio/mp4':'m4a','audio/mpeg':'mp3','audio/amr':'amr','audio/3gpp':'3gp','audio/aac':'aac','audio/flac':'flac','audio/ogg':'ogg','audio/webm':'webm'}[r.data.mime.split(';')[0]]||'audio')}`);}
++  if(a==='audio-download'){const r=record(id),blob=await(await api(`/recordings/${id}/audio`)).blob();exportCheck();await download(blob,`wardnote-audio-${id}.${({'audio/wav':'wav','audio/x-wav':'wav','audio/mp4':'m4a','audio/mpeg':'mp3','audio/amr':'amr','audio/3gpp':'3gp','audio/aac':'aac','audio/flac':'flac','audio/ogg':'ogg','audio/webm':'webm'}[r.data.mime.split(';')[0]]||'audio')}`,'application/octet-stream',exportCheck);}
+   if(a==='export')await exportDialog();
+-  if(a==='export-json')download(JSON.stringify(await exportData(),null,2),`wardnote-${dateLocal()}.json`);
+-  if(a==='export-csv'){const data=await exportData();const safe=v=>`"${String(v??'').replace(/^[=+@\-\t\r]/,"'$&").replaceAll('"','""')}"`;const rows=[[tr('项目'),tr('采样时间'),tr('结果'),tr('单位'),tr('来源'),tr('已核对')],...data.records.filter(r=>r.type==='lab').map(r=>[r.data.name,r.data.sampledAt,r.data.value,r.data.unit,r.data.source,r.data.verified?tr('是'):tr('否')])];download('\ufeff'+rows.map(row=>row.map(safe).join(',')).join('\r\n'),`wardnote-labs-${dateLocal()}.csv`,'text/csv;charset=utf-8');}
+-  if(a==='export-eml'){const data=await exportData();const encoded=utf8base64(JSON.stringify(data,null,2));const boundary='wardnote-boundary';download(`MIME-Version: 1.0\r\nX-Unsent: 1\r\nSubject: WardNote record export\r\nContent-Type: multipart/mixed; boundary="${boundary}"\r\n\r\n--${boundary}\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nPlease review the attached clinical records before sending. Audio is not included.\r\n--${boundary}\r\nContent-Type: application/json; name="record.json"\r\nContent-Disposition: attachment; filename="record.json"\r\nContent-Transfer-Encoding: base64\r\n\r\n${encoded.match(/.{1,76}/g).join('\r\n')}\r\n--${boundary}--\r\n`,`wardnote-draft-${dateLocal()}.eml`,'message/rfc822');}
++  if(a==='export-json')await download(JSON.stringify(await exportData(),null,2),`wardnote-${dateLocal()}.json`,'application/json',exportCheck);
++  if(a==='export-csv'){const data=await exportData();const safe=v=>`"${String(v??'').replace(/^[=+@\-\t\r]/,"'$&").replaceAll('"','""')}"`;const rows=[[tr('项目'),tr('采样时间'),tr('结果'),tr('单位'),tr('来源'),tr('已核对')],...data.records.filter(r=>r.type==='lab').map(r=>[r.data.name,r.data.sampledAt,r.data.value,r.data.unit,r.data.source,r.data.verified?tr('是'):tr('否')])];await download('\ufeff'+rows.map(row=>row.map(safe).join(',')).join('\r\n'),`wardnote-labs-${dateLocal()}.csv`,'text/csv;charset=utf-8',exportCheck);}
++  if(a==='export-eml'){const data=await exportData();const encoded=utf8base64(JSON.stringify(data,null,2));const boundary='wardnote-boundary';await download(`MIME-Version: 1.0\r\nX-Unsent: 1\r\nSubject: WardNote record export\r\nContent-Type: multipart/mixed; boundary="${boundary}"\r\n\r\n--${boundary}\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nPlease review the attached clinical records before sending. Audio is not included.\r\n--${boundary}\r\nContent-Type: application/json; name="record.json"\r\nContent-Disposition: attachment; filename="record.json"\r\nContent-Transfer-Encoding: base64\r\n\r\n${encoded.match(/.{1,76}/g).join('\r\n')}\r\n--${boundary}--\r\n`,`wardnote-draft-${dateLocal()}.eml`,'message/rfc822',exportCheck);}
+   if(a==='send-preview'){const data=await exportData();$('#modal').close();modal(tr('确认发送到医院接口'),ui`<p>接收地址：${esc(S.integrations.exportHost)}</p>${area('preview',tr('即将发送的内容'),JSON.stringify(data,null,2)).replace('<textarea','<textarea dir="auto" readonly')}${input('confirm',tr('输入“发送本次住院记录”确认'))}`,tr('发送'),async f=>{await json('/send','POST',{encounterId:S.selected,confirm:confirmedToken(f.confirm,'send'),expectedVersions:data.records.map(r=>({id:r.id,version:r.version}))});toast(tr('接收接口已返回成功响应；请按院内流程确认入库。'));});}
+-  if(a==='print')printNote();if(a==='backup'&&isLocal()){await offlineAction('offline-backup');return;}if(a==='backup'){const blob=await(await api('/backup','POST',{})).blob();download(blob,`wardnote-encrypted-${dateLocal()}.db`);toast(tr('加密备份已下载，请与工作区密码分别妥善保管。'));}
++  if(a==='print')printNote();if(a==='backup'&&isLocal()){await offlineAction('offline-backup');return;}if(a==='backup'){const blob=await(await api('/backup','POST',{})).blob();await download(blob,`wardnote-encrypted-${dateLocal()}.db`,'application/octet-stream',exportCheck);}
+   if(a==='retention-check')await retentionCheck();
+   if(a==='clean'){const ids=$$('[data-clean]:checked').map(c=>c.dataset.clean);if(!ids.length)throw new Error(tr('请先选择满足条件的录音'));modal(tr('清理选中的普通录音'),ui`<p>将删除 ${ids.length} 段原录音及其临时转写，无法在本工作区恢复。已保存摘要和重要独立片段保留；既有备份不会同时删除。</p>${input('confirm',tr('输入“清理已审核录音”确认'))}`,tr('执行清理'),async f=>{await json('/retention/clean','POST',{ids,confirm:confirmedToken(f.confirm,'clean')});await reload();render();await retentionCheck();});}
+   if(a==='audit'){const data=await json('/audit');$('#audit-list').innerHTML=ui`<div class="table-wrap"><table><thead><tr><th>时间</th><th>事件</th><th>记录标识</th></tr></thead><tbody>${data.events.map(v=>`<tr><td>${time(v.time)}</td><td>${esc(v.action)}</td><td class="key">${esc(v.id||v.encounterId||'—')}</td></tr>`).join('')}</tbody></table></div>`;}
+--- 0.1.1/tests/android-browser.mjs
++++ 0.1.2/tests/android-browser.mjs
+@@ -27,9 +27,9 @@
+    if(method==='readChunk'){if(window.holdRead)await new Promise(r=>window.resumeRead=r);const b=window.nativeAudio.slice(args.offset,args.offset+args.length);let text='';for(let i=0;i<b.length;i+=8192)text+=String.fromCharCode(...b.subarray(i,i+8192));return reply({base64:btoa(text),eof:args.offset+b.length===window.nativeAudio.length});}
+    if(method==='chooseBackupFolder')return reply({token:'folder'});
+    if(method==='beginFile'||method==='chooseSaveFile'){current={name:args.name,chunks:[]};return reply({token:'file'});}
+-   if(method==='writeChunk'){current.chunks.push(Uint8Array.from(atob(args.base64),x=>x.charCodeAt(0)));return reply({});}
++   if(method==='writeChunk'){if(window.holdWrite)await new Promise(r=>window.resumeWrite=r);current.chunks.push(Uint8Array.from(atob(args.base64),x=>x.charCodeAt(0)));return reply({});}
+    if(method==='finishFile'){const blob=new Blob(current.chunks),bytes=await blob.arrayBuffer(),sha256=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),x=>x.toString(16).padStart(2,'0')).join('');window.nativeWrites.push({name:current.name,bytes:Array.from(new Uint8Array(bytes))});return reply({size:blob.size,sha256});}
+-   if(method==='abortFile')return reply({});throw Error('unexpected native method '+method);
++   if(method==='abortFile')return reply({removed:true});throw Error('unexpected native method '+method);
+   }};
+  });
+  page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));
+@@ -75,6 +75,24 @@
+  const manual=await page.evaluate(async()=>{const {device}=await import('/offline-api.js'),s=await device.state(),r=s.records.find(x=>x.type==='recording'&&x.data.title==='manual.wav');return {r,bytes:Array.from(new Uint8Array(await(await device.audio(r.id)).arrayBuffer()))};});
+  assert.equal(manual.r.encounterId,patient);assert.equal(manual.r.data.finalized,true);assert.deepEqual(Buffer.from(manual.bytes),wav);
+  mark('Manual file-picker import preserves actual WAV bytes and patient attribution');
++ // Exercise the actual audio export action, including asynchronous logout protection.
++ await openMemos();const audioExport=page.locator('[data-action=audio-download][data-id="'+saved.r.id+'"]').first();
++ await audioExport.click();await page.waitForFunction(()=>window.nativeWrites.length===1);
++ assert.deepEqual(Buffer.from(await page.evaluate(()=>window.nativeWrites[0].bytes)),Buffer.from(saved.bytes));
++ mark('Normal audio export uses the actual UI action and preserves exact bytes');
++ await page.evaluate(()=>{window.nativeWrites=[];window.nativeCalls=[];window.holdWrite=true;});
++ await audioExport.click();await page.waitForFunction(()=>!!window.resumeWrite);
++ await page.locator('[data-action=lock]').click();
++ assert.equal(await page.locator('#auth-form').count(),0,'logout must wait for active file operation');
++ await page.evaluate(async()=>{const {device}=await import('/offline-api.js');device.lock();window.holdWrite=false;window.resumeWrite();});
++ await page.waitForFunction(()=>window.nativeCalls.some(x=>x.method==='abortFile'));
++ await page.waitForFunction(async()=>!(await import('/android-platform.js')).nativeBusy());
++ assert.equal(await page.evaluate(()=>window.nativeCalls.filter(x=>x.method==='writeChunk').length),1,'no writes after the in-flight chunk');
++ assert.equal(await page.evaluate(()=>window.nativeCalls.some(x=>x.method==='finishFile')),false);
++ assert.equal(await page.evaluate(()=>window.nativeWrites.length),0,'invalidated export cannot report successful output');
++ mark('Export blocks UI logout; independent session invalidation aborts before further chunks or finalization');
++ await page.reload();await page.locator('#username').fill('android.test');await page.locator('#password').fill(password);await page.locator('#auth-form button[type=submit]').click();await page.locator('[data-patient-entry]').click();
++
+  // Back action must flush edited notes, and stay in the app when storage fails.
+  await page.locator('[data-action=new-note]').click();await page.locator('#modal-form button[type=submit]').click();await page.locator('#modal').waitFor({state:'hidden'});
+  await page.evaluate(async()=>{const {device}=await import('/offline-api.js');window.originalMutate=device.mutate;device.mutate=async()=>{throw Error('Synthetic storage failure');};});
+--- 0.1.1/tests/android-core.test.mjs
++++ 0.1.2/tests/android-core.test.mjs
+@@ -31,7 +31,7 @@
+ });
+ test('backup/export requires native read-back size and digest; failed writes abort',async()=>{
+  const bytes=Buffer.alloc(700000,4);let received=[],aborted=false;
+- const native=(bad=false)=>({postMessage(raw){const {id,method,args}=JSON.parse(raw);if(method==='beginFile')return result(id,{token:'newfile'});if(method==='writeChunk'){received.push(Buffer.from(args.base64,'base64'));return result(id,{});}if(method==='finishFile')return result(id,{size:bad?3:bytes.length,sha256:args.sha256});if(method==='abortFile'){aborted=true;return result(id,{});}throw Error(method);}});
++ const native=(bad=false)=>({postMessage(raw){const {id,method,args}=JSON.parse(raw);if(method==='beginFile')return result(id,{token:'newfile'});if(method==='writeChunk'){received.push(Buffer.from(args.base64,'base64'));return result(id,{});}if(method==='finishFile')return result(id,{size:bad?3:bytes.length,sha256:args.sha256});if(method==='abortFile'){aborted=true;return result(id,{removed:true});}throw Error(method);}});
+  globalThis.WardNoteNative=native();await writeNativeFile(new Blob([bytes]),'backup.wnpart',{folder:'dir'});assert.deepEqual(Buffer.concat(received),bytes);assert.ok(received.every(x=>x.length<=256*1024));
+  globalThis.WardNoteNative=native(true);await assert.rejects(writeNativeFile(new Blob([bytes]),'backup.wnpart',{folder:'dir'}));assert.equal(aborted,true);
+ });
+@@ -53,9 +53,37 @@
+ });
+ test('export write failure and corrupt readback abort instead of reporting success',async()=>{
+  for(const failAt of ['writeChunk','finishFile']){
+-  const methods=[];globalThis.WardNoteNative={postMessage(raw){const {id,method}=JSON.parse(raw);methods.push(method);if(method===failAt&&method==='writeChunk')return globalThis.__wardnoteNativeResult({id,ok:false,error:{code:'FILE_ACCESS'}});result(id,method==='beginFile'?{token:'temp'}:method==='finishFile'?{size:4,sha256:'bad-digest'}:{});}};
++  const methods=[];globalThis.WardNoteNative={postMessage(raw){const {id,method}=JSON.parse(raw);methods.push(method);if(method===failAt&&method==='writeChunk')return globalThis.__wardnoteNativeResult({id,ok:false,error:{code:'FILE_ACCESS'}});result(id,method==='beginFile'?{token:'temp'}:method==='finishFile'?{size:4,sha256:'bad-digest'}:method==='abortFile'?{removed:true}:{});}};
+   await assert.rejects(writeNativeFile(new Blob(['test']),'backup.wnpart',{folder:'folder'}));assert.equal(methods.at(-1),'abortFile');assert.equal(nativeBusy(),false);
+  }
++});
++test('export invalidated during chunk preparation or hashing must abort before another native write',async()=>{
++ for(const phase of ['chunk','hash']){
++  let valid=true;const methods=[];
++  globalThis.WardNoteNative={postMessage(raw){const {id,method,args}=JSON.parse(raw);methods.push(method);result(id,method==='beginFile'?{token:'temp'}:method==='finishFile'?{size:4,sha256:args.sha256}:method==='abortFile'?{removed:true}:{});}};
++  const blob={size:4,type:'application/octet-stream',slice(){return {async arrayBuffer(){if(phase==='chunk')valid=false;return new Uint8Array([1,2,3,4]).buffer;}};},async arrayBuffer(){if(phase==='hash')valid=false;return new Uint8Array([1,2,3,4]).buffer;}};
++  await assert.rejects(writeNativeFile(blob,'backup.wnpart',{folder:'folder',check(){if(!valid)throw Error('account invalidated');}}),/account invalidated/);
++  assert.equal(methods.includes('finishFile'),false,phase+' cannot finalize after invalidation');
++  if(phase==='chunk')assert.equal(methods.includes('writeChunk'),false,'cannot write prepared stale bytes');
++  assert.equal(methods.at(-1),'abortFile');assert.equal(nativeBusy(),false);
++ }
++});
++test('export remains busy between bridge calls while hashing bytes',async()=>{
++ let resolveHash,enteredHash;const entered=new Promise(resolve=>enteredHash=resolve);
++ globalThis.WardNoteNative={postMessage(raw){const {id,method,args}=JSON.parse(raw);result(id,method==='beginFile'?{token:'temp'}:method==='finishFile'?{size:4,sha256:args.sha256}:method==='abortFile'?{removed:true}:{});}};
++ const blob={size:4,type:'application/octet-stream',slice(){return new Blob(['test']);},async arrayBuffer(){enteredHash();return new Promise(resolve=>resolveHash=()=>resolve(new TextEncoder().encode('test').buffer));}};
++ const promise=writeNativeFile(blob,'backup.wnpart',{folder:'folder'});await entered;
++ const busy=nativeBusy();resolveHash();await promise;assert.equal(busy,true);assert.equal(nativeBusy(),false);
++});
++test('incomplete export cleanup is visible instead of claiming deletion',async()=>{
++ globalThis.WardNoteNative={postMessage(raw){const {id,method}=JSON.parse(raw);if(method==='writeChunk')return globalThis.__wardnoteNativeResult({id,ok:false,error:{code:'FILE_ACCESS'}});result(id,method==='beginFile'?{token:'temp'}:{removed:false});}};
++ await assert.rejects(writeNativeFile(new Blob(['test']),'backup.wnpart',{folder:'folder'}),error=>error.message===androidText('cleanup'));
++ assert.equal(nativeBusy(),false);
++});
++test('native verified removal after readback failure does not trigger a second false cleanup warning',async()=>{
++ const methods=[];globalThis.WardNoteNative={postMessage(raw){const {id,method}=JSON.parse(raw);methods.push(method);if(method==='finishFile')return globalThis.__wardnoteNativeResult({id,ok:false,error:{code:'VERIFY_FAILED'}});result(id,method==='beginFile'?{token:'temp'}:{removed:false});}};
++ await assert.rejects(writeNativeFile(new Blob(['test']),'backup.wnpart',{folder:'folder'}),error=>error.code==='VERIFY_FAILED');
++ assert.equal(methods.includes('abortFile'),false);assert.equal(nativeBusy(),false);
+ });
+ test('update retains origin and private storage; no runtime cache/database deletion or alternate storage suffix',()=>{
+  const java=readFileSync(new URL('../android/app/src/main/java/org/wardnote/offline/preview/MainActivity.java',import.meta.url),'utf8');
+--- 0.1.1/tests/android-native-guard.test.mjs
++++ 0.1.2/tests/android-native-guard.test.mjs
+@@ -0,0 +1,18 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import {mkdirSync,mkdtempSync,rmSync,writeFileSync} from 'node:fs';
++import {join,resolve,sep} from 'node:path';
++import {spawnSync} from 'node:child_process';
++test('production native document guard rejects unsafe provider targets and reports cleanup failures',()=>{
++ const root=resolve(import.meta.dirname,'..'),tmp=join(root,'.test-tmp');mkdirSync(tmp,{recursive:true});
++ const output=mkdtempSync(join(tmp,'guard-'));
++ const javaHome=process.env.WARDNOTE_JAVA_HOME||resolve(root,'../wardnote-android-buildtools/jdk/jdk-17.0.20.1+1');
++ const tool=name=>join(javaHome,'bin',name+(process.platform==='win32'?'.exe':''));
++ try{
++  const compile=spawnSync(tool('javac'),['--release','8','-encoding','UTF-8','-d',output,join(root,'android/app/src/main/java/org/wardnote/offline/preview/DocumentGuard.java'),join(root,'tests/java/DocumentGuardTest.java')],{encoding:'utf8'});
++  assert.equal(compile.status,0,compile.stderr||compile.error?.message);
++  const result=spawnSync(tool('java'),['-cp',output,'org.wardnote.offline.preview.DocumentGuardTest'],{encoding:'utf8'});
++  assert.equal(result.status,0,result.stderr||result.error?.message);assert.match(result.stdout,/SCENARIOS=10/);
++  writeFileSync(join(root,'logs/android-native-guard-results.json'),JSON.stringify({environment:'Host JVM executing production DocumentGuard with fake providers; NOT Android ContentResolver or device validation',scenarios:10,output:result.stdout,errors:[]},null,2));
++ }finally{if(!output.startsWith(tmp+sep))throw Error('Unexpected temporary path');rmSync(output,{recursive:true,force:true});}
++});
+--- 0.1.1/tests/android-upgrade.mjs
++++ 0.1.2/tests/android-upgrade.mjs
+@@ -7,7 +7,7 @@
+ const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
+ const root=resolve(import.meta.dirname,'..'),logs=join(root,'logs'),profile=join(root,'.test-tmp','upgrade-profile');
+ const oldWeb=process.env.WARDNOTE_PREVIOUS_ANDROID_WEB;
+-if(!oldWeb)throw Error('Set WARDNOTE_PREVIOUS_ANDROID_WEB to the retained 0.1.0 source web directory.');
++if(!oldWeb)throw Error('Set WARDNOTE_PREVIOUS_ANDROID_WEB to the retained previous source web directory.');
+ mkdirSync(profile,{recursive:true});process.env.TEMP=join(root,'.test-tmp');process.env.TMP=process.env.TEMP;
+ let assetRoot=resolve(oldWeb),context,page;const checks=[],errors=[];const mark=s=>{checks.push(s);console.log('PASS '+s);};
+ const server=createServer((req,res)=>{const path=decodeURIComponent(req.url.split('?')[0]),file=resolve(assetRoot,'.'+(path==='/'?'/index.html':path));if(!file.startsWith(assetRoot+sep)){res.writeHead(403).end();return;}try{res.writeHead(200,{'Cache-Control':'no-store','Content-Type':{'.html':'text/html','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.json':'application/json'}[extname(file)]||'application/octet-stream'}).end(readFileSync(file));}catch{res.writeHead(404).end();}});
+@@ -34,12 +34,12 @@
+  },{password});
+  await context.close();context=null;
+  assetRoot=join(root,'web');({ctx:context,p:page}=await launch());
+- assert.ok((await page.locator('#app').innerText()).includes('Android 0.1.1-preview'));
++ assert.ok((await page.locator('#app').innerText()).includes('Android '+JSON.parse(readFileSync(join(root,'package.json'),'utf8')).version));
+  const after=await page.evaluate(async({password})=>{
+   const {DeviceVault,digest}=await import('/offline-store.js'),{authenticateAccount}=await import('/accounts.js');const snapshots={};
+   for(const mode of ['personal','institution']){const v=new DeviceVault();v.selectMode(mode);await authenticateAccount(v,{username:'upgrade.test',password});const s=await v.state();snapshots[mode]={records:s.records,revisions:s.revisions,audio:mode==='personal'?await digest(new Uint8Array(await(await v.audio('long-audio')).arrayBuffer())):null};if(await v.allowed())throw Error('Unexpected network authorization');v.lock();}return snapshots;
+  },{password});
+- assert.deepEqual(after,before);mark('Cold browser restart with 0.1.0 to 0.1.1 assets preserves both account modes, records, revisions and 18 MiB audio');
++ assert.deepEqual(after,before);mark('Cold browser restart from retained previous assets to current assets preserves both account modes, records, revisions and 18 MiB audio');
+  const backup=await page.evaluate(async({password})=>{
+   const {DeviceVault,digest}=await import('/offline-store.js'),{authenticateAccount}=await import('/accounts.js');const v=new DeviceVault();await authenticateAccount(v,{username:'upgrade.test',password});const files=[];await v.backupSegmented(async(blob,name)=>files.push(new File([blob],name)));const verified=await v.verifyBackup(files,password);const partSizes=files.filter(f=>f.name.endsWith('.wnpart')).map(f=>f.size);v.lock();
+   const restored=new DeviceVault();await authenticateAccount(restored,{username:'restored.long',password,file:files});const hash=await digest(new Uint8Array(await(await restored.audio('long-audio')).arrayBuffer()));restored.lock();return {verified,partSizes,hash};
+--- 0.1.1/tests/java/DocumentGuardTest.java
++++ 0.1.2/tests/java/DocumentGuardTest.java
+@@ -0,0 +1,48 @@
++package org.wardnote.offline.preview;
++
++import java.io.ByteArrayOutputStream;
++import java.io.IOException;
++import java.io.OutputStream;
++import java.util.Collections;
++
++public final class DocumentGuardTest {
++    static int count;
++    static void ok(boolean value) { if(!value)throw new AssertionError(); }
++    static void passed(String title) { count++;System.out.println("PASS " + title); }
++    static class Fake implements DocumentGuard.Provider<String> {
++        String id="new", name="part.wnpart"; long bytes=0;
++        boolean failOpen, deleteResult=true, failDelete; int opened,deleted;
++        ByteArrayOutputStream output=new ByteArrayOutputStream();
++        public String create(){return "target";}
++        public String identity(String d){return id;}
++        public String name(String d){return name;}
++        public long size(String d){return bytes;}
++        public OutputStream open(String d)throws Exception{opened++;if(failOpen)throw new IOException();return output;}
++        public boolean delete(String d)throws Exception{deleted++;if(failDelete)throw new IOException();return deleteResult;}
++    }
++    static void rejectWithoutTouch(Fake provider,String title)throws Exception {
++        boolean rejected=false;
++        try{DocumentGuard.createFresh(provider,Collections.singleton("old"),"part.wnpart");}
++        catch(IllegalArgumentException expected){rejected=true;}
++        ok(rejected&&provider.opened==0&&provider.deleted==0);passed(title);
++    }
++    public static void main(String[] args)throws Exception {
++        Fake fresh=new Fake();DocumentGuard.Opened<String> file=DocumentGuard.createFresh(fresh,Collections.singleton("old"),"part.wnpart");file.output.write(7);
++        ok(fresh.opened==1&&fresh.deleted==0&&fresh.output.toByteArray()[0]==7);passed("fresh empty provider file is writable");
++        Fake alias=new Fake();alias.id="old";rejectWithoutTouch(alias,"existing document alias never written or deleted");
++        Fake nonempty=new Fake();nonempty.bytes=8;rejectWithoutTouch(nonempty,"nonempty new identity never written or deleted");
++        Fake unknown=new Fake();unknown.bytes=-1;rejectWithoutTouch(unknown,"unknown size fails closed without deletion");
++        Fake renamed=new Fake();renamed.name="old.wnpart";rejectWithoutTouch(renamed,"unexpected name never written or deleted");
++        Fake missing=new Fake();missing.id=null;rejectWithoutTouch(missing,"unverifiable identity never written or deleted");
++        Fake failed=new Fake();failed.failOpen=true;boolean rejected=false;
++        try{DocumentGuard.createFresh(failed,Collections.emptySet(),"part.wnpart");}catch(IOException expected){rejected=true;}
++        ok(rejected&&failed.deleted==1);passed("open failure cleans only verified fresh target");
++        Fake leftover=new Fake();leftover.failOpen=true;leftover.deleteResult=false;rejected=false;
++        try{DocumentGuard.createFresh(leftover,Collections.emptySet(),"part.wnpart");}catch(DocumentGuard.CleanupIncomplete expected){rejected=true;}
++        ok(rejected);passed("failed deletion is explicitly incomplete");
++        int[] deletions={0};OutputStream badClose=new ByteArrayOutputStream(){public void close()throws IOException{throw new IOException();}};
++        ok(DocumentGuard.discard(badClose,()->{deletions[0]++;return true;})&&deletions[0]==1);passed("close failure does not skip deletion attempt");
++        ok(!DocumentGuard.discard(null,()->false)&&!DocumentGuard.discard(null,()->{throw new IOException();}));passed("delete false or exception never confirms removal");
++        System.out.println("SCENARIOS="+count);
++    }
++}
+--- 0.1.1/scripts/package-preview.py
++++ 0.1.2/scripts/package-preview.py
+@@ -9,7 +9,7 @@
+ files=[p for name in roots for p in (root/name).rglob('*') if p.is_file()]
+ files += [root/name for name in ['README.md','README.en.md','LICENSE','NOTICE','NOTICE-BASE.txt','package.json','.gitignore']]
+ files += [root/'scripts'/name for name in ['build-android.ps1','verify-android-apk.ps1','package-preview.py']]
+-files += [root/'logs'/name for name in ['WORK-LOG.md','android-build-final.log','android-apk-verification.json','android-browser-results.json','android-upgrade-results.json','android-core-results.txt','syntax-results.json','baseline-preservation-check.json','frozen-baseline.json','web-baseline.json','toolchain-provenance.json','toolchain-cleanup.json','android-ui-en.png','android-ui-ur.png']]
++files += [root/'logs'/name for name in ['WORK-LOG.md','android-build-final.log','android-apk-verification.json','android-browser-results.json','android-upgrade-results.json','android-core-results.txt','android-native-guard-results.json','security-diff-inventory.json','skills-provenance.json','syntax-results.json','baseline-preservation-check.json','frozen-baseline.json','web-baseline.json','toolchain-provenance.json','toolchain-cleanup.json','android-ui-en.png','android-ui-ur.png']]
+ records={}
+ for p in sorted(files):
+  name=p.relative_to(root).as_posix()

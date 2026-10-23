@@ -1,0 +1,14 @@
+/* SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0 */
+.easy-start{border:1px solid #cbdcd3;border-radius:12px;background:#f8fbf9;margin-block:16px;min-width:0;max-width:100%;text-align:start}
+.easy-start>summary{padding:13px 15px;cursor:pointer;font-weight:650;overflow-wrap:anywhere}
+.easy-start>summary:focus-visible{outline:2px solid #367e66;outline-offset:2px;border-radius:10px}
+.easy-start-body{padding:0 16px 14px;font-size:14px;overflow-wrap:anywhere}
+.easy-start-body p{margin-block:9px}.easy-start-steps{margin:12px 0;padding-inline-start:24px}
+.easy-start-steps>li{padding-inline-start:3px;padding-block:4px 12px}.easy-start-steps>li+li{border-top:1px solid #dbe6df;padding-top:12px}
+.easy-start-steps h3{font-size:15px;margin-block:0 8px}.easy-start-address{overflow-wrap:anywhere;word-break:break-word;user-select:all}
+.easy-start .actions{display:flex;flex-wrap:wrap;gap:8px}.easy-start .btn{max-width:100%;min-height:42px;white-space:normal;overflow-wrap:anywhere}
+.easy-start-checks{display:grid;grid-template-columns:minmax(0,1fr) minmax(65px,auto);gap:7px 12px;margin-block:10px}.easy-start-checks dd{margin:0;text-align:end}
+.easy-start-status,.easy-start-installed{font-weight:650;color:#245d4d}.easy-start-status[data-easy-level=unsupported]{color:#8a352e}
+.easy-start-feedback:empty{display:none}.easy-start-feedback{border-inline-start:3px solid #367e66;padding-inline-start:10px}
+@media(max-width:480px){.easy-start-body{padding-inline:12px}.easy-start-steps{padding-inline-start:20px}.easy-start .actions .btn{flex:1 1 160px}}
+@media print{.easy-start{display:none!important}}

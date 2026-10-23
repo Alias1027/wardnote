@@ -1,0 +1,25 @@
+{
+  "recordedAt": "2026-10-23T18:36:50+08:00",
+  "jdkUrl": "https://aka.ms/download-jdk/microsoft-jdk-17.0.20.1-windows-x64.zip",
+  "jdkChecksumUrl": "https://aka.ms/download-jdk/microsoft-jdk-17.0.20.1-windows-x64.zip.sha256sum.txt",
+  "androidCliUrl": "https://dl.google.com/android/repository/commandlinetools-win-15859902_latest.zip",
+  "androidCliChecksumSource": "https://developer.android.com/studio#command-line-tools-only",
+  "archives": [
+    {
+      "file": "microsoft-jdk-17.0.20.1-windows-x64.zip",
+      "bytes": 186915383,
+      "sha256": "3d9006956fc8af5601cd24ffc4f468bef48279c7ebd8171b9bdf90d0aabfbf1f"
+    },
+    {
+      "file": "commandlinetools-win-15859902_latest.zip",
+      "bytes": 155655386,
+      "sha256": "90ae805d20434428bffcb699c290860f19bb5f66a67e6b330067e3de801fb04a"
+    }
+  ],
+  "platform": "Android 15 API35 revision2 extension13",
+  "buildTools": "35.0.0",
+  "java": "Microsoft OpenJDK17.0.20.1+1",
+  "commandLineTools": "22.0",
+  "cacheBoundary": "All extracted tools, SDK, temp files and SDK user cache under D:\\OpenAI workspace\\Clinical Work\\work\\wardnote-android-buildtools",
+  "validation": "Official archive SHA256 matched before extraction; SDK manager completed exit0; java -version executed"
+}

@@ -1,0 +1,73 @@
+{
+  "baseline": "wardnote-android-0.1.1-preview-source.zip",
+  "version": "0.1.2-preview",
+  "normalization": "CRLF/LF ignored; source archive baseline, no Git history",
+  "changes": [
+    {
+      "file": "android/app/src/main/java/org/wardnote/offline/preview/DocumentGuard.java",
+      "added": 43,
+      "removed": 0,
+      "sha256": "d8c0723837061f5566094d8a67ed36dceaed4fdf2f738718fd2382b44b28edc5"
+    },
+    {
+      "file": "android/app/src/main/java/org/wardnote/offline/preview/MainActivity.java",
+      "added": 48,
+      "removed": 23,
+      "sha256": "28a3f6262d681e6d45f94e05ad551300e708cd8ef2e0f393b184eccbedbbd637"
+    },
+    {
+      "file": "web/android-platform.js",
+      "added": 15,
+      "removed": 11,
+      "sha256": "17abb733d43cc78e3d58b733870aa39c2b2a03d6684bba731e1e155c0c81385f"
+    },
+    {
+      "file": "web/android-strings.js",
+      "added": 2,
+      "removed": 0,
+      "sha256": "31b3ce8ef106269bf26fbd4090c6bac6dc064201444dfa5d12e38bda07d53192"
+    },
+    {
+      "file": "web/app.js",
+      "added": 11,
+      "removed": 9,
+      "sha256": "674a612d1f677cdaf25fd1c9474dff459433f655ef881df7f6f90655fbeb6df2"
+    },
+    {
+      "file": "tests/android-browser.mjs",
+      "added": 20,
+      "removed": 2,
+      "sha256": "deb4ca757695dfe16f0242d2c4dd792a81557552b67907a57a46ffdaec0baef9"
+    },
+    {
+      "file": "tests/android-core.test.mjs",
+      "added": 30,
+      "removed": 2,
+      "sha256": "862019ae610ad7befc348f294ddc66565ece49d7f6e01a4423fb55a389341532"
+    },
+    {
+      "file": "tests/android-native-guard.test.mjs",
+      "added": 18,
+      "removed": 0,
+      "sha256": "eace82d6c9a52acb9e7e7a1c1924ce1f849575e1f5841eb6903f71c3452fc8fd"
+    },
+    {
+      "file": "tests/android-upgrade.mjs",
+      "added": 3,
+      "removed": 3,
+      "sha256": "73d05e71aa02b3bfdc2ffea59f30f82758b9eafbf9bbebe9385a48707e5029fe"
+    },
+    {
+      "file": "tests/java/DocumentGuardTest.java",
+      "added": 48,
+      "removed": 0,
+      "sha256": "5e72a6f8e4c2f88299e4892770d2427475dca235b3f22923c1028d16119dceea"
+    },
+    {
+      "file": "scripts/package-preview.py",
+      "added": 1,
+      "removed": 1,
+      "sha256": "1a56d2a34e386e75f284a9234e4fea1a5ed3f4b5a7dfed3e0d7f91b4aa033682"
+    }
+  ]
+}

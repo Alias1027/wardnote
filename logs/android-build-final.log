@@ -1,0 +1,37 @@
+Note: D:\OpenAI workspace\Clinical Work\work\wardnote-android\android\app\src\main\java\org\wardnote\offline\preview\MainActivity.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): true
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+Signer #1 certificate DN: CN=WardNote Android Preview, OU=Evaluation only, O=WardNote
+Signer #1 certificate SHA-256 digest: 439f90db648ace45e2c7652161f77a06bc9f2c732d9d287f6e9b04faa82df090
+Signer #1 certificate SHA-1 digest: 03ae78fdca20ab46b0b5bbf5829633bfa5066b71
+Signer #1 certificate MD5 digest: 4bc302940b4b63aabdb2e3af6fffac11
+Signer #1 key algorithm: RSA
+Signer #1 key size (bits): 3072
+Signer #1 public key SHA-256 digest: 4a3f0b57970062669131132420fe006198a17edebc54285eb1c319587b508cba
+Signer #1 public key SHA-1 digest: 24f3504635caa5f0d5cfad004a1bef5a1e59f3d8
+Signer #1 public key MD5 digest: 3367f7673c43a55260d7fa949711caf7
+package: name='org.wardnote.offline.preview' versionCode='3' versionName='0.1.2-preview' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
+minSdkVersion:'26'
+targetSdkVersion:'35'
+application-label:'WardNote Offline Preview'
+application-icon-160:'res/drawable/ic_wardnote.xml'
+application: label='WardNote Offline Preview' icon='res/drawable/ic_wardnote.xml'
+launchable-activity: name='org.wardnote.offline.preview.MainActivity'  label='' icon=''
+feature-group: label=''
+  uses-feature: name='android.hardware.faketouch'
+  uses-implied-feature: name='android.hardware.faketouch' reason='default feature for all apps'
+main
+supports-screens: 'small' 'normal' 'large' 'xlarge'
+supports-any-density: 'true'
+locales: '--_--'
+densities: '160'
+Created evaluation APK: D:\OpenAI workspace\Clinical Work\work\wardnote-android\artifacts\wardnote-android-0.1.2-preview.apk
+SHA256: 81a5621619b4bb72149606f2257b51bf3d8f78d7fa3ee4d5a34e3c63809c3d31
+Keep the private signing key/password outside the delivery package. Physical-device validation remains required.

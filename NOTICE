@@ -1,0 +1,20 @@
+WardNote / 循记临床 — Android 0.1.2-preview
+Based on WardNote Web 0.6.15 UI r1.
+Copyright (c) 2026 Junhui Liu M.D. Existing attribution: WardNote contributors.
+
+Project-authored Android code and documentation use the same WardNote Personal
+Noncommercial Source-Available License 1.0; see LICENSE and LICENSES/README.md.
+Institutional and commercial use require prior written authorization. This is
+source-available software, not OSI-approved open source. Prior valid grants are
+not revoked. The base release notice is preserved in NOTICE-BASE.txt.
+
+This package adds an offline Android WebView shell, system-recorder delegation,
+system file-picker integration and localized native guidance. It does not embed
+a recording engine, speech model, cloud service, SDK/JDK, private signing key or
+patient data. Android and WebView are device-provided components with their own
+terms; build tool provenance and licenses are referenced in docs/BUILD-TOOLCHAIN.md.
+
+Synthetic test fixtures are not clinical records. Clinical validation and real
+device/OEM recorder verification remain pending. Medical references are not
+endorsements or certification. User-entered records and external audio are not
+licensed for publication by these source-material terms.

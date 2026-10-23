@@ -1,0 +1,6 @@
+{
+  "environment": "Host JVM executing production DocumentGuard with fake providers; NOT Android ContentResolver or device validation",
+  "scenarios": 10,
+  "output": "PASS fresh empty provider file is writable\r\nPASS existing document alias never written or deleted\r\nPASS nonempty new identity never written or deleted\r\nPASS unknown size fails closed without deletion\r\nPASS unexpected name never written or deleted\r\nPASS unverifiable identity never written or deleted\r\nPASS open failure cleans only verified fresh target\r\nPASS failed deletion is explicitly incomplete\r\nPASS close failure does not skip deletion attempt\r\nPASS delete false or exception never confirms removal\r\nSCENARIOS=10\r\n",
+  "errors": []
+}

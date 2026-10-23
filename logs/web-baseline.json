@@ -1,0 +1,222 @@
+[
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\accounts.js",
+    "Hash": "A575266B4ED643135482C1B4584A6EF619F4285231CAE95302D97E8853A2AD4C"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\app.js",
+    "Hash": "9CAEA1AA8FEB88E45D4F7EB28C68F0736F1BADB60D99A91C7176F221EC4ACCBB"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\backup-segments.js",
+    "Hash": "58172C6ABAD4176D63AA2C1B8CFEB2272269BF44E283F10853E81D14ED69CFE7"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\capture-storage.js",
+    "Hash": "8160FD7337E7E4730929A4F6CB43FBD2EA0A220EB235BEF8D614DA0E9C9C1073"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\continuity-ui.js",
+    "Hash": "AB871160AD385EDB322195EB932454527FFCDEC9B8D9113972C681CD25880E92"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\continuity.js",
+    "Hash": "41C5C3D2AA5CE81562481884088FE68005841D16D642EF699930C69F4EAF95CA"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\deployment-policy.js",
+    "Hash": "AADFE23622CAC3A8FA77CD5825FA6455A2FE4875648ED5378CDB1EC7AE00811E"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\deployment-profile.js",
+    "Hash": "87FA05C7EB1D06E7D55C99F13D277552E532306C471AF7B619EFEA6BA03EC367"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\device-readiness-ui.js",
+    "Hash": "07DE3018CBF235C4A8A7F4AECFB52B335ACDA23D1BD63072C70304A4672D7407"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\device-readiness.js",
+    "Hash": "235C581D2A1260E95BD3E19D9FB137049D4042A04BCD38045DBF3CD48BBB250D"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\domain.js",
+    "Hash": "7F9A08E2B65E8D92590B37AF1799D3965B9594A8F9A70E87F6BD5ECCA625E2E9"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\easy-start.css",
+    "Hash": "1218C5A7852DBF7D1450590C7A0294BD74F0B0CAC60B748DE32634F1A9F7D146"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\easy-start.js",
+    "Hash": "4382B32836C31B104D652848443C9669726FFA51264D38F9F94F5F3791E65FAE"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\i18n.js",
+    "Hash": "64EB40D386540C46691F538594AA9C83F182E4BA624AC0286D1B38FCAFBEC3D7"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\index.html",
+    "Hash": "D2D6CBF76964F90A72BFD68898396AC47BE8B82C0EFCC249CA45E471D3F088BE"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\languages.js",
+    "Hash": "DEBADB812E5BFDC08F2F0A0A6A0CB02D6BEAF328AF690ABE36A0EA78CD0B6506"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\locale-core.js",
+    "Hash": "8F479F93CE4DDD96E5AB148AEE358910986A4DF0FF3AC78184F216843DC83AC8"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\manifest-ar.webmanifest",
+    "Hash": "B348056F2982FAE024D66DD4C51B496E633C9DD30228E666EAE0CBC0826440D1"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\manifest-en.webmanifest",
+    "Hash": "FA98C951EC425482560F144BB6731FCC51457FCECCBE63003A9F201EE86303EE"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\manifest-es.webmanifest",
+    "Hash": "EA5274EC862E0120A6C17D6D313B113039347168D2B3A885DDE9A7D0FAB24EE2"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\manifest-fr.webmanifest",
+    "Hash": "21E62ECEDBC0E445EDABEBCC3DE1EAB10DBCEAF79DB1AEB51801E0B2B98EAF59"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\manifest-hi.webmanifest",
+    "Hash": "E5347CB06551A7D41D4E872DDFBD6EB0BACC3EBF0ED4467A2DB1C56E367D67B9"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\manifest-ru.webmanifest",
+    "Hash": "2D8FE975C7A1F5270AE643AA30C8D51F51EA62DE3907E65AF76476C4E47A3808"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\manifest-ur.webmanifest",
+    "Hash": "8C01937BCB391214AB2F9E10EF4E4E93E563C627A6C6E79D1BC1EC39829FF455"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\manifest-zh.webmanifest",
+    "Hash": "B1B24B0D85E9B5081C251DF23A195561EEFAEDA73E425DBA650375B244DF758B"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\manifest.webmanifest",
+    "Hash": "B6FBE366AAF9470C6F3985E8CC16F796181A39450605FB3DBCA3921C1538AFB2"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\offline-api.js",
+    "Hash": "0E0F741D2D55949FAB242EECA1A5F6640519F65DDE0D0D2B972116F26F6920F8"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\offline-store.js",
+    "Hash": "6F0D31B86FC6B8D7F1E1E348A67161A784F134EF866D62262E2A4DF972D5D42C"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\offline-sync.js",
+    "Hash": "189600D07A0BFE9769F2D50CCAF300DED7CB5A629BC35933A830BA81BE7B9FA7"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\offline-ui.js",
+    "Hash": "A7CC92F14E261FFC303B3C73F4A6980A61EC058F64B73D55D51DB91A7A92889F"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\panel-layout.js",
+    "Hash": "CE97E7BB486BC0AECEE78B8D25DA0F51330591CC1CBE840F500A4BDC96168CF1"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\patient-brief-ui.js",
+    "Hash": "E1BB5CC27A15B97D8E3150C8B2C4018F7B4C04E3090A209912C9C0F010170FFB"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\patient-brief.js",
+    "Hash": "285D18AE3E71E706F18CE2389C5303A82C45A4639AABE41E38C80805A22341FD"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\project-info.js",
+    "Hash": "A0653E96D627AB45CF79D94901E5CDEC0E39D6F105F058B85CD004A82560CEE9"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\record-validation.js",
+    "Hash": "B966EB21E71BFEA1F4CF93093496F781A12FB193EAA7E6669E841FBA7EBEE61B"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\region-settings.js",
+    "Hash": "2B78D7F57AB7D62855AC0C068C8E0249CC51742BD8B42BA568E8287C10B598F3"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\region-ui.js",
+    "Hash": "FF99A6E686C124C02A9A79F4C522C7D179D40D7BFC889474E138D7420675C9DE"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\style.css",
+    "Hash": "5B4824A8108E1A7EE83413B25DDF2E27089A05F25E22CCF125FCF1005DB190C4"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\sw.js",
+    "Hash": "0FC9345BEE117B6A795469C1B29BD052E5375CB9FF6EF02788AD1D29D2898B3B"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\sync-core.js",
+    "Hash": "42E9FA615A5FFE963AA1CF7D110314B4EF3C9FE2D5B253775C85042A9B738E3B"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\translations.js",
+    "Hash": "F27F95E1EE6B3F1162899203260074C242AC20AB4A8A177C892BBBB5B22DEC78"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\update-controller.css",
+    "Hash": "34E1CA8D7BC81FC4928B45319D59B38F4F9AB2A1A5890D89B675BE4AAA66EC1C"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\update-controller.js",
+    "Hash": "D533AC4888D0867C0442F3D3470893EC5C3D9D4BA329AF4C940524591D92A899"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\voice-evidence.js",
+    "Hash": "FE66EDFD96896E3E10B09549F46888002A1E8DA29B72A41452FEB9C452A2E26D"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\voice-routing.js",
+    "Hash": "3D168C4458E6794C3B7CAFEE6C0A90ABF0C52EF0ACFE781A0CA0A068C2BCA0B8"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\worksheet-ui.js",
+    "Hash": "EAFF5E981A8FCF893FD7CFDD47C6BF75041249EA3518652786D963A18ECE0ED1"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\icons\\icon-192.png",
+    "Hash": "59E33DAE9D4B6C439C6133FFFDC001CD05B7C5C91B32665D0E8973784F00FE36"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\icons\\icon-512.png",
+    "Hash": "B99C0AEF5826614917E6EC44B2DE84E8F1C326991857CBC26D0BD7C4FB8E7DB7"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\icons\\icon.svg",
+    "Hash": "827A0FED295FC973C70DC489087488D32AC7E7FF5EC5695FFC87950402974F40"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\locales\\ar.js",
+    "Hash": "556F0EFEB1905E0B6CB942C2E34F59FF36F9975C5F4751F3D00DA6D9108409B5"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\locales\\es.js",
+    "Hash": "C3779E8AB71CB937556A9F986FCC37E8BECDBF68D8909FCAE0E5F247CB86F7C7"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\locales\\fr.js",
+    "Hash": "7BE917815D5DCF2BFAEB42B439997F5287267BA369A51FE1FDE2D25C9F36EB0E"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\locales\\hi.js",
+    "Hash": "96F3B37BB0D7E32039A4394FC66F404A5C6469B1B690D29A5996B0A2AF022F9B"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\locales\\ru.js",
+    "Hash": "9D54DB2D34BCDAAA8E0F2A3CE550BB3E627D96E0014B970652D57EE24A66B308"
+  },
+  {
+    "Path": "D:\\OpenAI workspace\\note templates\\app\\public\\locales\\ur.js",
+    "Hash": "2894DAA613976C6C9EF94D4599A995CF45559FDF72ABA022CB425B5FD3007FE7"
+  }
+]

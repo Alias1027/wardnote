@@ -1,0 +1,23 @@
+✔ eight Android catalogs and original catalogs have complete localized keys (6.1377ms)
+✔ native recorder audio metadata accepts common phone formats and rejects invalid/oversize (0.9907ms)
+✔ native import is chunk bounded, context checked before write, no premature finalization (74.1949ms)
+✔ malformed/short native read cannot finalize a recording (0.3367ms)
+✔ backup/export requires native read-back size and digest; failed writes abort (56.9444ms)
+✔ bridge cancellation clears pending calls, ignores unsolicited results (0.3994ms)
+✔ first-use readiness fails closed when required secure WebView storage is absent (1.0298ms)
+✔ export write failure and corrupt readback abort instead of reporting success (1.4123ms)
+✔ export invalidated during chunk preparation or hashing must abort before another native write (0.9251ms)
+✔ export remains busy between bridge calls while hashing bytes (1.7219ms)
+✔ incomplete export cleanup is visible instead of claiming deletion (0.8294ms)
+✔ native verified removal after readback failure does not trigger a second false cleanup warning (0.9012ms)
+✔ update retains origin and private storage; no runtime cache/database deletion or alternate storage suffix (1.0581ms)
+✔ native fork disables external services and SW activation, preserves crypto format (2.4434ms)
+✔ production native document guard rejects unsafe provider targets and reports cleanup failures (935.4848ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1065.6831

@@ -1,0 +1,25 @@
+{
+  "time": "2026-10-23T12:35:04.994Z",
+  "environment": "Windows desktop Chromium with native bridge test double; NOT an Android emulator or device",
+  "checks": [
+    "First-use native asset bootstrap needs no service worker, API or external request",
+    "Eight-language first-use UI, RTL/mobile width and encrypted account creation pass",
+    "All six patient sections are consistent across eight languages at mobile width",
+    "System recording requires a second patient confirmation and does not auto-fill clinical fields",
+    "Close buttons and system/Escape cancel cannot interrupt active encrypted audio import",
+    "Native audio chunks saved encrypted with exact bytes, patient linkage and unreviewed status",
+    "Missing recorder gives manual-import fallback without creating records",
+    "Manual file-picker import preserves actual WAV bytes and patient attribution",
+    "Normal audio export uses the actual UI action and preserves exact bytes",
+    "Export blocks UI logout; independent session invalidation aborts before further chunks or finalization",
+    "Back flushes pending edits before backgrounding; failed saves preserve input and block exit",
+    "SAF bridge backup writes encrypted parts first, authenticated manifest last and records verified file writes",
+    "Android-produced segmented backup restores in unchanged browser code with audio, text and revisions intact",
+    "Incomplete, tampered and wrong-password backups are rejected",
+    "Unchanged browser-produced legacy JSON and segmented backups restore as separate Android accounts",
+    "Wrong account mode and overwrite of an existing account are rejected; its audio remains intact",
+    "Eight-language Android help/settings are consistent at mobile width",
+    "No page errors, external API traffic, service-worker registration or cloud synchronization"
+  ],
+  "errors": []
+}

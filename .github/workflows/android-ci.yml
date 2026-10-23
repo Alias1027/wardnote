@@ -1,0 +1,72 @@
+{
+  "name": "Android preview host regression",
+  "on": {
+    "push": {},
+    "pull_request": {},
+    "workflow_dispatch": {}
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "concurrency": {
+    "group": "android-preview-${{ github.workflow }}-${{ github.ref }}",
+    "cancel-in-progress": true
+  },
+  "jobs": {
+    "windows-host-checks": {
+      "runs-on": "windows-2022",
+      "timeout-minutes": 25,
+      "defaults": {
+        "run": {
+          "shell": "pwsh"
+        }
+      },
+      "steps": [
+        {
+          "uses": "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "with": {
+            "persist-credentials": false
+          }
+        },
+        {
+          "uses": "actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "with": {
+            "node-version": "24"
+          }
+        },
+        {
+          "name": "Select and verify JDK 17, Chrome and Android SDK",
+          "run": "$ErrorActionPreference = 'Stop'\nif (!$env:JAVA_HOME_17_X64) { throw 'Runner does not provide JDK 17.' }\n$env:JAVA_HOME = $env:JAVA_HOME_17_X64\n$javaVersion = (& \"$env:JAVA_HOME\\bin\\javac.exe\" -version 2>&1) -join \"`n\"\nif ($LASTEXITCODE -or $javaVersion -notmatch '^javac 17\\.') { throw 'JDK 17 unavailable.' }\n\"WARDNOTE_JAVA_HOME=$env:JAVA_HOME\" >> $env:GITHUB_ENV\n$chrome = Join-Path $env:ProgramFiles 'Google\\Chrome\\Application\\chrome.exe'\nif (!(Test-Path -LiteralPath $chrome)) { throw 'Chrome is unavailable on this runner.' }\n\"NOTE_BROWSER_EXECUTABLE=$chrome\" >> $env:GITHUB_ENV\n$sdk = $env:ANDROID_HOME\nif (!$sdk) { $sdk = $env:ANDROID_SDK_ROOT }\nif (!$sdk) { throw 'Runner does not provide Android SDK.' }\n\"ANDROID_HOME=$sdk\" >> $env:GITHUB_ENV\n$manager = Join-Path $sdk 'cmdline-tools\\latest\\bin\\sdkmanager.bat'\nif (!(Test-Path -LiteralPath $manager)) { throw 'Android sdkmanager is unavailable.' }\n& $manager 'platforms;android-35' 'build-tools;35.0.0'\nif ($LASTEXITCODE) { throw 'Required Android SDK packages could not be installed.' }\nforeach ($file in @('platforms\\android-35\\android.jar','build-tools\\35.0.0\\aapt2.exe')) {\n  if (!(Test-Path -LiteralPath (Join-Path $sdk $file))) { throw \"Required SDK file missing: $file\" }\n}\n"
+        },
+        {
+          "name": "Validate public-file allowlist before installing development tools",
+          "run": "python scripts/package-preview.py --check"
+        },
+        {
+          "name": "Test public-package rejection and inclusion boundaries",
+          "run": "python -m unittest discover -s tests -p test_public_package.py -v"
+        },
+        {
+          "name": "Install locked host test tools without install scripts",
+          "run": "npm ci --ignore-scripts --no-audit --no-fund"
+        },
+        {
+          "name": "Validate checked-in workflow configuration",
+          "run": "node scripts/check-ci-config.mjs"
+        },
+        {
+          "name": "Verify fixtures and run 15 core, 18 browser and 3 upgrade checks",
+          "run": "npm run test:all"
+        },
+        {
+          "name": "Compile and inspect isolated APK with ephemeral signing only",
+          "run": ".\\scripts\\ci-android-build.ps1"
+        },
+        {
+          "name": "Build and verify source-r1 package without publishing",
+          "run": "python scripts/package-preview.py"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+name: Improvement / 改进建议
+description: Propose a focused change for portable offline notes / 为便携脱机记录提出具体改进
+title: "[Suggestion] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep examples fictional. WardNote is an independent ward-round notebook, not a replacement EMR. Institutional/commercial use requires authorization. Do not post security details publicly.
+        使用虚构示例，保持独立查房记录定位；机构／商业使用须授权。安全问题不在此公开。
+  - type: textarea
+    id: task
+    attributes:
+      label: Task and problem / 工作场景及问题
+      description: Describe the actual difficulty without patient information / 不含患者资料地说明实际困难
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior and review / 建议行为及核对方式
+      description: Who checks the result and how would offline use remain possible? / 谁核对结果，如何保持脱机可用？
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Data movement, failures and platform / 数据流动、失败处理及平台
+      description: Note any external service, permissions, storage or device dependency / 说明外部服务、权限、存储或设备依赖
+    validations:
+      required: true

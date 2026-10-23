@@ -1,0 +1,483 @@
+{
+  "format": "wardnote-regression-fixtures-v1",
+  "scope": "Historical application assets only; no patient data, accounts or recordings",
+  "archives": [
+    {
+      "archive": "browser-0.6.15-ui-r1.zip",
+      "destination": "browser",
+      "sha256": "afdb8fc08571bc706853385230168fd7216f0ce89d6893a261b473997e204a7f",
+      "bytes": 446598,
+      "source": {
+        "release": "WardNote browser/PWA 0.6.15 UI r1",
+        "basis": "55 byte-matched preserved public assets",
+        "copyright": "Junhui Liu M.D.",
+        "licenseFile": "LICENSE-browser-base.txt"
+      },
+      "files": {
+        "accounts.js": {
+          "bytes": 3713,
+          "sha256": "a575266b4ed643135482c1b4584a6ef619f4285231cae95302d97e8853a2ad4c"
+        },
+        "app.js": {
+          "bytes": 120597,
+          "sha256": "9caea1aa8feb88e45d4f7eb28c68f0736f1badb60d99a91c7176f221ec4accbb"
+        },
+        "backup-segments.js": {
+          "bytes": 10008,
+          "sha256": "58172c6abad4176d63aa2c1b8cfeb2272269bf44e283f10853e81d14ed69cfe7"
+        },
+        "capture-storage.js": {
+          "bytes": 1418,
+          "sha256": "8160fd7337e7e4730929a4f6cb43fbd2ea0a220eb235bef8d614da0e9c9c1073"
+        },
+        "continuity-ui.js": {
+          "bytes": 5584,
+          "sha256": "ab871160ad385edb322195eb932454527ffcdec9b8d9113972c681cd25880e92"
+        },
+        "continuity.js": {
+          "bytes": 6954,
+          "sha256": "41c5c3d2aa5ce81562481884088fe68005841d16d642ef699930c69f4eaf95ca"
+        },
+        "deployment-policy.js": {
+          "bytes": 475,
+          "sha256": "aadfe23622cac3a8fa77cd5825fa6455a2fe4875648ed5378cdb1ec7ae00811e"
+        },
+        "deployment-profile.js": {
+          "bytes": 187,
+          "sha256": "87fa05c7eb1d06e7d55c99f13d277552e532306c471af7b619efea6ba03ec367"
+        },
+        "device-readiness-ui.js": {
+          "bytes": 3864,
+          "sha256": "07de3018cbf235c4a8a7f4aecfb52b335acda23d1bd63072c70304a4672d7407"
+        },
+        "device-readiness.js": {
+          "bytes": 4692,
+          "sha256": "235c581d2a1260e95bd3e19d9fb137049d4042a04bcd38045dbf3cd48bbb250d"
+        },
+        "domain.js": {
+          "bytes": 16275,
+          "sha256": "7f9a08e2b65e8d92590b37af1799d3965b9594a8f9a70e87f6bd5ecca625e2e9"
+        },
+        "easy-start.css": {
+          "bytes": 1626,
+          "sha256": "1218c5a7852dbf7d1450590c7a0294bd74f0b0cac60b748de32634f1a9f7d146"
+        },
+        "easy-start.js": {
+          "bytes": 43434,
+          "sha256": "4382b32836c31b104d652848443c9669726ffa51264d38f9f94f5f3791e65fae"
+        },
+        "i18n.js": {
+          "bytes": 2354,
+          "sha256": "64eb40d386540c46691f538594aa9c83f182e4ba624ac0286d1b38fcafbec3d7"
+        },
+        "icons/icon-192.png": {
+          "bytes": 3873,
+          "sha256": "59e33dae9d4b6c439c6133fffdc001cd05b7c5c91b32665d0e8973784f00fe36"
+        },
+        "icons/icon-512.png": {
+          "bytes": 14740,
+          "sha256": "b99c0aef5826614917e6ec44b2de84e8f1c326991857cbc26d0bd7c4fb8e7db7"
+        },
+        "icons/icon.svg": {
+          "bytes": 453,
+          "sha256": "827a0fed295fc973c70dc489087488d32ac7e7ff5ec5695ffc87950402974f40"
+        },
+        "index.html": {
+          "bytes": 823,
+          "sha256": "d2d6cbf76964f90a72bfd68898396ac47be8b82c0efcc249ca45e471d3f088be"
+        },
+        "languages.js": {
+          "bytes": 1371,
+          "sha256": "debadb812e5bfdc08f2f0a0a6a0cb02d6beaf328af690abe36a0ea78cd0b6506"
+        },
+        "locale-core.js": {
+          "bytes": 1201,
+          "sha256": "8f479f93ce4ddd96e5ab148aee358910986a4df0ff3ac78184f216843dc83ac8"
+        },
+        "locales/ar.js": {
+          "bytes": 136237,
+          "sha256": "556f0efeb1905e0b6cb942c2e34f59ff36f9975c5f4751f3d00da6d9108409b5"
+        },
+        "locales/es.js": {
+          "bytes": 115537,
+          "sha256": "c3779e8ab71cb937556a9f986fcc37e8becdbf68d8909fcae0e5f247cb86f7c7"
+        },
+        "locales/fr.js": {
+          "bytes": 119056,
+          "sha256": "7be917815d5dcf2bfaeb42b439997f5287267ba369a51fe1fde2d25c9f36eb0e"
+        },
+        "locales/hi.js": {
+          "bytes": 184100,
+          "sha256": "96f3b37bb0d7e32039a4394fc66f404a5c6469b1b690d29a5996b0a2af022f9b"
+        },
+        "locales/ru.js": {
+          "bytes": 158207,
+          "sha256": "9d54db2d34bcdaaa8e0f2a3ce550bb3e627d96e0014b970652d57ee24a66b308"
+        },
+        "locales/ur.js": {
+          "bytes": 141079,
+          "sha256": "2894daa613976c6c9ef94d4599a995cf45559fdf72aba022cb425b5fd3007fe7"
+        },
+        "manifest-ar.webmanifest": {
+          "bytes": 630,
+          "sha256": "b348056f2982fae024d66dd4c51b496e633c9dd30228e666eae0cbc0826440d1"
+        },
+        "manifest-en.webmanifest": {
+          "bytes": 557,
+          "sha256": "fa98c951ec425482560f144bb6731fcc51457fceccbe63003a9f201ee86303ee"
+        },
+        "manifest-es.webmanifest": {
+          "bytes": 592,
+          "sha256": "ea5274ec862e0120a6c17d6d313b113039347168d2b3a885dde9a7d0fab24ee2"
+        },
+        "manifest-fr.webmanifest": {
+          "bytes": 600,
+          "sha256": "21e62ecedbc0e445edabebcc3de1eab10dbceaf79db1aeb51801e0b2b98eaf59"
+        },
+        "manifest-hi.webmanifest": {
+          "bytes": 678,
+          "sha256": "e5347cb06551a7d41d4e872ddfbd6eb0bacc3ebf0ed4467a2db1c56e367d67b9"
+        },
+        "manifest-ru.webmanifest": {
+          "bytes": 630,
+          "sha256": "2d8fe975c7a1f5270ae643aa30c8d51f51ea62de3907e65af76476c4e47a3808"
+        },
+        "manifest-ur.webmanifest": {
+          "bytes": 623,
+          "sha256": "8c01937bcb391214ab2f9e10ef4e4e93e563c627a6c6e79d1bc1ec39829ff455"
+        },
+        "manifest-zh.webmanifest": {
+          "bytes": 560,
+          "sha256": "b1b24b0d85e9b5081c251df23a195561eefaeda73e425dba650375b244df758b"
+        },
+        "manifest.webmanifest": {
+          "bytes": 412,
+          "sha256": "b6fbe366aaf9470c6f3985e8cc16f796181a39450605fb3dbca3921c1538afb2"
+        },
+        "offline-api.js": {
+          "bytes": 16929,
+          "sha256": "0e0f741d2d55949fab242eeca1a5f6640519f65dde0d0d2b972116f26f6920f8"
+        },
+        "offline-store.js": {
+          "bytes": 18729,
+          "sha256": "6f0d31b86fc6b8d7f1e1e348a67161a784f134ef866d62262e2a4df972d5d42c"
+        },
+        "offline-sync.js": {
+          "bytes": 9876,
+          "sha256": "189600d07a0bfe9769f2d50ccaf300ded7cb5a629bc35933a830ba81be7b9fa7"
+        },
+        "offline-ui.js": {
+          "bytes": 21934,
+          "sha256": "a7cc92f14e261ffc303b3c73f4a6980a61ec058f64b73d55d51db91a7a92889f"
+        },
+        "panel-layout.js": {
+          "bytes": 2431,
+          "sha256": "ce97e7bb486bc0aecee78b8d25da0f51330591cc1cbe840f500a4bdc96168cf1"
+        },
+        "patient-brief-ui.js": {
+          "bytes": 3619,
+          "sha256": "e1bb5cc27a15b97d8e3150c8b2c4018f7b4c04e3090a209912c9c0f010170ffb"
+        },
+        "patient-brief.js": {
+          "bytes": 3782,
+          "sha256": "285d18ae3e71e706f18ce2389c5303a82c45a4639aabe41e38c80805a22341fd"
+        },
+        "project-info.js": {
+          "bytes": 4553,
+          "sha256": "a0653e96d627ab45cf79d94901e5cdec0e39d6f105f058b85cd004a82560cee9"
+        },
+        "record-validation.js": {
+          "bytes": 2627,
+          "sha256": "b966eb21e71bfea1f4cf93093496f781a12fb193eaa7e6669e841fba7ebee61b"
+        },
+        "region-settings.js": {
+          "bytes": 5937,
+          "sha256": "2b78d7f57ab7d62855ac0c068c8e0249cc51742bd8b42ba568e8287c10b598f3"
+        },
+        "region-ui.js": {
+          "bytes": 3730,
+          "sha256": "ff99a6e686c124c02a9a79f4c522c7d179d40d7bfc889474e138d7420675c9de"
+        },
+        "style.css": {
+          "bytes": 40411,
+          "sha256": "5b4824a8108e1a7ee83413b25ddf2e27089a05f25e22ccf125fcf1005db190c4"
+        },
+        "sw.js": {
+          "bytes": 8161,
+          "sha256": "0fc9345bee117b6a795469c1b29bd052e5375cb9ff6ef02788ad1d29d2898b3b"
+        },
+        "sync-core.js": {
+          "bytes": 921,
+          "sha256": "42e9fa615a5ffe963aa1cf7d110314b4ef3c9fe2d5b253775c85042a9b738e3b"
+        },
+        "translations.js": {
+          "bytes": 100945,
+          "sha256": "f27f95e1ee6b3f1162899203260074c242ac20ab4a8a177c892bbbb5b22dec78"
+        },
+        "update-controller.css": {
+          "bytes": 972,
+          "sha256": "34e1ca8d7bc81fc4928b45319d59b38f4f9ab2a1a5890d89b675be4aaa66ec1c"
+        },
+        "update-controller.js": {
+          "bytes": 11785,
+          "sha256": "d533ac4888d0867c0442f3d3470893ec5c3d9d4ba329af4c940524591d92a899"
+        },
+        "voice-evidence.js": {
+          "bytes": 3255,
+          "sha256": "fe66edfd96896e3e10b09549f46888002a1e8da29b72a41452feb9c452a2e26d"
+        },
+        "voice-routing.js": {
+          "bytes": 10916,
+          "sha256": "3d168c4458e6794c3b7cafee6c0a90abf0c52ef0acfe781a0ca0a068c2bca0b8"
+        },
+        "worksheet-ui.js": {
+          "bytes": 946,
+          "sha256": "eaff5e981a8fcf893fd7cfdd47c6bf75041249ea3518652786d963a18ece0ed1"
+        }
+      }
+    },
+    {
+      "archive": "android-0.1.1-web.zip",
+      "destination": "android-0.1.1",
+      "sha256": "a3a39000d33767559454864a37d15553e14989df35a4e9bfd159b97c25f46117",
+      "bytes": 455034,
+      "source": {
+        "release": "WardNote Android 0.1.1-preview",
+        "sourceArchive": "wardnote-android-0.1.1-preview-source.zip",
+        "sourceArchiveSha256": "8502fbabe5f4c8075f0b6115cbde785ab44b802cda6319bcdd350b6ac20bac99",
+        "copyright": "Junhui Liu M.D.",
+        "licenseFile": "LICENSE-android-0.1.1.txt"
+      },
+      "files": {
+        "accounts.js": {
+          "bytes": 3713,
+          "sha256": "a575266b4ed643135482c1b4584a6ef619f4285231cae95302d97e8853a2ad4c"
+        },
+        "android-platform.js": {
+          "bytes": 5269,
+          "sha256": "0a12a2d461c574e1e9ca67230d22d1c17e3c57b881a535c89431bd81ea067949"
+        },
+        "android-strings.js": {
+          "bytes": 18636,
+          "sha256": "547a48e787f431447a9aaa9d31ed6ea2552934d5c6817b580f720add1ff3de5c"
+        },
+        "app.js": {
+          "bytes": 118025,
+          "sha256": "19b9e44c09106f73230d52ebff2e813ccbe7695536ff7074f4745ae36e2d077e"
+        },
+        "backup-segments.js": {
+          "bytes": 10008,
+          "sha256": "58172c6abad4176d63aa2c1b8cfeb2272269bf44e283f10853e81d14ed69cfe7"
+        },
+        "capture-storage.js": {
+          "bytes": 1418,
+          "sha256": "8160fd7337e7e4730929a4f6cb43fbd2ea0a220eb235bef8d614da0e9c9c1073"
+        },
+        "continuity-ui.js": {
+          "bytes": 5584,
+          "sha256": "ab871160ad385edb322195eb932454527ffcdec9b8d9113972c681cd25880e92"
+        },
+        "continuity.js": {
+          "bytes": 6954,
+          "sha256": "41c5c3d2aa5ce81562481884088fe68005841d16d642ef699930c69f4eaf95ca"
+        },
+        "deployment-policy.js": {
+          "bytes": 475,
+          "sha256": "aadfe23622cac3a8fa77cd5825fa6455a2fe4875648ed5378cdb1ec7ae00811e"
+        },
+        "deployment-profile.js": {
+          "bytes": 189,
+          "sha256": "271669a1ae6807c66a6b49e01413edf957e1ae7941bb821c58377e5c43505650"
+        },
+        "device-readiness-ui.js": {
+          "bytes": 3864,
+          "sha256": "07de3018cbf235c4a8a7f4aecfb52b335acda23d1bd63072c70304a4672d7407"
+        },
+        "device-readiness.js": {
+          "bytes": 3877,
+          "sha256": "385f6bf692d0992c4396d1773c8f9a3b15e65d005339ffe9f3aa7e1c97700147"
+        },
+        "domain.js": {
+          "bytes": 16275,
+          "sha256": "7f9a08e2b65e8d92590b37af1799d3965b9594a8f9a70e87f6bd5ecca625e2e9"
+        },
+        "easy-start.css": {
+          "bytes": 1626,
+          "sha256": "1218c5a7852dbf7d1450590c7a0294bd74f0b0cac60b748de32634f1a9f7d146"
+        },
+        "easy-start.js": {
+          "bytes": 43434,
+          "sha256": "4382b32836c31b104d652848443c9669726ffa51264d38f9f94f5f3791e65fae"
+        },
+        "i18n.js": {
+          "bytes": 2468,
+          "sha256": "d39f827ce6070891d111ecb27650804719b931b8e66264c50550486d64a3da5a"
+        },
+        "icons/icon-192.png": {
+          "bytes": 3873,
+          "sha256": "59e33dae9d4b6c439c6133fffdc001cd05b7c5c91b32665d0e8973784f00fe36"
+        },
+        "icons/icon-512.png": {
+          "bytes": 14740,
+          "sha256": "b99c0aef5826614917e6ec44b2de84e8f1c326991857cbc26d0bd7c4fb8e7db7"
+        },
+        "icons/icon.svg": {
+          "bytes": 453,
+          "sha256": "827a0fed295fc973c70dc489087488d32ac7e7ff5ec5695ffc87950402974f40"
+        },
+        "index.html": {
+          "bytes": 717,
+          "sha256": "d76e4082e103a5abdfe8ed8d86907d3ca88ce569ac191327e0b609e702f50fec"
+        },
+        "languages.js": {
+          "bytes": 1371,
+          "sha256": "debadb812e5bfdc08f2f0a0a6a0cb02d6beaf328af690abe36a0ea78cd0b6506"
+        },
+        "locale-core.js": {
+          "bytes": 1201,
+          "sha256": "8f479f93ce4ddd96e5ab148aee358910986a4df0ff3ac78184f216843dc83ac8"
+        },
+        "locales/ar.js": {
+          "bytes": 136237,
+          "sha256": "556f0efeb1905e0b6cb942c2e34f59ff36f9975c5f4751f3d00da6d9108409b5"
+        },
+        "locales/es.js": {
+          "bytes": 115537,
+          "sha256": "c3779e8ab71cb937556a9f986fcc37e8becdbf68d8909fcae0e5f247cb86f7c7"
+        },
+        "locales/fr.js": {
+          "bytes": 119056,
+          "sha256": "7be917815d5dcf2bfaeb42b439997f5287267ba369a51fe1fde2d25c9f36eb0e"
+        },
+        "locales/hi.js": {
+          "bytes": 184100,
+          "sha256": "96f3b37bb0d7e32039a4394fc66f404a5c6469b1b690d29a5996b0a2af022f9b"
+        },
+        "locales/ru.js": {
+          "bytes": 158207,
+          "sha256": "9d54db2d34bcdaaa8e0f2a3ce550bb3e627d96e0014b970652d57ee24a66b308"
+        },
+        "locales/ur.js": {
+          "bytes": 141079,
+          "sha256": "2894daa613976c6c9ef94d4599a995cf45559fdf72aba022cb425b5fd3007fe7"
+        },
+        "manifest-ar.webmanifest": {
+          "bytes": 630,
+          "sha256": "b348056f2982fae024d66dd4c51b496e633c9dd30228e666eae0cbc0826440d1"
+        },
+        "manifest-en.webmanifest": {
+          "bytes": 557,
+          "sha256": "fa98c951ec425482560f144bb6731fcc51457fceccbe63003a9f201ee86303ee"
+        },
+        "manifest-es.webmanifest": {
+          "bytes": 592,
+          "sha256": "ea5274ec862e0120a6c17d6d313b113039347168d2b3a885dde9a7d0fab24ee2"
+        },
+        "manifest-fr.webmanifest": {
+          "bytes": 600,
+          "sha256": "21e62ecedbc0e445edabebcc3de1eab10dbceaf79db1aeb51801e0b2b98eaf59"
+        },
+        "manifest-hi.webmanifest": {
+          "bytes": 678,
+          "sha256": "e5347cb06551a7d41d4e872ddfbd6eb0bacc3ebf0ed4467a2db1c56e367d67b9"
+        },
+        "manifest-ru.webmanifest": {
+          "bytes": 630,
+          "sha256": "2d8fe975c7a1f5270ae643aa30c8d51f51ea62de3907e65af76476c4e47a3808"
+        },
+        "manifest-ur.webmanifest": {
+          "bytes": 623,
+          "sha256": "8c01937bcb391214ab2f9e10ef4e4e93e563c627a6c6e79d1bc1ec39829ff455"
+        },
+        "manifest-zh.webmanifest": {
+          "bytes": 560,
+          "sha256": "b1b24b0d85e9b5081c251df23a195561eefaeda73e425dba650375b244df758b"
+        },
+        "manifest.webmanifest": {
+          "bytes": 412,
+          "sha256": "b6fbe366aaf9470c6f3985e8cc16f796181a39450605fb3dbca3921c1538afb2"
+        },
+        "offline-api.js": {
+          "bytes": 16947,
+          "sha256": "5e8e441028f45494db2e6947dd1a4f4eeff5772135837fef691afa9d0acdd058"
+        },
+        "offline-store.js": {
+          "bytes": 18729,
+          "sha256": "6f0d31b86fc6b8d7f1e1e348a67161a784f134ef866d62262e2a4df972d5d42c"
+        },
+        "offline-sync.js": {
+          "bytes": 9876,
+          "sha256": "189600d07a0bfe9769f2d50ccaf300ded7cb5a629bc35933a830ba81be7b9fa7"
+        },
+        "offline-ui.js": {
+          "bytes": 20090,
+          "sha256": "a7bd90591ac84c1f118c25590062313f50e7fddc8b90f38bb62238de9ecce169"
+        },
+        "panel-layout.js": {
+          "bytes": 2431,
+          "sha256": "ce97e7bb486bc0aecee78b8d25da0f51330591cc1cbe840f500a4bdc96168cf1"
+        },
+        "patient-brief-ui.js": {
+          "bytes": 3619,
+          "sha256": "e1bb5cc27a15b97d8e3150c8b2c4018f7b4c04e3090a209912c9c0f010170ffb"
+        },
+        "patient-brief.js": {
+          "bytes": 3782,
+          "sha256": "285d18ae3e71e706f18ce2389c5303a82c45a4639aabe41e38c80805a22341fd"
+        },
+        "project-info.js": {
+          "bytes": 4553,
+          "sha256": "a0653e96d627ab45cf79d94901e5cdec0e39d6f105f058b85cd004a82560cee9"
+        },
+        "record-validation.js": {
+          "bytes": 2627,
+          "sha256": "b966eb21e71bfea1f4cf93093496f781a12fb193eaa7e6669e841fba7ebee61b"
+        },
+        "region-settings.js": {
+          "bytes": 5937,
+          "sha256": "2b78d7f57ab7d62855ac0c068c8e0249cc51742bd8b42ba568e8287c10b598f3"
+        },
+        "region-ui.js": {
+          "bytes": 3730,
+          "sha256": "ff99a6e686c124c02a9a79f4c522c7d179d40d7bfc889474e138d7420675c9de"
+        },
+        "style.css": {
+          "bytes": 40411,
+          "sha256": "5b4824a8108e1a7ee83413b25ddf2e27089a05f25e22ccf125fcf1005db190c4"
+        },
+        "sw.js": {
+          "bytes": 8161,
+          "sha256": "0fc9345bee117b6a795469c1b29bd052e5375cb9ff6ef02788ad1d29d2898b3b"
+        },
+        "sync-core.js": {
+          "bytes": 921,
+          "sha256": "42e9fa615a5ffe963aa1cf7d110314b4ef3c9fe2d5b253775c85042a9b738e3b"
+        },
+        "translations.js": {
+          "bytes": 100945,
+          "sha256": "f27f95e1ee6b3f1162899203260074c242ac20ab4a8a177c892bbbb5b22dec78"
+        },
+        "update-controller.css": {
+          "bytes": 972,
+          "sha256": "34e1ca8d7bc81fc4928b45319d59b38f4f9ab2a1a5890d89b675be4aaa66ec1c"
+        },
+        "update-controller.js": {
+          "bytes": 11785,
+          "sha256": "d533ac4888d0867c0442f3d3470893ec5c3d9d4ba329af4c940524591d92a899"
+        },
+        "voice-evidence.js": {
+          "bytes": 3255,
+          "sha256": "fe66edfd96896e3e10b09549f46888002a1e8da29b72a41452feb9c452a2e26d"
+        },
+        "voice-routing.js": {
+          "bytes": 10916,
+          "sha256": "3d168c4458e6794c3b7cafee6c0a90abf0c52ef0acfe781a0ca0a068c2bca0b8"
+        },
+        "worksheet-ui.js": {
+          "bytes": 946,
+          "sha256": "eaff5e981a8fcf893fd7cfdd47c6bf75041249ea3518652786d963a18ece0ed1"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "wardnote-android-offline-preview",
+  "version": "0.1.2-preview",
+  "private": true,
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
+  "scripts": {
+    "test": "node scripts/run-ci-tests.mjs core",
+    "test:browser": "node scripts/run-ci-tests.mjs browser",
+    "test:upgrade": "node scripts/run-ci-tests.mjs upgrade",
+    "test:all": "node scripts/run-ci-tests.mjs all",
+    "test:baselines": "pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-test-baselines.ps1"
+  },
+  "androidVersionCode": 3,
+  "devDependencies": {
+    "playwright": "1.62.1"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

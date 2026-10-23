@@ -1,0 +1,15 @@
+{
+  "time": "2026-10-23T20:33:32.535817+08:00",
+  "status": "passed",
+  "encryption": "AES-256-GCM; independent random 256-bit recovery key",
+  "access": "Backup and separate recovery-key directories limited to current Windows user, SYSTEM and Administrators",
+  "certificateSha256": "439f90db648ace45e2c7652161f77a06bc9f2c732d9d287f6e9b04faa82df090",
+  "checks": [
+    "Wrong recovery key rejected before writing files",
+    "Tampered backup rejected before writing files",
+    "Restored key store and password match original bytes",
+    "Recovered private key signs an APK with the original certificate",
+    "Temporary restored signing files removed; original signing material unchanged"
+  ],
+  "limitations": "Local same-drive backup only; no off-device or off-site disaster recovery copy created. Secret files and private paths excluded from public delivery."
+}
