@@ -1,10 +1,10 @@
 循记临床 WardNote — Android 0.1.2-preview / r1
 已于 2026-10-24 首次预发布 / First prereleased on 2026-10-24
 
-发布页面 / Release: https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview
-APK: https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk
-固定 r1 源码 / Fixed source: https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview-source-r1.zip
-校验文件 / Checksums: https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/SHA256SUMS.txt
+发布页面 / Release: https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview
+APK: https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk
+固定 r1 源码 / Fixed source: https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview-source-r1.zip
+校验文件 / Checksums: https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/SHA256SUMS.txt
 
 中文快速开始
 1. 在手机浏览器下载 APK，或在电脑下载后通过 USB 等可信方式传入手机。最低 Android 8.0，System WebView 还须具备所需安全及存储能力；尚未验证全部型号兼容性。
@@ -22,8 +22,8 @@ English quick start
 5. Export encrypted backups, keep the .wnmanifest and all matching .wnpart files, and verify the complete set. Matching usernames do not synchronize browser/PWA and Android records.
 6. Before an update, finish imports, save work and verify an independent backup, then install over the existing app using the same application ID and signing identity. Do not uninstall or clear data first.
 
-反馈 / Feedback: https://github.com/Alias1027/wardnote-android/issues/new/choose
-私密安全报告（已启用）/ Private security reporting (enabled): https://github.com/Alias1027/wardnote-android/security/advisories/new
+反馈 / Feedback: https://github.com/Alias1027/wardnote/issues/new/choose
+私密安全报告（已启用）/ Private security reporting (enabled): https://github.com/Alias1027/wardnote/security/advisories/new
 提交反馈需 GitHub 登录；只用虚构资料，不上传患者信息、原声、备份或秘密。
 Sign in to GitHub to submit feedback. Use synthetic data only; never upload patient information, original audio, backups or secrets.
 

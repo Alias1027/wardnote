@@ -2,7 +2,7 @@
 
 2026-10-24 · main project **0.6.15 UI r1** + Android **0.1.2-preview**, versionCode **3**.
 
-[下载与安装 / Downloads and installation](../README.md) · [English](../README.en.md) · [Release](https://github.com/Alias1027/wardnote-android/releases/tag/v0.6.15-preview.1)
+[下载与安装 / Downloads and installation](../README.md) · [English](../README.en.md) · [Release](https://github.com/Alias1027/wardnote/releases/tag/v0.6.15-preview.1)
 
 ## 目录与不可变版本 / Layout and immutable versions
 
@@ -10,7 +10,7 @@
 
 `browser-pwa/` is extracted from the verified frozen source archive, preserving 180 of its 182 public files byte-for-byte; `.gitattributes` gains a no-conversion rule, the account test waits for the replacement mode form, and the internal manifest is updated. Original main source, Windows portable and static PWA archives retain their bytes. Runtime code and cache versions are unchanged. Android retains its root layout; the repository adds unified entry points and main-project CI. `web/` belongs to Android; the standalone browser/PWA lives under `browser-pwa/`.
 
-原 [Android r1 发布](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview)及五个附件不替换、不删除。整体 Release 中的 APK 与原 APK 字节、应用标识、签名和版本一致。旧版 source-r1 是 Android 发布时的固定源码快照；整体源码包包含两条产品线及本次统一说明。
+原 [Android r1 发布](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview)及五个附件不替换、不删除。整体 Release 中的 APK 与原 APK 字节、应用标识、签名和版本一致。旧版 source-r1 是 Android 发布时的固定源码快照；整体源码包包含两条产品线及本次统一说明。
 
 The original Android r1 release and all five assets remain intact. The combined-release APK is byte-identical to the original, with the same application ID, signature and version. Old source-r1 remains the fixed Android publication snapshot; the combined source contains both product lines and unified guidance.
 

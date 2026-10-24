@@ -4,7 +4,7 @@ Android **0.1.2-preview** · Web **0.6.15 UI r1** · 2026-10-23
 
 ## 已发布状态与托管检查 / Published status and hosted checks
 
-Android 0.1.2-preview / r1 已于 2026-10-24 [首次预发布](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview)。[首次 main 推送](https://github.com/Alias1027/wardnote-android/actions/runs/40047905103)及[发布标签](https://github.com/Alias1027/wardnote-android/actions/runs/40049429003)的 GitHub Actions 均通过，覆盖 15 项核心、18 项桌面浏览器模拟、3 项升级模拟、12 项公开打包边界及临时签名构建/打包检查。发布后 5 个附件匿名回下载与原交付散列一致，原 APK/source-r1 未替换。
+Android 0.1.2-preview / r1 已于 2026-10-24 [首次预发布](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview)。[首次 main 推送](https://github.com/Alias1027/wardnote/actions/runs/40047905103)及[发布标签](https://github.com/Alias1027/wardnote/actions/runs/40049429003)的 GitHub Actions 均通过，覆盖 15 项核心、18 项桌面浏览器模拟、3 项升级模拟、12 项公开打包边界及临时签名构建/打包检查。发布后 5 个附件匿名回下载与原交付散列一致，原 APK/source-r1 未替换。
 
 The first prerelease was published on 2026-10-24. Both linked hosted runs passed the core, desktop simulation, publication-boundary and disposable-signing build/package checks. All five public assets were anonymously downloaded and hash-matched. The original APK/source-r1 attachments were not replaced.
 

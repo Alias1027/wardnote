@@ -2,9 +2,9 @@
 
 Android **0.1.2-preview / r1** · Web **0.6.15 UI r1** · 发布 / Published 2026-10-24
 
-[下载 APK / Download APK](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk) · [发布说明 / Published release](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview) · [校验文件 / Checksums](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/SHA256SUMS.txt)
+[下载 APK / Download APK](https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk) · [发布说明 / Published release](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview) · [校验文件 / Checksums](https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/SHA256SUMS.txt)
 
-[问题与建议 / Issues and suggestions](https://github.com/Alias1027/wardnote-android/issues/new/choose) · [私密安全报告 / Private security reporting](https://github.com/Alias1027/wardnote-android/security/advisories/new)
+[问题与建议 / Issues and suggestions](https://github.com/Alias1027/wardnote/issues/new/choose) · [私密安全报告 / Private security reporting](https://github.com/Alias1027/wardnote/security/advisories/new)
 
 反馈需 GitHub 登录，只提交虚构病例和非敏感信息。八语界面已提供；真机及临床验证仍未完成。原始 r1 附件不因本说明更新而替换。 / Sign in to GitHub and use synthetic, non-sensitive feedback only. Eight interface languages are included; physical-device and clinical validation remain incomplete. This documentation update does not replace the original r1 attachments.
 

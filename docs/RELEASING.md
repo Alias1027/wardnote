@@ -1,6 +1,18 @@
-# Android 发布操作指南 / Android release procedure
+# WardNote 发布与维护指南 / Release and maintenance guide
 
-适用 / Applies to: **Android 0.1.2-preview / r1**。该版本已于 2026-10-24 [首次预发布](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview)。以下为维护者后续发布与核验流程；操作前须确定目标版本及授权，不覆盖已发布 r1 附件。 / This version was prereleased on 2026-10-24. The procedure below is for future maintainer releases and verification; establish the target/version authorization first and preserve the published r1 assets.
+**当前官方仓库 / Canonical repository:** [Alias1027/wardnote](https://github.com/Alias1027/wardnote)。
+
+当前整体版本为 [v0.6.15 UI r1 + Android 0.1.2-preview](https://github.com/Alias1027/wardnote/releases/tag/v0.6.15-preview.1)。现有根目录保留 Android 的 `android/`、`web/`、`scripts/` 与自动检查；独立浏览器/PWA 项目在 `browser-pwa/`，其三平台核心与浏览器检查由根目录的 `main-project-ci.yml` 执行。完整交付与当前安装入口见[整体说明](COMBINED-RELEASE.md)和[首页](../README.md)。
+
+The current combined release contains v0.6.15 UI r1 and Android 0.1.2-preview. Android keeps its root layout; the standalone browser/PWA lives in `browser-pwa/`, with its hosted workflow configured at repository root. See the combined guide and homepage for current downloads.
+
+当前源码打包命令 `python scripts/package-preview.py` 生成完整合并源码包，采用明确公开清单；发布已有的任何 APK、源码包、校验附件或标签时均不得静默替换。保留的 Android 文件名、包标识、历史归档内层目录和构建工具名称不随仓库更名修改。
+
+`python scripts/package-preview.py` now prepares the reviewed combined source package. Preserve all already published APK/source/checksum assets and tags; historical Android filenames, application identifiers, archive-root and tool-directory names are compatibility identifiers, not stale repository links.
+
+## Android r1 发布基线与历史步骤 / Android r1 baseline and historical procedure
+
+适用 / Applies to: **Android 0.1.2-preview / r1**。该版本已于 2026-10-24 [首次预发布](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview)。以下为维护者后续发布与核验流程；操作前须确定目标版本及授权，不覆盖已发布 r1 附件。 / This version was prereleased on 2026-10-24. The procedure below is for future maintainer releases and verification; establish the target/version authorization first and preserve the published r1 assets.
 
 ## 1. 区分交付版本 / Keep release lines distinct
 
@@ -31,9 +43,9 @@ Public CI may create only a disposable test key and must never receive the retai
 
 ## 4. 获得发布授权后：创建仓库 / After explicit publication authorization: repository setup
 
-本次准备的工作流按**独立 Android 源码根目录就是仓库根目录**设计。解压源码后，进入 `wardnote-android/` 内层目录；`package.json`、`android/`、`web/`、`scripts/` 和 `.github/` 应直接位于仓库根。不要把整个交付总目录作为仓库，也不要把 Android 工作流直接混入浏览器/PWA 仓库根。若以后采用合并仓库，须先为工作流明确配置 Android 子目录、复核相对链接与打包路径，并重新检查后再发布。
+当前使用已有的 `Alias1027/wardnote` 合并仓库，无须重新建仓。Android 工作流从根目录运行，主项目工作流从 `browser-pwa/` 运行；仍不得上传整个交付总目录。历史 Android source-r1 ZIP 中的 `wardnote-android/` 内层目录名称保持不变，用于重现 Android r1 快照，不能据此覆盖当前合并仓库。以下编号步骤保留为原始建仓过程的参考。
 
-The prepared workflow assumes the **standalone Android source root is the repository root**. After extraction, enter the inner `wardnote-android/` directory; `package.json`, `android/`, `web/`, `scripts/` and `.github/` must sit directly at the repository root. Do not use the entire delivery parent as a repository or copy the Android workflow into the browser/PWA root unchanged. A future combined repository must explicitly configure the Android working subdirectory, recheck relative links and packaging paths, and repeat validation before publication.
+Use the existing combined `Alias1027/wardnote` repository; no new repository is required. Android CI runs at the root and main-project CI runs under `browser-pwa/`. Never upload the whole delivery parent. The historical source-r1 ZIP retains its `wardnote-android/` archive root for reproducing that Android snapshot; do not use it to overwrite the combined repository. The numbered setup steps below are retained as historical reference.
 
 1. On GitHub, create the intended repository under the authorized owner. Do not generate a different default license; retain `LICENSE`, `NOTICE` and `LICENSES`. A public repository does not change this source-available license into an OSI open-source license. / 在授权主体下建仓，不用默认许可替换当前条款；公开仓库不改变许可性质。
 2. Extract the verified source archive into a **new staging directory**. Upload/commit only its reviewed source manifest entries, then check the staged file list. Do not commit the delivery parent, private backup or tool directories. / 将已核验源码包解压至新暂存目录，仅上传清单中的已审查文件，不提交交付总目录、私有备份和工具目录。

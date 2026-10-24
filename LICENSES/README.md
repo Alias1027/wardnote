@@ -2,7 +2,7 @@
 
 权利人 / Licensor: **Junhui Liu M.D.**  
 Email: [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)  
-GitHub：[官方仓库 / Official repository](https://github.com/Alias1027/wardnote-android)；已于 2026-10-24 首次预发布。
+GitHub：[官方仓库 / Official repository](https://github.com/Alias1027/wardnote)；已于 2026-10-24 首次预发布。
 
 本项目采用自定义 **WardNote Personal Noncommercial Source-Available License 1.0**，以根目录 [LICENSE](../LICENSE) 的英文条款为准。它是源码可见许可，不是OSI认可的开源许可；不是Apache-2.0、CC BY 4.0或PolyForm标准许可证。
 

@@ -74,3 +74,10 @@ Hosted run 40078190532 passed all core/packaged-source jobs but exposed account-
 Added the complete English README content directly to the repository homepage, alongside Chinese, with top-level language jump links and a retained standalone README.en.md. Verified the repository now has canonical name Alias1027/wardnote with unchanged repository ID 1431694863; README project/download links use that address. This changes documentation only. Release tags and attachments remain fixed, and runtime, signing material, clinical data and C-drive templates are untouched.
 
 将完整英文说明同步展示于项目首页，顶部提供中英文定位，保留独立英文README。核对现仓库名Alias1027/wardnote及相同身份编号，并统一README地址。仅修改文档；发布标签、附件和运行版本保持原状。
+
+
+## 2026-10-24 — Canonical repository links / 仓库更名后的文档与入口
+
+Normalized the remaining current documentation, download, security and authorization links to Alias1027/wardnote. Historical version/commit evidence and the Android compatibility filenames, application identity, tool paths and archive roots are retained. The maintenance guide now states the existing combined layout and marks old setup instructions as historical. Both published Release bodies receive canonical links with a rename note; assets, tags and publication dates remain fixed. Public readbacks, link/asset checks and the refreshed local delivery are recorded in the local rename work record. Runtime, signing material, current clinical data and C-drive templates are untouched.
+
+将当前文档、下载、安全反馈及授权入口统一到现仓库，保留版本／提交证据和Android兼容标识；发布指南明确现有合并目录与历史建仓步骤。两份已发布Release仅更新正文链接及更名说明，附件、标签与发布日期保留。公开核验与新交付结果写入本轮工作记录，不改运行代码、签名材料、现有资料或C盘模板。

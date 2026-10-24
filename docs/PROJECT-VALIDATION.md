@@ -12,8 +12,8 @@
 
 ## Hosted workflows / 托管流程
 
-- [Main project: Windows/Linux/macOS core and isolated source; Linux Chromium workflows](https://github.com/Alias1027/wardnote-android/actions/workflows/main-project-ci.yml)
-- [Android: Windows-hosted regression, package boundaries, ephemeral-signing APK build](https://github.com/Alias1027/wardnote-android/actions/workflows/android-ci.yml)
+- [Main project: Windows/Linux/macOS core and isolated source; Linux Chromium workflows](https://github.com/Alias1027/wardnote/actions/workflows/main-project-ci.yml)
+- [Android: Windows-hosted regression, package boundaries, ephemeral-signing APK build](https://github.com/Alias1027/wardnote/actions/workflows/android-ci.yml)
 
 Both workflows use pinned action revisions and read-only repository permissions. Main-project workflows run from `browser-pwa/`; the nested original workflow remains part of the frozen source and is not separately discovered by GitHub. CI uses fictional accounts/cases/audio and disposable Android signing. It never needs the maintainer's signing private key or patient data.
 

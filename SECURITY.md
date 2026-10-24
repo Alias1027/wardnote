@@ -12,9 +12,9 @@ No response-time guarantee, hospital-grade security certification or clinical va
 
 ## Report privately / 私密报告
 
-Private vulnerability reporting is enabled for the [official repository](https://github.com/Alias1027/wardnote-android). Use [Report a vulnerability](https://github.com/Alias1027/wardnote-android/security/advisories/new) under Security → Advisories; GitHub sign-in is required. If unavailable, request a private channel using junhuiliu1025@gmail.com. Initially send only a request to arrange secure reporting, not sensitive attachments. Public issues must not contain exploit details.
+Private vulnerability reporting is enabled for the [official repository](https://github.com/Alias1027/wardnote). Use [Report a vulnerability](https://github.com/Alias1027/wardnote/security/advisories/new) under Security → Advisories; GitHub sign-in is required. If unavailable, request a private channel using junhuiliu1025@gmail.com. Initially send only a request to arrange secure reporting, not sensitive attachments. Public issues must not contain exploit details.
 
-[官方仓库](https://github.com/Alias1027/wardnote-android)已启用私密漏洞报告。请使用 Security → Advisories 中的[Report a vulnerability](https://github.com/Alias1027/wardnote-android/security/advisories/new)，需先登录 GitHub。若入口不可用，可通过 junhuiliu1025@gmail.com 请求约定私密渠道；首次仅发送联系请求，不附敏感文件。不要在公开问题中披露漏洞利用细节。
+[官方仓库](https://github.com/Alias1027/wardnote)已启用私密漏洞报告。请使用 Security → Advisories 中的[Report a vulnerability](https://github.com/Alias1027/wardnote/security/advisories/new)，需先登录 GitHub。若入口不可用，可通过 junhuiliu1025@gmail.com 请求约定私密渠道；首次仅发送联系请求，不附敏感文件。不要在公开问题中披露漏洞利用细节。
 
 Include the affected package/version, impact, reproducible synthetic steps and relevant platform details. Never send real patient records, original clinical audio, backups, credentials, signing keys or personal device identifiers. Use [the synthetic feedback fields](.github/ISSUE_TEMPLATE/bug.yml) only after removing confidential details. / 报告应含版本、影响、虚构病例复现步骤及必要平台信息；不得发送真实病历、原声、备份、账号秘密、签名材料或个人设备标识。
 
