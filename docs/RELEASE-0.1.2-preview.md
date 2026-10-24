@@ -1,6 +1,14 @@
 # WardNote Android 0.1.2-preview · 首次预发布说明 / First prerelease notes
 
-**待发布草稿 / Prepared, not published.** 建议标签 / Suggested tag: `android-v0.1.2-preview`.
+**首次技术预发布 / First technical prerelease.**
+
+标签 / Tag: `android-v0.1.2-preview`.
+
+原始 source-r1 附件及发布标签下的文档保留发布前快照，其中“尚未发布／待托管运行”等表述对应快照生成时点。main 分支的中英文 README、下载／安装及反馈说明已更新为已发布状态。APK 和 source-r1 附件保持核验字节；当前发布状态及托管检查以本页为准。
+
+The original source-r1 attachment and release-tag documents retain their preparation-time snapshot. Statements such as “not yet published” or “hosted execution pending” describe that earlier snapshot. The bilingual README and download/install/feedback instructions on main now reflect publication. The APK and source-r1 attachment remain byte-identical to the verified delivery; this page records publication and hosted evidence.
+
+Hosted checks passed for `cdc20ea80f30b0f17748253236aa4a527e89634b`: [GitHub Actions run](https://github.com/Alias1027/wardnote-android/actions/runs/40047905103). Physical-device and clinical validation remain pending. / 此提交的托管检查通过，真机及临床验证仍待后续反馈。 发布标签 / Release tag: `android-v0.1.2-preview`.
 
 ## 中文
 
@@ -32,11 +40,11 @@
 
 ### 验证与反馈
 
-当前运行时已通过 **15 项自动测试、18 项桌面 Chromium 模拟桥接检查、3 项桌面存储升级模拟**及宿主机 APK 核验；15 项中有一项 JVM 测试包含 10 个文档故障情景，不能重复计数。详见[验证记录](VALIDATION.md)及[安全审查](SECURITY-REVIEW-0.1.2.md)。发布材料新增自动检查配置；GitHub 上的实际运行待建仓后完成。
+当前运行时已通过 **15 项自动测试、18 项桌面 Chromium 模拟桥接检查、3 项桌面存储升级模拟**及宿主机 APK 核验；15 项中有一项 JVM 测试包含 10 个文档故障情景，不能重复计数。详见[验证记录](https://github.com/Alias1027/wardnote-android/blob/cdc20ea80f30b0f17748253236aa4a527e89634b/docs/VALIDATION.md)及[安全审查](https://github.com/Alias1027/wardnote-android/blob/cdc20ea80f30b0f17748253236aa4a527e89634b/docs/SECURITY-REVIEW-0.1.2.md)。本次待发布提交已通过 GitHub 托管自动检查，见正文顶部的运行记录。
 
-**尚未进行 Android 真机／模拟器安装、厂商录音往返、低配置完整班次、母语临床审校或临床验证。** 本阶段不开展 iOS 或其他苹果产品适配。欢迎在公开发布后使用虚构病例反馈；请提供型号、Android/WebView 版本、录音应用、文件提供程序及升级方式，勿上传患者信息、原声、备份或密码。安全问题依 [SECURITY.md](../SECURITY.md) 私密报告。
+**尚未进行 Android 真机／模拟器安装、厂商录音往返、低配置完整班次、母语临床审校或临床验证。** 本阶段不开展 iOS 或其他苹果产品适配。欢迎在公开发布后使用虚构病例反馈；请提供型号、Android/WebView 版本、录音应用、文件提供程序及升级方式，勿上传患者信息、原声、备份或密码。安全问题依 [SECURITY.md](https://github.com/Alias1027/wardnote-android/blob/cdc20ea80f30b0f17748253236aa4a527e89634b/SECURITY.md) 私密报告。
 
-版权归 Junhui Liu M.D. 所有。本版遵循 [WardNote Personal Noncommercial Source-Available License 1.0](../LICENSE)，属于源码可见软件，**不是 OSI 开源许可**。个人许可不授权真实临床照护；机构／商业使用须事先取得书面授权。既往有效授权及第三方许可各自保留。
+版权归 Junhui Liu M.D. 所有。本版遵循 [WardNote Personal Noncommercial Source-Available License 1.0](https://github.com/Alias1027/wardnote-android/blob/cdc20ea80f30b0f17748253236aa4a527e89634b/LICENSE)，属于源码可见软件，**不是 OSI 开源许可**。个人许可不授权真实临床照护；机构／商业使用须事先取得书面授权。既往有效授权及第三方许可各自保留。
 
 ## English
 
@@ -68,8 +76,23 @@ The application ID and signing identity are retained from 0.1.0/0.1.1. Finish re
 
 ### Evidence and feedback
 
-The runtime passed **15 automated tests, 18 desktop Chromium checks with a simulated native bridge, 3 desktop storage-upgrade simulations**, and host-side APK verification. One of the 15 tests runs 10 document-fault scenarios on a host JVM; these are not 10 additional tests. See the [validation record](VALIDATION.md) and [security review](SECURITY-REVIEW-0.1.2.md). Automated workflow configuration is prepared; actual GitHub execution awaits repository creation.
+The runtime passed **15 automated tests, 18 desktop Chromium checks with a simulated native bridge, 3 desktop storage-upgrade simulations**, and host-side APK verification. One of the 15 tests runs 10 document-fault scenarios on a host JVM; these are not 10 additional tests. See the [validation record](https://github.com/Alias1027/wardnote-android/blob/cdc20ea80f30b0f17748253236aa4a527e89634b/docs/VALIDATION.md) and [security review](https://github.com/Alias1027/wardnote-android/blob/cdc20ea80f30b0f17748253236aa4a527e89634b/docs/SECURITY-REVIEW-0.1.2.md). The release candidate commit has passed GitHub-hosted automated checks; see the run linked above.
 
-**No Android physical-device/emulator installation, OEM recorder round trip, full-shift low-resource use, native-language clinical review or clinical validation has been completed.** iOS and other Apple products are outside this phase. After publication, please report synthetic-case feedback with device model, Android/WebView versions, recorder, document provider and installation/update path. Do not upload patient information, recordings, backups or credentials. Report security issues privately under [SECURITY.md](../SECURITY.md).
+**No Android physical-device/emulator installation, OEM recorder round trip, full-shift low-resource use, native-language clinical review or clinical validation has been completed.** iOS and other Apple products are outside this phase. After publication, please report synthetic-case feedback with device model, Android/WebView versions, recorder, document provider and installation/update path. Do not upload patient information, recordings, backups or credentials. Report security issues privately under [SECURITY.md](https://github.com/Alias1027/wardnote-android/blob/cdc20ea80f30b0f17748253236aa4a527e89634b/SECURITY.md).
 
-Copyright Junhui Liu M.D. The [WardNote Personal Noncommercial Source-Available License 1.0](../LICENSE) applies. This is source-available software, **not OSI-approved open source**. Personal permission does not authorize clinical care; institutional/commercial use requires prior written authorization. Prior valid grants and third-party licenses retain their separate effect.
+Copyright Junhui Liu M.D. The [WardNote Personal Noncommercial Source-Available License 1.0](https://github.com/Alias1027/wardnote-android/blob/cdc20ea80f30b0f17748253236aa4a527e89634b/LICENSE) applies. This is source-available software, **not OSI-approved open source**. Personal permission does not authorize clinical care; institutional/commercial use requires prior written authorization. Prior valid grants and third-party licenses retain their separate effect.
+
+
+## 附件校验 / Asset checksums
+
+```text
+81a5621619b4bb72149606f2257b51bf3d8f78d7fa3ee4d5a34e3c63809c3d31  wardnote-android-0.1.2-preview.apk
+a23c69e78e0da27e3c839d0d5529bdeec29f1f0cbc1135999124c01e5255d697  wardnote-android-0.1.2-preview-source-r1.zip
+```
+
+
+## 反馈入口 / Feedback
+
+请仅使用虚构病例提交[问题与建议](https://github.com/Alias1027/wardnote-android/issues/new/choose)。安全问题请使用[私密漏洞报告](https://github.com/Alias1027/wardnote-android/security/advisories/new)，不要在公开问题中提交患者资料、录音、备份或凭据。
+
+Use synthetic cases for [issues and suggestions](https://github.com/Alias1027/wardnote-android/issues/new/choose). Use [private vulnerability reporting](https://github.com/Alias1027/wardnote-android/security/advisories/new) for security findings; never post patient information, recordings, backups or credentials in public issues.

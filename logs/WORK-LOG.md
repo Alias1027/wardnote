@@ -45,3 +45,14 @@ User authorized installation/application of android-intent-security and differen
 - Browser/PWA 55 files, three frozen packages, and 77 files across retained Android 0.1.0/0.1.1 deliveries rehashed unchanged. Existing patient data and C-drive templates not accessed or modified.
 - Documentation, source/APK and checksums synchronized into a separate Android-offline-preview-0.1.2 delivery. Exact final hashes/file counts are in source-package-verification.json and DELIVERY-CHECK.json. Temporary generated build/test directories are cleaned only after checks, retaining tools, private signing material and previous releases.
 - Native Android lifecycle, permission denial/Parcelable/ContentResolver behavior, OEM recorder compatibility, physical installation/update, low-resource and clinical validation remain later feedback work. No repository or GitHub release created; cloud sync remains future work.
+
+
+## 2026-10-24 · 发布后中英文说明更新 / Post-publication documentation
+
+- README 中英文统一为已发布状态，加入 APK、固定 source-r1、校验文件、安装与反馈入口；链接指向已公开 Release。记录两次已通过的托管检查，保留真机及临床验证边界。
+- 同步中英文快速开始、使用指南、验证说明、维护者发布流程、许可摘要联系入口及已启用的私密漏洞报告说明；LICENSE 正文和授权范围不变。
+- main 文档属于发布后的说明修订；已发布 APK、source-r1、其校验文件与发布标签保持原样。Release 中只澄清快照与 main 文档的区别，不替换任何附件。
+- 仅变更现有白名单中的文档/工作记录。运行时代码、测试脚本、依赖、签名材料、用户数据与 C 盘模板不参与此次修改。
+- 本地验证采用文档链接、双语关键入口、过时表述、公开白名单及 Git 差异检查；不手动重跑运行时测试。推送后由既有 GitHub 工作流自动检查本次提交，结果以对应 Actions 记录为准。
+
+Both READMEs now reflect the published release and provide matching download, installation and feedback links. Related delivery/user/security/validation/release/license-summary documents were synchronized. Governing license terms and all published r1 assets/tag are unchanged. Local checks are documentation-focused; the existing hosted workflow checks the documentation commit automatically. No signing secrets, user data or paper templates are involved.

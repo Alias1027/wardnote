@@ -1,10 +1,10 @@
 # Android 发布操作指南 / Android release procedure
 
-适用 / Applies to: **Android 0.1.2-preview**, source/publication material **r1**. 本轮仅准备文件与本地核验，**不建仓、不创建远程标签、不上传或发布**。 / This round prepares files and local checks only; **no repository, remote tag, upload or publication is performed**.
+适用 / Applies to: **Android 0.1.2-preview / r1**。该版本已于 2026-10-24 [首次预发布](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview)。以下为维护者后续发布与核验流程；操作前须确定目标版本及授权，不覆盖已发布 r1 附件。 / This version was prereleased on 2026-10-24. The procedure below is for future maintainer releases and verification; establish the target/version authorization first and preserve the published r1 assets.
 
 ## 1. 区分交付版本 / Keep release lines distinct
 
-| Component / 组件 | Retain / 保留 | Prepared candidate / 本次候选 |
+| Component / 组件 | Retain / 保留 | Published baseline / 已发布基线 |
 | --- | --- | --- |
 | Browser/PWA / 浏览器版 | `0.6.15 UI r1` and its frozen packages / 原版本及冻结包 | No replacement in this Android release / 本轮不替换 |
 | Android runtime / Android 运行时 | Original 0.1.0, 0.1.1 and 0.1.2 deliveries / 既有交付 | Same `wardnote-android-0.1.2-preview.apk`, versionCode 3 / 同一安装包 |

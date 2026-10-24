@@ -2,7 +2,15 @@
 
 Android **0.1.2-preview** · Web **0.6.15 UI r1** · 2026-10-23
 
-发布材料 r1 说明：以下 15/18/3 及包级结果是当前 0.1.2 运行时的既有验证证据。新增发布文档、自动检查配置和反馈模板的本地核验另记于本轮交付记录；配置就绪不代表 GitHub 托管运行已完成。APK 保持原字节。 / Release-material r1 note: the 15/18/3 and package results below are existing evidence for the current 0.1.2 runtime. Local checks of the new release documents, workflow and feedback forms are recorded separately in this round's delivery evidence; prepared configuration does not establish a completed hosted GitHub run. APK bytes remain unchanged.
+## 已发布状态与托管检查 / Published status and hosted checks
+
+Android 0.1.2-preview / r1 已于 2026-10-24 [首次预发布](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview)。[首次 main 推送](https://github.com/Alias1027/wardnote-android/actions/runs/40047905103)及[发布标签](https://github.com/Alias1027/wardnote-android/actions/runs/40049429003)的 GitHub Actions 均通过，覆盖 15 项核心、18 项桌面浏览器模拟、3 项升级模拟、12 项公开打包边界及临时签名构建/打包检查。发布后 5 个附件匿名回下载与原交付散列一致，原 APK/source-r1 未替换。
+
+The first prerelease was published on 2026-10-24. Both linked hosted runs passed the core, desktop simulation, publication-boundary and disposable-signing build/package checks. All five public assets were anonymously downloaded and hash-matched. The original APK/source-r1 attachments were not replaced.
+
+本页以下保留本机准备阶段的历史记录。托管通过不构成 Android 真机、母语临床或临床验证；反馈入口的登录后交互也未由自动化提交测试。 / The historical local-preparation evidence follows. Hosted success does not establish physical-device, native-language clinical or clinical validation; authenticated feedback forms have not been submitted by automation.
+
+发布材料 r1 历史说明（准备时点）：以下 15/18/3 及包级结果是当前 0.1.2 运行时的既有验证证据。新增发布文档、自动检查配置和反馈模板的本地核验另记于本轮交付记录；配置就绪不代表 GitHub 托管运行已完成。APK 保持原字节。 / Release-material r1 note: the 15/18/3 and package results below are existing evidence for the current 0.1.2 runtime. Local checks of the new release documents, workflow and feedback forms are recorded separately in this round's delivery evidence; prepared configuration does not establish a completed hosted GitHub run. APK bytes remain unchanged.
 
 本轮完成 **15 项自动测试、18 项桌面浏览器集成检查、3 项桌面存储升级模拟及 APK 宿主机核验**。浏览器检查使用 Windows 桌面 Chromium 和原生桥接测试替身；**未运行 Android 模拟器，未在真实手机安装或录音**。源码检查、编译和模拟桥接通过不等于设备运行或临床验证通过。原浏览器/PWA版本的历史测试结果未计入本轮数字。
 
@@ -65,6 +73,6 @@ See the [security report](SECURITY-REVIEW-0.1.2.md). One of the 15 top-level tes
 
 This round reran 15 core, 18 desktop-browser and 3 desktop-upgrade checks through the self-contained entry and passed 12 publication-boundary tests. The 112 bundled historical assets require no maintainer-only directory. An isolated CI-style build verified 57 assets using a disposable key, then removed its APK/key; the delivered APK is unchanged. Five private signing-recovery checks passed; public evidence contains only outcomes and the certificate fingerprint.
 
-证据见 [本轮发布核查](../logs/release-readiness-r1.json)、[签名恢复核验](../logs/signing-backup-verification.json)、[临时签名构建](../logs/ci-android-build-results.json)及[本轮工作记录](../logs/release-worklog-r1.md)。上述临时构建的证书和散列不能用于核对正式交付 APK。GitHub 托管运行、反馈表实际渲染、真机和临床验证仍未执行。签名备份仅在本机同盘，尚无异地容灾副本。
+证据见 [本轮发布核查](../logs/release-readiness-r1.json)、[签名恢复核验](../logs/signing-backup-verification.json)、[临时签名构建](../logs/ci-android-build-results.json)及[本轮工作记录](../logs/release-worklog-r1.md)。上述临时构建的证书和散列不能用于核对正式交付 APK。上述为本机准备时点记录；此后 GitHub 托管运行已通过，见页首。反馈表登录后交互、真机和临床验证仍未执行。签名备份仅在本机同盘，尚无异地容灾副本。
 
-See the linked evidence. The temporary build's certificate/hash must not be used to verify the official APK. GitHub-hosted execution, hosted form rendering, physical-device and clinical checks remain pending. The signing backup is local on the same drive, not off-device disaster recovery.
+See the linked evidence. The temporary build's certificate/hash must not be used to verify the official APK. This describes the local-preparation stage; hosted execution subsequently passed as linked above. Authenticated feedback-form interaction, physical-device and clinical checks remain pending. The signing backup is local on the same drive, not off-device disaster recovery.

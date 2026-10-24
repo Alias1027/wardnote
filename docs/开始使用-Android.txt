@@ -1,30 +1,40 @@
-循记临床 WardNote — Android 0.1.2-preview
+循记临床 WardNote — Android 0.1.2-preview / r1
+已于 2026-10-24 首次预发布 / First prereleased on 2026-10-24
 
-发布材料 r1 / Release material r1：交付候选目录 Android-offline-preview-0.1.2-release-ready；源码包 wardnote-android-0.1.2-preview-source-r1.zip。APK 与原 0.1.2 包字节一致，原目录保留。本轮仅准备，不实际发布。
-The candidate folder is Android-offline-preview-0.1.2-release-ready, with source archive wardnote-android-0.1.2-preview-source-r1.zip. The APK is byte-identical to the retained 0.1.2 installer. This round prepares material without publishing.
+发布页面 / Release: https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview
+APK: https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk
+固定 r1 源码 / Fixed source: https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview-source-r1.zip
+校验文件 / Checksums: https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/SHA256SUMS.txt
 
-1. 将 wardnote-android-0.1.2-preview.apk 复制到 Android 手机上（USB 或其他可信方式）。
-2. 打开 APK，按系统提示允许本次安装来源。安装完成后可关闭“安装未知应用”权限。
-3. 打开 WardNote，选择语言、个人或机构模式，创建账号和密码。程序已内置，可首次脱机启动；无需部署 HTTPS 网站。
-4. 先用虚构病例验证。选择患者后，在“备忘”点击“开始录音”：确认患者，调用手机已有录音应用，返回后再次确认导入。若手机不支持直接返回，请使用“导入录音”。
-5. 在设置中导出加密备份，选本机文件夹，保留 .wnmanifest 清单及所有 .wnpart 文件；完成后重新选择全套文件进行核验。
-
-录音原件可能仍由手机录音应用保留或同步；本应用不自动删除外部原件。当前版本没有语音转文字或云同步。
-卸载或清除应用数据会删除本机资料。更新时先核验备份，再安装相同签名的更新；不要先卸载。
-系统最低 Android 8，且需具备所要求的 WebView 安全存储能力。真实手机、录音应用返回及临床使用尚未验证。
+中文快速开始
+1. 在手机浏览器下载 APK，或在电脑下载后通过 USB 等可信方式传入手机。最低 Android 8.0，System WebView 还须具备所需安全及存储能力；尚未验证全部型号兼容性。
+2. 打开 APK，按正常系统提示为本次可信安装来源临时允许“安装未知应用”；安装完成后可关闭该权限。遇到系统保护限制时记录错误，不绕过安全警告。
+3. 打开 WardNote，选择语言、个人或机构模式，创建账号与密码。首次启动可保持飞行模式；无需部署 HTTPS 网站。先用虚构病例检查保存、退出重开、录音返回及备份恢复。
+4. 选定患者后，在“备忘”点击“开始录音”，核对患者及录音安排；手机现有录音应用录完返回后，确认导入并回听。没有返回文件时使用“导入录音”。
+5. 在设置中导出加密备份，保留 .wnmanifest 清单及同组所有 .wnpart 文件，重新选择完整文件组进行核验。相同账号名不会同步浏览器/PWA与Android资料。
+6. 更新前完成录音导入、保存记录并核验独立备份，再以同应用标识及签名的 APK 覆盖安装。不要先卸载或清除数据。
 
 English quick start
-1. Copy the APK to your Android phone through a trusted channel and install it.
-2. Open WardNote, choose a language/account mode, and create an account and password. Bundled assets support first-use offline operation; no HTTPS website is needed.
-3. Use synthetic cases first. Start recording from Memos, confirm the patient, record in the phone's recorder app, then return and confirm import. Use Import recording if the recorder cannot return a file.
-4. Export an encrypted backup to a local folder. Keep the .wnmanifest file and every .wnpart file, and verify the complete set.
-The recorder may retain or sync its own copy. WardNote does not delete the original. No speech recognition or cloud sync is provided in this preview.
-Uninstalling or clearing app data deletes local records. Verify a backup before installing a same-signature update; do not uninstall first.
-Physical-phone, OEM recorder and clinical validation remain pending. See docs/VALIDATION.md and docs/ANDROID-USER-GUIDE.md for details.
+1. Download the APK in a phone browser, or transfer it from a computer by USB or another trusted method. Minimum Android is 8.0; WebView must also provide the required security/storage capabilities. Compatibility across all models is unvalidated.
+2. Open the APK and follow normal system prompts, temporarily allowing Install unknown apps for the trusted source used for this installation. Disable it afterwards if desired. Record system-protection errors rather than bypassing security warnings.
+3. Choose a language and personal/institutional mode, then create a local account/password. First launch can remain in airplane mode; no HTTPS server deployment is required. Begin with synthetic cases to check saving, reopening, recorder return and backup/restore.
+4. In Memos for the intended patient, select Start recording and review the patient/recording arrangement. Use the phone's recorder, then confirm import and listen back. Use Import recording if no file is returned.
+5. Export encrypted backups, keep the .wnmanifest and all matching .wnpart files, and verify the complete set. Matching usernames do not synchronize browser/PWA and Android records.
+6. Before an update, finish imports, save work and verify an independent backup, then install over the existing app using the same application ID and signing identity. Do not uninstall or clear data first.
 
-0.1.2 更新说明 / Update notes
-新包沿用 0.1.0/0.1.1 应用标识与签名。更新前结束外部录音、回到应用确认导入，保存所有记录，导出并核验完整备份，再覆盖安装新包；不要卸载或清除数据。外部安装器和系统进程终止无法由应用阻止。
-The update retains the 0.1.0/0.1.1 application ID and signing certificate. Finish external recording and confirm import, save records, export and verify a complete backup, then install over the existing app. Do not uninstall or clear data. The app cannot block an external installer or OS process termination.
+反馈 / Feedback: https://github.com/Alias1027/wardnote-android/issues/new/choose
+私密安全报告（已启用）/ Private security reporting (enabled): https://github.com/Alias1027/wardnote-android/security/advisories/new
+提交反馈需 GitHub 登录；只用虚构资料，不上传患者信息、原声、备份或秘密。
+Sign in to GitHub to submit feedback. Use synthetic data only; never upload patient information, original audio, backups or secrets.
 
-安全修复说明：文件操作期间请等待完成；若提示未能确认清理，请检查目的文件夹并重新核验备份。
-Security update: wait for file operations to finish. If cleanup cannot be confirmed, inspect the destination and reverify the backup.
+系统录音工具/文件提供程序可能另存或同步原件；WardNote 不自动删除外部原件。当前没有语音识别或云同步。
+External recorders/providers may retain or synchronize originals. WardNote does not delete them. Speech recognition and cloud sync are not included.
+
+当前为技术预览，真机、厂商录音兼容性及临床验证仍待后续反馈。
+This is a technical preview. Physical-device, OEM-recorder and clinical validation remain pending.
+
+许可：WardNote Personal Noncommercial Source-Available License 1.0；符合条款的个人非商业学习测试可使用，机构/商业用途须 Junhui Liu M.D. 事先书面授权。个人许可不涵盖真实临床照护。
+License: qualifying personal noncommercial learning/testing is permitted under the project license. Institutional/commercial use requires prior written authorization from Junhui Liu M.D.; personal permission does not cover clinical care.
+
+本文件是发布后的说明更新。已发布 APK 和 source-r1 附件保持原字节；r1 内的文档保留发布前快照，最新说明见仓库 main 分支。
+This is a post-publication documentation update. The published APK and source-r1 attachment retain their original bytes; r1 includes a preparation-time documentation snapshot. Current instructions are on the repository's main branch.

@@ -2,9 +2,15 @@
 
 [English](README.en.md)
 
-**Android 0.1.2-preview，基于 WardNote 0.6.15 UI r1。** 已生成独立的评估签名 APK 与 Android 源码交付。原有浏览器版、PWA、冻结交付包、已有账号资料和 C 盘纸质模板保持原状；尚未公开发布。
+**Android 0.1.2-preview／发布材料 r1 已于 2026-10-24 首次预发布**，基于 WardNote 0.6.15 UI r1。查看[正式发布页面](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview)。这是技术预览版，真机及临床验证仍待后续反馈。
 
-本次 **发布材料 r1** 补齐发布说明、支持范围、自动检查及反馈模板；APK 字节和 Android 运行时版本不变。参见[中英文 Release 草稿](docs/RELEASE-0.1.2-preview.md)、[发布操作指南](docs/RELEASING.md)、[安全问题反馈](SECURITY.md)及[参与贡献](CONTRIBUTING.md)。
+| 下载 | 链接 |
+| --- | --- |
+| Android 安装包（APK） | [下载 wardnote-android-0.1.2-preview.apk](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk) |
+| 固定 r1 源码包 | [下载 source-r1.zip](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview-source-r1.zip) |
+| 文件校验值 | [下载 SHA256SUMS.txt](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/SHA256SUMS.txt) |
+
+`main` 分支的说明可在发布后继续修订；已发布 APK、source-r1 附件及发布标签保持原版本。下载固定 r1 请使用上表或 Release 附件。中英文[使用说明](docs/ANDROID-USER-GUIDE.md)、[快速开始](docs/开始使用-Android.txt)、[发布说明](docs/RELEASE-0.1.2-preview.md)及[安全问题反馈](SECURITY.md)均可直接查阅。
 
 最低 Android **8.0（API 26）**；设备内 WebView 还必须通过安全上下文、Web Crypto、IndexedDB 和 Web Locks 能力检查。建议使用已更新的 Android System WebView；尚未验证一个适用于所有厂商的最低 WebView 版本号，不能仅凭 Android 版本判断兼容性。
 
@@ -26,7 +32,7 @@
 
 ## 开始使用
 
-1. 查看交付包的校验文件和[验证记录](docs/VALIDATION.md)，确认收到的是本次预览包。本次发布候选目录为 `Android-offline-preview-0.1.2-release-ready`，APK 名称为 `wardnote-android-0.1.2-preview.apk`，源码包为 `wardnote-android-0.1.2-preview-source-r1.zip`。原 `Android-offline-preview-0.1.2` 交付保持原状。
+1. 在手机浏览器[下载 APK](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk)；也可先在电脑下载，再通过 USB 或其他可信方式传入手机。可对照[校验文件](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/SHA256SUMS.txt)确认完整性。安装后首次使用可保持脱机，无需自行部署 HTTPS 服务器。
 2. 在 Android 手机上安装预览 APK。仅对本次安装所用的可信文件管理器临时允许“安装未知应用”；完成后可关闭该权限。
 3. 打开应用，选择语言和个人／机构模式，创建账号与密码。首次使用可保持飞行模式；请先用虚构病例检查记录、退出重开、录音返回和备份恢复。
 4. 在“备忘”中选择“开始录音”，确认当前患者与录音安排。录制在设备录音应用中完成；返回后核对目标，确认导入并回听。若录音应用不返回文件，手动选“导入录音”。
@@ -34,7 +40,13 @@
 
 完整操作及文件位置边界见[使用说明](docs/ANDROID-USER-GUIDE.md)。开发者可按[构建与复核](docs/BUILD-TOOLCHAIN.md)重复构建及检查；结果及后续工作见[验证记录](docs/VALIDATION.md)和[后续路线](docs/ROADMAP.md)。
 
-当前 0.1.2 运行时已有 15 项自动测试（其中一项含 10 个原生文档故障情景）、18 项桌面 Chromium 模拟原生桥接检查、3 项桌面存储升级模拟检查，以及 APK 签名、校验和 57 个资源逐字节核对的通过记录。发布材料 r1 的本地检查另行记录，GitHub 自动检查须待建仓后实际运行。**尚未进行 Android 模拟器或真机安装、系统录音往返及临床验证**。
+当前 0.1.2 运行时已有 15 项自动测试（其中一项含 10 个原生文档故障情景）、18 项桌面 Chromium 模拟原生桥接检查、3 项桌面存储升级模拟检查，以及 APK 签名、校验和 57 个资源逐字节核对的通过记录。此外有 12 项公开打包边界检查。[首次推送托管检查](https://github.com/Alias1027/wardnote-android/actions/runs/40047905103)与[发布标签托管检查](https://github.com/Alias1027/wardnote-android/actions/runs/40049429003)均已通过；详细证据见[验证记录](docs/VALIDATION.md)。**尚未进行 Android 模拟器或真机安装、系统录音往返及临床验证**。
+
+## 问题、建议与授权联系
+
+- [提交问题或建议](https://github.com/Alias1027/wardnote-android/issues/new/choose)：使用 GitHub 账号登录，选择相应模板，填写应用、手机、Android／WebView、录音工具版本和复现步骤。
+- [私密报告安全问题](https://github.com/Alias1027/wardnote-android/security/advisories/new)：入口已启用；安全漏洞请走私密渠道。未登录时会先进入 GitHub 登录页。
+- 仅用虚构病例反馈，不上传真实病历、原始录音、加密备份、密码或密钥。授权申请联系 junhuiliu1025@gmail.com；机构模式本身不代表已获得使用许可。
 
 ## 与浏览器／PWA 的关系
 

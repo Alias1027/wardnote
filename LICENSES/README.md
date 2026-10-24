@@ -1,8 +1,8 @@
-# 使用许可与授权 / Licensing — 0.6.15
+# 使用许可与授权 / Licensing — Android 0.1.2-preview（基于 / based on 0.6.15）
 
 权利人 / Licensor: **Junhui Liu M.D.**  
 Email: [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)  
-GitHub：项目发布后可通过其官方仓库联系；目前未在本文编造仓库网址。
+GitHub：[官方仓库 / Official repository](https://github.com/Alias1027/wardnote-android)；已于 2026-10-24 首次预发布。
 
 本项目采用自定义 **WardNote Personal Noncommercial Source-Available License 1.0**，以根目录 [LICENSE](../LICENSE) 的英文条款为准。它是源码可见许可，不是OSI认可的开源许可；不是Apache-2.0、CC BY 4.0或PolyForm标准许可证。
 
@@ -37,8 +37,8 @@ Earlier copies validly received under Apache-2.0 (software) or CC BY 4.0 (templa
 
 既有合法获得旧许可者，可继续依旧许可使用其覆盖的材料，包括其允许的商业／机构用途；本次变更不能追溯收回该权利，也不能把已经按旧许可提供的同一份纸表重新变成独占材料。后续机构授权应区分旧版独立权利、新增代码／文档、部署支持及服务范围。
 
-此处是“若先前已合法取得，则保留既有权利”的条件说明，不表示本项目已公开发布，或已经向某个机构授予许可。Headache Diary 旧版使用 MIT；本项目旧版分别使用 Apache-2.0 与 CC BY 4.0，因此保留条款列出的旧许可证不同，新版个人／机构／商业用途的权限分界相同。
+此处是“若先前已合法取得，则保留既有权利”的条件说明，不代表新增机构授权。当前仓库已公开，公开本身不构成机构或商业使用授权。Headache Diary 旧版使用 MIT；本项目旧版分别使用 Apache-2.0 与 CC BY 4.0，因此保留条款列出的旧许可证不同，新版个人／机构／商业用途的权限分界相同。
 
-This is a conditional preservation of existing rights, not a statement that a public release or institutional grant has occurred. Headache Diary previously used MIT; WardNote previously used Apache-2.0 for software and CC BY 4.0 for templates/documentation. The new personal, institutional and commercial permission boundaries are aligned; the older license histories differ.
+This is a conditional preservation of existing rights, not a new institutional grant. The repository is now public; publication does not itself authorize institutional or commercial use. Headache Diary previously used MIT; WardNote previously used Apache-2.0 for software and CC BY 4.0 for templates/documentation. The new personal, institutional and commercial permission boundaries are aligned; the older license histories differ.
 
 Written authorization may be free or paid as separately agreed. These files set permission rules; they do not create an activation server, collect license fees or guarantee revenue.

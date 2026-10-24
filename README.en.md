@@ -2,9 +2,15 @@
 
 [简体中文](README.md)
 
-**Android 0.1.2-preview, based on WardNote 0.6.15 UI r1.** A separately signed evaluation APK and Android source delivery have been generated. The existing browser application, PWA, frozen packages, account data and C-drive paper templates remain unchanged. The project has not been publicly released.
+**Android 0.1.2-preview / release material r1 was first prereleased on 2026-10-24**, based on WardNote 0.6.15 UI r1. See the [published release](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview). This is a technical preview; physical-device and clinical validation remain pending.
 
-This **release-material revision r1** adds release notes, support scope, automated checks and feedback templates. APK bytes and the Android runtime version are unchanged. See the [bilingual release draft](docs/RELEASE-0.1.2-preview.md), [release procedure](docs/RELEASING.md), [security policy](SECURITY.md) and [contribution guide](CONTRIBUTING.md).
+| Download | Link |
+| --- | --- |
+| Android installer (APK) | [Download wardnote-android-0.1.2-preview.apk](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk) |
+| Fixed r1 source archive | [Download source-r1.zip](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview-source-r1.zip) |
+| File checksums | [Download SHA256SUMS.txt](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/SHA256SUMS.txt) |
+
+Documentation on `main` may be revised after publication; the published APK, source-r1 attachment and release tag retain the original version. Use the links above or the Release assets for the fixed r1 delivery. See the bilingual [user guide](docs/ANDROID-USER-GUIDE.md), [quick start](docs/开始使用-Android.txt), [release notes](docs/RELEASE-0.1.2-preview.md) and [security policy](SECURITY.md).
 
 Minimum Android **8.0 (API 26)**. The installed WebView must also pass checks for a secure context, Web Crypto, IndexedDB and Web Locks. An updated Android System WebView is recommended. A universal minimum WebView version has not been verified across manufacturers; Android version alone does not establish compatibility.
 
@@ -26,7 +32,7 @@ WardNote is a portable ward-round notebook and work aid for longitudinal patient
 
 ## Start
 
-1. Check the delivery checksums and [validation record](docs/VALIDATION.md). The release-candidate folder is `Android-offline-preview-0.1.2-release-ready`, the APK is `wardnote-android-0.1.2-preview.apk`, and the source package is `wardnote-android-0.1.2-preview-source-r1.zip`. The original `Android-offline-preview-0.1.2` delivery is retained unchanged.
+1. [Download the APK](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk) in a phone browser, or download it on a computer and transfer it by USB or another trusted method. Check integrity against the [checksum file](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/SHA256SUMS.txt). First use after installation can remain offline; no HTTPS server deployment is needed.
 2. Install the preview APK on Android. Temporarily allow Install unknown apps only for the trusted file manager used for this installation; the permission can be disabled afterwards.
 3. Open the app, choose a language and personal/institutional mode, and create an account and password. First launch can take place in airplane mode. Start with synthetic cases to check saving, reopening, returning from the recorder, and backup/restore.
 4. Choose Start recording in Memos and confirm the current patient and recording arrangement. Record in the device's recorder app. On return, check the destination, confirm import and listen back. Use Import recording if the recorder does not return its file.
@@ -34,7 +40,13 @@ WardNote is a portable ward-round notebook and work aid for longitudinal patient
 
 See the [user guide](docs/ANDROID-USER-GUIDE.md), [build and verification instructions](docs/BUILD-TOOLCHAIN.md), [validation record](docs/VALIDATION.md) and [roadmap](docs/ROADMAP.md).
 
-Existing 0.1.2 runtime evidence records 15 automated tests (one contains 10 native document fault scenarios), 18 desktop Chromium checks with a native-bridge test double, 3 desktop storage/asset upgrade checks, APK signature/checksum checks and byte-for-byte verification of 57 resources. Local checks for release-material r1 are recorded separately; hosted GitHub checks await repository creation and execution. **Android emulator/physical-device installation, real recorder round trips and clinical validation have not been performed.**
+Existing 0.1.2 runtime evidence records 15 automated tests (one contains 10 native document fault scenarios), 18 desktop Chromium checks with a native-bridge test double, 3 desktop storage/asset upgrade checks, APK signature/checksum checks and byte-for-byte verification of 57 resources. Twelve publication-boundary checks are also included. The [initial push workflow](https://github.com/Alias1027/wardnote-android/actions/runs/40047905103) and [release-tag workflow](https://github.com/Alias1027/wardnote-android/actions/runs/40049429003) both passed; see the [validation record](docs/VALIDATION.md). **Android emulator/physical-device installation, real recorder round trips and clinical validation have not been performed.**
+
+## Issues, suggestions and authorization
+
+- [Report a problem or suggestion](https://github.com/Alias1027/wardnote-android/issues/new/choose): sign in with a GitHub account, choose a template, and provide app/device, Android/WebView and recorder versions plus reproduction steps.
+- [Report a security issue privately](https://github.com/Alias1027/wardnote-android/security/advisories/new): private vulnerability reporting is enabled. Signed-out visitors are first directed to GitHub sign-in.
+- Use synthetic cases only. Do not upload real records, original recordings, encrypted backups, passwords or keys. Contact junhuiliu1025@gmail.com for authorization; selecting institutional mode does not itself grant permission.
 
 ## Browser and PWA coexistence
 
