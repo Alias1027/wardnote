@@ -6,9 +6,9 @@
 
 ## 目录与不可变版本 / Layout and immutable versions
 
-`browser-pwa/` 从已核验的冻结源码包逐项提取，182 个公开文件中181个保持原字节；仅 `.gitattributes` 添加禁止换行转换的规则，并相应更新内部清单，保证 Git 检出后的校验可重复。原始主项目源码、Windows 便携包、静态 PWA 包按原字节发布；运行代码和缓存版本未更改。根目录保留 Android 结构并添加统一入口和主项目托管流程。`web/` 是 Android 的资源，独立浏览器/PWA 使用 `browser-pwa/`。
+`browser-pwa/` 从已核验的冻结源码包逐项提取，182 个公开文件中180个保持原字节；`.gitattributes` 添加禁止换行转换的规则，账号测试等待模式切换后的新表单，再相应更新内部清单。原始主项目源码、Windows 便携包、静态 PWA 包按原字节发布；运行代码和缓存版本未更改。根目录保留 Android 结构并添加统一入口和主项目托管流程。`web/` 是 Android 的资源，独立浏览器/PWA 使用 `browser-pwa/`。
 
-`browser-pwa/` is extracted from the verified frozen source archive, preserving 181 of its 182 public files byte-for-byte; only `.gitattributes` gains a no-conversion rule and its manifest is updated so Git checkouts retain verifiable bytes. Original main source, Windows portable and static PWA archives retain their bytes. Runtime code and cache versions are unchanged. Android retains its root layout; the repository adds unified entry points and main-project CI. `web/` belongs to Android; the standalone browser/PWA lives under `browser-pwa/`.
+`browser-pwa/` is extracted from the verified frozen source archive, preserving 180 of its 182 public files byte-for-byte; `.gitattributes` gains a no-conversion rule, the account test waits for the replacement mode form, and the internal manifest is updated. Original main source, Windows portable and static PWA archives retain their bytes. Runtime code and cache versions are unchanged. Android retains its root layout; the repository adds unified entry points and main-project CI. `web/` belongs to Android; the standalone browser/PWA lives under `browser-pwa/`.
 
 原 [Android r1 发布](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview)及五个附件不替换、不删除。整体 Release 中的 APK 与原 APK 字节、应用标识、签名和版本一致。旧版 source-r1 是 Android 发布时的固定源码快照；整体源码包包含两条产品线及本次统一说明。
 

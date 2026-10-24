@@ -6,9 +6,9 @@
 
 - Main-project existing local evidence: **167** core/API/publication checks, **320** browser checks across 21 suites; **11** UI r1 memo checks; final **29** publication checks. These retain their original 2026-10-21 attribution. [Detailed evidence](../browser-pwa/docs/VALIDATION.md)
 - Android existing evidence: **15** core checks, **18** desktop bridge simulations, **3** desktop upgrade simulations, **12** packaging boundary tests; APK signature and all **57** bundled resources checked. [Detailed evidence](VALIDATION.md)
-- Combined publication: 181 original main-source files preserved; one `.gitattributes` packaging adjustment and updated manifest, runtime-byte comparisons, exact public-file allowlist, nested fixture integrity, documentation links, whole-source packaging and attachment hashes are checked before release. Hosted results are linked from the Release and the workflows below; no historical result is relabeled as a fresh run.
+- Combined publication: 180 original main-source files preserved; `.gitattributes` packaging adjustment, account-test synchronization and updated manifest, runtime-byte comparisons, exact public-file allowlist, nested fixture integrity, documentation links, whole-source packaging and attachment hashes are checked before release. Hosted results are linked from the Release and the workflows below; no historical result is relabeled as a fresh run.
 
-主项目和 Android 既有证据各保留原始版本与时间。本次整合检查181个原始源码文件的字节一致性、单项 `.gitattributes` 打包规则及更新清单、运行代码一致性、公开清单、历史夹具、说明链接、完整源码包与附件校验值；实际托管结果见 Release 和下列流程，不把旧证据改记为本轮通过。
+主项目和 Android 既有证据各保留原始版本与时间。本次整合检查180个原始源码文件的字节一致性、`.gitattributes` 打包规则、账号测试同步及更新清单、运行代码一致性、公开清单、历史夹具、说明链接、完整源码包与附件校验值；实际托管结果见 Release 和下列流程，不把旧证据改记为本轮通过。
 
 ## Hosted workflows / 托管流程
 
@@ -24,3 +24,9 @@ Both workflows use pinned action revisions and read-only repository permissions.
 Physical Android phones and installed PWAs, OEM recorder/document-provider round trips, low-memory/battery/storage and full-shift behavior, native clinical language review, hospital deployment, real ASR performance and clinical/educational benefit remain unverified. No new Apple-platform work is part of this release. Use synthetic cases for feedback; institutional/commercial evaluation still requires prior authorization.
 
 真实 Android 手机、已安装 PWA、厂商录音与文件服务往返、低配置／电池／存储／完整班次、母语临床审校、医院环境、真实识别效果及临床教学获益仍待后续反馈。本轮不开展苹果平台适配。体验反馈仅用虚构病例，机构及商业评估仍须事先授权。
+
+## Hosted browser test synchronization / 托管浏览器测试时序
+
+The first hosted run passed all three core/source-package jobs and Android, but the browser suite filled an old sign-in form while switching account mode. A controlled synthetic reproduction confirmed that asynchronous mode-status lookup replaced the old filled form with an empty new form. The test now waits for the previous form to disconnect and the intended mode to be selected before typing. No assertion, authentication rule, encryption code or runtime file was relaxed or changed. The original failed run remains visible; the corrected commit is rerun before publication.
+
+首次托管的三平台核心／源码包和Android通过，浏览器脚本在模式切换期间填写旧表单。受控虚构复现确认异步状态读取完成后新表单替换了旧输入；现测试等待旧表单移除及目标模式选中后再输入。未削弱断言或修改认证、加密与运行代码；失败记录保留，修正提交须重新通过托管检查后发布。

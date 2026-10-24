@@ -44,7 +44,7 @@
 
 Existing main-project local evidence covers 167 core/API/publication checks, 320 browser checks and 29 final publication-specific checks. Existing Android evidence covers 15 core, 18 desktop bridge simulations, 3 desktop upgrade simulations and 12 public-package boundary checks. Hosted checks also run against the combined tree; see the validation guide and Release for actual results and scope. All cases are fictional. Physical devices, recorder round trips, low-resource operation, full shifts, native clinical review and hospital/clinical validation remain future feedback work. Engineering checks do not establish clinical benefit.
 
-The integrated tree changes only `.gitattributes` to preserve exact checkout bytes and updates its manifest; 181 original files and all runtime code remain byte-identical. All three original download archives are unchanged.
+The integrated tree adjusts `.gitattributes` for exact checkout bytes and makes the account-mode browser test wait for form replacement, updating its manifest; 180 original files and all runtime code remain byte-identical. All three original download archives are unchanged.
 
 Frozen `browser-pwa/` documentation retains the preparation-stage record dated 2026-10-21. Statements there about publication or hosted CI being pending describe that historical snapshot. This README, the combined guide and Release describe current downloads and publication/CI status.
 

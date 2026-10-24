@@ -424,8 +424,8 @@
     },
     {
       "path": "app/tests/accounts-browser.mjs",
-      "size": 9256,
-      "sha256": "c0a269761acb7f4c4951fce4cb8164e35ade94753b4cbacc52125e13bb928b5f"
+      "size": 9493,
+      "sha256": "0ed6db2ca481011c9dfbeb9a3c2653b03fe3eef2dec483e2d66484761f9fc2bf"
     },
     {
       "path": "app/tests/assistance.test.mjs",
