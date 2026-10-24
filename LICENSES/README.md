@@ -1,4 +1,4 @@
-# 使用许可与授权 / Licensing — Android 0.1.2-preview（基于 / based on 0.6.15）
+# 使用许可与授权 / Licensing — WardNote 0.6.15 UI r1 + Android 0.1.2-preview
 
 权利人 / Licensor: **Junhui Liu M.D.**  
 Email: [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)  

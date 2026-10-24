@@ -1,0 +1,26 @@
+WardNote / 循记临床 — v0.6.15
+Copyright (c) 2026 Junhui Liu M.D.
+Existing project attribution: WardNote contributors.
+
+Project-authored materials are distributed under the WardNote Personal
+Noncommercial Source-Available License 1.0; see LICENSE and LICENSES/README.md.
+Independent personal noncommercial learning, experimentation and testing are
+permitted within those terms. Institutional and commercial use require prior
+explicit written authorization from Junhui Liu M.D. (junhuiliu1025@gmail.com).
+This is source-available, not OSI-approved open source.
+
+Third-party components keep their own licenses. Development packages recorded
+in app/package-lock.json are not bundled in the source archive; their notices
+must be preserved when those packages are installed or redistributed. The source
+archive contains no runtime. The separate Windows x64 portable package includes
+the verified Node.js runtime and its complete original license and third-party
+notices in runtime/node/LICENSE; provenance is in runtime/node/provenance.json.
+Neither package contains a speech model, service credential or patient database.
+
+Earlier valid Apache-2.0 and CC BY 4.0 grants remain effective for the material
+they cover. Standard license texts in LICENSES are retained for that history,
+not as a grant covering all new material in this version. The V006/V006b paper
+worksheets retain their clinical content, layout and project attribution.
+Linked medical guidelines and third-party names remain references, not claimed
+project property or endorsements. Patient data and user-authored records are
+not licensed for publication by these source-material terms.

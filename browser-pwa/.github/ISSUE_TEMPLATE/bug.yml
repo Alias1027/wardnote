@@ -1,0 +1,32 @@
+name: Bug report / 问题反馈
+description: Reproduce a problem with synthetic data only
+title: "[Bug] "
+body:
+  - type: checkboxes
+    attributes:
+      label: Privacy and scope
+      options:
+        - label: This report contains no patient data, recordings, credentials or private institutional details.
+          required: true
+        - label: This is not a security vulnerability; vulnerabilities go through SECURITY.md.
+          required: true
+  - type: input
+    attributes:
+      label: Version and environment
+      description: WardNote, OS, Node and browser versions; local or HTTPS deployment
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps using fictional data
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected and actual result
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Sanitized evidence
+      description: Optional screenshots or errors; review them before attaching.

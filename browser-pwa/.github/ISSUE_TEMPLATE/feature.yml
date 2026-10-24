@@ -1,0 +1,25 @@
+name: Workflow proposal / 流程建议
+description: Describe a clinical or technical improvement without patient details
+body:
+  - type: textarea
+    attributes:
+      label: Who encounters the problem, and during which task?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Proposed behavior and alternatives
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Review, data movement and failure handling
+      description: Include expected reviewer, source provenance and privacy implications.
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Privacy
+      options:
+        - label: This proposal uses fictional examples and contains no clinical data or credentials.
+          required: true

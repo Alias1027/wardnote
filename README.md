@@ -1,69 +1,57 @@
-# 循记临床 · Android 脱机预览版
+# WardNote · 循记临床
 
-[English](README.en.md)
+[English](README.en.md) · [整体预发布](https://github.com/Alias1027/wardnote-android/releases/tag/v0.6.15-preview.1) · [反馈](https://github.com/Alias1027/wardnote-android/issues/new/choose)
 
-**Android 0.1.2-preview／发布材料 r1 已于 2026-10-24 首次预发布**，基于 WardNote 0.6.15 UI r1。查看[正式发布页面](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview)。这是技术预览版，真机及临床验证仍待后续反馈。
+**便携式查房记录与单患者持续追踪工具。** 初诊与背景、每日查房、病程记录、检查与化验、患者摘要、备忘、待办、交接与可选决策复盘集中于患者工作区。文字记录为主，语音为辅助；医生核对后使用候选内容。产品辅助临床思维训练和患者管理，医院的正式病历、医嘱、签署及管理流程仍由医院承接。
 
-| 下载 | 链接 |
+**本仓库现合并主项目 v0.6.15（含 UI r1）与 Android 0.1.2-preview。** 仓库地址保留 `wardnote-android`，内容已覆盖 Windows、浏览器／PWA 和 Android。两条运行版本保持各自编号；[原 Android r1 发布](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview)及其五个附件保留。
+
+## 下载与开始使用
+
+| 使用方式 | 下载 | 开始使用与范围 |
+| --- | --- | --- |
+| Windows x64 电脑 | [一键启动便携包](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/wardnote-0.6.15-portable-win-x64.zip) | 解压后双击 `Start-WardNote.cmd`；内含 Node 运行时。默认本机访问，可脱机记录。 |
+| 手机／电脑浏览器、PWA | [静态 PWA 部署包](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/wardnote-0.6.15-static-pwa.zip) | 管理员按随包向导把 `site/` 部署到专用可信 HTTPS 地址；用户打开地址后准备脱机资源，可按浏览器提示安装。尚无公共演示站点。 |
+| Android 首次脱机安装 | [APK 安装包](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/wardnote-android-0.1.2-preview.apk) | Android 8.0+，还需满足 WebView 能力检查；下载安装后可首次脱机使用，不需自建 HTTPS。 |
+| 主项目开发 | [冻结的 v0.6.15 源码](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/wardnote-0.6.15.zip) | 源码包需 Node.js 24+；运行前阅读包内说明。 |
+| 整体项目开发 | [浏览器／PWA＋Android 完整源码](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/wardnote-0.6.15-ui-r1-android-0.1.2-preview-source.zip) | 含两条产品线、统一说明和托管检查。APK 不包含在源码包内。 |
+| 完整性核验 | [SHA256SUMS.txt](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/SHA256SUMS.txt) | 各包另附 `.sha256` 文件；校验用于确认下载完整性。 |
+
+**Windows：** 下载并完整解压便携包，双击启动，先用虚构病例创建记录、退出重开并核验备份。关闭网页不会自动停止本机服务，可从启动面板停止。[部署说明](browser-pwa/docs/EASY-DEPLOYMENT.md)
+
+**手机浏览器／PWA：** 需先有可信 HTTPS 程序地址；它不是公共在线服务。初次准备完成后可脱机重开。静态部署版不提供服务器同步或云端语音识别接口。[八语言使用引导](browser-pwa/docs/GETTING-STARTED.md)
+
+**Android：** 下载 APK 后用可信文件管理器安装，可先由电脑下载后通过 USB 传入。仅按系统要求为本次安装临时允许安装来源，随后按需关闭。程序优先调用已有录音应用，再核对患者并导入；没有兼容录音应用时可手动导入录音。[Android 使用说明](docs/ANDROID-USER-GUIDE.md)
+
+## 共同能力与平台边界
+
+- 八种界面语言：简体中文、英语、西班牙语、法语、俄语、阿拉伯语、印地语、乌尔都语；阿拉伯语与乌尔都语支持从右向左布局。界面切换不改写临床原文；母语临床审校仍待反馈。
+- 默认脱机，按账号与个人／机构模式隔离加密工作区。相同账号名不会自动跨设备共享；使用兼容格式的加密备份迁移，恢复到新账号，不自动合并两端修改。
+- 主项目提供可选、需明确授权与配置的接口；静态 PWA 不提供服务器功能。Android 不申请 `INTERNET` 权限，没有云同步、模型调用或语音转写；八语言界面不代表八语言离线识别。
+- 主项目支持本地录音、来源核对、安全更新提示和分卷加密备份。Android 使用系统录音与文件选择器；外部应用可能自行保留或同步原文件，导入副本加密不控制外部副本。
+- 更新前结束录音、保存并核验独立备份。浏览器／PWA 等待使用者确认安全更新；Android 使用同一标识与签名的升级 APK。不要卸载或清除站点／应用数据来处理旧版本显示。
+
+## 项目结构与验证
+
+| 路径 | 内容 |
 | --- | --- |
-| Android 安装包（APK） | [下载 wardnote-android-0.1.2-preview.apk](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk) |
-| 固定 r1 源码包 | [下载 source-r1.zip](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview-source-r1.zip) |
-| 文件校验值 | [下载 SHA256SUMS.txt](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/SHA256SUMS.txt) |
+| [browser-pwa/](browser-pwa/README.md) | v0.6.15 UI r1 的完整、冻结主项目源码，含 Windows 启动器、静态部署工具、测试与[公开纸表](browser-pwa/templates/README.md) |
+| `android/`、`web/` | Android 原生容器及随 APK 打包的网页资源；`web/` 不能代替独立主项目 |
+| [docs/PROJECT-VALIDATION.md](docs/PROJECT-VALIDATION.md) | 整体发布的版本、检查与待验证范围 |
+| [docs/COMBINED-RELEASE.md](docs/COMBINED-RELEASE.md) | 统一安装、更新、源码与历史附件说明 |
 
-`main` 分支的说明可在发布后继续修订；已发布 APK、source-r1 附件及发布标签保持原版本。下载固定 r1 请使用上表或 Release 附件。中英文[使用说明](docs/ANDROID-USER-GUIDE.md)、[快速开始](docs/开始使用-Android.txt)、[发布说明](docs/RELEASE-0.1.2-preview.md)及[安全问题反馈](SECURITY.md)均可直接查阅。
+[主项目托管检查](https://github.com/Alias1027/wardnote-android/actions/workflows/main-project-ci.yml) · [Android 托管检查](https://github.com/Alias1027/wardnote-android/actions/workflows/android-ci.yml)
 
-最低 Android **8.0（API 26）**；设备内 WebView 还必须通过安全上下文、Web Crypto、IndexedDB 和 Web Locks 能力检查。建议使用已更新的 Android System WebView；尚未验证一个适用于所有厂商的最低 WebView 版本号，不能仅凭 Android 版本判断兼容性。
+主项目既有本机证据为 167 项核心/API/发布检查、320 项浏览器检查及最终 29 项发布专项检查；Android 既有证据为 15 项核心、18 项桌面桥接模拟、3 项桌面升级模拟和 12 项公开打包边界检查。新合并目录另运行托管检查，结果与实际范围见整体验证说明和 Release。所有测试使用虚构资料。真机、系统录音往返、低配置、完整班次、母语临床及医院／临床验证仍留待反馈，不据工程检查宣称临床获益。
 
-循记临床（WardNote）是便携式查房记录与工作备忘工具，围绕单个患者持续记录初诊背景、每日变化、评估与计划、检查、备忘及交接。它辅助临床思维训练和患者管理，不取代医院的正式病历、医嘱、签署、身份管理或制度执行。
+整合目录仅在 `.gitattributes` 增加字节保留规则，并更新内部清单，以防 Git 转换换行符；181 个原文件及全部运行代码保持原字节，原始三个下载包完全保留。
 
-## 本版范围
+冻结 `browser-pwa/` 文档保留 2026-10-21 的准备阶段记录；其中“尚未发布／托管检查待执行”描述当时状态。当前下载、整体发布状态及托管结果以本首页、整体说明和 Release 为准。
 
-| 项目 | Android 预览版范围 |
-| --- | --- |
-| 首次脱机使用 | 程序资源随安装包提供；无需首次连接 HTTPS 站点或部署服务器。仍须设备预先具备可用的 Android System WebView 及本版要求的网页能力。 |
-| 八种界面语言 | 简体中文、英语、西班牙语、法语、俄语、阿拉伯语、印地语、乌尔都语；阿拉伯语与乌尔都语采用从右向左布局。 |
-| 本地账号 | 复用按账号和个人／机构模式隔离的加密工作区；切换前须注销。它不是医院实名认证系统。 |
-| 录音 | 优先调用设备现有录音应用，返回后由用户核对目标并导入；没有兼容录音应用时使用“导入录音”。不重新开发录音引擎。 |
-| 备份与恢复 | 沿用 `.wnmanifest` + `.wnpart` 加密分卷格式，并保留旧版单份 JSON 恢复入口。恢复到同一模式的新账号，不覆盖现有账号。 |
-| 网络 | 当前 Android 包不申请 `INTERNET` 权限，不提供云同步、模型调用或联网语音转写；这些列入后续计划。 |
-| 适配范围 | 本轮仅 Android；不开展 iOS 或其他苹果平台适配。真实设备、完整班次和临床验证待后续反馈。 |
+## 反馈、参考来源与许可
 
-**系统录音应用和文件选择器属于另外的应用／系统服务。** 它们可能在共享存储中保留原音频，或使用自己的云端同步。WardNote 导入的副本加密保存，并不意味着外部原文件被加密、删除或禁止上传。请选择允许使用的录音应用及其脱机设置；本版不自动删除外部原文件。八种界面语言也不等于八种语言的离线语音识别。
+- [提交问题或建议](https://github.com/Alias1027/wardnote-android/issues/new/choose)：注明 Windows／浏览器／PWA／Android、版本和复现步骤。仅提交虚构资料，不上传病历、录音、备份、密码或密钥。
+- [私密报告安全问题](https://github.com/Alias1027/wardnote-android/security/advisories/new)：私密漏洞报告已启用；其他联系与授权申请：[junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)。
+- 设计参考包括中国十八项核心制度、美国 CMS-CoPs、Joint Commission NPSG、ACGME CPR、英国 NICE CG50、NHS England／CPOC NatSSIPs 及德国 G-BA QM-RL。详细名称、出处与适用边界见[临床设计参考](browser-pwa/docs/CLINICAL-SCOPE.md)。参考不代表获得认证或完整履行各地制度。
 
-## 开始使用
-
-1. 在手机浏览器[下载 APK](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk)；也可先在电脑下载，再通过 USB 或其他可信方式传入手机。可对照[校验文件](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/SHA256SUMS.txt)确认完整性。安装后首次使用可保持脱机，无需自行部署 HTTPS 服务器。
-2. 在 Android 手机上安装预览 APK。仅对本次安装所用的可信文件管理器临时允许“安装未知应用”；完成后可关闭该权限。
-3. 打开应用，选择语言和个人／机构模式，创建账号与密码。首次使用可保持飞行模式；请先用虚构病例检查记录、退出重开、录音返回和备份恢复。
-4. 在“备忘”中选择“开始录音”，确认当前患者与录音安排。录制在设备录音应用中完成；返回后核对目标，确认导入并回听。若录音应用不返回文件，手动选“导入录音”。
-5. 定期导出并核验加密备份。**卸载应用或清除应用数据会删除此安装版的本机副本**；更新前先保存、核验独立备份，使用同一应用标识和签名的升级包。
-
-完整操作及文件位置边界见[使用说明](docs/ANDROID-USER-GUIDE.md)。开发者可按[构建与复核](docs/BUILD-TOOLCHAIN.md)重复构建及检查；结果及后续工作见[验证记录](docs/VALIDATION.md)和[后续路线](docs/ROADMAP.md)。
-
-当前 0.1.2 运行时已有 15 项自动测试（其中一项含 10 个原生文档故障情景）、18 项桌面 Chromium 模拟原生桥接检查、3 项桌面存储升级模拟检查，以及 APK 签名、校验和 57 个资源逐字节核对的通过记录。此外有 12 项公开打包边界检查。[首次推送托管检查](https://github.com/Alias1027/wardnote-android/actions/runs/40047905103)与[发布标签托管检查](https://github.com/Alias1027/wardnote-android/actions/runs/40049429003)均已通过；详细证据见[验证记录](docs/VALIDATION.md)。**尚未进行 Android 模拟器或真机安装、系统录音往返及临床验证**。
-
-## 问题、建议与授权联系
-
-- [提交问题或建议](https://github.com/Alias1027/wardnote-android/issues/new/choose)：使用 GitHub 账号登录，选择相应模板，填写应用、手机、Android／WebView、录音工具版本和复现步骤。
-- [私密报告安全问题](https://github.com/Alias1027/wardnote-android/security/advisories/new)：入口已启用；安全漏洞请走私密渠道。未登录时会先进入 GitHub 登录页。
-- 仅用虚构病例反馈，不上传真实病历、原始录音、加密备份、密码或密钥。授权申请联系 junhuiliu1025@gmail.com；机构模式本身不代表已获得使用许可。
-
-## 与浏览器／PWA 的关系
-
-三种入口各自使用自己的本机副本。相同账号名不会自动共享资料；浏览器/PWA 账号也不会因安装 Android 包而消失。通过兼容格式的完整加密备份转移资料，恢复时使用原备份密码和新的目标账号名。本版不承诺自动合并两端修改。
-
-Android 程序通过重新安装受信任的升级 APK 更新，不使用浏览器的 Service Worker 缓存更新流程。不要卸载或清除应用数据来解决旧版本显示；先保存和备份，再核对安装包版本、应用标识及签名。
-
-## 许可与验证范围
-
-版权归 **Junhui Liu M.D.** 所有。原有 [WardNote Personal Noncommercial Source-Available License 1.0](LICENSE) 同样适用于本版新增的项目自有 Android 代码与文档：符合条款的个人非商业学习、研究、实验与测试可使用；商业或机构使用须事先取得书面授权。此为源码可见许可，**不是 OSI 认可的开源许可**。既往有效授权和第三方许可保持各自效力。授权联系：junhuiliu1025@gmail.com。
-
-源代码检查、编译或模拟检查不能代替真实 Android 设备及临床验证。当前验证结果须按[验证记录](docs/VALIDATION.md)逐项读取；未验证内容不会标记为可用于真实患者的成熟能力。
-
-## 先前自检修复（0.1.1）
-
-0.1.1 阻止录音加密导入时关闭确认窗口；手动导入与系统录音统一显示患者并要求勾选确认，补充说明选填。保存失败时保留输入，系统返回不退出。安装包与 0.1.0 使用相同应用标识和签名，versionCode 从 1 增至 2。更新前完成录音与保存、导出并核验备份，随后覆盖安装；应用不能阻止从系统安装器强制更新或系统终止进程。详见[自检说明](docs/SELF-CHECK-0.1.1.md)。
-
-## 0.1.2 安全修复
-
-已安装并应用两项选定安全技能。导出全程核对账号及患者，传输期间阻止切换；文件选择被策略拒绝时保留当前界面。新文件保护拒绝写入或删除已有及无法验证的目标；清理失败会明确提示。详见[安全审查报告](docs/SECURITY-REVIEW-0.1.2.md)。包标识及签名保持一致，versionCode 从 2 增至 3；真机和临床验证仍待后续反馈。
+版权归 **Junhui Liu M.D.** 所有。采用 [WardNote Personal Noncommercial Source-Available License 1.0](LICENSE)：许可范围内的独立个人非商业学习、研究、实验与测试可使用，**所有机构及商业用途须事先取得书面授权**。此为源码可见项目，不是 OSI 认可的开源许可；既往有效的 Apache-2.0／CC BY 4.0 授权和第三方许可仍保留各自效力。[授权政策](LICENSES/README.md)

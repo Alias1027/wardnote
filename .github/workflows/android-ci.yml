@@ -63,7 +63,11 @@
           "run": ".\\scripts\\ci-android-build.ps1"
         },
         {
-          "name": "Build and verify source-r1 package without publishing",
+          "name": "Verify combined frozen source, bilingual downloads and documentation links",
+          "run": "node scripts/check-combined.mjs"
+        },
+        {
+          "name": "Build and verify combined source package without publishing",
           "run": "python scripts/package-preview.py"
         }
       ]

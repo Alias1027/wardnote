@@ -1,0 +1,26 @@
+# 整体发布验证 / Combined publication validation
+
+2026-10-24 · **0.6.15 UI r1 + Android 0.1.2-preview**.
+
+## Evidence attribution / 证据归属
+
+- Main-project existing local evidence: **167** core/API/publication checks, **320** browser checks across 21 suites; **11** UI r1 memo checks; final **29** publication checks. These retain their original 2026-10-21 attribution. [Detailed evidence](../browser-pwa/docs/VALIDATION.md)
+- Android existing evidence: **15** core checks, **18** desktop bridge simulations, **3** desktop upgrade simulations, **12** packaging boundary tests; APK signature and all **57** bundled resources checked. [Detailed evidence](VALIDATION.md)
+- Combined publication: 181 original main-source files preserved; one `.gitattributes` packaging adjustment and updated manifest, runtime-byte comparisons, exact public-file allowlist, nested fixture integrity, documentation links, whole-source packaging and attachment hashes are checked before release. Hosted results are linked from the Release and the workflows below; no historical result is relabeled as a fresh run.
+
+主项目和 Android 既有证据各保留原始版本与时间。本次整合检查181个原始源码文件的字节一致性、单项 `.gitattributes` 打包规则及更新清单、运行代码一致性、公开清单、历史夹具、说明链接、完整源码包与附件校验值；实际托管结果见 Release 和下列流程，不把旧证据改记为本轮通过。
+
+## Hosted workflows / 托管流程
+
+- [Main project: Windows/Linux/macOS core and isolated source; Linux Chromium workflows](https://github.com/Alias1027/wardnote-android/actions/workflows/main-project-ci.yml)
+- [Android: Windows-hosted regression, package boundaries, ephemeral-signing APK build](https://github.com/Alias1027/wardnote-android/actions/workflows/android-ci.yml)
+
+Both workflows use pinned action revisions and read-only repository permissions. Main-project workflows run from `browser-pwa/`; the nested original workflow remains part of the frozen source and is not separately discovered by GitHub. CI uses fictional accounts/cases/audio and disposable Android signing. It never needs the maintainer's signing private key or patient data.
+
+两条流程使用固定 Action 版本及只读仓库权限。主项目从 `browser-pwa/` 执行；嵌套的冻结流程文件不会被 GitHub 独立触发。自动检查仅用虚构资料及临时 Android 签名，不需要正式升级私钥或患者资料。
+
+## Deferred validation / 后续反馈
+
+Physical Android phones and installed PWAs, OEM recorder/document-provider round trips, low-memory/battery/storage and full-shift behavior, native clinical language review, hospital deployment, real ASR performance and clinical/educational benefit remain unverified. No new Apple-platform work is part of this release. Use synthetic cases for feedback; institutional/commercial evaluation still requires prior authorization.
+
+真实 Android 手机、已安装 PWA、厂商录音与文件服务往返、低配置／电池／存储／完整班次、母语临床审校、医院环境、真实识别效果及临床教学获益仍待后续反馈。本轮不开展苹果平台适配。体验反馈仅用虚构病例，机构及商业评估仍须事先授权。

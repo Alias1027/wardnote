@@ -56,3 +56,12 @@ User authorized installation/application of android-intent-security and differen
 - 本地验证采用文档链接、双语关键入口、过时表述、公开白名单及 Git 差异检查；不手动重跑运行时测试。推送后由既有 GitHub 工作流自动检查本次提交，结果以对应 Actions 记录为准。
 
 Both READMEs now reflect the published release and provide matching download, installation and feedback links. Related delivery/user/security/validation/release/license-summary documents were synchronized. Governing license terms and all published r1 assets/tag are unchanged. Local checks are documentation-focused; the existing hosted workflow checks the documentation commit automatically. No signing secrets, user data or paper templates are involved.
+
+
+## 2026-10-24 — Combined project publication / 整体项目发布
+
+The owner authorized merging the frozen main project 0.6.15 UI r1 and Android 0.1.2-preview into this existing repository, running main-project hosted checks, publishing a combined pre-release and registering the checkout in GitHub Desktop. The browser-pwa tree is extracted from the exact reviewed public source archive; Android runtime files and old r1 assets are retained. Unified bilingual downloads and platform boundaries are provided. Private signing and live data remain excluded. Actual run IDs, publication assets and Desktop confirmation are recorded in the Release and local delivery work record after completion; physical-device/clinical checks remain deferred.
+
+用户授权本轮合并、托管检查、整体预发布及 GitHub Desktop 登记。冻结主项目从公开源码包逐项提取，Android 运行代码及旧 r1 附件保留；中英文入口统一。实际托管结果、发布附件和 Desktop 确认在完成后的 Release 与本地交付工作记录中记录，真机及临床验证后置。
+
+Git line-ending filters were detected before upload. The integrated main tree adds a no-conversion .gitattributes rule and refreshes its internal manifest; 181 original files and all runtime code remain byte-identical. Original source/portable/static archives remain unchanged. The index is checked against file bytes before committing. / 上传前发现Git换行过滤，整合目录仅修订.gitattributes并更新清单；181个原文件及全部运行代码字节一致，原始三个交付包不改，提交前逐项比较索引内容。

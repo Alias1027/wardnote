@@ -1,0 +1,330 @@
+{
+  "previousReleaseChecks": {
+    "version": "0.1.1",
+    "independentSourceCopy": {
+      "lockedNpmCi": "passed",
+      "npmTest": "32 passed",
+      "npmRunTestBrowser": "18 passed",
+      "usesLocalPrivateConfig": false
+    },
+    "windowsLaunchers": {
+      "PowerShell7": "start and stop passed",
+      "WindowsPowerShell5": "start and stop passed",
+      "legacyTimestampFile": "stop passed",
+      "usesIsolatedDataAndPort": true
+    },
+    "publication": {
+      "yaml": "parsed and checked",
+      "actionReferences": "full official commit hashes",
+      "paperCopies": "all non-property ZIP entries match source; public metadata checked"
+    }
+  },
+  "version": "0.6.15",
+  "date": "2026-10-21",
+  "timezone": "Asia/Shanghai",
+  "status": "source-browser-and-packaged-source-passed",
+  "environment": {
+    "os": "Windows",
+    "node": "24.19.0",
+    "playwright": "1.62.1",
+    "browser": "installed Google Chrome",
+    "input": "Synthetic microphone, fictional cases and mixed-language fixtures"
+  },
+  "checks": {
+    "coreAndReleasePassed": 167,
+    "coreAndReleaseFailed": 0,
+    "browserPassed": 320,
+    "browserPageErrors": 0,
+    "packagedSourceStatus": "passed",
+    "packagedSourcePassed": 167,
+    "packagedSourceFailed": 0
+  },
+  "browserSuites": [
+    {
+      "name": "accounts-results",
+      "passed": 10,
+      "errors": 0
+    },
+    {
+      "name": "backup-results",
+      "passed": 13,
+      "errors": 0
+    },
+    {
+      "name": "brief-results",
+      "passed": 13,
+      "errors": 0
+    },
+    {
+      "name": "browser-results",
+      "passed": 38,
+      "errors": 0
+    },
+    {
+      "name": "capture-context-results",
+      "passed": 7,
+      "errors": 0
+    },
+    {
+      "name": "capture-storage-results",
+      "passed": 4,
+      "errors": 0
+    },
+    {
+      "name": "continuity-results",
+      "passed": 12,
+      "errors": 0
+    },
+    {
+      "name": "deploy-static-browser-results",
+      "passed": 7,
+      "errors": 0
+    },
+    {
+      "name": "device-consistency-results",
+      "passed": 11,
+      "errors": 0
+    },
+    {
+      "name": "easy-start-browser-results",
+      "passed": 19,
+      "errors": 0
+    },
+    {
+      "name": "evidence-results",
+      "passed": 10,
+      "errors": 0
+    },
+    {
+      "name": "localization-browser-checks",
+      "passed": 49,
+      "errors": 0
+    },
+    {
+      "name": "navigation-results",
+      "passed": 9,
+      "errors": 0
+    },
+    {
+      "name": "note-tools-results",
+      "passed": 8,
+      "errors": 0
+    },
+    {
+      "name": "offline-results",
+      "passed": 16,
+      "errors": 0
+    },
+    {
+      "name": "panels-results",
+      "passed": 12,
+      "errors": 0
+    },
+    {
+      "name": "readiness-browser-results",
+      "passed": 25,
+      "errors": 0
+    },
+    {
+      "name": "regions-results",
+      "passed": 11,
+      "errors": 0
+    },
+    {
+      "name": "update-results",
+      "passed": 23,
+      "errors": 0
+    },
+    {
+      "name": "voice-memo-results",
+      "passed": 11,
+      "errors": 0
+    },
+    {
+      "name": "voice-routing-results",
+      "passed": 12,
+      "errors": 0
+    }
+  ],
+  "v0614Evidence": {
+    "windowsLauncher": "18 launcher/portable checks; isolated final-bundle start/save/stop/restart rehearsal recorded separately",
+    "staticEdition": "7 exported-site paths; no API requests; local synthetic audio and verified backup restore",
+    "caddy": {
+      "version": "0.6.14",
+      "caddy": "2.11.7",
+      "source": "https://github.com/caddyserver/caddy/releases/tag/v2.11.7",
+      "archiveURL": "https://github.com/caddyserver/caddy/releases/download/v2.11.7/caddy_2.11.7_windows_amd64.zip",
+      "checksumURL": "https://github.com/caddyserver/caddy/releases/download/v2.11.7/caddy_2.11.7_checksums.txt",
+      "officialChecksumAlgorithm": "SHA512",
+      "officialChecksum": "c308154504e53755958ffc62d8a2657ab17eefd6dd25c45dbb2c3d93d29519971f77ca652f7d0f2bcb7f980b9ba3822478865e29969d0272d7613550a43152b1",
+      "adaptPassed": true,
+      "serverStarted": false,
+      "certificateRequested": false,
+      "installed": false,
+      "publicDeployment": false
+    },
+    "entryReview": {
+      "rootGuideLanguages": 8,
+      "widths": [
+        1366,
+        390
+      ],
+      "networkPathsBlocked": 8,
+      "duplicateInstallEntry": "removed; targeted recheck passed"
+    },
+    "scope": "Synthetic records/audio only. No public hosting, real phone installation, standalone PWA hardware, clinical validation or hosted CI."
+  },
+  "v0613Evidence": {
+    "version": "0.6.13",
+    "date": "2026-10-21",
+    "checks": {
+      "coreAndReleasePassed": 140,
+      "coreAndReleaseFailed": 0,
+      "packagedSourcePassed": 140,
+      "packagedSourceFailed": 0,
+      "browserPassed": 283,
+      "browserPageErrors": 0
+    },
+    "browserSuites": [
+      {
+        "name": "browser-results",
+        "passed": 38,
+        "time": "2026-10-21T05:10:44.881Z"
+      },
+      {
+        "name": "panels-results",
+        "passed": 12,
+        "time": "2026-10-21T05:10:54.738Z"
+      },
+      {
+        "name": "localization-browser-checks",
+        "passed": 49,
+        "time": "2026-10-21T05:11:34.432Z"
+      },
+      {
+        "name": "offline-results",
+        "passed": 16,
+        "time": "2026-10-21T05:11:45.702Z"
+      },
+      {
+        "name": "device-consistency-results",
+        "passed": 11,
+        "time": "2026-10-21T05:11:58.844Z"
+      },
+      {
+        "name": "evidence-results",
+        "passed": 10,
+        "time": "2026-10-21T05:12:03.998Z"
+      },
+      {
+        "name": "note-tools-results",
+        "passed": 8,
+        "time": "2026-10-21T05:12:20.937Z"
+      },
+      {
+        "name": "brief-results",
+        "passed": 13,
+        "time": "2026-10-21T05:12:27.927Z"
+      },
+      {
+        "name": "accounts-results",
+        "passed": 10,
+        "time": "2026-10-21T05:12:33.734Z"
+      },
+      {
+        "name": "voice-memo-results",
+        "passed": 11,
+        "time": "2026-10-21T05:12:46.791Z"
+      },
+      {
+        "name": "voice-routing-results",
+        "passed": 12,
+        "time": "2026-10-21T05:12:57.371Z"
+      },
+      {
+        "name": "continuity-results",
+        "passed": 12,
+        "time": "2026-10-21T05:13:09.620Z"
+      },
+      {
+        "name": "navigation-results",
+        "passed": 9,
+        "time": "2026-10-21T05:13:27.710Z"
+      },
+      {
+        "name": "update-results",
+        "passed": 12,
+        "time": "2026-10-21T05:13:43.098Z"
+      },
+      {
+        "name": "backup-results",
+        "passed": 13,
+        "time": "2026-10-21T05:13:55.501Z"
+      },
+      {
+        "name": "readiness-browser-results",
+        "passed": 25,
+        "time": null
+      },
+      {
+        "name": "regions-results",
+        "passed": 11,
+        "time": "2026-10-21T05:14:05.056Z"
+      },
+      {
+        "name": "capture-storage-results",
+        "passed": 4,
+        "time": "2026-10-21T05:15:43.799Z"
+      },
+      {
+        "name": "capture-context-results",
+        "passed": 7,
+        "time": "2026-10-21T05:15:53.827Z"
+      }
+    ]
+  },
+  "previous0614Checks": {
+    "coreAndReleasePassed": 158,
+    "coreAndReleaseFailed": 0,
+    "packagedSourcePassed": 158,
+    "packagedSourceFailed": 0,
+    "browserPassed": 309,
+    "browserPageErrors": 0
+  },
+  "updateSafety": {
+    "version": "0.6.15",
+    "date": "2026-10-21",
+    "browserChecks": 23,
+    "unitChecks": 15,
+    "externalRequests": 0,
+    "automaticCheck": "startup, foreground return and every 5 minutes while visible; network recovery",
+    "manualCheck": "login and settings",
+    "activation": "explicit user action after saved, idle and single-window guards",
+    "repair": "candidate program cache only; no auto activation or patient-storage deletion",
+    "dataEvidence": "synthetic record/provenance/review equality and encrypted audio content hashes across update/offline/rollback",
+    "notValidated": [
+      "physical mobile devices",
+      "installed PWAs",
+      "clinical workflows in hospitals"
+    ]
+  },
+  "previous0614UiPatchR2": {
+    "date": "2026-10-21",
+    "change": "Memo entry label matches Start recording across eight languages; shared recording flow unchanged",
+    "targetedSuites": [
+      "voice-memo-browser",
+      "browser"
+    ],
+    "passed": 49,
+    "fullSuiteRerun": false,
+    "cache": "wardnote-shell-v0.6.14-r2"
+  },
+  "uiPatchR1": {
+    "date": "2026-10-21",
+    "scope": "Memo action order only; shared labels, event handlers and capture guard unchanged",
+    "serviceWorkerCache": "wardnote-shell-v0.6.15-r1",
+    "targetedBrowserChecksPassed": 11,
+    "targetedBrowserErrors": 0,
+    "previousFullRunRetained": true
+  }
+}

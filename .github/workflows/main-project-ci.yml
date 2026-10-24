@@ -1,0 +1,107 @@
+name: Browser PWA and Windows source checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  core:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: browser-pwa
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Core and publication checks (no package installation)
+        working-directory: browser-pwa/app
+        run: npm test
+      - name: Verify publication allowlist and documentation links
+        run: node scripts/release.mjs --check
+      - name: Build and verify an isolated public source package
+        run: node scripts/release.mjs --zip
+      - name: Test the packaged source, including every test suite
+        run: node scripts/test-package.mjs
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: browser-pwa
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Install locked development tools
+        working-directory: browser-pwa/app
+        run: npm ci --ignore-scripts
+      - name: Install Chromium and system libraries
+        working-directory: browser-pwa/app
+        run: npx playwright install --with-deps chromium
+      - name: Synthetic browser workflow
+        working-directory: browser-pwa/app
+        run: npm run test:browser
+      - name: Retain synthetic failure evidence
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: synthetic-browser-failure
+          path: |
+            browser-pwa/work/qa/readiness-browser-results.json
+            browser-pwa/work/qa/readiness-failure.png
+            browser-pwa/work/qa/regions-results.json
+            browser-pwa/work/qa/regions-failure.png
+            browser-pwa/work/qa/capture-context-results.json
+            browser-pwa/work/qa/capture-context-failure.png
+            browser-pwa/work/qa/capture-storage-results.json
+            browser-pwa/work/qa/capture-storage-failure.png
+            browser-pwa/work/qa/continuity-results.json
+            browser-pwa/work/qa/navigation-results.json
+            browser-pwa/work/qa/update-results.json
+            browser-pwa/work/qa/update-failure.png
+            browser-pwa/work/qa/backup-results.json
+            browser-pwa/work/qa/backup-failure.png
+            browser-pwa/work/qa/continuity-failure.png
+            browser-pwa/work/qa/voice-routing-results.json
+            browser-pwa/work/qa/voice-routing-failure.png
+            browser-pwa/work/qa/voice-memo-results.json
+            browser-pwa/work/qa/voice-memo-failure.png
+            browser-pwa/work/qa/accounts-results.json
+            browser-pwa/work/qa/accounts-failure.png
+            browser-pwa/work/qa/brief-results.json
+            browser-pwa/work/qa/brief-failure.png
+            browser-pwa/work/qa/note-tools-results.json
+            browser-pwa/work/qa/note-tools-failure.png
+            browser-pwa/work/qa/evidence-results.json
+            browser-pwa/work/qa/evidence-failure.png
+            browser-pwa/work/qa/device-consistency-results.json
+            browser-pwa/work/qa/offline-results.json
+            browser-pwa/work/qa/offline-failure.json
+            browser-pwa/work/qa/offline-failure.png
+            browser-pwa/work/qa/easy-start-browser-results.json
+            browser-pwa/work/qa/deploy-static-browser-results.json
+            browser-pwa/work/qa/browser-results.json
+            browser-pwa/work/qa/failure.png
+            browser-pwa/work/qa/panels-results.json
+            browser-pwa/work/qa/panels-failure.png
+            browser-pwa/work/qa/localization-browser-checks.json
+            browser-pwa/work/qa/localization-browser-failure.json
+            browser-pwa/work/qa/localization-failure.png
+          if-no-files-found: ignore
+          retention-days: 3

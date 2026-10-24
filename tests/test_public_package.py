@@ -36,6 +36,11 @@ class PublicBoundaryTests(unittest.TestCase):
         (self.root / 'docs/accidental.txt').write_text('Not reviewed')
         with self.assertRaisesRegex(ValueError, 'Unreviewed'): check_public(self.root)
 
+    def test_unreviewed_main_project_file_rejected(self):
+        (self.root / 'browser-pwa').mkdir()
+        (self.root / 'browser-pwa/config.local.json').write_text('{"synthetic":true}')
+        with self.assertRaisesRegex(ValueError, 'Unreviewed'): check_public(self.root)
+
     def test_private_extension_rejected_even_if_listed(self):
         (self.root / 'docs/signing.key').write_text('Synthetic only')
         self.paths.append('docs/signing.key'); self.save()

@@ -6,7 +6,7 @@
 | --- | --- |
 | Android `0.1.2-preview` | Current Android security-maintenance target; technical preview, not device/clinical certification. / 当前 Android 安全维护目标；技术预览，不代表真机或临床认证。 |
 | Android `0.1.0` / `0.1.1` | Retained upgrade/reference snapshots; fixes are delivered in the current preview. / 保留为升级及比较基线，修复在当前预览版提供。 |
-| Browser/PWA `0.6.15 UI r1` | Separate preserved browser line; its own release and security documentation apply. This Android review does not certify or replace it. / 独立保留的浏览器产品线，按其自身文档管理，本次 Android 审查不替代或认证该版本。 |
+| Browser/PWA `0.6.15 UI r1` | Co-hosted under browser-pwa/; see docs/PROJECT-VALIDATION.md and its own security documentation. Android checks do not certify it. / 已合并至 browser-pwa/，见整体验证及该产品线安全说明；Android 检查不替代主项目检查。 |
 
 No response-time guarantee, hospital-grade security certification or clinical validation is claimed. Apple platforms and cloud synchronization are outside this Android release. / 不承诺响应时限、医院级安全认证或临床验证；苹果平台与云同步不属于本次 Android 版本。
 

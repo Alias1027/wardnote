@@ -1,0 +1,28 @@
+{
+  "host": "127.0.0.1",
+  "port": 8787,
+  "transcribeUrl": "",
+  "transcribeModel": "",
+  "language": "auto",
+  "exportUrl": "",
+  "llm": {
+    "enabled": false,
+    "provider": "custom",
+    "baseUrl": "",
+    "model": "",
+    "jsonMode": true
+  },
+  "accountModes": {
+    "personal": {
+      "authorizationDestinations": []
+    },
+    "institution": {
+      "authorizationDestinations": [],
+      "llm": {
+        "enabled": false
+      },
+      "transcribeUrl": "",
+      "exportUrl": ""
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "wardnote-local",
+  "version": "0.6.15",
+  "private": true,
+  "type": "module",
+  "description": "Portable ward-round worksheets with patient follow-up and optional audio",
+  "license": "SEE LICENSE IN ../LICENSE",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "node tests/browser.mjs && node tests/panels-browser.mjs && node tests/localization-browser.mjs && node tests/offline-browser.mjs && node tests/device-consistency-browser.mjs && node tests/evidence-browser.mjs && node tests/note-tools-browser.mjs && node tests/brief-browser.mjs && node tests/accounts-browser.mjs && node tests/voice-memo-browser.mjs && node tests/voice-routing-browser.mjs && node tests/continuity-browser.mjs && node tests/navigation-browser.mjs && node tests/update-browser.mjs && node tests/backup-browser.mjs && node tests/readiness-browser.mjs && node tests/regions-browser.mjs && node tests/capture-storage-browser.mjs && node tests/capture-context-browser.mjs && node tests/easy-start-browser.mjs && node tests/deploy-static-browser.mjs",
+    "release:check": "node ../scripts/release.mjs --check",
+    "release:prepare": "node ../scripts/release.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

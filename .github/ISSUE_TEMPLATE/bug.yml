@@ -1,7 +1,18 @@
-name: Android problem / Android 问题
-description: Report a reproducible Android preview problem using synthetic data / 仅用虚构资料反馈 Android 预览版问题
-title: "[Android] "
+name: App problem / 应用问题
+description: Report Windows, browser/PWA or Android problems with fictional data / 用虚构资料反馈各平台问题
+title: "[Bug] "
 body:
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform / 使用平台
+      options:
+        - Windows portable / Windows 便携版
+        - Browser / 浏览器
+        - Installed PWA / 已安装 PWA
+        - Android APK
+    validations:
+      required: true
   - type: markdown
     attributes:
       value: |
@@ -20,22 +31,22 @@ body:
     id: app_version
     attributes:
       label: App version and source / 应用版本及来源
-      description: APK version, source revision if relevant, and where obtained; do not include private URLs/tokens / 写明APK版本、必要时源码修订和来源，勿含私密链接或令牌
+      description: App/package version, source revision if relevant, and where obtained; do not include private URLs/tokens / 写明应用／安装包版本、必要时源码修订和来源，勿含私密链接或令牌
       placeholder: Android 0.1.2-preview, official APK / Android 0.1.2-preview，原交付APK
     validations:
       required: true
   - type: input
     id: device
     attributes:
-      label: Device model / 手机型号
+      label: Device model / 设备型号
       description: Model only; no serial number, IMEI or account identifier / 仅型号，不填序列号、IMEI或账号标识
     validations:
       required: true
   - type: input
     id: android_webview
     attributes:
-      label: Android and WebView versions / Android 与 WebView 版本
-      description: Include Android version and Android System WebView/browser provider version; write unknown if unavailable / 写明Android和WebView提供程序版本，无法找到可写未知
+      label: OS and browser/WebView versions / 系统及浏览器／WebView 版本
+      description: Include OS and browser versions; on Android also include WebView provider; write unknown or not applicable if unavailable / 填系统及浏览器版本，Android另填WebView，无法确定或无关可注明
     validations:
       required: true
   - type: textarea
@@ -50,7 +61,7 @@ body:
     id: installation
     attributes:
       label: Install/update path and account mode / 安装升级方式及账号模式
-      description: Fresh install or previous version → current; retained/re-signed APK; whether data was cleared; personal/institutional mode; no usernames / 全新安装或旧版→新版、原签名或自签名、是否清过数据、个人或机构模式，不填账号名
+      description: Fresh install or previous version → current; app URL change if relevant (no private URLs); APK signature if Android; whether data was cleared; account mode, no usernames / 全新安装或旧版→新版、是否更换地址（勿填私密地址）、Android签名、是否清过数据、账号模式，不填账号名
     validations:
       required: true
   - type: textarea

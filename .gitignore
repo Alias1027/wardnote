@@ -17,3 +17,10 @@ __pycache__/
 *.wnmanifest
 *.wnpart
 private-*/
+
+# Main-project runtime and test output
+browser-pwa/data/
+browser-pwa/work/
+browser-pwa/dist/
+browser-pwa/logs/
+browser-pwa/config.local.json

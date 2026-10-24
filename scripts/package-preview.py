@@ -8,7 +8,7 @@ from public_package import check_public, sha, verify_zip
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--check', action='store_true')
-    parser.add_argument('--revision', choices=['r1'], default='r1')
+    parser.add_argument('--revision', choices=['r1', 'combined-1'], default='combined-1')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     version = json.loads((root / 'package.json').read_text('utf-8-sig'))['version']
@@ -18,7 +18,7 @@ def main():
                           'scope': 'Exact allowlist, path/link boundaries, credential indicators and nested fixture hashes; not an exhaustive secret-detection guarantee'}))
         return
     artifacts = root / 'artifacts'; artifacts.mkdir(exist_ok=True)
-    target = artifacts / f'wardnote-android-{version}-source-{args.revision}.zip'
+    target = artifacts / (f'wardnote-0.6.15-ui-r1-android-{version}-source.zip' if args.revision == 'combined-1' else f'wardnote-android-{version}-source-{args.revision}.zip')
     manifest = {'version': version, 'publicationRevision': args.revision, 'webBase': '0.6.15 UI r1', 'files': records}
     with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for name, record in sorted(records.items()):
@@ -36,7 +36,7 @@ def main():
               'files': len(verified['files']) + 1, 'historicalFixtureEntries': fixture_count,
               'bytes': target.stat().st_size, 'sha256': digest,
               'verified': 'Every archive entry read back against manifest; exact public allowlist and historical fixture hashes verified'}
-    (root / 'logs/source-package-r1-verification.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
+    (root / ('logs/source-package-' + args.revision + '-verification.json')).write_text(json.dumps(report, indent=2), encoding='utf-8')
     print(json.dumps(report))
 
 if __name__ == '__main__': main()

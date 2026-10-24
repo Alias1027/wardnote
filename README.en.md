@@ -1,69 +1,57 @@
-# WardNote · Android Offline Preview
+# WardNote
 
-[简体中文](README.md)
+[简体中文](README.md) · [Combined pre-release](https://github.com/Alias1027/wardnote-android/releases/tag/v0.6.15-preview.1) · [Feedback](https://github.com/Alias1027/wardnote-android/issues/new/choose)
 
-**Android 0.1.2-preview / release material r1 was first prereleased on 2026-10-24**, based on WardNote 0.6.15 UI r1. See the [published release](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview). This is a technical preview; physical-device and clinical validation remain pending.
+**Portable ward-round notes and longitudinal patient follow-up.** Initial history, daily review, clinical course, tests/results, patient briefs, memos, tasks, handoff and optional decision reflection share one patient workspace. Text entry is primary; voice is optional and candidates require clinician review. WardNote supports clinical reasoning education and patient management; institutions retain responsibility for official records, orders, signatures and governance.
 
-| Download | Link |
+**This repository now includes the main project v0.6.15 (UI r1) and Android 0.1.2-preview.** The existing `wardnote-android` URL is retained for Windows, browser/PWA and Android resources. Each runtime keeps its own version. The [original Android r1 release](https://github.com/Alias1027/wardnote-android/releases/tag/android-v0.1.2-preview) and all five assets are preserved.
+
+## Downloads and getting started
+
+| Use | Download | Start and scope |
+| --- | --- | --- |
+| Windows x64 | [One-click portable package](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/wardnote-0.6.15-portable-win-x64.zip) | Extract fully and double-click `Start-WardNote.cmd`; Node is bundled. Local access and offline notes are supported. |
+| Phone/desktop browser and PWA | [Static PWA deployment package](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/wardnote-0.6.15-static-pwa.zip) | An administrator hosts only `site/` at a dedicated trusted HTTPS origin using the included guide. Users prepare offline resources and may install via browser prompts. No public demonstration site is hosted. |
+| Android, offline first launch | [APK installer](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/wardnote-android-0.1.2-preview.apk) | Android 8.0+ plus the required WebView capability checks. First launch can be offline; no self-hosted HTTPS site is needed. |
+| Main-project development | [Frozen v0.6.15 source](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/wardnote-0.6.15.zip) | Requires Node.js 24+; read the included instructions. |
+| Whole-project development | [Combined browser/PWA and Android source](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/wardnote-0.6.15-ui-r1-android-0.1.2-preview-source.zip) | Both product lines, unified guidance and hosted workflows. The APK is a separate download. |
+| Integrity | [SHA256SUMS.txt](https://github.com/Alias1027/wardnote-android/releases/download/v0.6.15-preview.1/SHA256SUMS.txt) | Individual `.sha256` sidecars are also available; hashes verify download integrity. |
+
+**Windows:** download and fully extract the portable package, launch it, and use fictional cases to check saving, reopening and verified backup. Closing a browser tab does not stop the local server; use the launch panel to stop it. [Deployment guide](browser-pwa/docs/EASY-DEPLOYMENT.md)
+
+**Phone browser/PWA:** a trusted HTTPS app address is required for initial preparation. This is a deployment package, not a public online service. After preparation, offline reopening is available. Static deployment has no server synchronization or cloud-ASR API. [Eight-language getting-started guide](browser-pwa/docs/GETTING-STARTED.md)
+
+**Android:** install the APK using a trusted file manager; downloading on a computer and transferring by USB is also possible. Allow the installation source temporarily only as required by Android, then disable it if desired. WardNote invokes an existing recorder, then asks the user to verify the patient and import its output; manual audio import is the fallback. [Android user guide](docs/ANDROID-USER-GUIDE.md)
+
+## Shared features and platform boundaries
+
+- Eight UI languages: Simplified Chinese, English, Spanish, French, Russian, Arabic, Hindi and Urdu; Arabic/Urdu use right-to-left layouts. Changing UI language preserves clinical source text. Native clinical language review remains pending.
+- Offline by default, with encrypted workspaces isolated by account and personal/institutional mode. Matching usernames do not share data across devices. Transfer compatible encrypted backups into a new account; changes from separate copies are not automatically merged.
+- The main project offers optional interfaces requiring explicit authorization and configuration; static PWA deployment has no server features. Android has no `INTERNET` permission, cloud synchronization, model calls or transcription. Eight UI languages do not establish eight-language offline ASR.
+- The main project includes local recording, source review, safe update prompts and encrypted multipart backup. Android uses external recording/document applications; those apps may retain or synchronize their own copies. Encrypting an imported copy does not control external originals.
+- Finish recording, save and independently verify backups before updating. Browser/PWA updates wait for a safe user-confirmed transition; Android upgrades require the same application ID and signature. Do not uninstall or clear site/app data to fix an old-version display.
+
+## Repository and validation
+
+| Path | Contents |
 | --- | --- |
-| Android installer (APK) | [Download wardnote-android-0.1.2-preview.apk](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk) |
-| Fixed r1 source archive | [Download source-r1.zip](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview-source-r1.zip) |
-| File checksums | [Download SHA256SUMS.txt](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/SHA256SUMS.txt) |
+| [browser-pwa/](browser-pwa/README.en.md) | Complete frozen v0.6.15 UI r1 main-project source, Windows launchers, static deployment tools, tests and [public paper templates](browser-pwa/templates/README.md) |
+| `android/`, `web/` | Android container and bundled web resources; `web/` is not the standalone main product |
+| [docs/PROJECT-VALIDATION.md](docs/PROJECT-VALIDATION.md) | Combined version/check scope and pending validation |
+| [docs/COMBINED-RELEASE.md](docs/COMBINED-RELEASE.md) | Unified installation, updates, source and historical assets |
 
-Documentation on `main` may be revised after publication; the published APK, source-r1 attachment and release tag retain the original version. Use the links above or the Release assets for the fixed r1 delivery. See the bilingual [user guide](docs/ANDROID-USER-GUIDE.md), [quick start](docs/开始使用-Android.txt), [release notes](docs/RELEASE-0.1.2-preview.md) and [security policy](SECURITY.md).
+[Main-project hosted checks](https://github.com/Alias1027/wardnote-android/actions/workflows/main-project-ci.yml) · [Android hosted checks](https://github.com/Alias1027/wardnote-android/actions/workflows/android-ci.yml)
 
-Minimum Android **8.0 (API 26)**. The installed WebView must also pass checks for a secure context, Web Crypto, IndexedDB and Web Locks. An updated Android System WebView is recommended. A universal minimum WebView version has not been verified across manufacturers; Android version alone does not establish compatibility.
+Existing main-project local evidence covers 167 core/API/publication checks, 320 browser checks and 29 final publication-specific checks. Existing Android evidence covers 15 core, 18 desktop bridge simulations, 3 desktop upgrade simulations and 12 public-package boundary checks. Hosted checks also run against the combined tree; see the validation guide and Release for actual results and scope. All cases are fictional. Physical devices, recorder round trips, low-resource operation, full shifts, native clinical review and hospital/clinical validation remain future feedback work. Engineering checks do not establish clinical benefit.
 
-WardNote is a portable ward-round notebook and work aid for longitudinal patient follow-up: initial history, daily changes, assessment and plan, results, memos and handover. It supports clinical reasoning education and patient-management practice. It does not replace institutional medical records, orders, signatures, identity management or official processes.
+The integrated tree changes only `.gitattributes` to preserve exact checkout bytes and updates its manifest; 181 original files and all runtime code remain byte-identical. All three original download archives are unchanged.
 
-## Scope
+Frozen `browser-pwa/` documentation retains the preparation-stage record dated 2026-10-21. Statements there about publication or hosted CI being pending describe that historical snapshot. This README, the combined guide and Release describe current downloads and publication/CI status.
 
-| Area | Android preview scope |
-| --- | --- |
-| Offline first launch | Application resources are bundled in the APK; no initial HTTPS website visit or server deployment is required. The device must already have a usable Android System WebView and the web capabilities required by this version. |
-| Eight interface languages | Simplified Chinese, English, Spanish, French, Russian, Arabic, Hindi and Urdu; Arabic and Urdu use right-to-left layout. |
-| Local accounts | Reuses encrypted workspaces separated by account and personal/institutional mode; sign out before switching. This is not hospital identity verification. |
-| Recording | Prefer the device's existing recorder app; review the destination and import the returned recording. If no compatible recorder is available, use Import recording. No new recording engine is developed. |
-| Backup and restore | Preserves the encrypted `.wnmanifest` + `.wnpart` format and legacy single-JSON restore. Restore into a new account in the same mode, never over an existing account. |
-| Networking | This Android package does not request `INTERNET` permission. Cloud sync, model calls and online transcription are not offered in this preview and remain future work. |
-| Platforms | Android only in this phase. iOS and other Apple platforms are outside scope. Physical-device, full-shift and clinical validation await later feedback. |
+## Feedback, design references and license
 
-**The system recorder and document picker are separate apps or system services.** They may retain original recordings in shared storage or use their own cloud services. WardNote encrypts its imported copy; this does not encrypt, delete or prevent uploading of the external original. Use an approved recorder and its offline settings. This preview does not automatically delete external originals. Eight interface languages do not imply offline speech recognition in eight languages.
+- [Report an issue or suggestion](https://github.com/Alias1027/wardnote-android/issues/new/choose): identify Windows/browser/PWA/Android, version and reproducible steps. Use fictional data only; do not attach clinical records, audio, backups, passwords or keys.
+- [Report a vulnerability privately](https://github.com/Alias1027/wardnote-android/security/advisories/new): private reporting is enabled. Contact and licensing: [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com).
+- Design references include China's 18 Core Medical Quality and Safety Systems, US CMS-CoPs, Joint Commission NPSG, ACGME CPR, UK NICE CG50, NHS England/CPOC NatSSIPs and Germany's G-BA QM-RL. [Sources and scope](browser-pwa/docs/CLINICAL-SCOPE.md) identify the documents. Reference does not imply certification or complete fulfillment of regional requirements.
 
-## Start
-
-1. [Download the APK](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk) in a phone browser, or download it on a computer and transfer it by USB or another trusted method. Check integrity against the [checksum file](https://github.com/Alias1027/wardnote-android/releases/download/android-v0.1.2-preview/SHA256SUMS.txt). First use after installation can remain offline; no HTTPS server deployment is needed.
-2. Install the preview APK on Android. Temporarily allow Install unknown apps only for the trusted file manager used for this installation; the permission can be disabled afterwards.
-3. Open the app, choose a language and personal/institutional mode, and create an account and password. First launch can take place in airplane mode. Start with synthetic cases to check saving, reopening, returning from the recorder, and backup/restore.
-4. Choose Start recording in Memos and confirm the current patient and recording arrangement. Record in the device's recorder app. On return, check the destination, confirm import and listen back. Use Import recording if the recorder does not return its file.
-5. Export and verify independent encrypted backups regularly. **Uninstalling or clearing app data removes this installation's local copy.** Before updating, save work and verify a separate backup; use an upgrade APK with the same application identity and signing key.
-
-See the [user guide](docs/ANDROID-USER-GUIDE.md), [build and verification instructions](docs/BUILD-TOOLCHAIN.md), [validation record](docs/VALIDATION.md) and [roadmap](docs/ROADMAP.md).
-
-Existing 0.1.2 runtime evidence records 15 automated tests (one contains 10 native document fault scenarios), 18 desktop Chromium checks with a native-bridge test double, 3 desktop storage/asset upgrade checks, APK signature/checksum checks and byte-for-byte verification of 57 resources. Twelve publication-boundary checks are also included. The [initial push workflow](https://github.com/Alias1027/wardnote-android/actions/runs/40047905103) and [release-tag workflow](https://github.com/Alias1027/wardnote-android/actions/runs/40049429003) both passed; see the [validation record](docs/VALIDATION.md). **Android emulator/physical-device installation, real recorder round trips and clinical validation have not been performed.**
-
-## Issues, suggestions and authorization
-
-- [Report a problem or suggestion](https://github.com/Alias1027/wardnote-android/issues/new/choose): sign in with a GitHub account, choose a template, and provide app/device, Android/WebView and recorder versions plus reproduction steps.
-- [Report a security issue privately](https://github.com/Alias1027/wardnote-android/security/advisories/new): private vulnerability reporting is enabled. Signed-out visitors are first directed to GitHub sign-in.
-- Use synthetic cases only. Do not upload real records, original recordings, encrypted backups, passwords or keys. Contact junhuiliu1025@gmail.com for authorization; selecting institutional mode does not itself grant permission.
-
-## Browser and PWA coexistence
-
-Each entry point has its own local data. Matching account names do not synchronize records. Installing the Android package does not remove browser/PWA accounts. Transfer a complete compatible encrypted backup, using its original password and a new destination account name. This preview does not automatically merge changes made on different devices.
-
-Android program updates use a trusted replacement APK, not the browser Service Worker update mechanism. Do not uninstall or clear app data to fix a stale version display. Save, back up and check the package version, application identity and signature first.
-
-## License and validation
-
-Copyright **Junhui Liu M.D.** The existing [WardNote Personal Noncommercial Source-Available License 1.0](LICENSE) also applies to the new project-owned Android code and documentation in this preview. It permits qualifying private noncommercial learning, research, experimentation and testing. Commercial or institutional use requires prior written authorization. This is source-available software, **not OSI-approved open source**. Previously granted rights and third-party licenses retain their separate effect. Authorization contact: junhuiliu1025@gmail.com.
-
-Source checks, compilation and simulated tests do not establish physical-device or clinical validation. Read the [validation record](docs/VALIDATION.md) item by item; unverified capabilities are not described as ready for real-patient use.
-
-## Previous self-check fixes (0.1.1)
-
-0.1.1 blocks dismissal while audio is being imported and encrypted. Manual import and system recording both show the patient and require confirmation; extra notes are optional. Failed saves retain input and prevent Back from backgrounding the app. The package keeps the 0.1.0 application ID and signing certificate and raises versionCode from 1 to 2. Finish recording and saving, export and verify a backup, then install over the existing app. WardNote cannot prevent a forced system-installer update or OS process termination. See the [self-check report](docs/SELF-CHECK-0.1.1.md).
-
-## Security repairs in 0.1.2
-
-The two selected security skills were installed and applied. Exports now retain account/patient checks across asynchronous steps and block switching during transfer. Picker-policy failures are handled; existing/unverifiable provider files are never opened or deleted by the new-file guard, and cleanup failures are reported honestly. See the [security review](docs/SECURITY-REVIEW-0.1.2.md). The update retains its package/signature and increases versionCode from 2 to 3. Physical-device and clinical verification remain pending.
+Copyright **Junhui Liu M.D.** The [WardNote Personal Noncommercial Source-Available License 1.0](LICENSE) permits independent personal noncommercial learning, self-directed research, experimentation and testing within its terms. **All institutional and commercial uses require prior written authorization.** This is source-available, not OSI-approved open source. Valid earlier Apache-2.0/CC BY 4.0 grants and third-party licenses retain their own effect. [Licensing policy](LICENSES/README.md)

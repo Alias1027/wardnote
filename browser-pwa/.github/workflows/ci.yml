@@ -1,0 +1,99 @@
+name: Source and workflow checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  core:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Core and publication checks (no package installation)
+        working-directory: app
+        run: npm test
+      - name: Verify publication allowlist and documentation links
+        run: node scripts/release.mjs --check
+      - name: Build and verify an isolated public source package
+        run: node scripts/release.mjs --zip
+      - name: Test the packaged source, including every test suite
+        run: node scripts/test-package.mjs
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '24'
+      - name: Install locked development tools
+        working-directory: app
+        run: npm ci --ignore-scripts
+      - name: Install Chromium and system libraries
+        working-directory: app
+        run: npx playwright install --with-deps chromium
+      - name: Synthetic browser workflow
+        working-directory: app
+        run: npm run test:browser
+      - name: Retain synthetic failure evidence
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: synthetic-browser-failure
+          path: |
+            work/qa/readiness-browser-results.json
+            work/qa/readiness-failure.png
+            work/qa/regions-results.json
+            work/qa/regions-failure.png
+            work/qa/capture-context-results.json
+            work/qa/capture-context-failure.png
+            work/qa/capture-storage-results.json
+            work/qa/capture-storage-failure.png
+            work/qa/continuity-results.json
+            work/qa/navigation-results.json
+            work/qa/update-results.json
+            work/qa/update-failure.png
+            work/qa/backup-results.json
+            work/qa/backup-failure.png
+            work/qa/continuity-failure.png
+            work/qa/voice-routing-results.json
+            work/qa/voice-routing-failure.png
+            work/qa/voice-memo-results.json
+            work/qa/voice-memo-failure.png
+            work/qa/accounts-results.json
+            work/qa/accounts-failure.png
+            work/qa/brief-results.json
+            work/qa/brief-failure.png
+            work/qa/note-tools-results.json
+            work/qa/note-tools-failure.png
+            work/qa/evidence-results.json
+            work/qa/evidence-failure.png
+            work/qa/device-consistency-results.json
+            work/qa/offline-results.json
+            work/qa/offline-failure.json
+            work/qa/offline-failure.png
+            work/qa/easy-start-browser-results.json
+            work/qa/deploy-static-browser-results.json
+            work/qa/browser-results.json
+            work/qa/failure.png
+            work/qa/panels-results.json
+            work/qa/panels-failure.png
+            work/qa/localization-browser-checks.json
+            work/qa/localization-browser-failure.json
+            work/qa/localization-failure.png
+          if-no-files-found: ignore
+          retention-days: 3
+
+

@@ -8,7 +8,7 @@ import re
 import stat
 import zipfile
 
-PUBLIC_TREES = ('android', 'web', 'docs', 'tests', 'LICENSES', 'scripts', '.github')
+PUBLIC_TREES = ('android', 'web', 'browser-pwa', 'docs', 'tests', 'LICENSES', 'scripts', '.github')
 DENIED = {'.p12', '.jks', '.keystore', '.pem', '.key', '.env', '.db', '.sqlite', '.sqlite3', '.wnmanifest', '.wnpart', '.wav', '.mp3', '.m4a', '.ogg', '.webm', '.mp4'}
 FIXTURES = {'tests/fixtures/browser-0.6.15-ui-r1.zip', 'tests/fixtures/android-0.1.1-web.zip'}
 KEY_MARKER = re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH |ENCRYPTED )?PRIVATE KEY-----')
