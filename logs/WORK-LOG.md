@@ -67,3 +67,10 @@ The owner authorized merging the frozen main project 0.6.15 UI r1 and Android 0.
 Git line-ending filters were detected before upload. The integrated main tree adds a no-conversion .gitattributes rule and refreshes its internal manifest; 181 original files and all runtime code remain byte-identical. Original source/portable/static archives remain unchanged. The index is checked against file bytes before committing. / 上传前发现Git换行过滤，整合目录仅修订.gitattributes并更新清单；181个原文件及全部运行代码字节一致，原始三个交付包不改，提交前逐项比较索引内容。
 
 Hosted run 40078190532 passed all core/packaged-source jobs but exposed account-test timing: a mode change can replace the form after the test fills it. A controlled synthetic module delay reproduced the empty-form submission, while waiting for form replacement passed. The test helper now waits for the intended mode form; all original assertions and runtime files remain unchanged. This adds one test-only difference: 180 main-source files remain byte-identical, with .gitattributes and the account test adjusted and the manifest refreshed. The original three main archives and Android r1 remain unchanged.
+
+
+## 2026-10-24 — Bilingual project homepage / 首页完整中英文说明
+
+Added the complete English README content directly to the repository homepage, alongside Chinese, with top-level language jump links and a retained standalone README.en.md. Verified the repository now has canonical name Alias1027/wardnote with unchanged repository ID 1431694863; README project/download links use that address. This changes documentation only. Release tags and attachments remain fixed, and runtime, signing material, clinical data and C-drive templates are untouched.
+
+将完整英文说明同步展示于项目首页，顶部提供中英文定位，保留独立英文README。核对现仓库名Alias1027/wardnote及相同身份编号，并统一README地址。仅修改文档；发布标签、附件和运行版本保持原状。
