@@ -1,5 +1,7 @@
 # Introduction and help copy update / 简介与帮助文案同步
 
+历史记录 / Historical copy-update record: the following “no new Release” statements describe the earlier documentation-only task. Current downloads are in the [aligned pre-release](RELEASE-v0.6.15-preview.2.md). / 下方“不创建Release”为当时任务的记录，当前发布状态见统一预发布说明。
+
 2026-10-25 · Main project 0.6.15 UI r2 · Android 0.1.3-preview (versionCode 4)
 
 The approved [complete Chinese and English introduction](PROJECT-INTRODUCTION.md) is displayed directly in the bilingual README, the standalone English README, and Settings & help. Acknowledgments are plain text, in the approved order, with no profile links or click-through page. The same content is supplied in all eight interface languages; translations beyond Chinese/English still need native clinical review.

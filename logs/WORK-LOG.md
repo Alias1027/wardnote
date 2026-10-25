@@ -108,3 +108,12 @@ The first hosted Android run exposed LF/CRLF differences in the newly added intr
 保留此前完整简介、纯文本鸣谢和全部历史发布记录；不采用尚未确认同步的英文重译稿。仅修改根目录 README.md、README.en.md、docs/COMBINED-RELEASE.md 和本工作记录。运行代码、内嵌主项目清单、许可正文、已发布附件、签名材料、用户资料、C盘模板及D盘电子模板均不参与修改。PDF证书与加密仅讨论，未实施。
 
 Local checks cover the existing bilingual-introduction regression, public-file allowlist, nested release manifest, Markdown/download consistency and exact preservation of the previous README and Release bodies. Existing hosted workflows run automatically on the documentation commit; their final results, public readbacks, asset/tag preservation and local delivery hashes are recorded in the local TL;DR delivery work log. No new tests or runtime changes are introduced for this documentation-only update. Physical-device, low-resource and clinical evaluation remain pending.
+
+
+## 2026-10-25 — Aligned release and original V007 PDFs / 最新成果与PDF原件版本对齐
+
+用户授权将最新主项目0.6.15 UI r2、Android 0.1.3-preview与V007 PDF同步至GitHub。检查发现Windows个人/机器证书库暂无文档签名证书，向用户说明CA申领与自签名区别后，用户明确决定取消证书验证，直接上传PDF原件，并要求记录这一取舍。公开分发时编辑、转写和重建无法被技术措施完全阻止；签名仍有来源及完整性核验价值，但本轮优先保留打印、填写及跨设备使用便利性，以官方渠道、版本/许可及SHA256比对支持原件核验。未创建或使用PDF证书、私钥、签名或加密；取消证书不改变许可范围。
+
+Eight owner-provided PDF exports (four worksheet types in Chinese/English, 12 pages) are added byte-for-byte under pdf-templates/v007 with provenance hashes, instructions and explicit no-certificate policy. No DOCX upload, page reflow, new interactive fields or patient data is involved. The PDF public tree is covered by the exact-public-file boundary and checked by the combined integrity workflow. Runtime files and clinical data formats remain unchanged; the existing Android 0.1.3 APK/signing identity is reused after byte/asset verification. README/downloads/current release guidance are aligned, while historical evidence retains its original scope.
+
+The user authorizes publishing the aligned prerelease, retaining the two previous Releases, all 16 old assets/tags, live data, C-drive templates and D-drive electronic originals. Source/package/PDF readbacks, hosted run outcomes, final tag/asset checks and local delivery hashes are recorded in the Release and delivery work log. Physical-device, low-resource, native-language and clinical validation remain later feedback work. Private signing materials are excluded from source and assets.

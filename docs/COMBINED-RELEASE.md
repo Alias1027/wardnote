@@ -1,5 +1,9 @@
 # 整体预发布 / Combined pre-release
 
+当前统一预发布 / Current aligned release: [v0.6.15-preview.2](https://github.com/Alias1027/wardnote/releases/tag/v0.6.15-preview.2) · 0.6.15 UI r2 + Android 0.1.3-preview + V007 PDF originals.
+
+[本次范围 / Release scope](RELEASE-v0.6.15-preview.2.md) · [PDF原件 / Original PDFs](../pdf-templates/v007/README.md)
+
 ## 太长不看
 
 **WardNote：便携式查房记录与工作备忘，默认脱机，持续追踪每位患者。**
@@ -15,11 +19,11 @@
 
 **许可：** 源码可见；所有机构及商业用途须事先取得书面授权，具体范围以随附许可证为准。
 
-**版本提示（2026-10-25）：**
+**统一预发布（2026-10-25）：**
 
-- **已发布下载：** 主项目 **v0.6.15（UI r1）**、Android **0.1.2-preview／r1**。
-- **当前 main 源码及本地交付：** 主项目 **v0.6.15（UI r2）**、Android **0.1.3-preview**，包含后续简介与帮助文案更新；尚未作为新 Release 附件发布。
-- 更新 README 或 Release 说明不会更新安装包。下载附件和标签对应的源码仍是其发布时的快照；本轮保留全部既有附件。
+- **本次下载与源码：** 主项目 **v0.6.15（UI r2）**、Android **0.1.3-preview**，以及 **V007 中英文 PDF 原件**，统一收录于 `v0.6.15-preview.2`。
+- **历史版本：** UI r1／Android 0.1.2-preview／r1 的附件和标签完整保留；旧安装包不会因文档更新而变化。
+- PDF 未添加证书签名或加密；使用官方原件及 SHA-256 校验值进行逐字节比对。纸表编号与App版本分别管理；工程检查不代表真机或临床验证。
 
 ## TL;DR
 
@@ -36,11 +40,11 @@ Built for medical students, residents, and other clinicians, it brings initial a
 
 **License:** Source-available. All institutional and commercial use requires prior written authorization; see the accompanying license for full terms.
 
-**Version note (2026-10-25):**
+**Aligned pre-release (2026-10-25):**
 
-- **Published downloads:** Main project **v0.6.15 (UI r1)** and Android **0.1.2-preview/r1**.
-- **Current main source and local delivery:** Main project **v0.6.15 (UI r2)** and Android **0.1.3-preview**, including later introduction/help updates; these have not been published as new Release assets.
-- README and Release-note edits do not update installers. Download assets and tag-based source remain their release snapshots; all existing assets are retained in this update.
+- **This release and source:** Main project **v0.6.15 (UI r2)**, Android **0.1.3-preview**, and **original V007 Chinese/English PDFs**, together in `v0.6.15-preview.2`.
+- **History:** UI r1 / Android 0.1.2-preview/r1 assets and tags are preserved. Documentation edits do not change old installers.
+- No certificate signatures or encryption were added to the PDFs. Compare official originals using SHA-256. Worksheet and app versions are managed separately; engineering checks do not establish device or clinical validation.
 
 ---
 

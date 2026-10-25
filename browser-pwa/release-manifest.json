@@ -80,13 +80,13 @@
     },
     {
       "path": "README.en.md",
-      "size": 23560,
-      "sha256": "cfcc02a96dae45c9470f9445403c1c3d24e183f5eb56d72b5b6a32b09dd1774a"
+      "size": 23965,
+      "sha256": "d12a73ab3c43aa84602d15ddf6fa18ef63d4cf8e74ba83c8f2d9f9348e52fa97"
     },
     {
       "path": "README.md",
-      "size": 21638,
-      "sha256": "cc67b54ceb78cfb22ada38d7fc4c36cfff7c4698713d04b7e56bf2548505b65d"
+      "size": 21971,
+      "sha256": "1d5fa113f4b7f4d62ea46f34693ba8330c09f6248a03af1627b0161143f3cf66"
     },
     {
       "path": "SECURITY.md",
@@ -909,27 +909,27 @@
       "sha256": "9a50e72e1a2bb818a4c972d59a343dbeb6d16b5c00c37bb2d5138673e4953b32"
     },
     {
-      "path": "\u505c\u6b62\u5e94\u7528.cmd",
+      "path": "停止应用.cmd",
       "size": 132,
       "sha256": "9747a163cdce95b8d6daf5ac7f41629cca2ff4577b7bfa71dcb0c989a6417900"
     },
     {
-      "path": "\u505c\u6b62\u5e94\u7528.ps1",
+      "path": "停止应用.ps1",
       "size": 1664,
       "sha256": "36411af296d68167bc7b95fafa5edbca76c08a1e7b0cf359626ca9895a000fae"
     },
     {
-      "path": "\u542f\u52a8\u5e94\u7528.cmd",
+      "path": "启动应用.cmd",
       "size": 129,
       "sha256": "62b41f1b9e58cf8a1a25ec4ec45c16fdc9aa9e03a3bbbe5da21de6758856598f"
     },
     {
-      "path": "\u542f\u52a8\u5e94\u7528.ps1",
+      "path": "启动应用.ps1",
       "size": 8302,
       "sha256": "d7cce89ec76538e7bb65ba8d86ae744baa8890462235a5c1118edc03eaa452a2"
     },
     {
-      "path": "\u5f00\u59cb\u4f7f\u7528.html",
+      "path": "开始使用.html",
       "size": 26907,
       "sha256": "c1aa16ae4e026e96304a8cd1b26be6f403c10246c4d2d115d7bc2bfdfa81b8c6"
     }

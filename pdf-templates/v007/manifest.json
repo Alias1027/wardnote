@@ -1,0 +1,73 @@
+{
+  "format": "wardnote-pdf-originals/1",
+  "version": "V007",
+  "publicationRevision": "originals-r1",
+  "sourceExportDate": "2026-10-25",
+  "policy": "Original PDFs; no certificate signature, encryption, new fields or content edits applied",
+  "files": [
+    {
+      "file": "Clinical notes-continued V007 Eng.pdf",
+      "locale": "en",
+      "kind": "continuation",
+      "pages": 1,
+      "bytes": 92897,
+      "sha256": "d981a4ca35ab8bde7f3d66aa5ff821cb153fcd26b6f86f412268be3aa9922fd5"
+    },
+    {
+      "file": "Clinical Decision Review V007 Eng.pdf",
+      "locale": "en",
+      "kind": "decision-review",
+      "pages": 1,
+      "bytes": 84986,
+      "sha256": "3f10069561f2bf9bb0025179971c196771f8fd9421313e877fb6a7e69bec8eb9"
+    },
+    {
+      "file": "Initial Visit data collection_V007 Eng.pdf",
+      "locale": "en",
+      "kind": "initial-assessment",
+      "pages": 2,
+      "bytes": 101216,
+      "sha256": "14d40b435ff55d3269fd5221ca82c7316171ed14f67c367a7c16ae7b3f2cd2d0"
+    },
+    {
+      "file": "inpatient wardnote template V007 Eng.pdf",
+      "locale": "en",
+      "kind": "inpatient-rounds",
+      "pages": 2,
+      "bytes": 112385,
+      "sha256": "40dda7e558113b8998d46a1f2f9160ff2bf17114ab20707288ce46ab493cf37b"
+    },
+    {
+      "file": "临床记录续页_A4通用版_V007中文_20261014.pdf",
+      "locale": "zh",
+      "kind": "continuation",
+      "pages": 1,
+      "bytes": 131767,
+      "sha256": "ce4e351abf6e9cffdbca835e353d16632f526e95204832e93327f1086676084e"
+    },
+    {
+      "file": "临床决策复盘学习页_A4可选版_V007中文.pdf",
+      "locale": "zh",
+      "kind": "decision-review",
+      "pages": 1,
+      "bytes": 109949,
+      "sha256": "9f31ad0750cb9f707d10abb97fd5beed8d9d603fddcb638f57d4a36e138f6d97"
+    },
+    {
+      "file": "初诊病史采集模板_A4手写版_V007中文.pdf",
+      "locale": "zh",
+      "kind": "initial-assessment",
+      "pages": 2,
+      "bytes": 158100,
+      "sha256": "90abce253c78e1e0a7f9d4afe0832d96e79506acf1ce87e07f71b6f19ae9d622"
+    },
+    {
+      "file": "住院患者管理模板_A4手写版_V007中文.pdf",
+      "locale": "zh",
+      "kind": "inpatient-rounds",
+      "pages": 2,
+      "bytes": 180923,
+      "sha256": "12f6272fff7a9ebfd88e0c0115c5803963c261e6fe0bb3603f83d9d1b3519f34"
+    }
+  ]
+}

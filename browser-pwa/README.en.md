@@ -1,15 +1,17 @@
 # WardNote
 
+**Current downloads (2026-10-25):** The [combined pre-release](https://github.com/Alias1027/wardnote/releases/tag/v0.6.15-preview.2) provides main project 0.6.15 UI r2, Android 0.1.3-preview and a separate original V007 PDF bundle. UI r1 and original Android assets are retained. Existing validation records keep their historical scope; physical-device and clinical validation remain pending.
+
 [中文](README.md) · [Deployment](docs/DEPLOYMENT.md) · [Validation](docs/VALIDATION.md) · [Bilingual GitHub introduction](docs/GITHUB-INTRO.md) · [Clinical workflow boundaries](docs/CLINICAL-SCOPE.md)
 
 A lightweight, portable ward-round worksheet for daily notes and patient follow-up. Text entry is the primary workflow; recording is optional assistance.
 
-**v0.6.15 UI r2 — introduction/help copy update; published UI r1 assets are preserved.** The UI supports Chinese, English, Spanish, French, Russian, Arabic, Hindi and Urdu, including right-to-left Arabic/Urdu layouts. Initial history and daily review retain the paired V006 Chinese b / English V006b worksheet structure. The public package includes the English paper templates. Interface switching preserves clinical source text; report language is independent. New translations await native clinical review, and speech capabilities require separate validation: see [language support](docs/LOCALIZATION.md). Start with synthetic cases. Hospital production deployment, clinical speech accuracy and educational outcomes have not been validated.
+**v0.6.15 UI r2 — aligned pre-release; historical UI r1 assets are preserved.** The UI supports Chinese, English, Spanish, French, Russian, Arabic, Hindi and Urdu, including right-to-left Arabic/Urdu layouts. Initial history and daily review retain the paired V006 Chinese b / English V006b worksheet structure. The public package includes the English paper templates. Interface switching preserves clinical source text; report language is independent. New translations await native clinical review, and speech capabilities require separate validation: see [language support](docs/LOCALIZATION.md). Start with synthetic cases. Hospital production deployment, clinical speech accuracy and educational outcomes have not been validated.
 
 ### Three entry points (0.6.15)
 
-- **Windows computer:** extract `wardnote-0.6.15-portable-win-x64.zip` and double-click `Start-WardNote.cmd`. The launcher opens the browser and provides reopen, help, an optional desktop shortcut, and stop after confirmation. The original Chinese launcher remains available.
-- **Phone browser:** a deployment owner first prepares a dedicated trusted HTTPS address using `wardnote-0.6.15-static-pwa.zip` and its offline setup wizard. Clinicians then open the link without installing Node or models or entering API keys. This static edition has no server synchronization or cloud transcription endpoints.
+- **Windows computer:** extract `wardnote-0.6.15-ui-r2-portable-win-x64.zip` and double-click `Start-WardNote.cmd`. The launcher opens the browser and provides reopen, help, an optional desktop shortcut, and stop after confirmation. The original Chinese launcher remains available.
+- **Phone browser:** a deployment owner first prepares a dedicated trusted HTTPS address using `wardnote-0.6.15-ui-r2-static-pwa.zip` and its offline setup wizard. Clinicians then open the link without installing Node or models or entering API keys. This static edition has no server synchronization or cloud transcription endpoints.
 - **PWA:** use the browser's installation or home-screen option when available. Eight-language guidance, device checks and safe launch-link sharing are available before login and in Settings. Browser use remains available without installation.
 
 **Safe update prompts:** automatic checks contact the same app address, with manual checks on the sign-in and Settings pages; users choose when to save and update, without forced refresh during recording or unfinished work. [Updates and older cached pages](docs/OFFLINE-AND-ACCOUNTS.md)
@@ -66,7 +68,7 @@ See [model interfaces](docs/MODEL-INTERFACES.md) for disabled-by-default text pr
 
 ## Run locally
 
-**Windows x64 offline portable package:** extract the complete `wardnote-0.6.15-portable-win-x64.zip` and open `Start-WardNote.cmd` (the original `启动应用.cmd` remains a fallback). Keep the same browser and address; run the device check in Settings before first use. The downloaded package can be copied by offline media. Patient data require a separate encrypted backup and manual restore.
+**Windows x64 offline portable package:** extract the complete `wardnote-0.6.15-ui-r2-portable-win-x64.zip` and open `Start-WardNote.cmd` (the original `启动应用.cmd` remains a fallback). Keep the same browser and address; run the device check in Settings before first use. The downloaded package can be copied by offline media. Patient data require a separate encrypted backup and manual restore.
 
 **Source package:** install **Node.js 24+**, download/extract the source and run from the project root:
 
