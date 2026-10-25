@@ -1,0 +1,106 @@
+{
+  "format": "wardnote-ui-previews/1",
+  "sourceCommit": "e5ccd53778eb973313a98530885f0bff1b28dc37",
+  "mainVersion": "0.6.15 UI r2",
+  "view": "dashboard",
+  "captureDate": "2026-10-25",
+  "capturePlatform": "Headless desktop Chrome on Windows; no physical-device capture",
+  "syntheticDataOnly": true,
+  "clinicalTextTranslated": false,
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "pageErrors": [],
+  "blockedExternalOrigins": [],
+  "images": [
+    {
+      "language": "zh",
+      "nativeName": "简体中文",
+      "locale": "zh-CN",
+      "direction": "ltr",
+      "file": "preview-dashboard-zh.png",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 81914,
+      "sha256": "56b02ef8e83f800b2ea88fb6385ca45faec5a3b42f4b246348e33492650fa962"
+    },
+    {
+      "language": "en",
+      "nativeName": "English",
+      "locale": "en",
+      "direction": "ltr",
+      "file": "preview-dashboard-en.png",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 89670,
+      "sha256": "90266954bd547632ebfb1dda5b777548a762e4eb83c3cbae4b339ee15564dea4"
+    },
+    {
+      "language": "es",
+      "nativeName": "Español",
+      "locale": "es",
+      "direction": "ltr",
+      "file": "preview-dashboard-es.png",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 106411,
+      "sha256": "9c680336ce33a929c10afbe2dd9bf2ff62052bf28340b376a7a82a69e14714cc"
+    },
+    {
+      "language": "fr",
+      "nativeName": "Français",
+      "locale": "fr",
+      "direction": "ltr",
+      "file": "preview-dashboard-fr.png",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 105932,
+      "sha256": "63f95a52ea8fe6760106f1474c426e9e16f0b375cf9a16bbff82049e8528db4a"
+    },
+    {
+      "language": "ru",
+      "nativeName": "Русский",
+      "locale": "ru",
+      "direction": "ltr",
+      "file": "preview-dashboard-ru.png",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 106666,
+      "sha256": "2c562717cbc63dae28d82e10e0412d85b7c70363036bdff90f7d61eda91ae5b8"
+    },
+    {
+      "language": "ar",
+      "nativeName": "العربية",
+      "locale": "ar",
+      "direction": "rtl",
+      "file": "preview-dashboard-ar.png",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 72753,
+      "sha256": "5ab3217f48993a7e0bf61ae27d5f4af4f316b0888f671006deee67d4a3a4d356"
+    },
+    {
+      "language": "hi",
+      "nativeName": "हिन्दी",
+      "locale": "hi",
+      "direction": "ltr",
+      "file": "preview-dashboard-hi.png",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 81685,
+      "sha256": "577f0e339f5bfcd7a5c44dffb4d0226f521ef1bfcf77ae4dd85a7d79a537f418"
+    },
+    {
+      "language": "ur",
+      "nativeName": "اردو",
+      "locale": "ur",
+      "direction": "rtl",
+      "file": "preview-dashboard-ur.png",
+      "width": 1440,
+      "height": 1000,
+      "bytes": 71514,
+      "sha256": "4c1d479a917bb110ee784b4c43e25cb635e0d2e0b52daee18d7f95a905e747a3"
+    }
+  ]
+}

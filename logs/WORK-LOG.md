@@ -117,3 +117,10 @@ Local checks cover the existing bilingual-introduction regression, public-file a
 Eight owner-provided PDF exports (four worksheet types in Chinese/English, 12 pages) are added byte-for-byte under pdf-templates/v007 with provenance hashes, instructions and explicit no-certificate policy. No DOCX upload, page reflow, new interactive fields or patient data is involved. The PDF public tree is covered by the exact-public-file boundary and checked by the combined integrity workflow. Runtime files and clinical data formats remain unchanged; the existing Android 0.1.3 APK/signing identity is reused after byte/asset verification. README/downloads/current release guidance are aligned, while historical evidence retains its original scope.
 
 The user authorizes publishing the aligned prerelease, retaining the two previous Releases, all 16 old assets/tags, live data, C-drive templates and D-drive electronic originals. Source/package/PDF readbacks, hosted run outcomes, final tag/asset checks and local delivery hashes are recorded in the Release and delivery work log. Physical-device, low-resource, native-language and clinical validation remain later feedback work. Private signing materials are excluded from source and assets.
+
+
+## 2026-10-25 — Eight-language README previews / 八语言README预览
+
+Added eight actual desktop-browser dashboard screenshots to the bilingual homepage and standalone English README, immediately after the brief version summary. Chinese, English, Spanish, French, Russian, Arabic, Hindi and Urdu use the same isolated DEMO A/B/C workspace; no real patients, audio, backups or credentials are shown. All images are 1440×1000, with source-base provenance and SHA256 recorded. Arabic/Urdu RTL, visible text, page width and identical synthetic records were checked; screenshots were visually reviewed. No retouching or hidden UI replacement was used.
+
+同步保留用户刚在GitHub增加的“其他有需要的临床工作者”表述，未覆盖手动编辑。README说明截图来自0.6.15 UI r2桌面浏览器，不等同Android真机截图或母语临床验证，临床原文不会随界面语言切换自动翻译。仅新增文档/PNG/公开清单及工作记录，运行代码、已发布3条Release/29项附件、标签、PDF原件、现有数据和C盘模板不变。托管结果与线上图片回读核验在本轮交付工作记录中记录。

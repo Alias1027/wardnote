@@ -27,6 +27,18 @@
 - **历史版本：** UI r1／Android 0.1.2-preview／r1 的附件和标签完整保留；旧安装包不会因文档更新而变化。
 - PDF 未添加证书签名或加密；使用官方原件及 SHA-256 校验值进行逐字节比对。纸表编号与App版本分别管理；工程检查不代表真机或临床验证。
 
+### 八语言界面预览
+
+同一组虚构患者的工作台，截图来自 **v0.6.15 UI r2** 桌面浏览器（1440 × 1000）。点击图片可查看原图。阿拉伯语与乌尔都语采用从右向左布局；切换界面语言不改写临床原文。截图不代表真机或母语临床验证。
+
+| 界面预览 | 界面预览 |
+| --- | --- |
+| **简体中文**<br>![WardNote 简体中文界面，虚构演示病例](docs/images/preview-dashboard-zh.png) | **英语 · English**<br>![WardNote 英语界面，虚构演示病例](docs/images/preview-dashboard-en.png) |
+| **西班牙语 · Español**<br>![WardNote 西班牙语界面，虚构演示病例](docs/images/preview-dashboard-es.png) | **法语 · Français**<br>![WardNote 法语界面，虚构演示病例](docs/images/preview-dashboard-fr.png) |
+| **俄语 · Русский**<br>![WardNote 俄语界面，虚构演示病例](docs/images/preview-dashboard-ru.png) | **阿拉伯语 · العربية**<br>![WardNote 阿拉伯语界面，虚构演示病例](docs/images/preview-dashboard-ar.png) |
+| **印地语 · हिन्दी**<br>![WardNote 印地语界面，虚构演示病例](docs/images/preview-dashboard-hi.png) | **乌尔都语 · اردو**<br>![WardNote 乌尔都语界面，虚构演示病例](docs/images/preview-dashboard-ur.png) |
+
+
 ### 项目简介
 
 WardNote 是一款便携式临床记录与工作备忘工具，旨在为初诊评估、住院查房及患者的持续追踪提供便利。本项目尤其关注临床实习生、住院医师及其他低年资医生的学习与工作需要，支持临床思维和患者管理能力的培养，并可辅助临床决策的复盘与学习。
@@ -130,6 +142,18 @@ Built for medical students, residents, and other clinicians, it brings initial a
 - **This release and source:** Main project **v0.6.15 (UI r2)**, Android **0.1.3-preview**, and **original V007 Chinese/English PDFs**, together in `v0.6.15-preview.2`.
 - **History:** UI r1 / Android 0.1.2-preview/r1 assets and tags are preserved. Documentation edits do not change old installers.
 - No certificate signatures or encryption were added to the PDFs. Compare official originals using SHA-256. Worksheet and app versions are managed separately; engineering checks do not establish device or clinical validation.
+
+### Eight-language interface previews
+
+The same fictional patient workspace in **v0.6.15 UI r2**, captured in a desktop browser at 1440 × 1000. Click an image to view the original. Arabic and Urdu use right-to-left layouts; switching the UI language preserves clinical source text. These previews do not establish physical-device or native clinical-language validation.
+
+| Interface preview | Interface preview |
+| --- | --- |
+| **Simplified Chinese · 简体中文**<br>![WardNote Simplified Chinese interface with fictional demo patients](docs/images/preview-dashboard-zh.png) | **English**<br>![WardNote English interface with fictional demo patients](docs/images/preview-dashboard-en.png) |
+| **Spanish · Español**<br>![WardNote Spanish interface with fictional demo patients](docs/images/preview-dashboard-es.png) | **French · Français**<br>![WardNote French interface with fictional demo patients](docs/images/preview-dashboard-fr.png) |
+| **Russian · Русский**<br>![WardNote Russian interface with fictional demo patients](docs/images/preview-dashboard-ru.png) | **Arabic · العربية**<br>![WardNote Arabic interface with fictional demo patients](docs/images/preview-dashboard-ar.png) |
+| **Hindi · हिन्दी**<br>![WardNote Hindi interface with fictional demo patients](docs/images/preview-dashboard-hi.png) | **Urdu · اردو**<br>![WardNote Urdu interface with fictional demo patients](docs/images/preview-dashboard-ur.png) |
+
 
 ### About the Project
 

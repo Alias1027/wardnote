@@ -233,6 +233,17 @@
     "docs/SELF-CHECK-0.1.1.md",
     "docs/SKILLS-ROADMAP.md",
     "docs/VALIDATION.md",
+    "docs/images/.gitattributes",
+    "docs/images/README.md",
+    "docs/images/preview-dashboard-ar.png",
+    "docs/images/preview-dashboard-en.png",
+    "docs/images/preview-dashboard-es.png",
+    "docs/images/preview-dashboard-fr.png",
+    "docs/images/preview-dashboard-hi.png",
+    "docs/images/preview-dashboard-ru.png",
+    "docs/images/preview-dashboard-ur.png",
+    "docs/images/preview-dashboard-zh.png",
+    "docs/images/preview-manifest.json",
     "docs/开始使用-Android.txt",
     "logs/WORK-LOG.md",
     "logs/android-apk-verification.json",
@@ -351,5 +362,6 @@
     "web/voice-evidence.js",
     "web/voice-routing.js",
     "web/worksheet-ui.js"
-  ]
+  ],
+  "documentationRevision": "readme-previews-20261025"
 }

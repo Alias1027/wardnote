@@ -23,6 +23,18 @@ Built for medical students, residents, and other clinicians, it brings initial a
 - **History:** UI r1 / Android 0.1.2-preview/r1 assets and tags are preserved. Documentation edits do not change old installers.
 - No certificate signatures or encryption were added to the PDFs. Compare official originals using SHA-256. Worksheet and app versions are managed separately; engineering checks do not establish device or clinical validation.
 
+## Eight-language interface previews
+
+The same fictional patient workspace in **v0.6.15 UI r2**, captured in a desktop browser at 1440 × 1000. Click an image to view the original. Arabic and Urdu use right-to-left layouts; switching the UI language preserves clinical source text. These previews do not establish physical-device or native clinical-language validation.
+
+| Interface preview | Interface preview |
+| --- | --- |
+| **Simplified Chinese · 简体中文**<br>![WardNote Simplified Chinese interface with fictional demo patients](docs/images/preview-dashboard-zh.png) | **English**<br>![WardNote English interface with fictional demo patients](docs/images/preview-dashboard-en.png) |
+| **Spanish · Español**<br>![WardNote Spanish interface with fictional demo patients](docs/images/preview-dashboard-es.png) | **French · Français**<br>![WardNote French interface with fictional demo patients](docs/images/preview-dashboard-fr.png) |
+| **Russian · Русский**<br>![WardNote Russian interface with fictional demo patients](docs/images/preview-dashboard-ru.png) | **Arabic · العربية**<br>![WardNote Arabic interface with fictional demo patients](docs/images/preview-dashboard-ar.png) |
+| **Hindi · हिन्दी**<br>![WardNote Hindi interface with fictional demo patients](docs/images/preview-dashboard-hi.png) | **Urdu · اردو**<br>![WardNote Urdu interface with fictional demo patients](docs/images/preview-dashboard-ur.png) |
+
+
 ## About the Project
 
 WardNote is a portable clinical note-taking and work memo tool designed to support initial assessment, inpatient ward rounds, and longitudinal patient follow-up. With particular attention to the learning and practical needs of medical students on clinical rotations, residents, and other early-career physicians, it aims to support the development of clinical reasoning and patient management skills, as well as reflection on and learning from clinical decisions.
