@@ -1,5 +1,55 @@
 # 整体预发布 / Combined pre-release
 
+## 太长不看
+
+**WardNote：便携式查房记录与工作备忘，默认脱机，持续追踪每位患者。**
+
+面向临床实习生、住院医师及其他临床工作者，将初诊信息、每日查房、患者摘要、备忘、待办与交接集中于单个患者，辅助日常记录及临床决策复盘。
+
+- **多平台：** Windows 一键启动、浏览器／PWA，以及支持首次脱机使用的 Android 安装版。手机浏览器／PWA 需先完成 HTTPS 部署和脱机准备。
+- **独立使用：** 核心记录不依赖医院 EMR/HIS、云端模型或持续联网，兼顾网络不稳定和医疗信息化基础有限的使用环境。
+- **八种界面语言：** 本机加密保存、账号间数据隔离，并支持加密备份与迁移；目前不提供跨设备自动云同步。
+- **文字优先，语音辅助：** Android 优先调用已有录音应用并支持导入，当前不提供语音转写；自动生成或整理的内容仍需人工核对。
+
+**当前为技术预览版。** 真机、低配置设备、母语临床审校及实际临床适用性仍待验证。用于辅助记录、备忘和学习，不能替代正式病历、医嘱、机构流程或临床判断。
+
+**许可：** 源码可见；所有机构及商业用途须事先取得书面授权，具体范围以随附许可证为准。
+
+**版本提示（2026-10-25）：**
+
+- **已发布下载：** 主项目 **v0.6.15（UI r1）**、Android **0.1.2-preview／r1**。
+- **当前 main 源码及本地交付：** 主项目 **v0.6.15（UI r2）**、Android **0.1.3-preview**，包含后续简介与帮助文案更新；尚未作为新 Release 附件发布。
+- 更新 README 或 Release 说明不会更新安装包。下载附件和标签对应的源码仍是其发布时的快照；本轮保留全部既有附件。
+
+## TL;DR
+
+**WardNote is a portable tool for ward-round notes and care reminders, designed to work offline and keep each patient’s care in view.**
+
+Built for medical students, residents, and other clinicians, it brings initial assessments, daily notes, patient summaries, memos, tasks, and handover information together in one patient workspace. It also supports reflection on clinical decisions.
+
+- **Multiple platforms:** One-click startup on Windows, browser/PWA access, and an Android app that can launch offline from first use. Mobile browser/PWA use requires HTTPS hosting and initial offline setup.
+- **Independent operation:** Core documentation requires neither hospital EMR/HIS integration nor cloud AI or continuous internet access, with unreliable connectivity and limited digital infrastructure in mind.
+- **Eight interface languages:** Encrypted local storage, separate account workspaces, and encrypted backup and transfer. Automatic cloud synchronization is not currently available.
+- **Text comes first; voice is optional:** Android uses an existing recording app and supports audio import, but does not currently offer transcription. Generated or organized content requires human review.
+
+**This is a technical preview.** Physical-device testing, performance on less powerful hardware, clinical language review, and suitability for clinical practice remain to be evaluated. WardNote does not replace official records, medical orders, institutional procedures, or clinical judgment.
+
+**License:** Source-available. All institutional and commercial use requires prior written authorization; see the accompanying license for full terms.
+
+**Version note (2026-10-25):**
+
+- **Published downloads:** Main project **v0.6.15 (UI r1)** and Android **0.1.2-preview/r1**.
+- **Current main source and local delivery:** Main project **v0.6.15 (UI r2)** and Android **0.1.3-preview**, including later introduction/help updates; these have not been published as new Release assets.
+- README and Release-note edits do not update installers. Download assets and tag-based source remain their release snapshots; all existing assets are retained in this update.
+
+---
+
+## 2026-10-24 发布记录（历史快照） / Original publication record
+
+以下保留原始发布说明；其版本、文件数量和检查范围属于当时快照，当前源码差异见上方版本提示。
+
+The original release record below is retained. Its versions, file counts and check scope describe that historical snapshot; see the version note above for the current-source distinction.
+
 2026-10-24 · main project **0.6.15 UI r1** + Android **0.1.2-preview**, versionCode **3**.
 
 [下载与安装 / Downloads and installation](../README.md) · [English](../README.en.md) · [Release](https://github.com/Alias1027/wardnote/releases/tag/v0.6.15-preview.1)

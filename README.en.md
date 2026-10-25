@@ -2,6 +2,27 @@
 
 [简体中文](README.md#简体中文) · [English on project homepage](README.md#english) · [Combined pre-release](https://github.com/Alias1027/wardnote/releases/tag/v0.6.15-preview.1) · [Feedback](https://github.com/Alias1027/wardnote/issues/new/choose)
 
+## TL;DR
+
+**WardNote is a portable tool for ward-round notes and care reminders, designed to work offline and keep each patient’s care in view.**
+
+Built for medical students, residents, and other clinicians, it brings initial assessments, daily notes, patient summaries, memos, tasks, and handover information together in one patient workspace. It also supports reflection on clinical decisions.
+
+- **Multiple platforms:** One-click startup on Windows, browser/PWA access, and an Android app that can launch offline from first use. Mobile browser/PWA use requires HTTPS hosting and initial offline setup.
+- **Independent operation:** Core documentation requires neither hospital EMR/HIS integration nor cloud AI or continuous internet access, with unreliable connectivity and limited digital infrastructure in mind.
+- **Eight interface languages:** Encrypted local storage, separate account workspaces, and encrypted backup and transfer. Automatic cloud synchronization is not currently available.
+- **Text comes first; voice is optional:** Android uses an existing recording app and supports audio import, but does not currently offer transcription. Generated or organized content requires human review.
+
+**This is a technical preview.** Physical-device testing, performance on less powerful hardware, clinical language review, and suitability for clinical practice remain to be evaluated. WardNote does not replace official records, medical orders, institutional procedures, or clinical judgment.
+
+**License:** Source-available. All institutional and commercial use requires prior written authorization; see the accompanying license for full terms.
+
+**Version note (2026-10-25):**
+
+- **Published downloads:** Main project **v0.6.15 (UI r1)** and Android **0.1.2-preview/r1**.
+- **Current main source and local delivery:** Main project **v0.6.15 (UI r2)** and Android **0.1.3-preview**, including later introduction/help updates; these have not been published as new Release assets.
+- README and Release-note edits do not update installers. Download assets and tag-based source remain their release snapshots; all existing assets are retained in this update.
+
 ## About the Project
 
 WardNote is a portable clinical note-taking and work memo tool designed to support initial assessment, inpatient ward rounds, and longitudinal patient follow-up. With particular attention to the learning and practical needs of medical students on clinical rotations, residents, and other early-career physicians, it aims to support the development of clinical reasoning and patient management skills, as well as reflection on and learning from clinical decisions.

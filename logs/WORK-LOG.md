@@ -99,3 +99,12 @@ Local results: main 167 existing core checks plus one new served-resource integr
 The first hosted Android run exposed LF/CRLF differences in the newly added introduction comparison and README section parsing. A mixed-line-ending checkout reproduces both failures with the original test; normalizing line endings only when reading program-owned test text passes all five cases. No runtime, data format, package/signing identity or update gating is changed by this follow-up. Historical failed-run evidence remains local; final hosted results are recorded against the corrected commit.
 
 首轮托管 Windows 检查暴露新增测试的换行兼容性问题；用混合换行检出副本复现失败后，仅在测试读取文本时统一换行，五项检查通过。不改应用逻辑、数据格式、签名或更新保护，保留首次失败证据并以修正提交记录最终托管结果。
+
+
+## 2026-10-25 — TL;DR and version scope / 太长不看与版本范围
+
+按用户确认的中英文草稿，在首页两种语言及独立英文 README 开头加入摘要，同步整体交付说明，并在两个现有 Release 正文前添加同一项目概览和各自附件范围。已发布下载保持主项目 0.6.15 UI r1／Android 0.1.2-preview（r1）；当前 main 和本地交付为 0.6.15 UI r2／Android 0.1.3-preview，后者尚未成为新 Release 附件。正文补充不更新安装包或标签快照。
+
+保留此前完整简介、纯文本鸣谢和全部历史发布记录；不采用尚未确认同步的英文重译稿。仅修改根目录 README.md、README.en.md、docs/COMBINED-RELEASE.md 和本工作记录。运行代码、内嵌主项目清单、许可正文、已发布附件、签名材料、用户资料、C盘模板及D盘电子模板均不参与修改。PDF证书与加密仅讨论，未实施。
+
+Local checks cover the existing bilingual-introduction regression, public-file allowlist, nested release manifest, Markdown/download consistency and exact preservation of the previous README and Release bodies. Existing hosted workflows run automatically on the documentation commit; their final results, public readbacks, asset/tag preservation and local delivery hashes are recorded in the local TL;DR delivery work log. No new tests or runtime changes are introduced for this documentation-only update. Physical-device, low-resource and clinical evaluation remain pending.
