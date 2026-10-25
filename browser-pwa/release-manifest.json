@@ -510,8 +510,8 @@
     },
     {
       "path": "app/tests/conversation.test.mjs",
-      "size": 8171,
-      "sha256": "1a585b0254097e3c981587e8697e800294eeb420cc9ee8553a11efcf96f753d6"
+      "size": 7813,
+      "sha256": "0913014a7417714960da6688aa6cf591fee87125d5d11edd64ac6fc2a1537412"
     },
     {
       "path": "app/tests/core.test.mjs",

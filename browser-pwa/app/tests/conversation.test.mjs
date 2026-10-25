@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import http from 'node:http';
-import {readFileSync} from 'node:fs';
 import {routeCandidates,routingSnapshot,planVoiceRoute} from '../public/voice-routing.js';
 import {conversationCandidates,completeConversationReview,reviewReason} from '../public/voice-conversation.js';
 import {groundCandidates,evidenceFor,audioEvidence} from '../public/voice-evidence.js';
@@ -77,12 +76,9 @@ test('held source retains playback anchors only when transcript and timing remai
  const before=JSON.stringify(r);assert.equal(audioEvidence(evidenceFor(p,source),source,r)[0].start,0);
  assert.equal(JSON.stringify(r),before);assert.deepEqual(audioEvidence(evidenceFor(p,source),source+' change',r),[]);
 });
-test('eight interfaces have mode and review labels; Android and browser use identical processing',()=>{
+test('eight interfaces have mode and review labels',()=>{
  const labels=['整理模式','医生口述','医患对话','暂不纳入记录','疑似寒暄 · 请回看','语境或人物待核对','模型未采用的原文 · 请回看','移至待核对候选'];
  for(const lang of languageCodes)for(const label of labels){const value=translate(label,lang);assert.ok(value);if(lang!=='zh')assert.doesNotMatch(value,/[\u3400-\u9fff]/);}
- const text=p=>readFileSync(new URL(p,import.meta.url),'utf8').replace(/\r\n/g,'\n');
- assert.equal(text('../public/voice-conversation.js'),text('../../../web/voice-conversation.js'));
- assert.equal(text('../public/voice-routing.js'),text('../../../web/voice-routing.js'));
 });
 test('model adapter requests conversation safeguards, preserves omitted context and rejects fabricated quotes',async()=>{
  let request,reply=[];

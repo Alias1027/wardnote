@@ -138,3 +138,6 @@ Added eight actual desktop-browser dashboard screenshots to the bilingual homepa
 ### 2026-10-26 完成验证与交付准备 / Validation and delivery preparation
 
 主项目 176/176 自动检查、Android 20/20 核心及 18/3 主机模拟通过；APK 59 项网页资源、无新增权限、同签名与递增版本号通过。八语言对话、保存失败重试、来源核对等模拟已通过。深路径浏览器缓存环境问题在字节相同的短路径副本中验证通过，没有放宽脱机检查。真机与临床验证仍待反馈。本轮以独立预发布包交付，不覆盖前 3 个 Release 的 29 项附件。
+
+### 2026-10-26 — Packaged-test boundary correction
+Hosted browser workflows passed. The first hosted core run identified a new test incorrectly reading the Android sibling from the standalone browser package. Cross-platform byte parity now runs in the combined-repository check; the standalone package retains all eight-language assertions without depending on Android files. No application runtime, APK payload, permissions or stored data changed. The package is regenerated and the packaged tests are rerun before publication.

@@ -10,7 +10,10 @@ const read=p=>readFileSync(resolve(root,p),'utf8').replace(/\r\n/g,'\n');
 const names=JSON.parse(read('scripts/public-files.json')).files;
 const publicSet=new Set(names);
 assert.equal(verifyManifest(resolve(root,'browser-pwa')),190);
-assert.equal(createHash('sha256').update(readFileSync(resolve(root,'browser-pwa/release-manifest.json'))).digest('hex'),'31109fc34e1c90f5e464056c50f13e68592b74ef6452a43ba88e0cf7f0cdcef5');
+assert.equal(createHash('sha256').update(readFileSync(resolve(root,'browser-pwa/release-manifest.json'))).digest('hex'),'1732a0d024fe88a7a16ee2c6983ff09bdcb2a8705f8f690616a534c530032abb');
+
+// Cross-platform parity belongs to the combined repository, not the standalone web package.
+for(const name of ['voice-conversation.js','voice-routing.js'])assert.equal(read('browser-pwa/app/public/'+name),read('web/'+name),name);
 
 let linkCount=0;
 for(const name of names.filter(n=>n.endsWith('.md'))){
