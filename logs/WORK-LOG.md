@@ -124,3 +124,17 @@ The user authorizes publishing the aligned prerelease, retaining the two previou
 Added eight actual desktop-browser dashboard screenshots to the bilingual homepage and standalone English README, immediately after the brief version summary. Chinese, English, Spanish, French, Russian, Arabic, Hindi and Urdu use the same isolated DEMO A/B/C workspace; no real patients, audio, backups or credentials are shown. All images are 1440×1000, with source-base provenance and SHA256 recorded. Arabic/Urdu RTL, visible text, page width and identical synthetic records were checked; screenshots were visually reviewed. No retouching or hidden UI replacement was used.
 
 同步保留用户刚在GitHub增加的“其他有需要的临床工作者”表述，未覆盖手动编辑。README说明截图来自0.6.15 UI r2桌面浏览器，不等同Android真机截图或母语临床验证，临床原文不会随界面语言切换自动翻译。仅新增文档/PNG/公开清单及工作记录，运行代码、已发布3条Release/29项附件、标签、PDF原件、现有数据和C盘模板不变。托管结果与线上图片回读核验在本轮交付工作记录中记录。
+
+
+## 2026-10-25 · Small talk 双模式优化 / Conversation review
+
+- 依据分支“US临床实践相关”：医生口述／医患对话、完整原声与原文保留、疑似闲聊可回看、所有采用内容人工核对。
+- Web 0.6.15 UI r3 / Android 0.1.4-preview：本地对话保守分段；模型未引用内容留在回看区；人物不明、条件性计划与否定不作自动事实转换；模式修改使旧候选失效。
+- 八语言模式与回看文案一致；无需新账号或数据库迁移。Android 不新增联网权限、实时或离线 ASR。
+- 本轮测试使用虚构对话与模拟服务；真机、口音、临床语言和临床效益仍待反馈。原发布附件、V007 原件、签名材料和用户数据保留。
+- English: adds clinician dictation and clinical conversation review, keeps original audio/transcripts, retains unquoted model context, requires explicit review, and localizes eight interfaces. Synthetic validation only; physical-device and clinical validation remain pending.
+
+
+### 2026-10-26 完成验证与交付准备 / Validation and delivery preparation
+
+主项目 176/176 自动检查、Android 20/20 核心及 18/3 主机模拟通过；APK 59 项网页资源、无新增权限、同签名与递增版本号通过。八语言对话、保存失败重试、来源核对等模拟已通过。深路径浏览器缓存环境问题在字节相同的短路径副本中验证通过，没有放宽脱机检查。真机与临床验证仍待反馈。本轮以独立预发布包交付，不覆盖前 3 个 Release 的 29 项附件。

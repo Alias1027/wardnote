@@ -103,3 +103,7 @@ dialog.note-tools-drawer{position:fixed;inset-block:0;inset-inline-start:auto;in
 @page wardnote-a4{size:A4;margin:14mm}
 @page wardnote-letter{size:Letter;margin:14mm}
 @media print{html[data-wardnote-paper="A4"] .print-only{page:wardnote-a4}html[data-wardnote-paper="Letter"] .print-only{page:wardnote-letter}.region-panel{display:none!important}}
+
+.voice-privacy-note{display:block;margin-top:.4rem}
+.voice-review-item{border-top:1px solid var(--line,#d7e2dd);padding:.8rem 0}
+.voice-held{margin-block:1rem}

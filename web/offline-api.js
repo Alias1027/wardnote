@@ -82,8 +82,8 @@ async function localRequest(path,method,d,context){
   if(path==='/voice-apply'){
    const draft=get(d.draftId,'voiceDraft'),note=get(d.noteId,'note'),source=draft.data.candidateSource;
    if(d.draftVersion!==draft.version||d.noteVersion!==note.version)throw new Error('记录已变化，请重新载入后核对');
-   if(draft.encounterId!==note.encounterId||draft.data.noteId!==note.id||!source||source.noteId!==note.id||source.text!==draft.data.text||source.language!==draft.data.language)throw new Error('候选与目标记录不匹配');
-   const chosen=draft.data.proposals.filter(p=>p.use===true),keys=new Set(SCHEMAS[note.data.kind].map(([k])=>k));if(!chosen.length||chosen.some(p=>!keys.has(p.section)||typeof p.text!=='string'||!p.text.trim()))throw new Error('请先勾选已核对的候选内容');
+   if(draft.encounterId!==note.encounterId||draft.data.noteId!==note.id||!source||(draft.data.inputMode||'dictation')!==(source.inputMode||'dictation')||source.noteId!==note.id||source.text!==draft.data.text||source.language!==draft.data.language)throw new Error('候选与目标记录不匹配');
+   const chosen=draft.data.proposals.filter(p=>p.use===true),keys=new Set(SCHEMAS[note.data.kind].map(([k])=>k));if(!chosen.length||chosen.some(p=>p.reviewOnly===true||!keys.has(p.section)||typeof p.text!=='string'||!p.text.trim()))throw new Error('请先勾选已核对的候选内容');
    const data=structuredClone(note.data);for(const p of chosen)data.fields[p.section]=[data.fields[p.section],p.text].filter(Boolean).join('\n');
    if(draft.data.sourceId){const r=get(draft.data.sourceId,'recording');if(r.encounterId!==note.encounterId||r.version!==draft.data.sourceVersion||r.data.deletedAt)throw new Error('录音来源已变化，请重新核对');data.sources=(data.sources||[]).filter(x=>x.id!==r.id);data.sources.push({id:r.id,version:r.version});}
    let evidence;try{evidence=appliedEvidence(chosen,draft.data.text,draft.data.sourceId?get(draft.data.sourceId,'recording'):null);}catch{throw new Error('候选缺少有效原文依据，请重新生成');}

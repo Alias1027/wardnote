@@ -1,5 +1,7 @@
 # WardNote · 循记临床
 
+本轮源码：**Web 0.6.15 UI r3 / Android 0.1.4-preview** 新增医生口述／医患对话模式、可回看的暂不纳入内容及遗漏原文提示。所有采用内容仍须医生核对。此前发布包保留原样；新包以其版本和校验文件为准。详见[自然对话与 small talk](docs/VOICE-CONVERSATION.md)。
+
 **当前下载（2026-10-25）：** [统一预发布](https://github.com/Alias1027/wardnote/releases/tag/v0.6.15-preview.2)提供主项目0.6.15 UI r2、Android 0.1.3-preview及独立的V007 PDF原件下载包；旧UI r1及原Android附件保留。下方原有验证记录保留其形成时的范围，真实设备与临床验证仍待反馈。
 
 [English](README.en.md) · [使用与部署](docs/DEPLOYMENT.md) · [验证范围](docs/VALIDATION.md) · [纸质模板](templates/README.md) · [GitHub 中英文简介](docs/GITHUB-INTRO.md)

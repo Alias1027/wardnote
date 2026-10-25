@@ -1150,5 +1150,17 @@ export default {
   "已核验外来备份；未标记当前账号已备份。": "Copia externa verificada; esta cuenta no se ha marcado como respaldada.",
   "备份文件已完成，但本机备份状态未能更新；请保留文件并重新核验。": "Los archivos de copia están completos, pero no se pudo actualizar el estado local. Conserve los archivos y vuelva a verificarlos.",
   "请求浏览器保留本机资料（仍需备份）": "Pedir al navegador que conserve los datos locales (sigue siendo necesaria una copia)",
-  "备份生成时间": "Fecha de creación de la copia"
+  "备份生成时间": "Fecha de creación de la copia",
+  "整理模式": "Modo de entrada",
+  "医生口述": "Dictado clínico",
+  "医患对话": "Conversación clínica",
+  "暂不纳入记录": "Apartado para revisión",
+  "疑似寒暄 · 请回看": "Posible charla informal · revisar",
+  "语境或人物待核对": "Revisar contexto o interlocutor",
+  "模型未采用的原文 · 请回看": "Texto no utilizado por el modelo · revisar",
+  "移至待核对候选": "Mover a propuestas para revisión",
+  "保留完整原文；社会支持、家族史等线索请回看，勿当作闲聊丢弃。": "Se conserva el texto completo. Revise las pistas sobre apoyo social y antecedentes familiares; no las descarte como charla informal.",
+  "本地对话整理仅分段待核对，不自动确认人物或临床意义。": "La clasificación local separa el texto para revisarlo; no determina la identidad ni la relevancia clínica.",
+  "需重新生成候选后再采用；原文和录音仍保留。": "Genere de nuevo las propuestas antes de usarlas. El texto original y la grabación se conservan.",
+  "提交整段录音或原文时，寒暄内容也会发送；不填入不等于未发送。": "Al enviar la grabación o transcripción completa también se envía la charla informal. Excluirla de la nota no evita su transmisión."
 };

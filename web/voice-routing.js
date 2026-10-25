@@ -2,6 +2,7 @@
 // Explicit headings suggest destinations. Nothing is inserted before review.
 import {SCHEMAS,PROBLEM_FIELDS,blankNote,classify} from './domain.js';
 import {dictionaries,translate} from './locale-core.js';
+import {inputMode,validInputMode,conversationCandidates} from './voice-conversation.js';
 import {appliedEvidence} from './voice-evidence.js';
 import {validate,RecordError} from './record-validation.js';
 
@@ -26,8 +27,10 @@ export function routeTargets(kind='daily'){
 }
 const escape=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const headingCache=new Map();
-export function routeCandidates(text,kind='daily'){
+export function routeCandidates(text,kind='daily',mode='dictation'){
  if(typeof text!=='string'||!text.trim()||text.length>200000||!['initial','daily','background'].includes(kind))throw new RecordError(400,'转写文本不正确');
+ if(!validInputMode(mode))throw new RecordError(400,'语音草稿格式无效');
+ if(mode==='conversation')return conversationCandidates(text);
  const targets=routeTargets(kind);let cached=headingCache.get(kind);
  if(!cached){const aliases=new Map();
  const add=(word,t,priority)=>{const key=word.toLocaleLowerCase();if(!aliases.has(key)||aliases.get(key).priority<priority)aliases.set(key,{t,priority});};
@@ -69,10 +72,10 @@ export function planVoiceRoute(records,draft,version,clinician,labelLanguage='zh
  const fail=message=>{throw new RecordError(409,message);};
  if(!draft||draft.type!=='voiceDraft'||draft.version!==version)fail('记录已变化，请重新载入后核对');
  if(!records.some(r=>r.id===encounterId&&r.type==='encounter'))fail('请先选择患者');
- if(!s||s.routing!==1||s.text!==d.text||s.language!==d.language||s.noteId!==(d.noteId||'')||s.sourceId!==(d.sourceId||null)||s.sourceVersion!==(d.sourceVersion||null)||!/^\d{4}-\d{2}-\d{2}$/.test(s.date))fail('原文或目标已变化，请重新生成候选');
+ if(!s||s.routing!==1||!validInputMode(d.inputMode)||inputMode(s.inputMode)!==inputMode(d.inputMode)||s.text!==d.text||s.language!==d.language||s.noteId!==(d.noteId||'')||s.sourceId!==(d.sourceId||null)||s.sourceVersion!==(d.sourceVersion||null)||!/^\d{4}-\d{2}-\d{2}$/.test(s.date))fail('原文或目标已变化，请重新生成候选');
  if(JSON.stringify(s.targets)!==JSON.stringify(targetRecords(records,encounterId,d.noteId,s.date)))fail('记录已变化，请重新载入后核对');
  const selected=records.find(r=>r.id===d.noteId),kind=selected?.data.kind||'daily',targets=routeTargets(kind),chosen=d.proposals.filter(p=>p.use===true);
- if(!chosen.length||chosen.some(p=>!targets.some(t=>t.id===p.section)||typeof p.text!=='string'||!p.text.trim()))throw new RecordError(400,'请先勾选已核对的候选内容');
+ if(!chosen.length||chosen.some(p=>p.reviewOnly===true||!targets.some(t=>t.id===p.section)||typeof p.text!=='string'||!p.text.trim()))throw new RecordError(400,'请先勾选已核对的候选内容');
  const audio=d.sourceId?records.find(r=>r.id===d.sourceId&&r.type==='recording'):null;
  if(d.sourceId&&(!audio||audio.encounterId!==encounterId||audio.version!==d.sourceVersion||audio.data.deletedAt))fail('录音来源已变化，请重新核对');
  const evidence=appliedEvidence(chosen,d.text,audio),groups=new Map(),t=label=>translate(label,labelLanguage);
@@ -90,12 +93,12 @@ export function planVoiceRoute(records,draft,version,clinician,labelLanguage='zh
   else append(['note','background'].includes(g.type)?g.data.fields:g.data,target.field);
  }
  const changes=[...groups.values()].map(g=>{
-  const entry={...d.provenance,sourceId:d.sourceId||null,sourceVersion:d.sourceVersion||null,evidence:g.evidence,reviewedAt:now,clinician};
+  const entry={...d.provenance,inputMode:inputMode(d.inputMode),sourceId:d.sourceId||null,sourceVersion:d.sourceVersion||null,evidence:g.evidence,reviewedAt:now,clinician};
   g.data.assistance=[...(g.data.assistance||[]),entry];
   if(g.type==='note'){g.data.review=null;if(audio){g.data.sources=(g.data.sources||[]).filter(x=>x.id!==audio.id);g.data.sources.push({id:audio.id,version:audio.version});}}
   if(g.type==='memo'){g.data.voiceReview={clinician,time:now};if(audio)g.data.voiceSource={id:audio.id,version:audio.version,title:audio.data.title,recordedAt:audio.createdAt,transcript:d.text};}
   if(g.type==='lab'){g.data.date=g.data.sampledAt.slice(0,10);if(g.data.sampledAt&&!Number.isFinite(Date.parse(g.data.sampledAt)))throw new RecordError(400,'检验需要项目、结果、单位、采样时间和来源');}
   validate(g.type,g.data);return {id:g.id,version:g.version,type:g.type,encounterId,data:g.data};
  });
- return {changes,draftData:{...d,proposals:[],candidateSource:null}};
+ return {changes,draftData:{...d,proposals:d.proposals.filter(p=>p.reviewOnly===true).map(p=>({...p,use:false})),candidateSource:null}};
 }

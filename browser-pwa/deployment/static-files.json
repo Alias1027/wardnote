@@ -52,6 +52,7 @@
   "app/public/translations.js",
   "app/public/update-controller.css",
   "app/public/update-controller.js",
+  "app/public/voice-conversation.js",
   "app/public/voice-evidence.js",
   "app/public/voice-routing.js",
   "app/public/worksheet-ui.js"

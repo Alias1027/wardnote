@@ -35,10 +35,10 @@ test('rendered optional policy text is escaped and unknown locale uses English',
 test('browser and Android introductions have identical text across checkout line endings and the new resource is cached',()=>{
  const root=new URL('../',import.meta.url),read=p=>readFileSync(new URL(p,root),'utf8').replace(/\r\n/g,'\n');
  assert.equal(read('web/project-introduction.js'),read('browser-pwa/app/public/project-introduction.js'));
- assert.match(read('browser-pwa/app/public/sw.js'),/^const CACHE='wardnote-shell-v0\.6\.15-r2';/);
+ assert.match(read('browser-pwa/app/public/sw.js'),/^const CACHE='wardnote-shell-v0\.6\.15-r3';/);
  assert.ok(read('browser-pwa/app/public/sw.js').includes("'/project-introduction.js'"));
  const androidVersion=JSON.parse(read('package.json')).version;
- assert.ok(read('web/android-platform.js').includes('Android '+androidVersion+' · Web 0.6.15 r2'));
+ assert.ok(read('web/android-platform.js').includes('Android '+androidVersion+' · Web 0.6.15 r3'));
  for(const prefix of ['web','browser-pwa/app/public'])assert.ok(read(prefix+'/app.js').includes('return projectIntroductionHTML(language(),'));
 });
 

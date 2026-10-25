@@ -1,5 +1,7 @@
 # WardNote
 
+Current source: **Web 0.6.15 UI r3 / Android 0.1.4-preview** adds dictation/conversation modes, held excerpts for review and visibility of source text omitted by a model. Every adopted candidate still requires clinician review. Earlier release files remain unchanged; identify new packages by their version and checksums. See [Clinical conversation and small talk](docs/VOICE-CONVERSATION.md).
+
 **Current downloads (2026-10-25):** The [combined pre-release](https://github.com/Alias1027/wardnote/releases/tag/v0.6.15-preview.2) provides main project 0.6.15 UI r2, Android 0.1.3-preview and a separate original V007 PDF bundle. UI r1 and original Android assets are retained. Existing validation records keep their historical scope; physical-device and clinical validation remain pending.
 
 [中文](README.md) · [Deployment](docs/DEPLOYMENT.md) · [Validation](docs/VALIDATION.md) · [Bilingual GitHub introduction](docs/GITHUB-INTRO.md) · [Clinical workflow boundaries](docs/CLINICAL-SCOPE.md)

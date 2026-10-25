@@ -1,3 +1,4 @@
+import {validInputMode} from './voice-conversation.js';
 import {BRIEF_FIELDS} from './patient-brief.js';
 import {isLanguage} from './languages.js';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
@@ -16,7 +17,7 @@ export function validate(type,d) {
   if(type==='note'&&(!SCHEMAS[d.kind]||d.kind==='background'||!/^\d{4}-\d{2}-\d{2}$/.test(d.date)||!d.fields||!Array.isArray(d.problems))) throw new RecordError(400,'查房记录结构不正确');
   if(type==='lab'&&(!d.name?.trim()||!String(d.value??'').trim()||!d.sampledAt||!d.unit?.trim()||!d.source?.trim())) throw new RecordError(400,'检验需要项目、结果、单位、采样时间和来源');
   if(type==='memo'&&(!d.title?.trim()||typeof d.text!=='string'))throw new RecordError(400,'备忘需要标题和内容');
-  if(type==='voiceDraft'&&(typeof d.text!=='string'||!isReportLanguage(d.language)||!Array.isArray(d.proposals)))throw new RecordError(400,'语音草稿格式无效');
+  if(type==='voiceDraft'&&(!validInputMode(d.inputMode)||typeof d.text!=='string'||!isReportLanguage(d.language)||!Array.isArray(d.proposals)))throw new RecordError(400,'语音草稿格式无效');
   if(type==='encounter'&&d.acuity&&!['stable','watch','urgent','serious','critical'].includes(d.acuity))throw new RecordError(400,'病情状态无效');
   if(type==='task'&&!d.title?.trim()) throw new RecordError(400,'待办事项不能为空');
   if(type==='summary'&&typeof d.text!=='string') throw new RecordError(400,'摘要需要文字内容');

@@ -1,5 +1,7 @@
 # Android 脱机预览版使用说明 / Android offline preview guide
 
+本轮版本 / Current revision: **Web 0.6.15 UI r3 · Android 0.1.4-preview**. [对话整理说明与本轮验证范围 / Conversation changes and validation scope](RELEASE-v0.6.15-preview.3.md). 以下旧版本验证保留原日期与范围。 Historical evidence below retains its original dates and scope.
+
 Android **0.1.2-preview / r1** · Web **0.6.15 UI r1** · 发布 / Published 2026-10-24
 
 [下载 APK / Download APK](https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk) · [发布说明 / Published release](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview) · [校验文件 / Checksums](https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/SHA256SUMS.txt)

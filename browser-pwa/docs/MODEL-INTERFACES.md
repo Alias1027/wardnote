@@ -76,3 +76,8 @@ Candidates remain unselected by default. Editing a candidate or target section c
 Medication names, amounts, units, routes, frequencies, duration and formulation must not be inferred from typical practice. Preserve active, past, proposed, stopped and withheld status, negation, uncertainty, event time and the person concerned. The review reminder is shown once per candidate group. No confidence percentage grants automatic approval; formal prescribing and EHR signing remain external.
 
 Privacy and evaluation: no-training commitments do not mean no processing by a provider. For strict institutional data residency, assess an institution-operated ASR/model service; reaching that server still requires network access. Test authorized representative audio for drug/dose/unit errors, negation, person/time attribution, omissions, unsupported additions and correction time before adopting a model or fine-tuning. Existing speech-language limits remain explicit. SOAP may later be an export view; any DART mapping requires an agreed local definition.
+
+
+## 2026-10-25 对话整理补充
+
+`inputMode` 可为 `dictation`（默认）或 `conversation`，独立于报告语言及 classify/summary 请求类型。对话模式允许 `reviewOnly: true`、空分区和空候选列表；原文依据仍须逐字匹配。未引用原文保留待回看，模式变化须重新生成候选。详见 [自然对话处理边界](VOICE-CONVERSATION.md)。

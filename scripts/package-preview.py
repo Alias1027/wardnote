@@ -18,8 +18,8 @@ def main():
                           'scope': 'Exact allowlist, path/link boundaries, credential indicators and nested fixture hashes; not an exhaustive secret-detection guarantee'}))
         return
     artifacts = root / 'artifacts'; artifacts.mkdir(exist_ok=True)
-    target = artifacts / (f'wardnote-0.6.15-ui-r2-android-{version}-source.zip' if args.revision == 'combined-1' else f'wardnote-android-{version}-source-{args.revision}.zip')
-    manifest = {'version': version, 'publicationRevision': args.revision, 'webBase': '0.6.15 UI r2', 'files': records}
+    target = artifacts / (f'wardnote-0.6.15-ui-r3-android-{version}-source.zip' if args.revision == 'combined-1' else f'wardnote-android-{version}-source-{args.revision}.zip')
+    manifest = {'version': version, 'publicationRevision': args.revision, 'webBase': '0.6.15 UI r3', 'files': records}
     with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for name, record in sorted(records.items()):
             raw = (root / name).read_bytes()

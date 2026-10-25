@@ -1150,5 +1150,17 @@ export default {
   "已核验外来备份；未标记当前账号已备份。": "Sauvegarde externe vérifiée ; ce compte n’a pas été marqué comme sauvegardé.",
   "备份文件已完成，但本机备份状态未能更新；请保留文件并重新核验。": "Les fichiers de sauvegarde sont complets, mais l’état local n’a pas pu être mis à jour. Conservez-les et vérifiez-les à nouveau.",
   "请求浏览器保留本机资料（仍需备份）": "Demander au navigateur de conserver les données locales (sauvegardes toujours nécessaires)",
-  "备份生成时间": "Date de création de la sauvegarde"
+  "备份生成时间": "Date de création de la sauvegarde",
+  "整理模式": "Mode de saisie",
+  "医生口述": "Dictée du clinicien",
+  "医患对话": "Conversation clinique",
+  "暂不纳入记录": "Mis de côté pour vérification",
+  "疑似寒暄 · 请回看": "Échange informel possible · à vérifier",
+  "语境或人物待核对": "Contexte ou interlocuteur à vérifier",
+  "模型未采用的原文 · 请回看": "Texte non utilisé par le modèle · à vérifier",
+  "移至待核对候选": "Déplacer vers les propositions à vérifier",
+  "保留完整原文；社会支持、家族史等线索请回看，勿当作闲聊丢弃。": "Le texte intégral est conservé. Vérifiez les éléments de soutien social et d’antécédents familiaux, sans les écarter comme de simples échanges informels.",
+  "本地对话整理仅分段待核对，不自动确认人物或临床意义。": "Le classement local segmente le texte pour vérification ; il ne détermine ni l’identité ni la pertinence clinique.",
+  "需重新生成候选后再采用；原文和录音仍保留。": "Régénérez les propositions avant utilisation. Le texte original et l’enregistrement sont conservés.",
+  "提交整段录音或原文时，寒暄内容也会发送；不填入不等于未发送。": "L’envoi de l’enregistrement ou du texte intégral inclut les échanges informels. Leur exclusion de la note n’empêche pas leur transmission."
 };

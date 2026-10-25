@@ -1151,5 +1151,17 @@ export const EN = {
   "已核验外来备份；未标记当前账号已备份。": "External backup verified; this account has not been marked as backed up.",
   "备份文件已完成，但本机备份状态未能更新；请保留文件并重新核验。": "Backup files are complete, but the local backup status could not be updated. Keep the files and verify them again.",
   "请求浏览器保留本机资料（仍需备份）": "Ask the browser to retain local data (backups still needed)",
-  "备份生成时间": "Backup creation time"
+  "备份生成时间": "Backup creation time",
+  "整理模式": "Input mode",
+  "医生口述": "Clinician dictation",
+  "医患对话": "Clinical conversation",
+  "暂不纳入记录": "Set aside for review",
+  "疑似寒暄 · 请回看": "Possible small talk · review",
+  "语境或人物待核对": "Context or speaker needs review",
+  "模型未采用的原文 · 请回看": "Source not used by the model · review",
+  "移至待核对候选": "Move to candidates for review",
+  "保留完整原文；社会支持、家族史等线索请回看，勿当作闲聊丢弃。": "The full source is retained. Review clues about social support and family history; do not discard them as small talk.",
+  "本地对话整理仅分段待核对，不自动确认人物或临床意义。": "Local conversation routing separates text for review; it does not determine speaker identity or clinical relevance.",
+  "需重新生成候选后再采用；原文和录音仍保留。": "Generate candidates again before use. The source text and recording are retained.",
+  "提交整段录音或原文时，寒暄内容也会发送；不填入不等于未发送。": "Submitting the full recording or transcript also sends small talk. Excluding it from a note does not prevent transmission."
 };

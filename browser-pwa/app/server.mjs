@@ -146,9 +146,9 @@ function createWorkspace(options={}) {
         if(path==='/api/voice-apply'&&req.method==='POST'){
           const d=await body(req),draft=mustGet(d.draftId,'voiceDraft'),note=mustGet(d.noteId,'note'),s=draft.data.candidateSource;
           if(d.draftVersion!==draft.version||d.noteVersion!==note.version)throw new AppError(409,'记录已变化，请重新载入后核对');
-          if(draft.encounterId!==note.encounterId||draft.data.noteId!==note.id||!s||s.noteId!==note.id||s.text!==draft.data.text||s.language!==draft.data.language)throw new AppError(400,'候选与目标记录不匹配');
+          if(draft.encounterId!==note.encounterId||draft.data.noteId!==note.id||!s||(draft.data.inputMode||'dictation')!==(s.inputMode||'dictation')||s.noteId!==note.id||s.text!==draft.data.text||s.language!==draft.data.language)throw new AppError(400,'候选与目标记录不匹配');
           const chosen=draft.data.proposals.filter(p=>p.use===true),keys=new Set(SCHEMAS[note.data.kind].map(([k])=>k));
-          if(!chosen.length||chosen.some(p=>!keys.has(p.section)||typeof p.text!=='string'||!p.text.trim()))throw new AppError(400,'请先勾选已核对的候选内容');
+          if(!chosen.length||chosen.some(p=>p.reviewOnly===true||!keys.has(p.section)||typeof p.text!=='string'||!p.text.trim()))throw new AppError(400,'请先勾选已核对的候选内容');
           const data=structuredClone(note.data);for(const p of chosen)data.fields[p.section]=[data.fields[p.section],p.text].filter(Boolean).join('\n');
           if(draft.data.sourceId){const source=mustGet(draft.data.sourceId,'recording');if(source.encounterId!==note.encounterId||source.version!==draft.data.sourceVersion||source.data.deletedAt)throw new AppError(409,'录音来源已变化，请重新核对');data.sources=(data.sources||[]).filter(s=>s.id!==source.id);data.sources.push({id:source.id,version:source.version});}
           let evidence;try{evidence=appliedEvidence(chosen,draft.data.text,draft.data.sourceId?vault.get(draft.data.sourceId):null);}catch{throw new AppError(400,'候选缺少有效原文依据，请重新生成');}
@@ -238,7 +238,7 @@ function createWorkspace(options={}) {
         throw new AppError(404,'接口不存在');
       }
       if(req.method!=='GET'&&req.method!=='HEAD')throw new AppError(405,'不支持此方法');
-      const allowed=['/project-introduction.js','/easy-start.js','/easy-start.css','/deployment-profile.js','/deployment-policy.js','/capture-storage.js','/device-readiness.js','/device-readiness-ui.js','/region-settings.js','/region-ui.js','/update-controller.css','/update-controller.js','/backup-segments.js','/continuity.js','/continuity-ui.js','/voice-routing.js','/project-info.js','/accounts.js','/patient-brief.js','/patient-brief-ui.js',...localeAssets,'/languages.js','/locale-core.js','/','/index.html','/app.js','/domain.js','/i18n.js','/translations.js','/worksheet-ui.js','/voice-evidence.js','/panel-layout.js','/offline-store.js','/offline-api.js','/offline-ui.js','/offline-sync.js','/sync-core.js','/record-validation.js','/style.css','/sw.js','/manifest.webmanifest','/icons/icon.svg','/icons/icon-192.png','/icons/icon-512.png'];
+      const allowed=['/voice-conversation.js','/project-introduction.js','/easy-start.js','/easy-start.css','/deployment-profile.js','/deployment-policy.js','/capture-storage.js','/device-readiness.js','/device-readiness-ui.js','/region-settings.js','/region-ui.js','/update-controller.css','/update-controller.js','/backup-segments.js','/continuity.js','/continuity-ui.js','/voice-routing.js','/project-info.js','/accounts.js','/patient-brief.js','/patient-brief-ui.js',...localeAssets,'/languages.js','/locale-core.js','/','/index.html','/app.js','/domain.js','/i18n.js','/translations.js','/worksheet-ui.js','/voice-evidence.js','/panel-layout.js','/offline-store.js','/offline-api.js','/offline-ui.js','/offline-sync.js','/sync-core.js','/record-validation.js','/style.css','/sw.js','/manifest.webmanifest','/icons/icon.svg','/icons/icon-192.png','/icons/icon-512.png'];
       if(!allowed.includes(path))throw new AppError(404,'页面不存在');
       const file=join(HERE,'public',path==='/'?'index.html':path.slice(1));
       res.setHeader('Content-Type',types.get(extname(file))||'application/octet-stream');if(path==='/sw.js')res.setHeader('Service-Worker-Allowed','/');
