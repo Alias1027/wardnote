@@ -32,61 +32,56 @@ A lightweight, multilingual PWA for ward-round notes and patient follow-up, with
 
 采用自定义个人非商业源码可见许可。**机构及商业用途须事先取得 Junhui Liu M.D. 的书面授权**；联系 [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com) 或发布后的官方仓库。既有旧许可权利保留。欢迎许可范围内的反馈与贡献，外部贡献纳入前需明确授权。详见[许可政策](../LICENSES/README.md)。
 
-## README introduction · English
+## Complete approved introduction / 完整项目简介
 
-**WardNote is a source-available ward-round documentation tool for resident physicians and clinical educators.** Built from structured initial-history and inpatient-management worksheets, it brings patient history, daily reviews, problem-based assessment, result trends and unfinished tasks into one patient workspace, connecting previous observations with follow-up plans.
+2026-10-25 · UI r2
 
-Offline by default, with encrypted device records/audio, reopen recovery and manual selective sync. Personal and institutional modes are selected at sign-in; changing mode requires sign-out, and each connection needs separate password authorization. Event recipients are unconfigured by default.
+## 项目简介
 
-Text entry is the primary workflow. Complete memo tools sit below the patient brief; Voice and Tasks use collapsible floating panels. Transcript classification and model-assisted drafts require human review before insertion. Summaries retain source versions, and interface changes never rewrite clinical source text.
+WardNote 是一款便携式临床记录与工作备忘工具，旨在为初诊评估、住院查房及患者的持续追踪提供便利。本项目尤其关注临床实习生、住院医师及其他低年资医生的学习与工作需要，支持临床思维和患者管理能力的培养，并可辅助临床决策的复盘与学习。
 
-- **Continuity:** initial history and background, daily review, clinical course, and tests/results.
-- **Reasoning and follow-up:** evidence, alternatives, primary plans, escalation conditions, tasks and optional decision reflection.
-- **Eight interface languages:** Chinese, English, French, Spanish, Russian, Arabic, Hindi and Urdu, with right-to-left Arabic/Urdu layouts.
-- **Easy access:** the separate Windows x64 offline package includes a verified Node runtime; extract and launch. The small source package requires Node.js 24+. Direct browser access, a PWA entry point and offline instructions are included. Phones still need trusted HTTPS for initial preparation; physical-device installation and standalone PWA validation remain pending. See [getting started in eight languages](GETTING-STARTED.md).
-- **Controlled updates:** automatic and manual checks request same-origin program files; an update is offered before switching, with successful saving and completed recording/operations required. Updating does not enable data sync.
-- **Infrastructure choices:** local device/offline checks, recording-capacity protection, multipart backup and verification status, manual-migration guidance and regional display/print preferences. No EHR or continuous network is required; data do not synchronize automatically and source text stays unchanged. See [scope and limits](INFRASTRUCTURE.md).
-- **Optional integrations:** configurable speech and text-model services produce reviewable candidates; adapter availability does not establish recognition accuracy.
+本项目强调独立使用、文字优先与默认脱机。完成相应平台的安装及脱机准备后，核心记录功能无需接入医院电子病历系统（EMR/HIS）、云端模型或持续联网。结合多语言界面、本机加密保存及可迁移备份，本项目旨在降低使用与部署门槛，兼顾不同国家和地区，尤其是网络不稳定、医疗信息化基础薄弱及医疗资源有限环境的使用需求。具体设备兼容性、低配置运行表现及实际临床适用性仍待进一步验证。
 
-The current **v0.6.15 pre-release** is intended for synthetic-case workflow evaluation and source collaboration within the license terms. New translations await native clinical review. Hospital deployment, real speech accuracy and educational outcomes require further validation. The product scope remains portable ward-round notes and patient follow-up rather than a full EMR.
+本项目在设计过程中，参考了以下制度、标准与指南中的相关原则：中国《医疗质量安全核心制度要点》（十八项核心制度）；美国 CMS 医院参与条件（CoPs）、Joint Commission 国家患者安全目标（NPSGs）及其自 2026 年起适用于医院和关键可及医院认证项目的后续框架——国家绩效目标（NPGs），以及 ACGME 住院医师培训通用要求（Common Program Requirements, CPR）；英国 NICE CG50、NHS England 发布的 NatSSIPs 及 CPOC 发布的修订版 NatSSIPs 2；德国联邦联合委员会（G-BA）的质量管理指令（QM-RL）。
 
-This release builds on safe updates and encrypted segmented backup/verification with support for differing infrastructure conditions, retaining legacy restore and data-preservation boundaries; see the [actual rehearsal scope](VALIDATION.md). Physical-device and user-experience checks are planned as voluntary synthetic-case feedback after authorized publication. No publication occurs in this preparation.
+## 特别鸣谢
 
-The deploying institution owns individual identity authorization, access control and audit governance; these are outside the product's administration scope. Pseudonyms and minimum necessary identifiers can reduce exposure but do not alone establish de-identification.
+衷心感谢我目前的住院医师规范化培训单位——陕西省人民医院，以及我的导师 Dr. 雷琦（MD, PhD）对本项目的支持。
 
-A custom personal noncommercial source-available license applies. **Institutional and commercial uses require prior written permission from Junhui Liu M.D.** Contact [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com) or the official repository once published. Earlier granted rights remain unaffected. Feedback and contributions within the permitted scope are welcome; contribution rights must be agreed before inclusion. See the [licensing policy](../LICENSES/README.md).
+感谢 Dr. June Chunqiu Hou（MD）、Dr. Andrew Fagelman（MD）和 Dr. Laszlo Mechtler（MD）等师长在我赴美临床学习期间给予的悉心指导。
 
-## Suggested repository topics
+同时，感谢 Dr. Charles Jiang（MD）的专栏文章为本项目临床决策复盘学习页的设计提供启发。
 
-`ward-rounds` · `clinical-documentation` · `patient-follow-up` · `medical-education` · `pwa` · `multilingual` · `self-hosted` · `nodejs`
+## 用途边界与版权
 
-Use the short descriptions in the About field and choose the appropriate introduction for the README. Do not add CI-passing, clinical-validation or compliance badges without corresponding evidence. See [validation](VALIDATION.md), [localization](LOCALIZATION.md) and [release preparation](RELEASING.md).
+本项目用于辅助临床记录、工作备忘与教学，不能替代医院或机构的正式病历、医嘱、管理系统及其管理职责，也不能替代医务人员的专业判断。相关诊疗、签署、审批及制度执行，仍须遵循当地要求与所在机构的正式流程。
 
+© Junhui Liu M.D. 版权所有。 使用及再分发须遵循项目随附的许可条款。
 
-## 参考来源、用途与版权 · Reference sources, purpose and copyright
+反馈与支持： [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)
 
-本工具参考相关框架中的部分原则，用于辅助初诊评估和住院患者管理，并支持临床思维与患者管理能力的培养和教学；不能替代医院／机构的正式病历、医嘱、管理系统或管理职责。
+---
 
-[中国国家卫生健康委员会：医疗质量安全核心制度要点（十八项核心制度）](https://www.nhc.gov.cn/zwgk/jdjd/201804/5dfb30387c74412194c7f05b878d4f87.shtml)；[美国 CMS：医院参与条件](https://www.cms.gov/medicare/health-safety-standards/conditions-coverage-participation/hospitals)；[美国 Joint Commission：国家患者安全目标／国家绩效目标](https://www.jointcommission.org/en-us/standards/national-performance-goals)；[美国 ACGME：住院医师培训通用项目要求](https://www.acgme.org/programs-and-institutions/programs/common-program-requirements/)；[英国 NICE：住院急性病成人患者病情恶化的识别与响应](https://www.nice.org.uk/guidance/CG50/chapter/recommendations)；[英国 NHS England：侵入性操作国家安全标准（原版）](https://www.england.nhs.uk/patient-safety/natssips/)；[英国 CPOC：侵入性操作国家安全标准（第二版）](https://www.cpoc.org.uk/guidelines-and-resources/guidelines/national-safety-standards-invasive-procedures-natssips)；[德国 G-BA：质量管理指令](https://www.g-ba.de/richtlinien/87/)。
+## About the Project
 
-版本说明：Joint Commission 医院及关键准入医院项目的 NPSG 章节自2026年1月1日起由 NPG 取代；NHS England 于2015年发布 NatSSIPs，CPOC 于2023年发布 NatSSIPs 2。 参考这些框架不代表获得相关机构认可、认证或满足全部要求。
+WardNote is a portable clinical note-taking and work memo tool designed to support initial assessment, inpatient ward rounds, and longitudinal patient follow-up. With particular attention to the learning and practical needs of medical students on clinical rotations, residents, and other early-career physicians, it aims to support the development of clinical reasoning and patient management skills, as well as reflection on and learning from clinical decisions.
 
-© Junhui Liu M.D.
+The project prioritizes independent use, text-based documentation, and offline operation by default. Once installation and offline preparation for the relevant platform are complete, core note-taking functions do not require integration with hospital electronic medical record or hospital information systems (EMR/HIS), cloud models, or a continuous internet connection. Through multilingual interfaces, encrypted local storage, and portable backups, WardNote aims to reduce barriers to use and deployment across countries and regions, with particular consideration for settings with unreliable connectivity, limited health information infrastructure, or constrained healthcare resources. Device compatibility, performance on devices with limited computing resources, and suitability for clinical use require further evaluation.
 
-版权署名不改变现有许可：个人非商业使用依项目许可；机构及商业用途须事先取得作者书面授权。既有合法授权及第三方权利保留。
+Its design draws on relevant principles from the following policies, standards, and guidelines: China’s Key Provisions of the Core Systems for Medical Quality and Safety (the 18 core systems); the US Centers for Medicare & Medicaid Services (CMS) Conditions of Participation for Hospitals (CoPs), Joint Commission National Patient Safety Goals (NPSGs) and their successor framework for the Hospital and Critical Access Hospital accreditation programs from 2026—the National Performance Goals (NPGs)—and the ACGME Common Program Requirements for Residency; the UK’s NICE guideline CG50, the original National Safety Standards for Invasive Procedures (NatSSIPs) published by NHS England, and the revised NatSSIPs 2 published by the Centre for Perioperative Care (CPOC); and Germany’s Federal Joint Committee (G-BA) Quality Management Directive (Qualitätsmanagement-Richtlinie, QM-RL).
 
-Drawing on selected principles from the referenced frameworks, this tool supports initial assessment, inpatient care, and the learning and teaching of clinical reasoning and patient management. It does not replace official hospital or institutional records, orders, management systems or governance responsibilities.
+## Acknowledgments
 
-[China’s National Health Commission: 18 core medical quality and safety systems](https://www.nhc.gov.cn/zwgk/jdjd/201804/5dfb30387c74412194c7f05b878d4f87.shtml); [US CMS: Conditions of Participation for Hospitals](https://www.cms.gov/medicare/health-safety-standards/conditions-coverage-participation/hospitals); [US Joint Commission: National Patient Safety Goals / National Performance Goals](https://www.jointcommission.org/en-us/standards/national-performance-goals); [US ACGME: Common Program Requirements for Residency](https://www.acgme.org/programs-and-institutions/programs/common-program-requirements/); [UK NICE: Acutely ill adults in hospital — recognising and responding to deterioration](https://www.nice.org.uk/guidance/CG50/chapter/recommendations); [UK NHS England: National Safety Standards for Invasive Procedures (original edition)](https://www.england.nhs.uk/patient-safety/natssips/); [UK CPOC: National Safety Standards for Invasive Procedures (second edition)](https://www.cpoc.org.uk/guidelines-and-resources/guidelines/national-safety-standards-invasive-procedures-natssips); [Germany’s G-BA: Quality Management Directive](https://www.g-ba.de/richtlinien/87/).
+I am grateful to Shaanxi Provincial People’s Hospital, where I am currently undertaking residency training, and to my mentor, Dr. Qi Lei (MD, PhD), for their support of this project.
 
-Edition note: the NPG chapter replaced NPSGs for Joint Commission hospital and critical access hospital programs on 1 January 2026. NHS England published NatSSIPs in 2015; CPOC published NatSSIPs 2 in 2023. Referencing these frameworks does not imply institutional endorsement, accreditation or compliance with all requirements.
+I sincerely thank Dr. June Chunqiu Hou (MD), Dr. Andrew Fagelman (MD), and Dr. Laszlo Mechtler (MD) for their thoughtful teaching and guidance during my clinical experiences in the United States.
 
-© Junhui Liu M.D.
+The design of the clinical decision reflection worksheet was also inspired by the published columns of Dr. Charles Jiang (MD).
 
-Copyright attribution does not change the existing license: personal noncommercial use is subject to the project license; institutional and commercial uses require the author’s prior written permission. Earlier lawful grants and third-party rights remain unaffected.
+## Scope and Copyright
 
-[八语言一致声明 / Eight-language notice](PROJECT-NOTICE.md) · [详细职责范围 / Detailed clinical scope](CLINICAL-SCOPE.md)
+WardNote supports clinical note-taking, work memos, and education. It does not replace official medical records, medical orders, institutional management systems or responsibilities, or the professional judgment of healthcare practitioners. Clinical care, signatures, approvals, and implementation of institutional policies must continue to follow applicable local requirements and formal institutional procedures.
 
-独立使用优先、外部连接可选；本地变化对照与经人工核对的 SBAR 交接预览减轻重复记录。
+© Junhui Liu M.D. All rights reserved. Use and redistribution are subject to the accompanying project license.
 
-Independent use first, optional integrations: local record comparison and clinician-reviewed SBAR previews reduce repeated documentation.
+Feedback and support: [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)

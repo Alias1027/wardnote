@@ -23,7 +23,8 @@ const checks=[],errors=[],external=[],password='synthetic-update-password';let b
 const mark=s=>{checks.push(s);console.log('PASS '+s);};
 const unlock=async()=>{await page.locator('#username').fill('test-user');await page.locator('#password').fill(password);await page.locator('#auth-form button[type=submit]').click();await page.locator('.shell').waitFor();};
 const update=async()=>{await page.evaluate(async()=>{const registration=await navigator.serviceWorker.getRegistration();await registration.update();});};
-const checkManually=async()=>{await page.locator('[data-check-update]').first().click();await page.locator('#update-check-status').waitFor();};
+// A fast completed check can replace its transient status with the ready Apply action.
+const checkManually=async()=>{await page.locator('[data-check-update]').first().click();await page.locator('#update-check-status,#update-apply').first().waitFor();};
 // Explicitly await asynchronous state predicates; do not treat their Promise as readiness.
 const until=async(fn,arg,target=page)=>{const deadline=Date.now()+30000;do{if(await target.evaluate(fn,arg))return;await target.waitForTimeout(100);}while(Date.now()<deadline);throw new Error('Synthetic asynchronous state predicate did not become true within 30 seconds');};
 const snapshot=async()=>page.evaluate(async()=>{const {device}=await import('/offline-api.js'),state=await device.state();const audio=[];for(const r of state.records.filter(r=>r.type==='recording'&&r.data.finalized)){const bytes=await(await device.audio(r.id)).arrayBuffer(),digest=await crypto.subtle.digest('SHA-256',bytes);audio.push({id:r.id,bytes:bytes.byteLength,hash:[...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,'0')).join('')});}return {records:state.records,audio,allowed:await device.allowed()};});

@@ -4,7 +4,7 @@
 
 A lightweight, portable ward-round worksheet for daily notes and patient follow-up. Text entry is the primary workflow; recording is optional assistance.
 
-**v0.6.15 — initial pre-release, including UI r1.** The UI supports Chinese, English, Spanish, French, Russian, Arabic, Hindi and Urdu, including right-to-left Arabic/Urdu layouts. Initial history and daily review retain the paired V006 Chinese b / English V006b worksheet structure. The public package includes the English paper templates. Interface switching preserves clinical source text; report language is independent. New translations await native clinical review, and speech capabilities require separate validation: see [language support](docs/LOCALIZATION.md). Start with synthetic cases. Hospital production deployment, clinical speech accuracy and educational outcomes have not been validated.
+**v0.6.15 UI r2 — introduction/help copy update; published UI r1 assets are preserved.** The UI supports Chinese, English, Spanish, French, Russian, Arabic, Hindi and Urdu, including right-to-left Arabic/Urdu layouts. Initial history and daily review retain the paired V006 Chinese b / English V006b worksheet structure. The public package includes the English paper templates. Interface switching preserves clinical source text; report language is independent. New translations await native clinical review, and speech capabilities require separate validation: see [language support](docs/LOCALIZATION.md). Start with synthetic cases. Hospital production deployment, clinical speech accuracy and educational outcomes have not been validated.
 
 ### Three entry points (0.6.15)
 
@@ -167,3 +167,32 @@ Bed-ordered patient switching, shared unfinished tasks in handoff, and direct na
 
 
 Optional transcription, model, synchronization and external integration features described here require the full backend edition and their separate configuration/authorization. The static PWA edition has no such APIs.
+
+
+---
+
+2026-10-25: UI r2 updates the project introduction and acknowledgments; published UI r1 downloads are preserved.
+
+## About the Project
+
+WardNote is a portable clinical note-taking and work memo tool designed to support initial assessment, inpatient ward rounds, and longitudinal patient follow-up. With particular attention to the learning and practical needs of medical students on clinical rotations, residents, and other early-career physicians, it aims to support the development of clinical reasoning and patient management skills, as well as reflection on and learning from clinical decisions.
+
+The project prioritizes independent use, text-based documentation, and offline operation by default. Once installation and offline preparation for the relevant platform are complete, core note-taking functions do not require integration with hospital electronic medical record or hospital information systems (EMR/HIS), cloud models, or a continuous internet connection. Through multilingual interfaces, encrypted local storage, and portable backups, WardNote aims to reduce barriers to use and deployment across countries and regions, with particular consideration for settings with unreliable connectivity, limited health information infrastructure, or constrained healthcare resources. Device compatibility, performance on devices with limited computing resources, and suitability for clinical use require further evaluation.
+
+Its design draws on relevant principles from the following policies, standards, and guidelines: China’s Key Provisions of the Core Systems for Medical Quality and Safety (the 18 core systems); the US Centers for Medicare & Medicaid Services (CMS) Conditions of Participation for Hospitals (CoPs), Joint Commission National Patient Safety Goals (NPSGs) and their successor framework for the Hospital and Critical Access Hospital accreditation programs from 2026—the National Performance Goals (NPGs)—and the ACGME Common Program Requirements for Residency; the UK’s NICE guideline CG50, the original National Safety Standards for Invasive Procedures (NatSSIPs) published by NHS England, and the revised NatSSIPs 2 published by the Centre for Perioperative Care (CPOC); and Germany’s Federal Joint Committee (G-BA) Quality Management Directive (Qualitätsmanagement-Richtlinie, QM-RL).
+
+## Acknowledgments
+
+I am grateful to Shaanxi Provincial People’s Hospital, where I am currently undertaking residency training, and to my mentor, Dr. Qi Lei (MD, PhD), for their support of this project.
+
+I sincerely thank Dr. June Chunqiu Hou (MD), Dr. Andrew Fagelman (MD), and Dr. Laszlo Mechtler (MD) for their thoughtful teaching and guidance during my clinical experiences in the United States.
+
+The design of the clinical decision reflection worksheet was also inspired by the published columns of Dr. Charles Jiang (MD).
+
+## Scope and Copyright
+
+WardNote supports clinical note-taking, work memos, and education. It does not replace official medical records, medical orders, institutional management systems or responsibilities, or the professional judgment of healthcare practitioners. Clinical care, signatures, approvals, and implementation of institutional policies must continue to follow applicable local requirements and formal institutional procedures.
+
+© Junhui Liu M.D. All rights reserved. Use and redistribution are subject to the accompanying project license.
+
+Feedback and support: [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)

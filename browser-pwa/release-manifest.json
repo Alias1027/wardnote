@@ -1,6 +1,7 @@
 {
   "format": "wardnote-source/1",
   "version": "0.6.15",
+  "uiRevision": "r2",
   "files": [
     {
       "path": ".editorconfig",
@@ -79,13 +80,13 @@
     },
     {
       "path": "README.en.md",
-      "size": 19997,
-      "sha256": "46d3202d21e314c9aa19c316316a56968baddb904e1cd3e6a906e34649c474c7"
+      "size": 23560,
+      "sha256": "cfcc02a96dae45c9470f9445403c1c3d24e183f5eb56d72b5b6a32b09dd1774a"
     },
     {
       "path": "README.md",
-      "size": 19031,
-      "sha256": "5f5b7d87ecafff43cca74eaa54b8f2e977beb9cf53f1feb75c20d76cca3e81a7"
+      "size": 21638,
+      "sha256": "cc67b54ceb78cfb22ada38d7fc4c36cfff7c4698713d04b7e56bf2548505b65d"
     },
     {
       "path": "SECURITY.md",
@@ -144,8 +145,8 @@
     },
     {
       "path": "app/public/app.js",
-      "size": 120597,
-      "sha256": "9caea1aa8feb88e45d4f7eb28c68f0736f1badb60d99a91c7176f221ec4accbb"
+      "size": 120387,
+      "sha256": "f1c35d3a867596ff7b5d6bf2378863540312b3412da106948a3857f87363d0f3"
     },
     {
       "path": "app/public/backup-segments.js",
@@ -353,6 +354,11 @@
       "sha256": "a0653e96d627ab45cf79d94901e5cdec0e39d6f105f058b85cd004a82560cee9"
     },
     {
+      "path": "app/public/project-introduction.js",
+      "size": 35596,
+      "sha256": "991890abbd26e8bc72e1c542cd33f0b743d00a9d3ba6654609b0fc3623caddba"
+    },
+    {
       "path": "app/public/record-validation.js",
       "size": 2627,
       "sha256": "b966eb21e71bfea1f4cf93093496f781a12fb193eaa7e6669e841fba7ebee61b"
@@ -374,8 +380,8 @@
     },
     {
       "path": "app/public/sw.js",
-      "size": 8161,
-      "sha256": "0fc9345bee117b6a795469c1b29bd052e5375cb9ff6ef02788ad1d29d2898b3b"
+      "size": 8188,
+      "sha256": "ee07f0b81b71100a33fa4ab5bf435ec9b6e7bff92ade66a56e156286a5bdd8ce"
     },
     {
       "path": "app/public/sync-core.js",
@@ -419,8 +425,8 @@
     },
     {
       "path": "app/server.mjs",
-      "size": 32304,
-      "sha256": "b9bd1675fad362c97d1a0e67e6accea350bdaab84679c1fcdf33577f3dc9cb08"
+      "size": 32331,
+      "sha256": "68684eeca4267d4229b24c632e0b90bfac3d456e111d54607ef0139cca06457a"
     },
     {
       "path": "app/tests/accounts-browser.mjs",
@@ -539,8 +545,8 @@
     },
     {
       "path": "app/tests/localization-browser.mjs",
-      "size": 17364,
-      "sha256": "39dcbd3b57a1574bbed5dedbaffb9248991d5cd9ca0d9f3203507f7e8d4a4b1c"
+      "size": 17831,
+      "sha256": "c5e3752d6abd3df6b5e1b92bddcea0e3840c6ef80f77dbba14d410ccd291f545"
     },
     {
       "path": "app/tests/localization.test.mjs",
@@ -559,8 +565,8 @@
     },
     {
       "path": "app/tests/offline-browser.mjs",
-      "size": 16309,
-      "sha256": "6b33090b5924d73fcf7fd35f937ef37d30e7686c5a8beac9c4d6003de4d6393c"
+      "size": 16325,
+      "sha256": "20cfff193268dbb0c2953e89c0ac6f24ad9f67b01644427e094c369eb813a1b6"
     },
     {
       "path": "app/tests/offline-sync.test.mjs",
@@ -576,6 +582,11 @@
       "path": "app/tests/portable.test.mjs",
       "size": 7736,
       "sha256": "1c76823bb9b843218a27c3fe7079e81fdf1464c5ee757d9ae8421b711cba71ef"
+    },
+    {
+      "path": "app/tests/project-introduction.test.mjs",
+      "size": 1088,
+      "sha256": "53dd22faa5785beecd0bd24a80276475ae0ff4ec596620861787d2f31b9d6b78"
     },
     {
       "path": "app/tests/readiness-browser.mjs",
@@ -604,8 +615,8 @@
     },
     {
       "path": "app/tests/update-browser.mjs",
-      "size": 25953,
-      "sha256": "6defa7f1975809274b60260911279c475bb665fcab50f56d31d235b2fef74049"
+      "size": 26067,
+      "sha256": "675db2cd3c2b2a7a27482c9ed7d4b6b6ba25f3de5ca68e6d4e5259dc48ba9b4e"
     },
     {
       "path": "app/tests/update.test.mjs",
@@ -664,8 +675,8 @@
     },
     {
       "path": "deployment/static-files.json",
-      "size": 1873,
-      "sha256": "a68b8b963fd155bcd9f1ac8d335a64dba85ffa4f489ba0bfa369f050e2a83b92"
+      "size": 1914,
+      "sha256": "86397aa04d66f1c52ca418ccc660a6400cc916bbc8a45a916b6b404c30ec278b"
     },
     {
       "path": "deployment/static-headers.json",
@@ -714,13 +725,18 @@
     },
     {
       "path": "docs/GITHUB-INTRO.md",
-      "size": 12935,
-      "sha256": "1e2b061d35151f7db7d534c46d18f32eed86e78f437e33da23f34e2ead9f1db2"
+      "size": 9797,
+      "sha256": "b5f85f86495f1da5d22d8f3ac5f6cca01d4e45a08dc2fc38ff18bdc9001ad663"
     },
     {
       "path": "docs/INFRASTRUCTURE.md",
       "size": 13917,
       "sha256": "e58a82842dc426f09a752cbf39e2e6c193b49a7f533ee23c8274551c7717fb92"
+    },
+    {
+      "path": "docs/INTRODUCTION-UPDATE-20261025.md",
+      "size": 4954,
+      "sha256": "0bd8ad8d2087b0799834ef418aae96f1378c877ebc00e147c91de54fa9e9d0a4"
     },
     {
       "path": "docs/LOCALIZATION.md",
@@ -743,9 +759,14 @@
       "sha256": "43ab141731a524fe19137b200385d7b13532a3df04d19f916fb5f95bb8c5e17e"
     },
     {
+      "path": "docs/PROJECT-INTRODUCTION.md",
+      "size": 6021,
+      "sha256": "857f6eb0dd7c4a96fb54ca13156e34e58da521a5ac73201b8b49b84a03372986"
+    },
+    {
       "path": "docs/PROJECT-NOTICE.md",
-      "size": 24452,
-      "sha256": "97149dfdfbaed35c506eba79e5bc929580985fcdb29334c43eea62e0d34d2485"
+      "size": 24794,
+      "sha256": "ecf3b00c3ee8b9a43d9e13f1919d5d95e5a8f903c7a5b7da4c105326ec374fe5"
     },
     {
       "path": "docs/RELEASE-CHECKLIST.md",
@@ -844,8 +865,8 @@
     },
     {
       "path": "scripts/release-files.json",
-      "size": 5936,
-      "sha256": "65aa3e2c22cc63c1ee7362d22407013807efe2468da5b95c717c315765c216cc"
+      "size": 6101,
+      "sha256": "085a87b911b77bc3c70f7ccac5c3acc77d4dcd93129dc759bd37456f0bf2bc63"
     },
     {
       "path": "scripts/release.mjs",

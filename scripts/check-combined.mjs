@@ -9,8 +9,8 @@ const root=resolve(import.meta.dirname,'..');
 const read=p=>readFileSync(resolve(root,p),'utf8').replace(/\r\n/g,'\n');
 const names=JSON.parse(read('scripts/public-files.json')).files;
 const publicSet=new Set(names);
-assert.equal(verifyManifest(resolve(root,'browser-pwa')),182);
-assert.equal(createHash('sha256').update(readFileSync(resolve(root,'browser-pwa/release-manifest.json'))).digest('hex'),'c87c38c53254d6318fb183564dcc9bde664254b3b2cb11267f66b3d5918e01db');
+assert.equal(verifyManifest(resolve(root,'browser-pwa')),186);
+assert.equal(createHash('sha256').update(readFileSync(resolve(root,'browser-pwa/release-manifest.json'))).digest('hex'),'c2260672f66dc05895f957ccf856d0fd569e292c5591c91779438f135a341bca');
 
 let linkCount=0;
 for(const name of names.filter(n=>n.endsWith('.md'))){
@@ -34,4 +34,4 @@ assert.equal((workflow.match(/working-directory: browser-pwa\/app/g)||[]).length
 assert.ok(workflow.includes('os: [ubuntu-latest, windows-latest, macos-latest]'));
 for(const command of ['npm test','node scripts/release.mjs --check','node scripts/release.mjs --zip','node scripts/test-package.mjs','npm run test:browser'])assert.ok(workflow.includes('run: '+command));
 assert.doesNotMatch(workflow,/secrets\.|gh release|git push/);
-console.log(JSON.stringify({status:'passed',mainSourceFiles:182,originalFilesByteIdentical:180,nonRuntimeChanges:2,publicFiles:names.length,relativeMarkdownLinks:linkCount,bilingualDownloadDestinations:'equal',licenseTerms:'equal',scope:'Combined source layout, frozen bytes, links and workflow paths; not device or clinical validation'}));
+console.log(JSON.stringify({status:'passed',mainSourceFiles:186,mainUIRevision:'r2',historicalReleaseAssets:'preserved' ,publicFiles:names.length,relativeMarkdownLinks:linkCount,bilingualDownloadDestinations:'equal',licenseTerms:'equal',scope:'Combined source manifests, full bilingual copy, links and workflow paths; not device or clinical validation'}));

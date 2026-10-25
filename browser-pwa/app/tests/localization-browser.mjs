@@ -1,4 +1,5 @@
 import {PROJECT_NOTICE,PROJECT_REFERENCES,START_GUIDE} from '../public/project-info.js';
+import {PROJECT_INTRODUCTIONS} from '../public/project-introduction.js';
 import {installLocalProbe,localJson,seed,localRecord,reloadAndUnlock,failDeviceWrites,authorizeConnection} from './browser-support.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 // Entirely isolated synthetic workspace: no patient data or external model requests.
@@ -81,9 +82,12 @@ try{
   await page.locator('[data-action=summary]').click();assert.equal(await page.locator('#m-language option').count(),9);assert.equal(await page.locator('#m-language').inputValue(),'original');await audit(code,'summary dialog');await page.locator('#modal [data-action=close-modal]').first().click();
   await tab('learning');await audit(code,'reflection');await nav('data');await audit(code,'data');await nav('settings');await audit(code,'settings');await checkGuide(code,'start-guide');
   const notice=page.locator('#project-notice');await notice.scrollIntoViewIfNeeded();
-  assert.ok((await notice.textContent()).includes(translate(PROJECT_NOTICE.purpose,code)));
+  const introduction=PROJECT_INTRODUCTIONS[code];
+  for(const key of ['purpose','infrastructure','framework','scope','license','email'])assert.ok((await notice.textContent()).includes(introduction[key]),code+':'+key);
+  assert.deepEqual(await notice.locator('.project-acknowledgments p').allTextContents(),introduction.acknowledgments);
+  assert.equal(await notice.locator('.project-acknowledgments a,.project-acknowledgments details,.project-acknowledgments button').count(),0);
   assert.ok((await notice.textContent()).includes(translate(PROJECT_NOTICE.license,code)));
-  assert.equal(await notice.locator('.project-copyright').textContent(),'© Junhui Liu M.D.');
+  assert.equal(await notice.locator('.project-copyright').textContent(),introduction.copyright);
   assert.equal(await notice.locator('a').count(),0);
   await notice.locator('.project-sources > summary').click();
   assert.deepEqual(await notice.locator('.reference-address').allTextContents(),PROJECT_REFERENCES.map(r=>r.url));

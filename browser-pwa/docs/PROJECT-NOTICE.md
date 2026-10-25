@@ -1,5 +1,7 @@
 # WardNote reference sources, purpose and copyright
 
+2026-10-25：完整项目简介及纯文本鸣谢见 [PROJECT-INTRODUCTION](PROJECT-INTRODUCTION.md)。下列各语言官方来源和许可边界继续适用。 / See the complete introduction and plain-text acknowledgments in [PROJECT-INTRODUCTION](PROJECT-INTRODUCTION.md); the references and license boundaries below remain applicable.
+
 ## 简体中文
 
 本工具参考相关框架中的部分原则，用于辅助初诊评估和住院患者管理，并支持临床思维与患者管理能力的培养和教学；不能替代医院／机构的正式病历、医嘱、管理系统或管理职责。

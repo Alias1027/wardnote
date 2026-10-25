@@ -55,7 +55,7 @@
           "run": "node scripts/check-ci-config.mjs"
         },
         {
-          "name": "Verify fixtures and run 15 core, 18 browser and 3 upgrade checks",
+          "name": "Verify fixtures and run core, browser and upgrade regressions",
           "run": "npm run test:all"
         },
         {
@@ -63,7 +63,7 @@
           "run": ".\\scripts\\ci-android-build.ps1"
         },
         {
-          "name": "Verify combined frozen source, bilingual downloads and documentation links",
+          "name": "Verify combined source manifests, bilingual downloads and documentation links",
           "run": "node scripts/check-combined.mjs"
         },
         {

@@ -6,9 +6,17 @@
 
 ## 简体中文
 
-**便携式查房记录与单患者持续追踪工具。** 初诊与背景、每日查房、病程记录、检查与化验、患者摘要、备忘、待办、交接与可选决策复盘集中于患者工作区。文字记录为主，语音为辅助；医生核对后使用候选内容。产品辅助临床思维训练和患者管理，医院的正式病历、医嘱、签署及管理流程仍由医院承接。
+### 项目简介
 
-**本仓库现合并主项目 v0.6.15（含 UI r1）与 Android 0.1.2-preview。** 当前仓库为 `Alias1027/wardnote`，内容已覆盖 Windows、浏览器／PWA 和 Android。两条运行版本保持各自编号；[原 Android r1 发布](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview)及其五个附件保留。
+WardNote 是一款便携式临床记录与工作备忘工具，旨在为初诊评估、住院查房及患者的持续追踪提供便利。本项目尤其关注临床实习生、住院医师及其他低年资医生的学习与工作需要，支持临床思维和患者管理能力的培养，并可辅助临床决策的复盘与学习。
+
+本项目强调独立使用、文字优先与默认脱机。完成相应平台的安装及脱机准备后，核心记录功能无需接入医院电子病历系统（EMR/HIS）、云端模型或持续联网。结合多语言界面、本机加密保存及可迁移备份，本项目旨在降低使用与部署门槛，兼顾不同国家和地区，尤其是网络不稳定、医疗信息化基础薄弱及医疗资源有限环境的使用需求。具体设备兼容性、低配置运行表现及实际临床适用性仍待进一步验证。
+
+本项目在设计过程中，参考了以下制度、标准与指南中的相关原则：中国《医疗质量安全核心制度要点》（十八项核心制度）；美国 CMS 医院参与条件（CoPs）、Joint Commission 国家患者安全目标（NPSGs）及其自 2026 年起适用于医院和关键可及医院认证项目的后续框架——国家绩效目标（NPGs），以及 ACGME 住院医师培训通用要求（Common Program Requirements, CPR）；英国 NICE CG50、NHS England 发布的 NatSSIPs 及 CPOC 发布的修订版 NatSSIPs 2；德国联邦联合委员会（G-BA）的质量管理指令（QM-RL）。
+
+**已发布的整体预发布包含主项目 v0.6.15（UI r1）与 Android 0.1.2-preview。** 当前仓库为 `Alias1027/wardnote`，内容已覆盖 Windows、浏览器／PWA 和 Android。两条运行版本保持各自编号；[原 Android r1 发布](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview)及其五个附件保留。
+
+**2026-10-25 文案更新：** main 分支包含主项目 0.6.15 UI r2 与 Android 0.1.3-preview 的简介／帮助更新；本次不新建 Release。以下已发布下载仍为 UI r1／Android 0.1.2-preview，原附件完整保留。新版交付及验证范围见[文案更新说明](docs/INTRODUCTION-UPDATE-20261025.md)。
 
 ### 下载与开始使用
 
@@ -35,11 +43,27 @@
 - 主项目支持本地录音、来源核对、安全更新提示和分卷加密备份。Android 使用系统录音与文件选择器；外部应用可能自行保留或同步原文件，导入副本加密不控制外部副本。
 - 更新前结束录音、保存并核验独立备份。浏览器／PWA 等待使用者确认安全更新；Android 使用同一标识与签名的升级 APK。不要卸载或清除站点／应用数据来处理旧版本显示。
 
+### 特别鸣谢
+
+衷心感谢我目前的住院医师规范化培训单位——陕西省人民医院，以及我的导师 Dr. 雷琦（MD, PhD）对本项目的支持。
+
+感谢 Dr. June Chunqiu Hou（MD）、Dr. Andrew Fagelman（MD）和 Dr. Laszlo Mechtler（MD）等师长在我赴美临床学习期间给予的悉心指导。
+
+同时，感谢 Dr. Charles Jiang（MD）的专栏文章为本项目临床决策复盘学习页的设计提供启发。
+
+### 用途边界与版权
+
+本项目用于辅助临床记录、工作备忘与教学，不能替代医院或机构的正式病历、医嘱、管理系统及其管理职责，也不能替代医务人员的专业判断。相关诊疗、签署、审批及制度执行，仍须遵循当地要求与所在机构的正式流程。
+
+© Junhui Liu M.D. 版权所有。 使用及再分发须遵循项目随附的许可条款。
+
+反馈与支持： [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)
+
 ### 项目结构与验证
 
 | 路径 | 内容 |
 | --- | --- |
-| [browser-pwa/](browser-pwa/README.md) | v0.6.15 UI r1 的完整、冻结主项目源码，含 Windows 启动器、静态部署工具、测试与[公开纸表](browser-pwa/templates/README.md) |
+| [browser-pwa/](browser-pwa/README.md) | v0.6.15 主项目源码及 UI r2 文案更新，含 Windows 启动器、静态部署工具、测试与[公开纸表](browser-pwa/templates/README.md) |
 | `android/`、`web/` | Android 原生容器及随 APK 打包的网页资源；`web/` 不能代替独立主项目 |
 | [docs/PROJECT-VALIDATION.md](docs/PROJECT-VALIDATION.md) | 整体发布的版本、检查与待验证范围 |
 | [docs/COMBINED-RELEASE.md](docs/COMBINED-RELEASE.md) | 统一安装、更新、源码与历史附件说明 |
@@ -48,9 +72,9 @@
 
 主项目既有本机证据为 167 项核心/API/发布检查、320 项浏览器检查及最终 29 项发布专项检查；Android 既有证据为 15 项核心、18 项桌面桥接模拟、3 项桌面升级模拟和 12 项公开打包边界检查。新合并目录另运行托管检查，结果与实际范围见整体验证说明和 Release。所有测试使用虚构资料。真机、系统录音往返、低配置、完整班次、母语临床及医院／临床验证仍留待反馈，不据工程检查宣称临床获益。
 
-整合目录在 `.gitattributes` 增加字节保留规则，并修正账号模式切换测试等待表单重绘的时序，相应更新内部清单；180 个原文件及全部运行代码保持原字节，原始三个下载包完全保留。
+2026-10-24 整合时在 `.gitattributes` 增加字节保留规则，并修正账号模式切换测试等待表单重绘的时序，相应更新内部清单；180 个原文件及全部运行代码保持原字节，原始三个下载包完全保留。2026-10-25 的 UI r2 仅更新简介／帮助文案及对应资源、缓存和测试清单；不更改记录格式或账号加密。
 
-冻结 `browser-pwa/` 文档保留 2026-10-21 的准备阶段记录；其中“尚未发布／托管检查待执行”描述当时状态。当前下载、整体发布状态及托管结果以本首页、整体说明和 Release 为准。
+`browser-pwa/` 中沿用的历史文档保留 2026-10-21 的准备阶段记录；其中“尚未发布／托管检查待执行”描述当时状态。当前下载、整体发布状态及托管结果以本首页、整体说明和 Release 为准。
 
 ### 反馈、参考来源与许可
 
@@ -64,9 +88,17 @@
 
 ## English
 
-**Portable ward-round notes and longitudinal patient follow-up.** Initial history, daily review, clinical course, tests/results, patient briefs, memos, tasks, handoff and optional decision reflection share one patient workspace. Text entry is primary; voice is optional and candidates require clinician review. WardNote supports clinical reasoning education and patient management; institutions retain responsibility for official records, orders, signatures and governance.
+### About the Project
 
-**This repository now includes the main project v0.6.15 (UI r1) and Android 0.1.2-preview.** The current `Alias1027/wardnote` repository includes Windows, browser/PWA and Android resources. Each runtime keeps its own version. The [original Android r1 release](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview) and all five assets are preserved.
+WardNote is a portable clinical note-taking and work memo tool designed to support initial assessment, inpatient ward rounds, and longitudinal patient follow-up. With particular attention to the learning and practical needs of medical students on clinical rotations, residents, and other early-career physicians, it aims to support the development of clinical reasoning and patient management skills, as well as reflection on and learning from clinical decisions.
+
+The project prioritizes independent use, text-based documentation, and offline operation by default. Once installation and offline preparation for the relevant platform are complete, core note-taking functions do not require integration with hospital electronic medical record or hospital information systems (EMR/HIS), cloud models, or a continuous internet connection. Through multilingual interfaces, encrypted local storage, and portable backups, WardNote aims to reduce barriers to use and deployment across countries and regions, with particular consideration for settings with unreliable connectivity, limited health information infrastructure, or constrained healthcare resources. Device compatibility, performance on devices with limited computing resources, and suitability for clinical use require further evaluation.
+
+Its design draws on relevant principles from the following policies, standards, and guidelines: China’s Key Provisions of the Core Systems for Medical Quality and Safety (the 18 core systems); the US Centers for Medicare & Medicaid Services (CMS) Conditions of Participation for Hospitals (CoPs), Joint Commission National Patient Safety Goals (NPSGs) and their successor framework for the Hospital and Critical Access Hospital accreditation programs from 2026—the National Performance Goals (NPGs)—and the ACGME Common Program Requirements for Residency; the UK’s NICE guideline CG50, the original National Safety Standards for Invasive Procedures (NatSSIPs) published by NHS England, and the revised NatSSIPs 2 published by the Centre for Perioperative Care (CPOC); and Germany’s Federal Joint Committee (G-BA) Quality Management Directive (Qualitätsmanagement-Richtlinie, QM-RL).
+
+**The published combined pre-release includes the main project v0.6.15 (UI r1) and Android 0.1.2-preview.** The current `Alias1027/wardnote` repository includes Windows, browser/PWA and Android resources. Each runtime keeps its own version. The [original Android r1 release](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview) and all five assets are preserved.
+
+**2026-10-25 copy update:** main includes the introduction/help update for main-project 0.6.15 UI r2 and Android 0.1.3-preview; this task creates no new Release. Published downloads below remain UI r1 / Android 0.1.2-preview, with original assets preserved. See the [copy-update guide](docs/INTRODUCTION-UPDATE-20261025.md) for delivery and validation scope.
 
 ### Downloads and getting started
 
@@ -93,11 +125,27 @@
 - The main project includes local recording, source review, safe update prompts and encrypted multipart backup. Android uses external recording/document applications; those apps may retain or synchronize their own copies. Encrypting an imported copy does not control external originals.
 - Finish recording, save and independently verify backups before updating. Browser/PWA updates wait for a safe user-confirmed transition; Android upgrades require the same application ID and signature. Do not uninstall or clear site/app data to fix an old-version display.
 
+### Acknowledgments
+
+I am grateful to Shaanxi Provincial People’s Hospital, where I am currently undertaking residency training, and to my mentor, Dr. Qi Lei (MD, PhD), for their support of this project.
+
+I sincerely thank Dr. June Chunqiu Hou (MD), Dr. Andrew Fagelman (MD), and Dr. Laszlo Mechtler (MD) for their thoughtful teaching and guidance during my clinical experiences in the United States.
+
+The design of the clinical decision reflection worksheet was also inspired by the published columns of Dr. Charles Jiang (MD).
+
+### Scope and Copyright
+
+WardNote supports clinical note-taking, work memos, and education. It does not replace official medical records, medical orders, institutional management systems or responsibilities, or the professional judgment of healthcare practitioners. Clinical care, signatures, approvals, and implementation of institutional policies must continue to follow applicable local requirements and formal institutional procedures.
+
+© Junhui Liu M.D. All rights reserved. Use and redistribution are subject to the accompanying project license.
+
+Feedback and support: [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)
+
 ### Repository and validation
 
 | Path | Contents |
 | --- | --- |
-| [browser-pwa/](browser-pwa/README.en.md) | Complete frozen v0.6.15 UI r1 main-project source, Windows launchers, static deployment tools, tests and [public paper templates](browser-pwa/templates/README.md) |
+| [browser-pwa/](browser-pwa/README.en.md) | v0.6.15 main-project source with the UI r2 copy update, Windows launchers, static deployment tools, tests and [public paper templates](browser-pwa/templates/README.md) |
 | `android/`, `web/` | Android container and bundled web resources; `web/` is not the standalone main product |
 | [docs/PROJECT-VALIDATION.md](docs/PROJECT-VALIDATION.md) | Combined version/check scope and pending validation |
 | [docs/COMBINED-RELEASE.md](docs/COMBINED-RELEASE.md) | Unified installation, updates, source and historical assets |
@@ -106,7 +154,7 @@
 
 Existing main-project local evidence covers 167 core/API/publication checks, 320 browser checks and 29 final publication-specific checks. Existing Android evidence covers 15 core, 18 desktop bridge simulations, 3 desktop upgrade simulations and 12 public-package boundary checks. Hosted checks also run against the combined tree; see the validation guide and Release for actual results and scope. All cases are fictional. Physical devices, recorder round trips, low-resource operation, full shifts, native clinical review and hospital/clinical validation remain future feedback work. Engineering checks do not establish clinical benefit.
 
-The integrated tree adjusts `.gitattributes` for exact checkout bytes and makes the account-mode browser test wait for form replacement, updating its manifest; 180 original files and all runtime code remain byte-identical. All three original download archives are unchanged.
+The 2026-10-24 integration adjusted `.gitattributes` for exact checkout bytes and made the account-mode browser test wait for form replacement, updating its manifest; 180 original files and all runtime code remain byte-identical. All three original download archives are unchanged. The 2026-10-25 UI r2 update changes introduction/help copy and associated resources, cache and test manifests without changing record formats or account encryption.
 
 Frozen `browser-pwa/` documentation retains the preparation-stage record dated 2026-10-21. Statements there about publication or hosted CI being pending describe that historical snapshot. This README, the combined guide and Release describe current downloads and publication/CI status.
 

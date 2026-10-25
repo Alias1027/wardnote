@@ -1,5 +1,7 @@
 # 整体发布验证 / Combined publication validation
 
+Current 2026-10-25 copy-update scope and evidence: [UI r2 / Android 0.1.3-preview](INTRODUCTION-UPDATE-20261025.md). The original release evidence below retains its original versions and dates. / 本轮文案更新及验证范围见该说明；以下原发布证据保留原版本与日期。
+
 2026-10-24 · **0.6.15 UI r1 + Android 0.1.2-preview**.
 
 ## Evidence attribution / 证据归属

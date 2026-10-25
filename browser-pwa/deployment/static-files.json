@@ -42,6 +42,7 @@
   "app/public/patient-brief-ui.js",
   "app/public/patient-brief.js",
   "app/public/project-info.js",
+  "app/public/project-introduction.js",
   "app/public/record-validation.js",
   "app/public/region-settings.js",
   "app/public/region-ui.js",
