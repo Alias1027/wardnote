@@ -51,15 +51,16 @@ Its design draws on relevant principles from the following policies, standards, 
 
 ## Downloads and getting started
 
+**Choose one package for your platform; you do not need every asset.** The five uploaded assets below, plus GitHub’s two automatic source archives, make seven entries. On 26 October 2026, the redundant standalone main-source ZIP and individual checksum files were removed; the four deliverable archives/installers and the release tag are unchanged. Archived documentation retains its original snapshot; use this table for current downloads.
+
 | Use | Download | Start and scope |
 | --- | --- | --- |
 | Windows x64 | [One-click portable package](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/wardnote-0.6.15-ui-r3-portable-win-x64.zip) | Extract fully and double-click `Start-WardNote.cmd`; Node is bundled. Local access and offline notes are supported. |
 | Phone/desktop browser and PWA | [Static PWA deployment package](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/wardnote-0.6.15-ui-r3-static-pwa.zip) | An administrator hosts only `site/` at a dedicated trusted HTTPS origin using the included guide. Users prepare offline resources and may install via browser prompts. No public demonstration site is hosted. |
 | Android, offline first launch | [APK installer](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/wardnote-android-0.1.4-preview.apk) | Android 8.0+ plus the required WebView capability checks. First launch can be offline; no self-hosted HTTPS site is needed. |
-| Main-project development | [v0.6.15 UI r3 source](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/wardnote-0.6.15-ui-r3-source.zip) | Requires Node.js 24+; read the included instructions. |
-| Whole-project development | [Combined browser/PWA and Android source](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/wardnote-0.6.15-ui-r3-android-0.1.4-preview-source.zip) | Both product lines, unified guidance and hosted workflows. The APK is a separate download. |
+| Whole-project development | [Combined browser/PWA and Android source](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/wardnote-0.6.15-ui-r3-android-0.1.4-preview-source.zip) | Both product lines; main-project source is in `browser-pwa/` and requires Node.js 24+. Download the APK separately. |
 | V007 Chinese/English PDFs | [Eight original worksheets](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.2/wardnote-v007-pdf-originals-r1.zip) | Initial assessment, inpatient management, continuation and decision review. No certificate or encryption added. [Individual files](pdf-templates/v007/README.en.md) |
-| Integrity | [SHA256SUMS.txt](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/SHA256SUMS.txt) | Individual `.sha256` sidecars are also available; hashes verify download integrity. |
+| Integrity | [SHA256SUMS.txt](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/SHA256SUMS.txt) | Lists checksums for the four deliverables above; separate checksum files are unnecessary. |
 
 **Windows:** download and fully extract the portable package, launch it, and use fictional cases to check saving, reopening and verified backup. Closing a browser tab does not stop the local server; use the launch panel to stop it. [Deployment guide](browser-pwa/docs/EASY-DEPLOYMENT.md)
 

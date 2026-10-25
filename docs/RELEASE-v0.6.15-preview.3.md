@@ -24,7 +24,23 @@ WardNote adds **clinician dictation / clinical conversation** modes to its porta
 
 ## 下载与更新 / Downloads and updating
 
-The assets on [this prerelease](https://github.com/Alias1027/wardnote/releases/tag/v0.6.15-preview.3) contain the Windows portable package, static browser/PWA package, main source, combined source and Android APK, with SHA-256 checksums. Unchanged V007 PDFs remain available from the [original PDF download](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.2/wardnote-v007-pdf-originals-r1.zip).
+只需下载对应平台的一个包；开发者使用联合源码包中的 `browser-pwa/` 获取主项目源码。所有四个程序／源码包的内容、签名和版本保持不变。
+
+Choose one package for your platform. Developers can find the main-project source under `browser-pwa/` in the combined source archive. The four deliverables retain their original contents, signatures and versions.
+
+| 用途 / Use | 下载 / Download |
+| --- | --- |
+| Windows x64，一键启动 / One-click startup | [Windows ZIP](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/wardnote-0.6.15-ui-r3-portable-win-x64.zip) |
+| Android，首次脱机使用 / Offline first launch | [Android APK](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/wardnote-android-0.1.4-preview.apk) |
+| 浏览器／PWA，可信HTTPS部署 / Trusted-HTTPS deployment | [PWA ZIP](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/wardnote-0.6.15-ui-r3-static-pwa.zip) |
+| 完整项目源码 / Combined project source | [Source ZIP](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/wardnote-0.6.15-ui-r3-android-0.1.4-preview-source.zip) |
+| 上述四项的统一校验 / Checksums for all four | [SHA256SUMS.txt](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.3/SHA256SUMS.txt) |
+
+**2026-10-26附件整理：** 已移除独立主项目源码ZIP及5个单独校验文件，统一校验表对应上方四项。现在共5个上传附件，加上GitHub自动生成的2种源码归档，页面共7项。发布标签仍固定于 `041186a71ca905731252a36e902c724e74e2490a`；此次仅调整下载清单与线上说明。归档内文档保留原发布快照，当前下载以本表为准。
+
+**Asset cleanup, 26 October 2026:** The redundant standalone main-source ZIP and five individual checksum files have been removed. One checksum list covers the four deliverables above. Five uploaded assets plus GitHub’s two automatic source archives make seven entries. The release tag remains at `041186a71ca905731252a36e902c724e74e2490a`; this is a download-list and documentation change only. Documentation inside archives retains its original snapshot; use this table for current downloads.
+
+未变更的V007 PDF仍使用[原件下载](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.2/wardnote-v007-pdf-originals-r1.zip)。 / Unchanged V007 PDFs remain available from that original download.
 
 更新前结束录音、保存记录并验证独立加密备份。Android 应覆盖安装同签名 APK，不先卸载或清除资料；浏览器/PWA 沿用提示和保存后更新流程；Windows 请按既有更新及资料迁移说明使用原数据位置。新的文件夹/地址不会自动继承浏览器账号资料。
 
