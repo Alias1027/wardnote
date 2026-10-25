@@ -92,3 +92,10 @@ The main project keeps version 0.6.15 with UI/cache r2; Android source/locally b
 Local results: main 167 existing core checks plus one new served-resource integration check; 21 browser/PWA groups, including eight-language desktop/mobile help; Android 20 core, 18 bridge/browser and three upgrade simulations; 13 public-boundary tests. APK has 58 source-matched resources, no requested permissions and matching upgrade identity. A shorter allowlisted test copy avoids a reproduced Windows deep-profile cache failure. The manual-update test recognizes a completed check's ready Apply action as well as its transient status; all safety/data assertions remain. Original failure evidence is retained locally, not relabeled as a successful run. Hosted results, public readbacks, release-preservation comparison and local delivery are recorded by commit in the new delivery work record.
 
 已确认的完整中英文简介、脱机及资源有限环境说明、纯文本鸣谢和用途边界同步至首页、英文README、说明文件与App帮助。保留鸣谢顺序、称谓与版权；同步八语分区。新版帮助对应UI r2／Android 0.1.3-preview；本轮仅推送源码与文档，不新建Release，不替换旧附件或标签。现有账号、记录、备份格式及C盘模板不变，D盘电子模板及PDF原件保留，未生成或应用PDF证书。新本机交付、校验与托管结果另存工作记录。真机、母语临床、低配置及临床应用验证仍待后续反馈。
+
+
+### Windows checkout compatibility follow-up
+
+The first hosted Android run exposed LF/CRLF differences in the newly added introduction comparison and README section parsing. A mixed-line-ending checkout reproduces both failures with the original test; normalizing line endings only when reading program-owned test text passes all five cases. No runtime, data format, package/signing identity or update gating is changed by this follow-up. Historical failed-run evidence remains local; final hosted results are recorded against the corrected commit.
+
+首轮托管 Windows 检查暴露新增测试的换行兼容性问题；用混合换行检出副本复现失败后，仅在测试读取文本时统一换行，五项检查通过。不改应用逻辑、数据格式、签名或更新保护，保留首次失败证据并以修正提交记录最终托管结果。

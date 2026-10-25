@@ -32,8 +32,8 @@ test('rendered optional policy text is escaped and unknown locale uses English',
  assert.equal(projectIntroductionHTML('unknown'),projectIntroductionHTML('en'));
 });
 
-test('browser and Android introductions are byte-identical and cache includes the new resource',()=>{
- const root=new URL('../',import.meta.url),read=p=>readFileSync(new URL(p,root),'utf8');
+test('browser and Android introductions have identical text across checkout line endings and the new resource is cached',()=>{
+ const root=new URL('../',import.meta.url),read=p=>readFileSync(new URL(p,root),'utf8').replace(/\r\n/g,'\n');
  assert.equal(read('web/project-introduction.js'),read('browser-pwa/app/public/project-introduction.js'));
  assert.match(read('browser-pwa/app/public/sw.js'),/^const CACHE='wardnote-shell-v0\.6\.15-r2';/);
  assert.ok(read('browser-pwa/app/public/sw.js').includes("'/project-introduction.js'"));
@@ -43,7 +43,7 @@ test('browser and Android introductions are byte-identical and cache includes th
 });
 
 test('approved Chinese and English copy is complete in both READMEs and the delivery document',()=>{
- const root=new URL('../',import.meta.url),read=p=>readFileSync(new URL(p,root),'utf8');
+ const root=new URL('../',import.meta.url),read=p=>readFileSync(new URL(p,root),'utf8').replace(/\r\n/g,'\n');
  for(const [code,c] of Object.entries(copy).filter(([code])=>['zh','en'].includes(code))){
   const fields=['purpose','infrastructure','framework','scope','copyright','license','email'];
   for(const file of ['README.md','docs/PROJECT-INTRODUCTION.md',...(code==='en'?['README.en.md']:[])]){
