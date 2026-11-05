@@ -15,3 +15,7 @@ V007 PDF/Word 原件、既有发布附件、用户数据与私密签名材料保
 Original V007 worksheets, previous release assets, user data and private signing material are preserved. Product versions remain separate, and delivery uses explicit public allowlists. Hosted results and downloads are tied to the release commit; device and clinical validation remain pending.
 
 [发布说明 / Release notes](RELEASE-v0.6.16-preview.1.md)
+
+托管检查补充：Windows、macOS、Linux 核心及 Android 流程首次运行通过；Linux 浏览器语言流程发现测试在异步保存/收起浮窗完成前再次点击，已改为等待浮窗隐藏并断言收起状态，本地八语言复测通过。此修正只涉及测试同步，不改变临床数据或应用行为。
+
+Hosted follow-up: core checks on Windows/macOS/Linux and the Android workflow passed on the first run. The Linux locale workflow exposed a test that clicked again before asynchronous saving/panel closure finished. It now waits for the panel to disappear and checks the collapsed state; the local eight-language rerun passed. This is test synchronization only, with no clinical-data or runtime change.

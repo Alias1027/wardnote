@@ -28,7 +28,18 @@ try{
   if(code!=='zh')assert.deepEqual(untranslated.filter(text=>text!==original),[],code+' untranslated '+section);
  };
  const shot=async name=>{await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:join(root,name),fullPage:true});};
- const closePanels=async()=>{if(await page.locator('#patient-memos').count()&&await page.locator('#patient-memos').evaluate(el=>el.open))await page.locator('#patient-memos>summary').click();for(const panel of ['voice','tasks'])if(await page.locator('#float-'+panel).count())await page.locator('.tool-rail [data-panel='+panel+']').click();};
+ const closePanels=async()=>{
+  if(await page.locator('#patient-memos').count()&&await page.locator('#patient-memos').evaluate(el=>el.open))await page.locator('#patient-memos>summary').click();
+  for(const panel of ['voice','tasks']){
+   const floating=page.locator('#float-'+panel);
+   if(await floating.count()){
+    await page.locator('.tool-rail [data-panel='+panel+']').click();
+    // A pending language/draft save can defer the toggle; do not click it a second time.
+    await floating.waitFor({state:'hidden'});
+    assert.equal(await page.locator('.tool-rail [data-panel='+panel+']').getAttribute('aria-expanded'),'false');
+   }
+  }
+ };
  const nav=async view=>{if(await page.locator('.mobile-menu').isVisible())await page.locator('.mobile-menu').click();await page.locator('.sidebar [data-action=nav][data-view='+view+']').click();};
  const tab=async name=>{if(['initial','daily','timeline','results'].includes(name)){if(!await page.locator('.record-tabs').count()){await page.locator('.primary-tabs [data-tab=daily]').click();await page.locator('.record-tabs').waitFor();}await page.locator('.record-tabs [data-tab='+name+']').click();await page.locator('.record-tabs .primary[data-tab='+name+']').waitFor();}else{await page.locator('.primary-tabs [data-tab='+name+']').click();await page.locator('.primary-tabs .active[data-tab='+name+']').waitFor();}};
  const checkGuide=async(code,id)=>{

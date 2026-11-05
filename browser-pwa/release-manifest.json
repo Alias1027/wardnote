@@ -559,8 +559,8 @@
     },
     {
       "path": "app/tests/localization-browser.mjs",
-      "size": 17943,
-      "sha256": "8fa9a0ebcbd394d0fe360898675993d8bcb33cc6a86580e9176fd1565200dc0d"
+      "size": 18259,
+      "sha256": "3d15fee8b7398dcc8fdb63da2b53b430e50643a4bdeffd72f7f98854da860546"
     },
     {
       "path": "app/tests/localization.test.mjs",
