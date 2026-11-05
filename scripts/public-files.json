@@ -367,7 +367,12 @@
     "web/voice-conversation.js",
     "web/voice-evidence.js",
     "web/voice-routing.js",
-    "web/worksheet-ui.js"
+    "web/worksheet-ui.js",
+    "browser-pwa/app/tests/v007-alignment.test.mjs",
+    "browser-pwa/app/tests/v007-browser.mjs",
+    "browser-pwa/docs/V007-ALIGNMENT.md",
+    "docs/RELEASE-v0.6.16-preview.1.md",
+    "docs/V007-UPDATE-WORKLOG.md"
   ],
-  "documentationRevision": "readme-previews-20261025"
+  "documentationRevision": "v007-alignment-20261105"
 }

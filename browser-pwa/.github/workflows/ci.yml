@@ -53,6 +53,8 @@ jobs:
         with:
           name: synthetic-browser-failure
           path: |
+            work/qa/v007-results.json
+            work/qa/v007-failure.png
             work/qa/readiness-browser-results.json
             work/qa/readiness-failure.png
             work/qa/regions-results.json

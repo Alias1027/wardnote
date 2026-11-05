@@ -184,9 +184,12 @@
   "templates/initial-history-v006b.docx",
   "templates/inpatient-management-v006b.docx",
   "templates/reflection-v006.docx",
-  "停止应用.cmd",
-  "停止应用.ps1",
-  "启动应用.cmd",
-  "启动应用.ps1",
-  "开始使用.html"
+  "\u505c\u6b62\u5e94\u7528.cmd",
+  "\u505c\u6b62\u5e94\u7528.ps1",
+  "\u542f\u52a8\u5e94\u7528.cmd",
+  "\u542f\u52a8\u5e94\u7528.ps1",
+  "\u5f00\u59cb\u4f7f\u7528.html",
+  "app/tests/v007-alignment.test.mjs",
+  "app/tests/v007-browser.mjs",
+  "docs/V007-ALIGNMENT.md"
 ]

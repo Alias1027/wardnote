@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.16 — 2026-11-05 (Android 0.1.5-preview)
+
+- Align optional clinical prompts with V007 in eight languages; add an optional reflection review date without backfilling old records.
+- Move vital signs before trends; add optional background/teaching print output with concise source and scope notices.
+- Fix Windows PowerShell 5.1 asynchronous startup reporting and separate browser-opening failure from service failure.
+- Preserve existing records, encrypted-backup compatibility, prior licenses and historical assets. Device and clinical validation remain pending.
+
 ## 0.6.15 — 2026-10-21
 
 - Freeze the first-preview candidate including UI r1; align launcher/download instructions and preserve version-specific test attribution. Documentation-only closeout; no runtime behavior or dependency change.

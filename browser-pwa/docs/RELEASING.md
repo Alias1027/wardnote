@@ -1,5 +1,7 @@
 # Preparing a public release
 
+当前维护版本 / Current maintained release: **0.6.16 UI r1** · V007 content alignment. Historical validation below retains its original scope.
+
 Current source release: **v0.6.15**, including UI r1 (initial pre-release).
 
 First-preview freeze / 首发定稿：2026-10-21。拟用标签为 `v0.6.15`，运行版本为 `0.6.15`，浏览器缓存修订为 `wardnote-shell-v0.6.15-r1`；静态包缓存追加 `-static`。本轮仅统一文档与发布材料，程序、依赖及测试内容不变。三个 ZIP 和各自 `.sha256` 为六个拟发布附件；维护者交付目录另存首发冻结清单，记录公开文件清单及附件散列。当前没有 Git 提交、远程仓库或已发布标签可供绑定，真实 GitHub CI、标签绑定与公开发布须在获准建仓后完成。

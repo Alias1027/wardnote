@@ -63,6 +63,8 @@ jobs:
         with:
           name: synthetic-browser-failure
           path: |
+            browser-pwa/work/qa/v007-results.json
+            browser-pwa/work/qa/v007-failure.png
             browser-pwa/work/qa/readiness-browser-results.json
             browser-pwa/work/qa/readiness-failure.png
             browser-pwa/work/qa/regions-results.json

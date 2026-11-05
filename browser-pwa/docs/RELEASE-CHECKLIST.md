@@ -1,5 +1,7 @@
 # Release readiness and follow-up / 发布准备与后续验证
 
+当前维护版本 / Current maintained release: **0.6.16 UI r1** · V007 content alignment. Historical validation below retains its original scope.
+
 Version **0.6.15**, including UI r1, 2026-10-21. Public-source preparation only; no GitHub repository or hosted deployment has been created by this check. See [validation evidence](VALIDATION.md) for completed checks.
 
 ## Available now / 当前可执行

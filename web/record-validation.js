@@ -19,6 +19,7 @@ export function validate(type,d) {
   if(type==='memo'&&(!d.title?.trim()||typeof d.text!=='string'))throw new RecordError(400,'备忘需要标题和内容');
   if(type==='voiceDraft'&&(!validInputMode(d.inputMode)||typeof d.text!=='string'||!isReportLanguage(d.language)||!Array.isArray(d.proposals)))throw new RecordError(400,'语音草稿格式无效');
   if(type==='encounter'&&d.acuity&&!['stable','watch','urgent','serious','critical'].includes(d.acuity))throw new RecordError(400,'病情状态无效');
+  if(type==='reflection'&&d.reviewDate&&(!/^\d{4}-\d{2}-\d{2}$/.test(d.reviewDate)||!Number.isFinite(Date.parse(d.reviewDate+'T00:00:00Z'))||new Date(d.reviewDate+'T00:00:00Z').toISOString().slice(0,10)!==d.reviewDate))throw new RecordError(400,'复盘日期无效');
   if(type==='task'&&!d.title?.trim()) throw new RecordError(400,'待办事项不能为空');
   if(type==='summary'&&typeof d.text!=='string') throw new RecordError(400,'摘要需要文字内容');
 }

@@ -1,5 +1,5 @@
 {
-  "time": "2026-10-23T12:35:04.994Z",
+  "time": "2026-11-05T15:13:12.027Z",
   "environment": "Windows desktop Chromium with native bridge test double; NOT an Android emulator or device",
   "checks": [
     "First-use native asset bootstrap needs no service worker, API or external request",

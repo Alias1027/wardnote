@@ -1,5 +1,7 @@
 # Roadmap
 
+当前维护版本 / Current maintained release: **0.6.16 UI r1** · V007 content alignment. Historical validation below retains its original scope.
+
 Release follow-up / 发布后续验证：[readiness checklist](RELEASE-CHECKLIST.md).
 
 ## Product boundary

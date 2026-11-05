@@ -1,5 +1,7 @@
 # 使用许可与授权 / Licensing — 0.6.15
 
+当前维护版本 / Current maintained release: **0.6.16 UI r1** · V007 content alignment. Historical validation below retains its original scope.
+
 权利人 / Licensor: **Junhui Liu M.D.**  
 Email: [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)  
 GitHub：项目发布后可通过其官方仓库联系；目前未在本文编造仓库网址。

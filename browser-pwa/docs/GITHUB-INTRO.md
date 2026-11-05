@@ -1,5 +1,7 @@
 # WardNote · 循记临床
 
+当前维护版本 / Current maintained release: **0.6.16 UI r1** · V007 content alignment. Historical validation below retains its original scope.
+
 ## GitHub About · 中文
 
 轻量化、多语言查房记录与单患者持续追踪 PWA。支持初诊、每日查房、待办、来源核对及可选语音辅助；以简洁记录和人工复核为核心。

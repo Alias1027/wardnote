@@ -12,14 +12,15 @@ def main():
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     version = json.loads((root / 'package.json').read_text('utf-8-sig'))['version']
+    web_version = json.loads((root / 'browser-pwa/app/package.json').read_text('utf-8-sig'))['version']
     records, fixture_count = check_public(root)
     if args.check:
         print(json.dumps({'status': 'passed', 'publicFiles': len(records), 'historicalFixtureEntries': fixture_count,
                           'scope': 'Exact allowlist, path/link boundaries, credential indicators and nested fixture hashes; not an exhaustive secret-detection guarantee'}))
         return
     artifacts = root / 'artifacts'; artifacts.mkdir(exist_ok=True)
-    target = artifacts / (f'wardnote-0.6.15-ui-r3-android-{version}-source.zip' if args.revision == 'combined-1' else f'wardnote-android-{version}-source-{args.revision}.zip')
-    manifest = {'version': version, 'publicationRevision': args.revision, 'webBase': '0.6.15 UI r3', 'files': records}
+    target = artifacts / (f'wardnote-{web_version}-ui-r1-android-{version}-source.zip' if args.revision == 'combined-1' else f'wardnote-android-{version}-source-{args.revision}.zip')
+    manifest = {'version': version, 'publicationRevision': args.revision, 'webBase': web_version + ' UI r1', 'files': records}
     with zipfile.ZipFile(target, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for name, record in sorted(records.items()):
             raw = (root / name).read_bytes()

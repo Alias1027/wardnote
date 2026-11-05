@@ -1,5 +1,7 @@
 # Validation status / 验证状态
 
+Current release **0.6.16 UI r1** · 2026-11-05. 179 core tests, 23 browser workflow suites and all 8 Windows launcher tests passed locally; V007 print/locale/date checks are included. Results are recorded in VALIDATION-RESULTS.json; the dated results below are historical evidence.
+
 Version **0.6.15** · 2026-10-21 (Asia/Shanghai).
 
 UI 修订 r1：备忘区顺序统一为“文字备忘 → 开始录音 → 导入录音”。本次定向重跑现有备忘流程 11 项全部通过，包含八语言、390px/RTL、录音和数据保留。下列全量结果仍归属于此前 0.6.15 完整验证，本次未重复全量测试。

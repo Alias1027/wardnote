@@ -1,5 +1,7 @@
 # Offline operation and account modes / 脱机工作与账号模式
 
+当前维护版本 / Current maintained release: **0.6.16 UI r1** · V007 content alignment. Historical validation below retains its original scope.
+
 Version **0.6.15**, 2026-10-21 (Asia/Shanghai). This is an evaluated prototype, not a hospital identity platform or a certified medical record system.
 
 ## 使用方式

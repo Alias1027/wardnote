@@ -51,6 +51,41 @@ test('Windows 5.1 constructs bilingual controls without showing UI or starting t
  assert.equal(existsSync(join(dir,'work/server-process.json')),false);
 }));
 
+test('Windows 5.1 actual asynchronous completion opens the browser and reports browser failures separately',windows,()=>fixture(async({dir,run,port})=>{
+ const harness=join(dir,'completion-check.ps1');
+ writeFileSync(harness,`param([switch]$BrowserFailure)
+$ErrorActionPreference='Stop'
+[Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)
+$taskRoot=$PSScriptRoot
+. (Join-Path $taskRoot 'scripts/windows-launcher.ps1')
+$tokens=$null;$parseErrors=$null
+$ast=[Management.Automation.Language.Parser]::ParseFile((Join-Path $taskRoot 'Start-WardNote.ps1'),[ref]$tokens,[ref]$parseErrors)
+if($parseErrors.Count){throw 'Launcher parse error'}
+foreach($name in @('Start-WardNoteWindowOperation','Complete-WardNoteWindowOperation','Show-WardNoteLauncherError')){
+ $function=$ast.Find({param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq $name},$true)
+ if(-not $function){throw 'Missing completion function'}
+ . ([scriptblock]::Create($function.Extent.Text))
+}
+$taskStatus=[pscustomobject]@{Text=''};$taskDetails=[pscustomobject]@{Text=''};$taskAddress=[pscustomobject]@{Text=''}
+$taskStartButton=[pscustomobject]@{Enabled=$true};$taskStopButton=[pscustomobject]@{Enabled=$true}
+$taskTimer=New-Object PSObject;$taskTimer|Add-Member ScriptMethod Start {};$taskTimer|Add-Member ScriptMethod Stop {}
+$script:opened=$false
+function Open-WardNoteBrowser {param([string]$Address) if($BrowserFailure){throw 'Synthetic browser association failure'};$script:opened=$true}
+Start-WardNoteWindowOperation
+$deadline=(Get-Date).AddSeconds(30)
+while($script:taskOperation -and -not $script:taskOperation.HasExited -and (Get-Date) -lt $deadline){Start-Sleep -Milliseconds 30}
+if(-not $script:taskOperation){throw $taskDetails.Text}
+if(-not $script:taskOperation.HasExited){throw 'Completion timed out'}
+Complete-WardNoteWindowOperation
+[pscustomobject]@{Status=$taskStatus.Text;Details=$taskDetails.Text;Address=$taskAddress.Text;Opened=$script:opened;Enabled=$taskStartButton.Enabled;Disposed=($null -eq $script:taskOperation)}|ConvertTo-Json
+`,{encoding:'utf8'});
+ const first=await run(['-File',harness]);assert.equal(first.code,0,first.stderr);const ok=JSON.parse(first.stdout);
+ assert.match(ok.Status,/browser opened/);assert.equal(ok.Opened,true);assert.equal(ok.Enabled,true);assert.equal(ok.Disposed,true);assert.doesNotMatch(ok.Details,/ScriptHalted/);
+ const second=await run(['-File',harness,'-BrowserFailure']);assert.equal(second.code,0,second.stderr);const fallback=JSON.parse(second.stdout);
+ assert.match(fallback.Status,/Service is running; copy the address/);assert.match(fallback.Details,/Synthetic browser association failure/);assert.equal(fallback.Opened,false);
+ assert.equal((await fetch(`http://127.0.0.1:${port}/api/status`)).status,200);
+}));
+
 test('friendly launcher reopens its owned service and requires saved-work confirmation to stop',windows,()=>fixture(async({dir,port,launch,stop})=>{
  const first=await launch();assert.equal(first.code,0,first.stderr);assert.match(first.stdout,new RegExp('127.0.0.1:'+port));
  const state=psJSON(join(dir,'work/server-process.json'));const second=await launch();assert.equal(second.code,0,second.stderr);assert.equal(psJSON(join(dir,'work/server-process.json')).pid,state.pid);

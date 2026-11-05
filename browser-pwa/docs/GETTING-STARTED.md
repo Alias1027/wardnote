@@ -1,6 +1,6 @@
 # WardNote — Getting started / 开始使用
 
-Version 0.6.15 · 2026-10-21 · 简体中文 / English / Español / Français / Русский / العربية / हिन्दी / اردو
+Version 0.6.16 UI r1 · 2026-11-05 · 简体中文 / English / Español / Français / Русский / العربية / हिन्दी / اردو
 
 [从这里开始 / Start here](../开始使用.html) · [部署向导 / Deployment guide](EASY-DEPLOYMENT.md)
 

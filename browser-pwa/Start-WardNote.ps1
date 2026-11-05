@@ -108,6 +108,9 @@ try {
       $script:taskErrorPath = Join-Path $operationFolder ('launcher-' + $operationId + '.err')
       $shellPath = Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'
       $script:taskOperation = Start-Process -FilePath $shellPath -ArgumentList @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', ('"' + (Join-Path $taskRoot 'Start-WardNote.ps1') + '"'), '-NoBrowser') -WorkingDirectory $taskRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput $script:taskOutputPath -RedirectStandardError $script:taskErrorPath
+      # Windows PowerShell 5.1 must acquire the handle before the process exits.
+      # Otherwise HasExited can be true while ExitCode is still null.
+      $script:taskOperationHandle = $script:taskOperation.Handle
       $taskTimer.Start()
     } catch {
       Show-WardNoteLauncherError -Details $_.Exception.Message
@@ -116,30 +119,53 @@ try {
     }
   }
 
-  $taskTimer.Add_Tick({
+  function Open-WardNoteBrowser {
+    param([string]$Address)
+    Start-Process $Address -ErrorAction Stop
+  }
+
+  function Complete-WardNoteWindowOperation {
     if (-not $script:taskOperation -or -not $script:taskOperation.HasExited) { return }
     $taskTimer.Stop()
+    $operationSucceeded = $false
     try {
       $script:taskOperation.WaitForExit()
       $result = Get-Content -LiteralPath $script:taskOutputPath -Raw -Encoding UTF8 -ErrorAction SilentlyContinue
       $failure = Get-Content -LiteralPath $script:taskErrorPath -Raw -Encoding UTF8 -ErrorAction SilentlyContinue
-      if ($script:taskOperation.ExitCode -ne 0) { throw $failure }
+      $operationExitCode = $script:taskOperation.ExitCode
+      if ($null -eq $operationExitCode) { throw '无法读取启动检查结果，请复制地址检查服务。 / Startup check returned no exit status; check the address manually.' }
+      if ($operationExitCode -ne 0) {
+        if ([string]::IsNullOrWhiteSpace($failure)) { $failure = '启动检查未完成，退出码 / Startup check failed, exit code: ' + $operationExitCode }
+        throw $failure
+      }
+      $operationSucceeded = $true
       $settings = Get-WardNoteLauncherSettings -Root $taskRoot
       $taskAddress.Text = $settings.Address
-      $taskStatus.Text = '运行中，已打开浏览器 / Running; browser opened.'
+      $taskStatus.Text = '服务运行中 / Service is running.'
       $taskDetails.Text = '数据文件夹 / Data folder: ' + $settings.DataDirectory + "`r`n`r`n" + '若浏览器未出现，请复制上方地址到浏览器。 / If no browser appears, copy the address above into your browser.' + "`r`n`r`n" + $result
-      Start-Process $settings.Address
-    } catch { Show-WardNoteLauncherError -Details $_.Exception.Message }
+      try {
+        Open-WardNoteBrowser -Address $settings.Address
+        $taskStatus.Text = '运行中，已打开浏览器 / Running; browser opened.'
+      } catch {
+        $taskStatus.Text = '服务运行中，请复制上方地址到浏览器 / Service is running; copy the address into your browser.'
+        $taskDetails.Text += "`r`n`r`n" + '浏览器未能自动打开 / Browser could not open automatically: ' + $_.Exception.Message
+      }
+    } catch {
+      Show-WardNoteLauncherError -Details $_.Exception.Message
+      $taskDetails.Text += "`r`n`r`n" + '启动诊断文件（仅本机） / Local startup diagnostic files: ' + $script:taskOutputPath + ' ; ' + $script:taskErrorPath
+    }
     finally {
       $script:taskOperation.Dispose()
       $script:taskOperation = $null
+      $script:taskOperationHandle = $null
       foreach ($operationPath in @($script:taskOutputPath, $script:taskErrorPath)) {
-        if ($operationPath -and (Test-Path -LiteralPath $operationPath)) { Remove-Item -LiteralPath $operationPath -ErrorAction SilentlyContinue }
+        if ($operationSucceeded -and $operationPath -and (Test-Path -LiteralPath $operationPath)) { Remove-Item -LiteralPath $operationPath -ErrorAction SilentlyContinue }
       }
       $taskStartButton.Enabled = $true
       $taskStopButton.Enabled = $true
     }
-  })
+  }
+  $taskTimer.Add_Tick({ Complete-WardNoteWindowOperation })
 
   $taskStartButton.Add_Click({ Start-WardNoteWindowOperation })
   $taskStopButton.Add_Click({

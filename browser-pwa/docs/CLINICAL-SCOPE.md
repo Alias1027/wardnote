@@ -1,5 +1,7 @@
 # Clinical workflow boundaries / 临床工作边界 — v0.6.15
 
+当前维护版本 / Current maintained release: **0.6.16 UI r1** · V007 content alignment. Historical validation below retains its original scope.
+
 WardNote is a portable ward-round worksheet and work aide. It helps a clinician record observations, reasoning, follow-up and handoff information. Institutional systems and authorized staff retain responsibility for formal orders, approvals, authentication and clinical governance.
 
 ## 身份、权限与审计：机构职责，不属于产品管理模块

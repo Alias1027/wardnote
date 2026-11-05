@@ -107,3 +107,5 @@ dialog.note-tools-drawer{position:fixed;inset-block:0;inset-inline-start:auto;in
 .voice-privacy-note{display:block;margin-top:.4rem}
 .voice-review-item{border-top:1px solid var(--line,#d7e2dd);padding:.8rem 0}
 .voice-held{margin-block:1rem}
+
+@media print{#print-area.with-teaching .hint{display:block!important;color:#666;font-size:9pt}.print-boundary{font-size:8pt;color:#666;margin-top:1em}.printed-background{break-before:page}.print-boundary p{margin:0.2em 0}}

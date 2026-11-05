@@ -1,5 +1,7 @@
 # Optional model interfaces / 可选模型接口
 
+当前维护版本 / Current maintained release: **0.6.16 UI r1** · V007 content alignment. Historical validation below retains its original scope.
+
 Version 0.6.15. Optional speech and text model services remain server-mediated. Device recording and editing work offline; requesting a model requires the corresponding mode to authorize a connection and separately confirm the content submission. Institutional mode has separate, disabled-by-default service configuration. No vendor keys are sent to the browser. The shipped configuration makes no model calls. Enable only endpoints approved for the intended clinical data by the deploying institution.
 
 ## Two independent capabilities
