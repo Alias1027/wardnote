@@ -19,3 +19,5 @@ Original V007 worksheets, previous release assets, user data and private signing
 托管检查补充：Windows、macOS、Linux 核心及 Android 流程首次运行通过；Linux 浏览器语言流程发现测试在异步保存/收起浮窗完成前再次点击，已改为等待浮窗隐藏并断言收起状态，本地八语言复测通过。此修正只涉及测试同步，不改变临床数据或应用行为。
 
 Hosted follow-up: core checks on Windows/macOS/Linux and the Android workflow passed on the first run. The Linux locale workflow exposed a test that clicked again before asynchronous saving/panel closure finished. It now waits for the panel to disappear and checks the collapsed state; the local eight-language rerun passed. This is test synchronization only, with no clinical-data or runtime change.
+
+追加：新增复盘日期测试也改为等待保存及分区导航完成后读取持久化结果；旧有 22 套浏览器流程在托管复测中通过。 / The new review-date test also waits for save-and-navigation completion before reading persistence; the previous 22 browser suites passed in the hosted rerun.

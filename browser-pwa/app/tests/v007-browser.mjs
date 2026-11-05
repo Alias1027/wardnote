@@ -36,16 +36,16 @@ try{
  await print(true,true);assert.ok((await page.locator('#print-area .printed-background').textContent()).includes('BACKGROUND_ONLY'));assert.ok(await page.locator('#print-area .hint').count()>0);assert.ok((await page.locator('#print-area .print-boundary').textContent()).includes('Junhui Liu'));assert.equal((await localRecord(page,b.id)).version,1);
  await page.emulateMedia({media:'print'});await page.pdf({path:join(qa,'v007-daily-with-hints.pdf'),format:'A4',printBackground:true});await page.emulateMedia({media:'screen'});mark('Optional background and teaching hints print with V007 boundary and author, without changing source records');
  await page.locator('[data-action=tab][data-tab=learning]').click();const date=()=>page.locator('[data-path=reviewDate]');assert.equal(await date().inputValue(),'');assert.equal((await localRecord(page,r.id)).data.reviewDate,undefined);await date().fill('2026-11-05');await page.locator('[data-path=reason]').fill('LEGACY_REASON');
- await page.locator('[data-action=tab][data-tab=daily]').first().click();assert.equal((await localRecord(page,r.id)).data.reviewDate,'2026-11-05');await page.locator('[data-action=tab][data-tab=learning]').click();assert.equal(await date().inputValue(),'2026-11-05');assert.equal(await page.locator('.reflection-card .hint:visible').count(),0);await page.locator('[data-action=teaching]').click();assert.equal(await page.locator('.reflection-card .hint:visible').count(),4);mark('Old reflection dates remain empty; optional review date saves and teaching prompts are collapsible');
+ await page.locator('[data-action=tab][data-tab=daily]').first().click();await page.locator('.round-sheet').waitFor();assert.equal((await localRecord(page,r.id)).data.reviewDate,'2026-11-05');await page.locator('[data-action=tab][data-tab=learning]').click();await page.locator('.reflection-card').waitFor();assert.equal(await date().inputValue(),'2026-11-05');assert.equal(await page.locator('.reflection-card .hint:visible').count(),0);await page.locator('[data-action=teaching]').click();assert.equal(await page.locator('.reflection-card .hint:visible').count(),4);mark('Old reflection dates remain empty; optional review date saves and teaching prompts are collapsible');
  for(const code of languageCodes){
   await page.locator('[data-ui-language]').selectOption(code);await page.waitForFunction(()=>!document.querySelector('[data-ui-language]')?.disabled);
   assert.equal(await page.locator('label[for$="reviewDate"]').textContent(),translate('复盘日期（可选）',code));assert.equal(await page.locator('[data-path=reason]').inputValue(),'LEGACY_REASON');
   if(code!=='zh')assert.doesNotMatch((await page.locator('.reflection-card .hint').allTextContents()).join(''),/[\u3400-\u9fff]/);
   await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   if(['zh','en','ur'].includes(code))await page.screenshot({path:join(qa,'v007-reflection-'+code+'.png'),fullPage:true});await page.setViewportSize({width:1366,height:1000});
-  await page.locator('[data-action=tab][data-tab=daily]').first().click();await print(true,true);
+  await page.locator('[data-action=tab][data-tab=daily]').first().click();await page.locator('.round-sheet').waitFor();await print(true,true);
   const expected=translate(SCHEMAS.daily.find(x=>x[0]==='discharge')[2],code);assert.ok((await page.locator('#print-area').textContent()).includes(expected));
-  await page.locator('[data-action=tab][data-tab=learning]').click();
+  await page.locator('[data-action=tab][data-tab=learning]').click();await page.locator('.reflection-card').waitFor();
  }
  mark('Eight languages preserve entered text, localize new hints/print options and fit 390px layouts');
  assert.deepEqual(errors,[]);assert.deepEqual(external,[]);

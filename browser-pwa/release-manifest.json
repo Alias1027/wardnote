@@ -959,8 +959,8 @@
     },
     {
       "path": "app/tests/v007-browser.mjs",
-      "size": 7471,
-      "sha256": "13c7da11c8079e645da121194944e61ad2ca6239c6aff8092578e5cd2b1f1331"
+      "size": 7659,
+      "sha256": "c82ae28069be0be77cfe09cd38088bbe6074b829c4db6bd02b6fc6f9e7d9c16b"
     },
     {
       "path": "docs/V007-ALIGNMENT.md",
