@@ -69,5 +69,5 @@ export function nativeGuide(id='android-guide'){
 }
 export function easyStartHTML(){return `<div class="notice">${nt('title')} · 0.1.2-preview<br>${nt('guide')}</div>`;}
 export const bindEasyStart=()=>({dispose(){}});
-export const updateEntryHTML=()=>`<p class="muted">Android 0.1.5-preview · Web 0.6.16 r1</p>`;
+export const updateEntryHTML=()=>`<p class="muted">Android 0.1.6-preview · Web 0.6.17 r1</p>`;
 export function setupUpdates(){/* Native packages update atomically; never fetch a web shell or activate a service worker. */}

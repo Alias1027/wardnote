@@ -1,10 +1,10 @@
-# 使用许可与授权 / Licensing — 0.6.15
+# 使用许可与授权 / Licensing — 0.6.17
 
-当前维护版本 / Current maintained release: **0.6.16 UI r1** · V007 content alignment. Historical validation below retains its original scope.
+当前本地审阅版本 / Current local review build: **0.6.17 UI r1** · 2026-11-06 · 尚未发布 / Not published. 本轮改动见 / Changes: [REASONING-UPDATE](../docs/REASONING-UPDATE.md). Historical evidence below retains its original version and scope.
 
 权利人 / Licensor: **Junhui Liu M.D.**  
 Email: [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)  
-GitHub：项目发布后可通过其官方仓库联系；目前未在本文编造仓库网址。
+GitHub：[官方仓库](https://github.com/Alias1027/wardnote)。本轮本地审阅版本尚未发布；授权条款不因版本提示更新而改变。
 
 本项目采用自定义 **WardNote Personal Noncommercial Source-Available License 1.0**，以根目录 [LICENSE](../LICENSE) 的英文条款为准。它是源码可见许可，不是OSI认可的开源许可；不是Apache-2.0、CC BY 4.0或PolyForm标准许可证。
 

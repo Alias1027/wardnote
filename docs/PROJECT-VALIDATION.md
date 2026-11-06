@@ -1,8 +1,10 @@
 # 整体发布验证 / Combined publication validation
 
-当前修订 / Current revision: **Web 0.6.16 UI r1 / Android 0.1.5-preview**. [本轮变化 / Changes](RELEASE-v0.6.16-preview.1.md). 下方旧验证保留原日期和范围 / Historical evidence below retains its original date and scope.
+当前修订 / Current revision: **Web 0.6.17 UI r1 / Android 0.1.6-preview** · [v0.6.17-preview.1](RELEASE-v0.6.17-preview.1.md). 本次本地验证见 [VALIDATION](VALIDATION.md)；托管结果以发布标签对应提交的 GitHub Actions 为准。 / See VALIDATION for local results and GitHub Actions for hosted checks on the tagged commit.
 
-本轮版本 / Current revision: **Web 0.6.15 UI r3 · Android 0.1.4-preview**. [对话整理说明与本轮验证范围 / Conversation changes and validation scope](RELEASE-v0.6.15-preview.3.md). 以下旧版本验证保留原日期与范围。 Historical evidence below retains its original dates and scope.
+历史修订 / Historical revision: **Web 0.6.16 UI r1 / Android 0.1.5-preview**. [本轮变化 / Changes](RELEASE-v0.6.16-preview.1.md). 下方旧验证保留原日期和范围 / Historical evidence below retains its original date and scope.
+
+历史版本 / Historical revision: **Web 0.6.15 UI r3 · Android 0.1.4-preview**. [对话整理说明与本轮验证范围 / Conversation changes and validation scope](RELEASE-v0.6.15-preview.3.md). 以下旧版本验证保留原日期与范围。 Historical evidence below retains its original dates and scope.
 
 此前统一预发布 / Previous aligned release: [0.6.15 UI r2 + Android 0.1.3-preview + original V007 PDFs](RELEASE-v0.6.15-preview.2.md). New evidence is recorded in the Release and delivery log; historical results below are not relabeled as new tests.
 

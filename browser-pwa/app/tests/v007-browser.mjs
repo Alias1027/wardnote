@@ -4,7 +4,7 @@ import {resolve,join,relative,sep} from 'node:path';
 import assert from 'node:assert/strict';
 import {createApp} from '../server.mjs';
 import {seed,localRecord,reloadAndUnlock} from './browser-support.mjs';
-import {blankNote,dateLocal,SCHEMAS} from '../public/domain.js';
+import {blankNote,dateLocal,SCHEMAS,PROBLEM_HINTS} from '../public/domain.js';
 import {languageCodes} from '../public/languages.js';
 import {translate} from '../public/locale-core.js';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
@@ -19,7 +19,7 @@ try{
  page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(base);
  await page.locator('#username').fill('test-user');await page.locator('#password').fill(password);await page.locator('#repeat').fill(password);await page.locator('#auth-form button[type=submit]').click();await page.locator('.shell').waitFor();
  const e=await seed(page,'encounter','',{displayName:'Synthetic V007',admitted:dateLocal(),dob:'1970-01-01',caseId:'TEST-V007'});
- const n=await seed(page,'note',e.id,{...blankNote(),fields:{course:'Original course',vitals:'BP 120/80'},problems:[]});
+ const n=await seed(page,'note',e.id,{...blankNote(),fields:{course:'Original course',vitals:'BP 120/80'},problems:[{title:'Synthetic question',assessment:'UNCERTAIN_ORIGINAL',monitor:'Reassess tomorrow'}]});
  const b=await seed(page,'background',e.id,{fields:{pmh:'BACKGROUND_ONLY',updates:'Reviewed with patient'}});
  const r=await seed(page,'reflection',e.id,{title:'Synthetic decision',date:'2026-11-01',reason:'LEGACY_REASON',concern:'Alternative',next:'Tomorrow',feedback:''});
  await reloadAndUnlock(page,password);await page.locator('[data-patient-entry][data-id="'+e.id+'"]').click();
@@ -45,6 +45,8 @@ try{
   if(['zh','en','ur'].includes(code))await page.screenshot({path:join(qa,'v007-reflection-'+code+'.png'),fullPage:true});await page.setViewportSize({width:1366,height:1000});
   await page.locator('[data-action=tab][data-tab=daily]').first().click();await page.locator('.round-sheet').waitFor();await print(true,true);
   const expected=translate(SCHEMAS.daily.find(x=>x[0]==='discharge')[2],code);assert.ok((await page.locator('#print-area').textContent()).includes(expected));
+  for(const hint of Object.values(PROBLEM_HINTS)){const translated=translate(hint,code);if(code!=='zh')assert.doesNotMatch(translated,/[\u3400-\u9fff]/);assert.ok((await page.locator('.round-sheet .hint').allTextContents()).includes(translated));assert.ok((await page.locator('#print-area').textContent()).includes(translated));}
+  assert.equal(await page.locator('[data-path="problems.0.assessment"]').inputValue(),'UNCERTAIN_ORIGINAL');
   await page.locator('[data-action=tab][data-tab=learning]').click();await page.locator('.reflection-card').waitFor();
  }
  mark('Eight languages preserve entered text, localize new hints/print options and fit 390px layouts');

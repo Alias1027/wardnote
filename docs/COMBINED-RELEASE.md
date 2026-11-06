@@ -1,8 +1,10 @@
 # 整体预发布 / Combined pre-release
 
-当前统一预发布 / Current aligned release: [v0.6.16-preview.1](https://github.com/Alias1027/wardnote/releases/tag/v0.6.16-preview.1) · 0.6.16 UI r1 + Android 0.1.5-preview; unchanged V007 PDFs retained.
+当前整体预发布 / Current combined pre-release: **Web 0.6.17 UI r1 / Android 0.1.6-preview** · 2026-11-06 · [v0.6.17-preview.1](https://github.com/Alias1027/wardnote/releases/tag/v0.6.17-preview.1). [本轮改动与边界 / Changes and limitations](../browser-pwa/docs/REASONING-UPDATE.md)。
 
-[本次范围 / Release scope](RELEASE-v0.6.16-preview.1.md) · [PDF原件 / Original PDFs](../pdf-templates/v007/README.md)
+已发布统一预发布 / Published aligned release: [v0.6.17-preview.1](https://github.com/Alias1027/wardnote/releases/tag/v0.6.17-preview.1) · 0.6.17 UI r1 + Android 0.1.6-preview; unchanged V007 PDFs retained.
+
+[本次范围 / Release scope](RELEASE-v0.6.17-preview.1.md) · [PDF原件 / Original PDFs](../pdf-templates/v007/README.md)
 
 ## 太长不看
 
@@ -19,9 +21,9 @@
 
 **许可：** 源码可见；所有机构及商业用途须事先取得书面授权，具体范围以随附许可证为准。
 
-**V007 对齐预发布（2026-11-05）：**
+**临床推理与反馈预发布（2026-11-06）：**
 
-- **本次下载与源码：** 主项目 **v0.6.16（UI r1）** 与 Android **0.1.5-preview**，收录于 `v0.6.16-preview.1`；V007 PDF 沿用上一版原件下载。
+- **已发布下载：** 主项目 **v0.6.17（UI r1）** 与 Android **0.1.6-preview**，收录于 `v0.6.17-preview.1`；V007 PDF 沿用上一版原件下载。
 - **历史版本：** UI r1／Android 0.1.2-preview／r1 的附件和标签完整保留；旧安装包不会因文档更新而变化。
 - PDF 未添加证书签名或加密；使用官方原件及 SHA-256 校验值进行逐字节比对。纸表编号与App版本分别管理；工程检查不代表真机或临床验证。
 
@@ -40,9 +42,9 @@ Built for medical students, residents, and other clinicians, it brings initial a
 
 **License:** Source-available. All institutional and commercial use requires prior written authorization; see the accompanying license for full terms.
 
-**V007 alignment pre-release (2026-11-05):**
+**Clinical reasoning and feedback pre-release (2026-11-06):**
 
-- **This release and source:** Main project **v0.6.16 (UI r1)** and Android **0.1.5-preview**, together in `v0.6.16-preview.1`; unchanged V007 PDFs retain their previous download.
+- **Published downloads:** Main project **v0.6.17 (UI r1)** and Android **0.1.6-preview**, together in `v0.6.17-preview.1`; unchanged V007 PDFs retain their previous download.
 - **History:** UI r1 / Android 0.1.2-preview/r1 assets and tags are preserved. Documentation edits do not change old installers.
 - No certificate signatures or encryption were added to the PDFs. Compare official originals using SHA-256. Worksheet and app versions are managed separately; engineering checks do not establish device or clinical validation.
 

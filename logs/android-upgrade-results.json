@@ -1,5 +1,5 @@
 {
-  "time": "2026-11-05T15:13:23.892Z",
+  "time": "2026-11-06T14:28:39.146Z",
   "environment": "Desktop Chromium persistent-profile asset/storage upgrade simulation; not Android installer/device validation",
   "checks": [
     "Cold browser restart from retained previous assets to current assets preserves both account modes, records, revisions and 18 MiB audio",

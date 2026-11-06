@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.17 UI r1 — 2026-11-06 (Android 0.1.6-preview; v0.6.17-preview.1)
+
+- Stop prefilling sample times. Allow explicit unknown time without inventing a date; keep undated results visible outside dated trends and preserve source/revision history.
+- Reuse the previous-round comparison for prior plans, expected responses and manually linked task outcomes; flag changed or missing sources without inferring that task completion resolves a clinical problem.
+- Keep the four-part brief; include unresolved issues, next reassessment and contingency criteria, without filling blank latest notes from older entries.
+- Update optional teaching prompts in all eight interfaces to separate contemporaneous evidence from hindsight, expectations from outcomes, and learning from overgeneralization.
+- Preserve records, backup formats, V007 PDFs and published assets. Released together as v0.6.17-preview.1; older releases and their assets remain unchanged. See [changes and limitations](docs/REASONING-UPDATE.md).
+
 ## 0.6.16 — 2026-11-05 (Android 0.1.5-preview)
 
 - Align optional clinical prompts with V007 in eight languages; add an optional reflection review date without backfilling old records.

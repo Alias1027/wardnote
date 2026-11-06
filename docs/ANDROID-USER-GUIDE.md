@@ -1,12 +1,10 @@
 # Android 脱机预览版使用说明 / Android offline preview guide
 
-当前修订 / Current revision: **Web 0.6.16 UI r1 / Android 0.1.5-preview**. [本轮变化 / Changes](RELEASE-v0.6.16-preview.1.md). 下方旧验证保留原日期和范围 / Historical evidence below retains its original date and scope.
+当前整体预发布 / Current combined pre-release: **Web 0.6.17 UI r1 / Android 0.1.6-preview** · 2026-11-06 · [v0.6.17-preview.1](https://github.com/Alias1027/wardnote/releases/tag/v0.6.17-preview.1). [本轮改动与边界 / Changes and limitations](../browser-pwa/docs/REASONING-UPDATE.md)。
 
-本轮版本 / Current revision: **Web 0.6.16 UI r1 · Android 0.1.5-preview**. [对话整理说明与本轮验证范围 / Conversation changes and validation scope](RELEASE-v0.6.16-preview.1.md). 以下旧版本验证保留原日期与范围。 Historical evidence below retains its original dates and scope.
+本次下载 / Release downloads **Web 0.6.17 UI r1 / Android 0.1.6-preview**：[APK](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/wardnote-android-0.1.6-preview.apk) · [Release](https://github.com/Alias1027/wardnote/releases/tag/v0.6.17-preview.1) · [SHA256SUMS](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/SHA256SUMS.txt)。旧附件保持原字节 / Historical assets remain unchanged.
 
-Android **0.1.2-preview / r1** · Web **0.6.15 UI r1** · 发布 / Published 2026-10-24
-
-[下载 APK / Download APK](https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk) · [发布说明 / Published release](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview) · [校验文件 / Checksums](https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/SHA256SUMS.txt)
+历史基线 / Historical baseline: Android **0.1.2-preview / r1** · Web **0.6.15 UI r1** · 发布 / Published 2026-10-24；[原始 r1 发布及附件 / Original r1 release and assets](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview) 保留 / preserved.
 
 [问题与建议 / Issues and suggestions](https://github.com/Alias1027/wardnote/issues/new/choose) · [私密安全报告 / Private security reporting](https://github.com/Alias1027/wardnote/security/advisories/new)
 

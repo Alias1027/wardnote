@@ -1,12 +1,14 @@
 # WardNote — Getting started / 开始使用
 
-Version 0.6.16 UI r1 · 2026-11-05 · 简体中文 / English / Español / Français / Русский / العربية / हिन्दी / اردو
+Version 0.6.17 UI r1 · 2026-11-06 · 简体中文 / English / Español / Français / Русский / العربية / हिन्दी / اردو
 
 [从这里开始 / Start here](../开始使用.html) · [部署向导 / Deployment guide](EASY-DEPLOYMENT.md)
 
 ## 简体中文
 
-0.6.15：Windows 双击 `Start-WardNote.cmd`；在启动面板确认后停止。手机建议由管理员部署静态 PWA，设备本机保存；此发行版无服务器同步或云端识别接口。下文联网授权说明仅适用于完整后端版。
+0.6.17 UI r1：技术预发布，标签 v0.6.17-preview.1；请从项目 Release 下载对应版本。
+
+Windows 双击 `Start-WardNote.cmd`；在启动面板确认后停止。手机建议由管理员部署静态 PWA，设备本机保存；此发行版无服务器同步或云端识别接口。下文联网授权说明仅适用于完整后端版。
 
 ### 开始使用
 
@@ -32,7 +34,9 @@ Version 0.6.16 UI r1 · 2026-11-05 · 简体中文 / English / Español / Franç
 
 ## English
 
-0.6.15: on Windows, double-click `Start-WardNote.cmd`; stop from the launcher after confirmation. For phones, the administrator can deploy the static PWA with device-local storage. That edition has no synchronization or cloud transcription API; connection authorization below applies only to the full backend.
+0.6.17 UI r1: technical pre-release, tagged v0.6.17-preview.1. Download the matching version from the project Release.
+
+on Windows, double-click `Start-WardNote.cmd`; stop from the launcher after confirmation. For phones, the administrator can deploy the static PWA with device-local storage. That edition has no synchronization or cloud transcription API; connection authorization below applies only to the full backend.
 
 ### Getting started
 
@@ -58,7 +62,9 @@ Use fictional data for initial evaluation. The default is offline; each connecti
 
 ## Español
 
-0.6.15: en Windows, abra `Start-WardNote.cmd`; detenga desde el panel tras confirmar. Para teléfonos, el administrador puede desplegar la PWA estática con almacenamiento local. Esa edición no ofrece sincronización ni transcripción en la nube; la autorización de conexión siguiente solo aplica al backend completo.
+0.6.17 UI r1: versión preliminar técnica, con la etiqueta v0.6.17-preview.1. Descargue la versión correspondiente desde la sección Releases del proyecto.
+
+en Windows, abra `Start-WardNote.cmd`; detenga desde el panel tras confirmar. Para teléfonos, el administrador puede desplegar la PWA estática con almacenamiento local. Esa edición no ofrece sincronización ni transcripción en la nube; la autorización de conexión siguiente solo aplica al backend completo.
 
 ### Primeros pasos
 
@@ -84,7 +90,9 @@ Utilice datos ficticios para la evaluación inicial. El modo predeterminado es s
 
 ## Français
 
-0.6.15 : sous Windows, ouvrez `Start-WardNote.cmd` ; arrêtez depuis le panneau après confirmation. Sur téléphone, l’administrateur peut déployer la PWA statique avec stockage local. Cette édition ne propose ni synchronisation ni transcription cloud ; l’autorisation de connexion ci-dessous concerne le backend complet.
+0.6.17 UI r1 : préversion technique, étiquetée v0.6.17-preview.1. Téléchargez la version correspondante depuis la section Releases du projet.
+
+sous Windows, ouvrez `Start-WardNote.cmd` ; arrêtez depuis le panneau après confirmation. Sur téléphone, l’administrateur peut déployer la PWA statique avec stockage local. Cette édition ne propose ni synchronisation ni transcription cloud ; l’autorisation de connexion ci-dessous concerne le backend complet.
 
 ### Bien démarrer
 
@@ -110,7 +118,9 @@ Utilisez des données fictives pour l’évaluation initiale. Le mode par défau
 
 ## Русский
 
-0.6.15: в Windows откройте `Start-WardNote.cmd`; остановите службу через панель после подтверждения. Для телефонов администратор может развернуть статическую PWA с локальным хранением. В ней нет API синхронизации или облачной транскрипции; разрешение подключения ниже относится только к полной серверной версии.
+0.6.17 UI r1: техническая предварительная версия с тегом v0.6.17-preview.1. Загрузите соответствующую версию из раздела Releases проекта.
+
+в Windows откройте `Start-WardNote.cmd`; остановите службу через панель после подтверждения. Для телефонов администратор может развернуть статическую PWA с локальным хранением. В ней нет API синхронизации или облачной транскрипции; разрешение подключения ниже относится только к полной серверной версии.
 
 ### Начало работы
 
@@ -136,7 +146,9 @@ Utilisez des données fictives pour l’évaluation initiale. Le mode par défau
 
 ## العربية
 
-0.6.15: افتح `Start-WardNote.cmd` على Windows؛ أوقف الخدمة من اللوحة بعد التأكيد. للهواتف، يمكن للمسؤول نشر PWA ثابتة تحفظ البيانات محليًا. لا توفر هذه النسخة واجهات مزامنة أو تفريغ سحابي؛ تفويض الاتصال أدناه يخص النسخة ذات الخادم الكامل فقط.
+0.6.17 UI r1: إصدار تقني تجريبي بالوسم v0.6.17-preview.1. نزّل النسخة المطابقة من قسم Releases في المشروع.
+
+افتح `Start-WardNote.cmd` على Windows؛ أوقف الخدمة من اللوحة بعد التأكيد. للهواتف، يمكن للمسؤول نشر PWA ثابتة تحفظ البيانات محليًا. لا توفر هذه النسخة واجهات مزامنة أو تفريغ سحابي؛ تفويض الاتصال أدناه يخص النسخة ذات الخادم الكامل فقط.
 
 ### بدء الاستخدام
 
@@ -162,7 +174,9 @@ Utilisez des données fictives pour l’évaluation initiale. Le mode par défau
 
 ## हिन्दी
 
-0.6.15: Windows पर `Start-WardNote.cmd` खोलें; पुष्टि के बाद पैनल से सेवा बंद करें। फ़ोन के लिए व्यवस्थापक स्थानीय स्टोरेज वाली स्थिर PWA तैनात कर सकता है। इसमें सिंक या क्लाउड ट्रांसक्रिप्शन API नहीं है; नीचे कनेक्शन अनुमति केवल पूरे बैकएंड संस्करण पर लागू है।
+0.6.17 UI r1: तकनीकी पूर्व-रिलीज़, टैग v0.6.17-preview.1। परियोजना के Releases अनुभाग से संबंधित संस्करण डाउनलोड करें।
+
+Windows पर `Start-WardNote.cmd` खोलें; पुष्टि के बाद पैनल से सेवा बंद करें। फ़ोन के लिए व्यवस्थापक स्थानीय स्टोरेज वाली स्थिर PWA तैनात कर सकता है। इसमें सिंक या क्लाउड ट्रांसक्रिप्शन API नहीं है; नीचे कनेक्शन अनुमति केवल पूरे बैकएंड संस्करण पर लागू है।
 
 ### शुरू करें
 
@@ -188,7 +202,9 @@ Utilisez des données fictives pour l’évaluation initiale. Le mode par défau
 
 ## اردو
 
-0.6.15: Windows پر `Start-WardNote.cmd` کھولیں؛ تصدیق کے بعد پینل سے سروس بند کریں۔ فون کے لیے منتظم مقامی ذخیرے والی جامد PWA لگا سکتا ہے۔ اس میں مطابقت یا کلاؤڈ نقل نویسی API نہیں؛ ذیل کی اتصال اجازت صرف مکمل بیک اینڈ کے لیے ہے۔
+0.6.17 UI r1: تکنیکی پیشگی ریلیز، ٹیگ v0.6.17-preview.1۔ منصوبے کے Releases حصے سے متعلقہ ورژن ڈاؤن لوڈ کریں۔
+
+Windows پر `Start-WardNote.cmd` کھولیں؛ تصدیق کے بعد پینل سے سروس بند کریں۔ فون کے لیے منتظم مقامی ذخیرے والی جامد PWA لگا سکتا ہے۔ اس میں مطابقت یا کلاؤڈ نقل نویسی API نہیں؛ ذیل کی اتصال اجازت صرف مکمل بیک اینڈ کے لیے ہے۔
 
 ### شروع کریں
 

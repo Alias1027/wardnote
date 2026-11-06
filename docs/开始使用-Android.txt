@@ -1,10 +1,17 @@
-循记临床 WardNote — Android 0.1.2-preview / r1
-已于 2026-10-24 首次预发布 / First prereleased on 2026-10-24
+循记临床 WardNote — Android 0.1.6-preview / Web 0.6.17 UI r1
+2026-11-06 本地审阅构建，尚未发布 / Local review build, not published
 
-发布页面 / Release: https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview
-APK: https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview.apk
-固定 r1 源码 / Fixed source: https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview-source-r1.zip
-校验文件 / Checksums: https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/SHA256SUMS.txt
+本轮改动与边界 / Changes and limitations: browser-pwa/docs/REASONING-UPDATE.md
+当前下载仍为已发布的 Android 0.1.5-preview，不包含本轮改动。
+Downloads below remain the published Android 0.1.5-preview and do not include this iteration.
+发布页面 / Published release: https://github.com/Alias1027/wardnote/releases/tag/v0.6.16-preview.1
+APK: https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/wardnote-android-0.1.5-preview.apk
+校验文件 / Checksums: https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/SHA256SUMS.txt
+
+历史记录 / History: Android 0.1.2-preview / r1 已于 2026-10-24 首次预发布，原始附件保持不变。
+Android 0.1.2-preview / r1 was first prereleased on 2026-10-24; its original assets remain unchanged.
+原始 r1 发布 / Original r1 release: https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview
+固定 r1 源码 / Fixed r1 source: https://github.com/Alias1027/wardnote/releases/download/android-v0.1.2-preview/wardnote-android-0.1.2-preview-source-r1.zip
 
 中文快速开始
 1. 在手机浏览器下载 APK，或在电脑下载后通过 USB 等可信方式传入手机。最低 Android 8.0，System WebView 还须具备所需安全及存储能力；尚未验证全部型号兼容性。
@@ -36,5 +43,5 @@ This is a technical preview. Physical-device, OEM-recorder and clinical validati
 许可：WardNote Personal Noncommercial Source-Available License 1.0；符合条款的个人非商业学习测试可使用，机构/商业用途须 Junhui Liu M.D. 事先书面授权。个人许可不涵盖真实临床照护。
 License: qualifying personal noncommercial learning/testing is permitted under the project license. Institutional/commercial use requires prior written authorization from Junhui Liu M.D.; personal permission does not cover clinical care.
 
-本文件是发布后的说明更新。已发布 APK 和 source-r1 附件保持原字节；r1 内的文档保留发布前快照，最新说明见仓库 main 分支。
-This is a post-publication documentation update. The published APK and source-r1 attachment retain their original bytes; r1 includes a preparation-time documentation snapshot. Current instructions are on the repository's main branch.
+本文件随本轮本地审阅源码提供，尚未同步为新发布版。已发布 APK、source-r1 及其他历史附件保持原字节；归档内文档保留各版本形成时的快照。
+This guide accompanies the unpublished local review source. Published APK, source-r1 and other historical assets retain their original bytes; archived documentation keeps its version-specific snapshot.

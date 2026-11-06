@@ -96,5 +96,13 @@ test('native fork disables external services and SW activation, preserves crypto
  assert.doesNotMatch(read('app.js'),/from '\.\/update-controller.js'/);
  assert.match(read('android-platform.js'),/Native packages update atomically/);
  const original=process.env.WARDNOTE_BASE_WEB;assert.ok(original,'Set WARDNOTE_BASE_WEB to the preserved base public directory');
- for(const name of ['offline-store.js','accounts.js','backup-segments.js'])assert.equal(read(name),readFileSync(original+'/'+name,'utf8'),name+' format unchanged');
+ for(const name of ['accounts.js','backup-segments.js'])assert.equal(read(name),readFileSync(original+'/'+name,'utf8'),name+' format unchanged');
+ // The only approved store changes validate new optional task links on restore.
+ // Key derivation, encryption, packet formats and the no-overwrite path stay exact.
+ let store=read('offline-store.js');
+ for(const addition of ["\nimport {validateTaskReferences} from './record-validation.js';",'validateTaskReferences(result.state.records);','validateTaskReferences(s.records);']){
+  assert.equal(store.split(addition).length,2,'Exactly one approved restore guard: '+addition);
+  store=store.replace(addition,'');
+ }
+ assert.equal(store,readFileSync(original+'/offline-store.js','utf8'),'Only approved restore guards differ; crypto and no-overwrite code remain unchanged');
 });

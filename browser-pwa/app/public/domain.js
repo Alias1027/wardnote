@@ -1,13 +1,13 @@
 import {handoffStale} from './continuity.js';
 import {translate,dictionaries} from './locale-core.js';
-import {PRE_ROUND} from './worksheet-ui.js';
-export const VERSION = '0.6.16';
+import {PRE_ROUND,labSampleTime,undatedLabs} from './worksheet-ui.js';
+export const VERSION = '0.6.17';
 export const TEMPLATE_REVISION = 'V007';
 export const REFLECTION_FIELDS = [
-  ['reason','为什么这样判断','关键支持与反对证据。'],
+  ['reason','为什么这样判断','当时已掌握的支持与反对证据；与后来获知的信息分开。'],
   ['concern','担心什么','其他解释／不确定性／何时改变方案或升级求助。'],
-  ['next','下一步验证','需核实的内容及时间。'],
-  ['feedback','实际结果 / 带教反馈','实际结果／判断修正／带教反馈与下一次改进。']
+  ['next','下一步验证','需核实的内容及时间；什么结果会改变判断或方案。'],
+  ['feedback','实际结果 / 带教反馈','实际结果／判断修正／带教反馈；下次适用的情境、改进与边界。']
 ];
 export const SCHEMAS = {
   initial: [
@@ -33,7 +33,7 @@ export const SCHEMAS = {
   ],
   daily: [
     ['goal','今日目标与优先级','需要优先解决的问题；今天希望达到的结果'],
-    ["course", "住院病程与近期变化", "近期事件／患者关切；沟通对象、患者意愿与理解；分歧／待核实内容。"],
+    ["course", "住院病程与近期变化", "近期事件／患者关切；关键事件注明发生时间；沟通对象、患者意愿与理解；分歧／待核实内容。"],
     ['vitals','生命体征、氧疗与出入量','完整复核；注明时间、意识状态、氧疗方式与流量、输入输出；按本院要求记录监测频率'],
     ["medications", "每日用药与管路／装置复核", "当前用药：必要性／安全性／疗效；入院前用药核对。 抗菌药复评；管路／导管必要性；调整及依据。"],
     ["exam", "重点查体与系统回顾", "变化及关键阳性／阴性发现。 一般情况／心肺／腹部／皮肤／四肢／神经。"],
@@ -61,6 +61,14 @@ export const PROBLEM_FIELDS = [
   ['title','问题'], ['assessment','当前判断 / 状态'], ['evidence','支持与反对的依据'],
   ['alternative','替代解释 / 不确定性'], ['plan','主要计划'], ['monitor','预期反应 / 监测与复核'], ['contingency','如果…则… / 升级条件']
 ];
+export const PROBLEM_HINTS = {
+ assessment:'关键背景、时间特征与主要问题；新线索为何改变或支持原判断。稳定问题可简写。',
+ evidence:'关键支持、反对与尚不能解释的信息；区分当时已知与后来获知。',
+ alternative:'仍需考虑什么；哪条信息可以区分这些解释。不必罗列无关诊断。',
+ plan:'行动要回答什么问题；按需记录收益、风险、患者意愿和资源可及性。',
+ monitor:'上次预期 → 实际结果 → 维持或调整判断；注明下一复核时间。好转不等于证实病因。',
+ contingency:'出现什么变化时采取何种行动或寻求帮助；按本院流程执行。'
+};
 export function dateLocal(d = new Date()) { return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
 export function blankNote(kind='daily') { return {kind,date:dateLocal(),fields:{},problems:[],sources:[],review:null}; }
 export function classify(text, kind='daily') {
@@ -99,13 +107,16 @@ export function composeSummary(encounter, records, from='', to='9999-12-31', lab
   const t=text=>translate(text,labelLanguage);
   const ui=(parts,...values)=>parts.reduce((out,part,i)=>out+t(part)+(i<values.length?values[i]:''),'');
   const same = records.filter(r=>r.encounterId===encounter.id&&!r.data.deletedAt);
-  const chosen = same.filter(r=> r.type==='background' || (['note','lab','task','recording','memo'].includes(r.type) && (r.type!=='task'||r.data.done) && (r.data.date||r.createdAt.slice(0,10))>=from && (r.data.date||r.createdAt.slice(0,10))<=to));
+  const clinicalDate=r=>r.type==='lab'?labSampleTime(r.data).slice(0,10):(r.data.date||String(r.createdAt||'').slice(0,10));
+  const chosen = same.filter(r=> r.type==='background' || (['note','lab','task','recording','memo'].includes(r.type) && (r.type!=='task'||r.data.done) && (r.type!=='lab'||labSampleTime(r.data)) && clinicalDate(r)>=from && clinicalDate(r)<=to));
+  const undated=undatedLabs(same,encounter.id);
   // Pending work is a current snapshot, separate from the selected narrative period.
   const pending = same.filter(r=>r.type==='task'&&!r.data.done).sort((a,b)=>a.createdAt.localeCompare(b.createdAt));
   const pendingTaskSnapshot = {encounterId:encounter.id,asOf:new Date().toISOString(),ids:pending.map(r=>r.id)};
   const taskLine = d=>ui`【${t(d.kind==='result'?'待回报':'待办')} · ${t(d.done?'已完成':'待跟进')}】${d.title}；负责人：${d.owner||t('未指定')}；期限：${d.due||t('未填')}；下一步 / 联系方式：${d.next||t('未填')}${d.outcome?'；'+t('结果 / 完成依据')+'：'+d.outcome:''}${d.done&&d.completedAt?'；'+t('完成时间')+'：'+d.completedAt:''}`;
+  const labLine=d=>ui`【检查】${labSampleTime(d)||t('采样时间待核实')} ${d.name} ${d.value} ${d.unit||''}；来源：${d.source||t('未填')}；${t(d.verified&&labSampleTime(d)?'原报告已核对':'未核对原报告')}`;
   const lines = [`${encounter.data.displayName} · ${encounter.data.caseId||t('未填住院标识')}`, ui`覆盖日期：${from||encounter.data.admitted||t('入院')} 至 ${to==='9999-12-31'?dateLocal():to}`, ''];
-  for (const r of chosen.sort((a,b)=>(a.data.date||a.createdAt).localeCompare(b.data.date||b.createdAt))) {
+  for (const r of chosen.sort((a,b)=>clinicalDate(a).localeCompare(clinicalDate(b)))) {
     const d=r.data;
     if(r.type==='note') {
       lines.push(`【${d.date} ${t(d.kind==='initial'?'初诊':'查房')} · ${t(d.review?'医生已复核':'待医生复核')}】`);
@@ -113,16 +124,17 @@ export function composeSummary(encounter, records, from='', to='9999-12-31', lab
       for (const [key,label] of SCHEMAS[d.kind]||[]) if(d.fields?.[key]) lines.push(`${t(label)}：${d.fields[key]}`);
       for (const p of d.problems||[]) lines.push(...PROBLEM_FIELDS.filter(([k])=>p[k]).map(([k,l])=>`${t(l)}：${p[k]}`));
     }
-    if(r.type==='lab') lines.push(ui`【检查】${d.sampledAt||d.date} ${d.name} ${d.value} ${d.unit||''}；来源：${d.source||t('未填')}；${t(d.verified?'原报告已核对':'未核对原报告')}`);
+    if(r.type==='lab') lines.push(labLine(d));
     if(r.type==='background') { lines.push(t('【住院背景 · 当前已保存内容】')); for(const [k,l]of SCHEMAS.background)if(d.fields?.[k])lines.push(`${t(l)}：${d.fields[k]}`); }
     if(r.type==='memo') lines.push(ui`【备忘】${d.title}：${d.text}`);
     if(r.type==='task') lines.push(taskLine(d));
     if(r.type==='recording' && (d.important || d.memo)) lines.push(ui`【语音备忘】${d.title||t('查房录音')}：${d.memo||t('需回听原声')}；${d.hold?t('暂停清理'):''}`);
     lines.push('');
   }
+  if(undated.length)lines.push(t('【时间待核实的检查】'),t('以下结果未按采样日期纳入区间；请核实原报告。'),...undated.map(r=>labLine(r.data)),'');
   lines.push(t('【当前未完成事项快照】'),`${t('截至时间（UTC）')}：${pendingTaskSnapshot.asOf}`,t('不受上述日期范围限制；交接时请核对当前状态。'));
   lines.push(...(pending.length?pending.map(r=>taskLine(r.data)):[t('没有未完成事项。')]));
-  return {text:lines.join('\n'),labelLanguage,from,to:to==='9999-12-31'?dateLocal():to,pendingTaskSnapshot,sources:[{id:encounter.id,version:encounter.version},...[...chosen,...pending].map(r=>({id:r.id,version:r.version}))],review:null};
+  return {text:lines.join('\n'),labelLanguage,from,to:to==='9999-12-31'?dateLocal():to,pendingTaskSnapshot,sources:[{id:encounter.id,version:encounter.version},...[...chosen,...undated,...pending].map(r=>({id:r.id,version:r.version}))],review:null};
 }
 export function retentionDecision(recording, records, policy, now=Date.now()) {
   const d=recording.data;

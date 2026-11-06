@@ -1,8 +1,8 @@
 # Release readiness and follow-up / 发布准备与后续验证
 
-当前维护版本 / Current maintained release: **0.6.16 UI r1** · V007 content alignment. Historical validation below retains its original scope.
+当前预发布版本 / Current pre-release: **0.6.17 UI r1** · 2026-11-06 · `v0.6.17-preview.1`. 本轮改动见 / Changes: [REASONING-UPDATE](REASONING-UPDATE.md). Historical evidence below retains its original version and scope.
 
-Version **0.6.15**, including UI r1, 2026-10-21. Public-source preparation only; no GitHub repository or hosted deployment has been created by this check. See [validation evidence](VALIDATION.md) for completed checks.
+Historical preparation record: version **0.6.15**, including UI r1, 2026-10-21. Public-source preparation only; no GitHub repository or hosted deployment has been created by this check. See [validation evidence](VALIDATION.md) for completed checks.
 
 ## Available now / 当前可执行
 

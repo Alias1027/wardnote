@@ -1,10 +1,10 @@
 # WardNote · 循记临床
 
-本轮源码：**Web 0.6.16 UI r1 / Android 0.1.5-preview** 对齐 V007 临床提示，增加可选复盘日期与打印选择，并修复 Windows 启动误报。现有记录和历史附件保留。详见[V007 对齐说明](browser-pwa/docs/V007-ALIGNMENT.md)。
+当前整体预发布：**Web 0.6.17 UI r1 / Android 0.1.6-preview（2026-11-06）**，标签 **v0.6.17-preview.1**。完善检查时间真实性、前次计划与结果反馈、摘要中的未决问题及可收起的教学提示；保持简洁并复用现有栏目。下方下载对应本次版本；历史附件和 V007 PDF 原件保留。详见[本轮改动与边界](browser-pwa/docs/REASONING-UPDATE.md)。
 
 [简体中文](#简体中文) · [English](#english) · [English-only README](README.en.md)
 
-[整体预发布 / Combined pre-release](https://github.com/Alias1027/wardnote/releases/tag/v0.6.16-preview.1) · [反馈 / Feedback](https://github.com/Alias1027/wardnote/issues/new/choose)
+[整体预发布 / Combined pre-release](https://github.com/Alias1027/wardnote/releases/tag/v0.6.17-preview.1) · [反馈 / Feedback](https://github.com/Alias1027/wardnote/issues/new/choose)
 
 ## 简体中文
 
@@ -23,9 +23,9 @@
 
 **许可：** 源码可见；所有机构及商业用途须事先取得书面授权，具体范围以随附许可证为准。
 
-**V007 对齐预发布（2026-11-05）：**
+**临床推理与反馈预发布（2026-11-06）：**
 
-- **本次下载与源码：** 主项目 **v0.6.16（UI r1）** 与 Android **0.1.5-preview**，收录于 `v0.6.16-preview.1`；V007 PDF 沿用上一版原件下载。
+- **本次下载：** 主项目 **v0.6.17（UI r1）** 与 Android **0.1.6-preview**，收录于 `v0.6.17-preview.1`；V007 PDF 沿用既有原件下载。后续 main 分支可能继续更新，复现本次版本请使用标签或随附源码包。
 - **历史版本：** UI r1／Android 0.1.2-preview／r1 的附件和标签完整保留；旧安装包不会因文档更新而变化。
 - PDF 未添加证书签名或加密；使用官方原件及 SHA-256 校验值进行逐字节比对。纸表编号与App版本分别管理；工程检查不代表真机或临床验证。
 
@@ -49,22 +49,22 @@ WardNote 是一款便携式临床记录与工作备忘工具，旨在为初诊�
 
 本项目在设计过程中，参考了以下制度、标准与指南中的相关原则：中国《医疗质量安全核心制度要点》（十八项核心制度）；美国 CMS 医院参与条件（CoPs）、Joint Commission 国家患者安全目标（NPSGs）及其自 2026 年起适用于医院和关键可及医院认证项目的后续框架——国家绩效目标（NPGs），以及 ACGME 住院医师培训通用要求（Common Program Requirements, CPR）；英国 NICE CG50、NHS England 发布的 NatSSIPs 及 CPOC 发布的修订版 NatSSIPs 2；德国联邦联合委员会（G-BA）的质量管理指令（QM-RL）。
 
-**本次整体预发布包含主项目 v0.6.16（UI r1）与 Android 0.1.5-preview；V007 中英文 PDF 原件保留。** 当前仓库为 `Alias1027/wardnote`，内容已覆盖 Windows、浏览器／PWA 和 Android。两条运行版本保持各自编号；[原 Android r1 发布](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview)及其五个附件保留。
+**当前整体预发布为主项目 v0.6.17（UI r1）与 Android 0.1.6-preview；对应源码固定在 v0.6.17-preview.1 标签。V007 中英文 PDF 原件保留。** 当前仓库为 `Alias1027/wardnote`，内容已覆盖 Windows、浏览器／PWA 和 Android。两条运行版本保持各自编号；[原 Android r1 发布](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview)及其五个附件保留。
 
 **2026-11-05 V007 对齐：** 临床提示、可选复盘日期、打印选择和 Windows 启动修复同步两条产品线。详见[发布范围](docs/RELEASE-v0.6.16-preview.1.md)。
 
 ### 下载与开始使用
 
-**只需选择对应平台的一个包，无需下载全部附件。** 保留5个上传附件及GitHub自动生成的2个源码归档，共7项。本次仅精简冗余源码包和单独校验文件；四个程序／源码包及发布标签保持不变。包内说明保留原发布快照，当前下载入口以本表为准。
+**只需选择对应平台的一个包，无需下载全部附件。** 下方链接对应 0.6.17 UI r1 / Android 0.1.6-preview。旧版安装包、归档和校验文件保持不变；V007 PDF 原件沿用独立下载入口。
 
 | 使用方式 | 下载 | 开始使用与范围 |
 | --- | --- | --- |
-| Windows x64 电脑 | [一键启动便携包](https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/wardnote-0.6.16-ui-r1-portable-win-x64.zip) | 解压后双击 `Start-WardNote.cmd`；内含 Node 运行时。默认本机访问，可脱机记录。 |
-| 手机／电脑浏览器、PWA | [静态 PWA 部署包](https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/wardnote-0.6.16-ui-r1-static-pwa.zip) | 管理员按随包向导把 `site/` 部署到专用可信 HTTPS 地址；用户打开地址后准备脱机资源，可按浏览器提示安装。尚无公共演示站点。 |
-| Android 首次脱机安装 | [APK 安装包](https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/wardnote-android-0.1.5-preview.apk) | Android 8.0+，还需满足 WebView 能力检查；下载安装后可首次脱机使用，不需自建 HTTPS。 |
-| 整体项目开发 | [浏览器／PWA＋Android 完整源码](https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/wardnote-0.6.16-ui-r1-android-0.1.5-preview-source.zip) | 含两条产品线；主项目源码位于 `browser-pwa/`，需要 Node.js 24+。APK 单独下载。 |
+| Windows x64 电脑 | [一键启动便携包](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/wardnote-0.6.17-ui-r1-portable-win-x64.zip) | 解压后双击 `Start-WardNote.cmd`；内含 Node 运行时。默认本机访问，可脱机记录。 |
+| 手机／电脑浏览器、PWA | [静态 PWA 部署包](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/wardnote-0.6.17-ui-r1-static-pwa.zip) | 管理员按随包向导把 `site/` 部署到专用可信 HTTPS 地址；用户打开地址后准备脱机资源，可按浏览器提示安装。尚无公共演示站点。 |
+| Android 首次脱机安装 | [APK 安装包](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/wardnote-android-0.1.6-preview.apk) | Android 8.0+，还需满足 WebView 能力检查；下载安装后可首次脱机使用，不需自建 HTTPS。 |
+| 整体项目开发 | [浏览器／PWA＋Android 完整源码](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/wardnote-0.6.17-ui-r1-android-0.1.6-preview-source.zip) | 含两条产品线；主项目源码位于 `browser-pwa/`，需要 Node.js 24+。APK 单独下载。 |
 | V007 中英文 PDF | [8份原件下载包](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.2/wardnote-v007-pdf-originals-r1.zip) | 初诊、住院管理、续页及决策复盘；保留原件，无证书或加密。[逐份浏览](pdf-templates/v007/README.md) |
-| 完整性核验 | [SHA256SUMS.txt](https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/SHA256SUMS.txt) | 统一列出上述四个交付包的校验值，无需另行下载单独校验文件。 |
+| 完整性核验 | [SHA256SUMS.txt](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/SHA256SUMS.txt) | 统一列出上述四个交付包的校验值，无需另行下载单独校验文件。 |
 
 **Windows：** 下载并完整解压便携包，双击启动，先用虚构病例创建记录、退出重开并核验备份。关闭网页不会自动停止本机服务，可从启动面板停止。[部署说明](browser-pwa/docs/EASY-DEPLOYMENT.md)
 
@@ -100,14 +100,14 @@ WardNote 是一款便携式临床记录与工作备忘工具，旨在为初诊�
 
 | 路径 | 内容 |
 | --- | --- |
-| [browser-pwa/](browser-pwa/README.md) | v0.6.15 主项目源码及 UI r3 对话整理更新，含 Windows 启动器、静态部署工具、测试与[公开纸表](browser-pwa/templates/README.md) |
+| [browser-pwa/](browser-pwa/README.md) | 0.6.17 UI r1 预发布源码，含 Windows 启动器、静态部署工具、测试与[公开纸表](browser-pwa/templates/README.md) |
 | `android/`、`web/` | Android 原生容器及随 APK 打包的网页资源；`web/` 不能代替独立主项目 |
 | [docs/PROJECT-VALIDATION.md](docs/PROJECT-VALIDATION.md) | 整体发布的版本、检查与待验证范围 |
 | [docs/COMBINED-RELEASE.md](docs/COMBINED-RELEASE.md) | 统一安装、更新、源码与历史附件说明 |
 
 [主项目托管检查](https://github.com/Alias1027/wardnote/actions/workflows/main-project-ci.yml) · [Android 托管检查](https://github.com/Alias1027/wardnote/actions/workflows/android-ci.yml)
 
-主项目既有本机证据为 167 项核心/API/发布检查、320 项浏览器检查及最终 29 项发布专项检查；Android 既有证据为 15 项核心、18 项桌面桥接模拟、3 项桌面升级模拟和 12 项公开打包边界检查。新合并目录另运行托管检查，结果与实际范围见整体验证说明和 Release。所有测试使用虚构资料。真机、系统录音往返、低配置、完整班次、母语临床及医院／临床验证仍留待反馈，不据工程检查宣称临床获益。
+主项目历史证据为 167 项核心/API/发布检查、320 项浏览器检查及 29 项发布专项检查；Android 历史证据为 15 项核心、18 项桌面桥接模拟、3 项桌面升级模拟和 12 项公开打包边界检查。这些数量属于旧版本。本次本地检查为主项目 200 项核心、25 套浏览器流程中的 345 项检查，以及 Android 20 项核心、18 项模拟流程和 3 项冷升级／数据保留模拟；范围见[本次说明](docs/RELEASE-v0.6.17-preview.1.md)。托管检查以发布标签对应提交的 GitHub Actions 结果为准，本地通过不代表托管结果。所有测试使用虚构资料。真机、系统录音往返、低配置、完整班次、母语临床及医院／临床验证仍留待反馈，不据工程检查宣称临床获益。
 
 2026-10-24 整合时在 `.gitattributes` 增加字节保留规则，并修正账号模式切换测试等待表单重绘的时序，相应更新内部清单；180 个原文件及全部运行代码保持原字节，原始三个下载包完全保留。2026-10-25 的 UI r2 仅更新简介／帮助文案及对应资源、缓存和测试清单；不更改记录格式或账号加密。
 
@@ -125,7 +125,7 @@ WardNote 是一款便携式临床记录与工作备忘工具，旨在为初诊�
 
 ## English
 
-Current source: **Web 0.6.16 UI r1 / Android 0.1.5-preview** aligns V007 clinical prompts, adds an optional reflection review date and print choices, and fixes Windows startup reporting. Existing records and historical assets are preserved. See [V007 alignment](browser-pwa/docs/V007-ALIGNMENT.md).
+Current combined pre-release: **Web 0.6.17 UI r1 / Android 0.1.6-preview (2026-11-06)**, tagged **v0.6.17-preview.1**. This release improves sample-time accuracy, review of prior plans and outcomes, unresolved issues in the brief, and optional teaching prompts while reusing existing sections. Downloads below correspond to this release. Historical assets and original V007 PDFs are preserved. See [changes and limitations](browser-pwa/docs/REASONING-UPDATE.md).
 
 ### TL;DR
 
@@ -142,9 +142,9 @@ Built for medical students, residents, and other clinicians, it brings initial a
 
 **License:** Source-available. All institutional and commercial use requires prior written authorization; see the accompanying license for full terms.
 
-**V007 alignment pre-release (2026-11-05):**
+**Clinical reasoning and feedback pre-release (2026-11-06):**
 
-- **This release and source:** Main project **v0.6.16 (UI r1)** and Android **0.1.5-preview**, together in `v0.6.16-preview.1`; unchanged V007 PDFs retain their previous download.
+- **Release downloads:** Main project **v0.6.17 (UI r1)** and Android **0.1.6-preview**, together in `v0.6.17-preview.1`; unchanged V007 PDFs retain their existing download. The main branch may advance later; use the tag or attached source archive to reproduce this release.
 - **History:** UI r1 / Android 0.1.2-preview/r1 assets and tags are preserved. Documentation edits do not change old installers.
 - No certificate signatures or encryption were added to the PDFs. Compare official originals using SHA-256. Worksheet and app versions are managed separately; engineering checks do not establish device or clinical validation.
 
@@ -168,22 +168,22 @@ The project prioritizes independent use, text-based documentation, and offline o
 
 Its design draws on relevant principles from the following policies, standards, and guidelines: China’s Key Provisions of the Core Systems for Medical Quality and Safety (the 18 core systems); the US Centers for Medicare & Medicaid Services (CMS) Conditions of Participation for Hospitals (CoPs), Joint Commission National Patient Safety Goals (NPSGs) and their successor framework for the Hospital and Critical Access Hospital accreditation programs from 2026—the National Performance Goals (NPGs)—and the ACGME Common Program Requirements for Residency; the UK’s NICE guideline CG50, the original National Safety Standards for Invasive Procedures (NatSSIPs) published by NHS England, and the revised NatSSIPs 2 published by the Centre for Perioperative Care (CPOC); and Germany’s Federal Joint Committee (G-BA) Quality Management Directive (Qualitätsmanagement-Richtlinie, QM-RL).
 
-**This combined pre-release includes main project v0.6.16 (UI r1) and Android 0.1.5-preview; the original V007 Chinese/English PDFs are preserved.** The current `Alias1027/wardnote` repository includes Windows, browser/PWA and Android resources. Each runtime keeps its own version. The [original Android r1 release](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview) and all five assets are preserved.
+**The current combined pre-release contains main project v0.6.17 (UI r1) and Android 0.1.6-preview, with matching source fixed at the v0.6.17-preview.1 tag. The original V007 Chinese/English PDFs are preserved.** The current `Alias1027/wardnote` repository includes Windows, browser/PWA and Android resources. Each runtime keeps its own version. The [original Android r1 release](https://github.com/Alias1027/wardnote/releases/tag/android-v0.1.2-preview) and all five assets are preserved.
 
 **2026-11-05 V007 alignment:** Clinical prompts, optional reflection date, print choices and Windows launch reporting are updated across both product lines. See the [release scope](docs/RELEASE-v0.6.16-preview.1.md).
 
 ### Downloads and getting started
 
-**Choose one package for your platform; you do not need every asset.** The five uploaded assets below, plus GitHub’s two automatic source archives, make seven entries. On 26 October 2026, the redundant standalone main-source ZIP and individual checksum files were removed; the four deliverable archives/installers and the release tag are unchanged. Archived documentation retains its original snapshot; use this table for current downloads.
+**Choose one package for your platform; you do not need every asset.** These links correspond to 0.6.17 UI r1 / Android 0.1.6-preview. Older installers, archives and checksums remain unchanged. V007 PDF originals use their separate existing download.
 
 | Use | Download | Start and scope |
 | --- | --- | --- |
-| Windows x64 | [One-click portable package](https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/wardnote-0.6.16-ui-r1-portable-win-x64.zip) | Extract fully and double-click `Start-WardNote.cmd`; Node is bundled. Local access and offline notes are supported. |
-| Phone/desktop browser and PWA | [Static PWA deployment package](https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/wardnote-0.6.16-ui-r1-static-pwa.zip) | An administrator hosts only `site/` at a dedicated trusted HTTPS origin using the included guide. Users prepare offline resources and may install via browser prompts. No public demonstration site is hosted. |
-| Android, offline first launch | [APK installer](https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/wardnote-android-0.1.5-preview.apk) | Android 8.0+ plus the required WebView capability checks. First launch can be offline; no self-hosted HTTPS site is needed. |
-| Whole-project development | [Combined browser/PWA and Android source](https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/wardnote-0.6.16-ui-r1-android-0.1.5-preview-source.zip) | Both product lines; main-project source is in `browser-pwa/` and requires Node.js 24+. Download the APK separately. |
+| Windows x64 | [One-click portable package](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/wardnote-0.6.17-ui-r1-portable-win-x64.zip) | Extract fully and double-click `Start-WardNote.cmd`; Node is bundled. Local access and offline notes are supported. |
+| Phone/desktop browser and PWA | [Static PWA deployment package](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/wardnote-0.6.17-ui-r1-static-pwa.zip) | An administrator hosts only `site/` at a dedicated trusted HTTPS origin using the included guide. Users prepare offline resources and may install via browser prompts. No public demonstration site is hosted. |
+| Android, offline first launch | [APK installer](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/wardnote-android-0.1.6-preview.apk) | Android 8.0+ plus the required WebView capability checks. First launch can be offline; no self-hosted HTTPS site is needed. |
+| Whole-project development | [Combined browser/PWA and Android source](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/wardnote-0.6.17-ui-r1-android-0.1.6-preview-source.zip) | Both product lines; main-project source is in `browser-pwa/` and requires Node.js 24+. Download the APK separately. |
 | V007 Chinese/English PDFs | [Eight original worksheets](https://github.com/Alias1027/wardnote/releases/download/v0.6.15-preview.2/wardnote-v007-pdf-originals-r1.zip) | Initial assessment, inpatient management, continuation and decision review. No certificate or encryption added. [Individual files](pdf-templates/v007/README.en.md) |
-| Integrity | [SHA256SUMS.txt](https://github.com/Alias1027/wardnote/releases/download/v0.6.16-preview.1/SHA256SUMS.txt) | Lists checksums for the four deliverables above; separate checksum files are unnecessary. |
+| Integrity | [SHA256SUMS.txt](https://github.com/Alias1027/wardnote/releases/download/v0.6.17-preview.1/SHA256SUMS.txt) | Lists checksums for the four deliverables above; separate checksum files are unnecessary. |
 
 **Windows:** download and fully extract the portable package, launch it, and use fictional cases to check saving, reopening and verified backup. Closing a browser tab does not stop the local server; use the launch panel to stop it. [Deployment guide](browser-pwa/docs/EASY-DEPLOYMENT.md)
 
@@ -219,14 +219,14 @@ Feedback and support: [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)
 
 | Path | Contents |
 | --- | --- |
-| [browser-pwa/](browser-pwa/README.en.md) | v0.6.15 main-project source with the UI r3 conversation update, Windows launchers, static deployment tools, tests and [public paper templates](browser-pwa/templates/README.md) |
+| [browser-pwa/](browser-pwa/README.en.md) | 0.6.17 UI r1 pre-release source, Windows launchers, static deployment tools, tests and [public paper templates](browser-pwa/templates/README.md) |
 | `android/`, `web/` | Android container and bundled web resources; `web/` is not the standalone main product |
 | [docs/PROJECT-VALIDATION.md](docs/PROJECT-VALIDATION.md) | Combined version/check scope and pending validation |
 | [docs/COMBINED-RELEASE.md](docs/COMBINED-RELEASE.md) | Unified installation, updates, source and historical assets |
 
 [Main-project hosted checks](https://github.com/Alias1027/wardnote/actions/workflows/main-project-ci.yml) · [Android hosted checks](https://github.com/Alias1027/wardnote/actions/workflows/android-ci.yml)
 
-Existing main-project local evidence covers 167 core/API/publication checks, 320 browser checks and 29 final publication-specific checks. Existing Android evidence covers 15 core, 18 desktop bridge simulations, 3 desktop upgrade simulations and 12 public-package boundary checks. Hosted checks also run against the combined tree; see the validation guide and Release for actual results and scope. All cases are fictional. Physical devices, recorder round trips, low-resource operation, full shifts, native clinical review and hospital/clinical validation remain future feedback work. Engineering checks do not establish clinical benefit.
+Historical main-project evidence covers 167 core/API/publication checks, 320 browser checks and 29 publication-specific checks. Historical Android evidence covers 15 core, 18 desktop bridge simulations, 3 desktop upgrade simulations and 12 public-package boundary checks. These counts describe earlier versions. This release passed 200 main-project core checks, 345 browser checks across 25 suites, and 20 Android core, 18 simulated workflow and 3 cold-upgrade/storage-retention checks locally; see the [release notes](docs/RELEASE-v0.6.17-preview.1.md). Consult GitHub Actions for the commit referenced by the release tag; local success does not establish hosted CI results. All cases are fictional. Physical devices, recorder round trips, low-resource operation, full shifts, native clinical review and hospital/clinical validation remain future feedback work. Engineering checks do not establish clinical benefit.
 
 The 2026-10-24 integration adjusted `.gitattributes` for exact checkout bytes and made the account-mode browser test wait for form replacement, updating its manifest; 180 original files and all runtime code remain byte-identical. All three original download archives are unchanged. The 2026-10-25 UI r2 update changes introduction/help copy and associated resources, cache and test manifests without changing record formats or account encryption.
 

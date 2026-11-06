@@ -2,9 +2,11 @@
 
 **当前官方仓库 / Canonical repository:** [Alias1027/wardnote](https://github.com/Alias1027/wardnote)。
 
-当前整体版本为 [v0.6.15 UI r1 + Android 0.1.2-preview](https://github.com/Alias1027/wardnote/releases/tag/v0.6.15-preview.1)。现有根目录保留 Android 的 `android/`、`web/`、`scripts/` 与自动检查；独立浏览器/PWA 项目在 `browser-pwa/`，其三平台核心与浏览器检查由根目录的 `main-project-ci.yml` 执行。完整交付与当前安装入口见[整体说明](COMBINED-RELEASE.md)和[首页](../README.md)。
+当前整体预发布 / Current combined pre-release: **Web 0.6.17 UI r1 / Android 0.1.6-preview** · 2026-11-06 · [v0.6.17-preview.1](https://github.com/Alias1027/wardnote/releases/tag/v0.6.17-preview.1). [本轮改动与边界 / Changes and limitations](../browser-pwa/docs/REASONING-UPDATE.md)。
 
-The current combined release contains v0.6.15 UI r1 and Android 0.1.2-preview. Android keeps its root layout; the standalone browser/PWA lives in `browser-pwa/`, with its hosted workflow configured at repository root. See the combined guide and homepage for current downloads.
+本次整体预发布为 [0.6.17 UI r1 / Android 0.1.6-preview](https://github.com/Alias1027/wardnote/releases/tag/v0.6.17-preview.1)，采用独立新标签与附件，保留历史版本。浏览器/PWA 项目位于 `browser-pwa/`；当前安装入口见[整体说明](COMBINED-RELEASE.md)和[首页](../README.md)。
+
+The combined pre-release is 0.6.17 UI r1 / Android 0.1.6-preview under v0.6.17-preview.1, with a new tag and separate assets. Historical releases remain unchanged. Browser/PWA source is in `browser-pwa/`; see the combined guide and homepage for downloads.
 
 当前源码打包命令 `python scripts/package-preview.py` 生成完整合并源码包，采用明确公开清单；发布已有的任何 APK、源码包、校验附件或标签时均不得静默替换。保留的 Android 文件名、包标识、历史归档内层目录和构建工具名称不随仓库更名修改。
 

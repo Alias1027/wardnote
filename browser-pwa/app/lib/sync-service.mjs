@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 import {randomUUID,createHash} from 'node:crypto';
 import {AppError} from './vault.mjs';
-import {validate,editable} from '../public/record-validation.js';
+import {validate,editable,validateTaskReferences} from '../public/record-validation.js';
 import {canonical,syncRecord,compareRecord} from '../public/sync-core.js';
 const hash=b=>createHash('sha256').update(b).digest('hex');
 export function syncService(vault){
@@ -11,7 +11,8 @@ export function syncService(vault){
  const remoteId=()=>hash(vault.db.prepare('SELECT value FROM meta WHERE key=?').get('vault').value);
  function check(records,bases){
   if(!Array.isArray(records)||records.length>2000||!records.length||new Set(records.map(r=>r.id)).size!==records.length)throw new AppError(400,'同步范围无效');
-  const all=new Map(vault.list().map(r=>[r.id,r]));for(const r of records){if(!/^[\da-f-]{36}$/i.test(r.id)||!Number.isSafeInteger(r.version)||r.version<1||r.type==='settings'||r.type==='voiceDraft'||r.type==='reflection'||(!editable.has(r.type)&&r.type!=='recording'))throw new AppError(400,'同步记录格式无效');validate(r.type,r.data);const old=all.get(r.id);if(!Number.isFinite(Date.parse(r.createdAt))||!Number.isFinite(Date.parse(r.updatedAt)))throw new AppError(400,'同步记录格式无效');if(old&&(old.type!==r.type||old.encounterId!==r.encounterId||old.createdAt!==r.createdAt))throw new AppError(409,'同步记录归属不匹配');all.set(r.id,r);}
+  const all=new Map(vault.list().map(r=>[r.id,r]));for(const r of records){if(!/^[\da-f-]{36}$/i.test(r.id)||!Number.isSafeInteger(r.version)||r.version<1||r.type==='settings'||r.type==='voiceDraft'||r.type==='reflection'||(!editable.has(r.type)&&r.type!=='recording'))throw new AppError(400,'同步记录格式无效');validate(r.type,r.data,r.encounterId);const old=all.get(r.id);if(!Number.isFinite(Date.parse(r.createdAt))||!Number.isFinite(Date.parse(r.updatedAt)))throw new AppError(400,'同步记录格式无效');if(old&&(old.type!==r.type||old.encounterId!==r.encounterId||old.createdAt!==r.createdAt))throw new AppError(409,'同步记录归属不匹配');all.set(r.id,r);}
+  validateTaskReferences(records,[...all.values()]);
   const conflicts=[];for(const r of records){const old=vault.get(r.id),status=compareRecord(r,old,bases[r.id]);if(['conflict','pull'].includes(status))conflicts.push(r.id);if(status==='push'&&r.version<=old.version)conflicts.push(r.id);if(r.type!=='encounter'&&all.get(r.encounterId)?.type!=='encounter')throw new AppError(400,'同步缺少对应患者');
    if(r.data.pendingTaskSnapshot&&(!Array.isArray(r.data.pendingTaskSnapshot.ids)||r.data.pendingTaskSnapshot.encounterId!==r.encounterId))throw new AppError(400,'同步记录格式无效');const references=[...(r.data.sources||[]).map(x=>x.id),...(r.data.pendingTaskSnapshot?.ids||[])];
    if(r.data.parentId)references.push(r.data.parentId);if(r.type==='review')references.push(r.data.summaryId);if(r.type==='resolution')references.push(r.data.reviewId);

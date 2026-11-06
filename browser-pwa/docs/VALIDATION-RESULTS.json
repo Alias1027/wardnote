@@ -1,8 +1,8 @@
 {
-  "version": "0.6.16",
-  "date": "2026-11-05",
+  "version": "0.6.17",
+  "date": "2026-11-06",
   "status": "local-core-and-browser-passed",
-  "scope": "Synthetic engineering checks only; device and clinical validation pending",
+  "scope": "Synthetic engineering checks only; physical devices, native clinical language and clinical outcomes remain unvalidated",
   "previousReleaseChecks": {
     "version": "0.1.1",
     "independentSourceCopy": {
@@ -373,5 +373,85 @@
     "Native clinical-language review",
     "Clinical and educational outcomes"
   ],
-  "hostedCI": "See GitHub Actions for the release commit; local checks are not hosted-check evidence"
+  "hostedCI": "See GitHub Actions for the release commit; local checks are not hosted-check evidence",
+  "historical0_6_16": {
+    "version": "0.6.16",
+    "date": "2026-11-05",
+    "status": "local-core-and-browser-passed",
+    "scope": "Synthetic engineering checks only; device and clinical validation pending",
+    "previousReleaseChecks": {
+      "version": "0.1.1",
+      "independentSourceCopy": {
+        "lockedNpmCi": "passed",
+        "npmTest": "32 passed",
+        "npmRunTestBrowser": "18 passed",
+        "usesLocalPrivateConfig": false
+      },
+      "windowsLaunchers": {
+        "PowerShell7": "start and stop passed",
+        "WindowsPowerShell5": "start and stop passed",
+        "legacyTimestampFile": "stop passed",
+        "usesIsolatedDataAndPort": true
+      },
+      "publication": {
+        "yaml": "parsed and checked",
+        "actionReferences": "full official commit hashes",
+        "paperCopies": "all non-property ZIP entries match source; public metadata checked"
+      }
+    },
+    "checks": {
+      "corePassed": 179,
+      "coreFailed": 0,
+      "browserSuitesPassed": 23,
+      "browserSuitesFailed": 0,
+      "windowsLauncherChecksPassed": 8,
+      "v007BrowserChecksPassed": 4
+    },
+    "environment": {
+      "os": "Windows",
+      "node": "24.22.1",
+      "browser": "installed Microsoft Edge 146 (headless)",
+      "input": "Synthetic accounts, records and audio only"
+    },
+    "pending": [
+      "Physical Android installation and system-recorder behaviour",
+      "Real PWA installation and low-resource devices",
+      "Native clinical-language review",
+      "Clinical and educational outcomes"
+    ],
+    "hostedCI": "See GitHub Actions for the release commit; local checks are not hosted-check evidence"
+  },
+  "currentChecks": {
+    "core": {
+      "passed": 200,
+      "failed": 0,
+      "windowsLauncherIncluded": 8
+    },
+    "browser": {
+      "suites": 25,
+      "checksPassed": 345,
+      "failed": 0
+    },
+    "android": {
+      "corePassed": 20,
+      "coreFailed": 0,
+      "browserWorkflowsPassed": 18,
+      "upgradeWorkflowsPassed": 3,
+      "nativeGuardScenariosPassed": 10,
+      "nativeGuardIncludedInCore": true,
+      "browserErrors": 0,
+      "upgradeErrors": 0
+    },
+    "apk": {
+      "version": "0.1.6-preview",
+      "versionCode": 7,
+      "sha256": "ec87c933d888f2c3cd2496b26ab1137ab60861f6f7f52f74f2347d2c76829a62",
+      "assetsMatched": 59,
+      "sameSigningIdentity": true,
+      "previousVersionCode": 6
+    },
+    "newLanguageKeys": 38,
+    "languages": 8,
+    "publication": "Local results recorded before GitHub publication. Hosted checks are recorded separately in GitHub Actions."
+  }
 }

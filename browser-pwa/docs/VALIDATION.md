@@ -1,6 +1,8 @@
 # Validation status / 验证状态
 
-Current release **0.6.16 UI r1** · 2026-11-05. 179 core tests, 23 browser workflow suites and all 8 Windows launcher tests passed locally; V007 print/locale/date checks are included. Results are recorded in VALIDATION-RESULTS.json; the dated results below are historical evidence.
+Pre-release **0.6.17 UI r1 / v0.6.17-preview.1** · 2026-11-06. 200 core tests (including 8 Windows launcher checks) and 345 browser checks across 25 suites passed locally; see VALIDATION-RESULTS.json. The dated results below remain historical evidence.
+
+Historical release **0.6.16 UI r1** · 2026-11-05. 179 core tests, 23 browser workflow suites and all 8 Windows launcher tests passed locally; V007 print/locale/date checks are included. Results are recorded in VALIDATION-RESULTS.json; the dated results below are historical evidence.
 
 Version **0.6.15** · 2026-10-21 (Asia/Shanghai).
 

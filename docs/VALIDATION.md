@@ -1,6 +1,10 @@
 # Android 预览版验证记录 / Validation record
 
-当前修订 / Current revision: **Web 0.6.16 UI r1 / Android 0.1.5-preview**. [本轮变化 / Changes](RELEASE-v0.6.16-preview.1.md). 下方旧验证保留原日期和范围 / Historical evidence below retains its original date and scope.
+当前预发布 / Current pre-release **Web 0.6.17 UI r1 / Android 0.1.6-preview** · 2026-11-06：主项目 200 项核心与 25 套浏览器流程的 345 项检查通过；Android 20 项核心、18 项模拟流程及 3 项冷升级/数据保留模拟通过。APK 的 59 个内置资源与源码逐字节一致，签名身份不变，versionCode 从 6 增至 7。托管 CI 请查看发布标签对应提交的 GitHub Actions；本地检查结果不代替托管运行结果，真机或临床验证仍未完成。
+
+Main core tests: 200 passed; browser workflows: 345 checks across 25 suites. Android: 20 core, 18 simulated browser workflows and 3 cold asset/storage upgrade checks passed. All 59 APK web assets match source byte-for-byte; signing identity is unchanged and versionCode increases from 6 to 7. For hosted CI, consult GitHub Actions for the commit referenced by the release tag. Local checks do not establish hosted CI results, physical-device compatibility or clinical validity. See [the change summary](../browser-pwa/docs/REASONING-UPDATE.md).
+
+历史修订 / Historical revision: **Web 0.6.16 UI r1 / Android 0.1.5-preview**. [本轮变化 / Changes](RELEASE-v0.6.16-preview.1.md). 下方旧验证保留原日期和范围 / Historical evidence below retains its original date and scope.
 
 本轮版本 / Current revision: **Web 0.6.15 UI r3 · Android 0.1.4-preview**. [对话整理说明与本轮验证范围 / Conversation changes and validation scope](RELEASE-v0.6.15-preview.3.md). 以下旧版本验证保留原日期与范围。 Historical evidence below retains its original dates and scope.
 

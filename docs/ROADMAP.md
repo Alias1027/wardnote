@@ -1,6 +1,8 @@
 # Android 后续方向 / Android roadmap
 
-Android **0.1.2-preview** · 2026-10-23
+当前整体预发布 / Current combined pre-release: **Web 0.6.17 UI r1 / Android 0.1.6-preview** · 2026-11-06 · [v0.6.17-preview.1](https://github.com/Alias1027/wardnote/releases/tag/v0.6.17-preview.1). [本轮改动与边界 / Changes and limitations](../browser-pwa/docs/REASONING-UPDATE.md)。
+
+路线图初始基线 / Original roadmap baseline: Android **0.1.2-preview** · 2026-10-23
 
 本轮聚焦独立、便携的脱机查房记录；原浏览器/PWA继续保留。不扩大为医院EMR、团队管理平台或正式医嘱系统。以下属于后续方向，**未因出现在文档中而成为当前可用功能**。
 

@@ -98,7 +98,7 @@ export function planVoiceRoute(records,draft,version,clinician,labelLanguage='zh
   if(g.type==='note'){g.data.review=null;if(audio){g.data.sources=(g.data.sources||[]).filter(x=>x.id!==audio.id);g.data.sources.push({id:audio.id,version:audio.version});}}
   if(g.type==='memo'){g.data.voiceReview={clinician,time:now};if(audio)g.data.voiceSource={id:audio.id,version:audio.version,title:audio.data.title,recordedAt:audio.createdAt,transcript:d.text};}
   if(g.type==='lab'){g.data.date=g.data.sampledAt.slice(0,10);if(g.data.sampledAt&&!Number.isFinite(Date.parse(g.data.sampledAt)))throw new RecordError(400,'检验需要项目、结果、单位、采样时间和来源');}
-  validate(g.type,g.data);return {id:g.id,version:g.version,type:g.type,encounterId,data:g.data};
+  validate(g.type,g.data,encounterId,records,records.find(r=>r.id===g.id)?.data);return {id:g.id,version:g.version,type:g.type,encounterId,data:g.data};
  });
  return {changes,draftData:{...d,proposals:d.proposals.filter(p=>p.reviewOnly===true).map(p=>({...p,use:false})),candidateSource:null}};
 }

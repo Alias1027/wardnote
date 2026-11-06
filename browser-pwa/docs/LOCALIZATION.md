@@ -1,6 +1,6 @@
 # Language support
 
-WardNote 0.6.16 provides Chinese, English, Spanish, French, Russian, Arabic, Hindi and Urdu interfaces. The selector uses each language's own name. Arabic and Urdu use right-to-left layout; Hindi uses left-to-right layout. System fonts are used without external font requests.
+WardNote 0.6.17 UI r1 (v0.6.17-preview.1) provides Chinese, English, Spanish, French, Russian, Arabic, Hindi and Urdu interfaces. The selector uses each language's own name. Arabic and Urdu use right-to-left layout; Hindi uses left-to-right layout. System fonts are used without external font requests.
 
 The implementation follows the Headache Diary project's shared language registry, complete translation catalogs, original-text preservation, independent report direction and desktop/mobile verification approach. Each of the seven translated catalogs covers the same program-owned source keys. Missing keys fail automated checks rather than silently falling back to English. UI structure and field identifiers stay identical across languages.
 

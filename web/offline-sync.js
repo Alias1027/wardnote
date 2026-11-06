@@ -2,6 +2,7 @@ import {STATIC_ONLY,requireNetworkDeployment} from './deployment-policy.js';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 import {device} from './offline-api.js';
 import {digest} from './offline-store.js';
+import {validateTaskReferences} from './record-validation.js';
 import {canonical,compareRecord,syncRecord,selectedRecords} from './sync-core.js';
 export class RemoteWorkspace {
  context(){return {device:device.context(),controller:this.controller};}
@@ -28,7 +29,7 @@ export class RemoteWorkspace {
  async flushAuthorizations(){const s=await device.state(),pending=(s.authorizations||[]).filter(x=>x.state!=='accepted');for(let offset=0;offset<pending.length;offset+=100){const result=await this.json('/device-authorizations','POST',{events:pending.slice(offset,offset+100).map(x=>x.event)});this.destinations=result.destinations;await device.mutate(state=>{for(const r of result.receipts){const item=state.authorizations.find(x=>x.event.id===r.id);if(item){item.state=r.state;item.lastAttempt=new Date().toISOString();}}return null;});}}
  async census(){return this.json('/sync/census');}
  async snapshot(ids){const context=this.context(),value=await this.json('/sync/snapshot','POST',{ids});this.assertContext(context);return {...value,context};}
- async importSnapshot(snapshot,choices={}){this.assertContext(snapshot.context);return device.mutate(s=>{if(s.remoteId&&s.remoteId!==snapshot.remoteId)throw new Error('服务器工作区已改变，请勿将不同工作区混合。');const conflicts=[];for(const r of snapshot.records){const old=s.records.find(x=>x.id===r.id);if(old&&compareRecord(old,r,s.bases[r.id])==='conflict'&&(!choices[r.id]||choices[r.id].expected!==canonical(syncRecord(old))))conflicts.push({local:syncRecord(old),remote:r});}if(conflicts.length)return {conflicts};s.remoteId=snapshot.remoteId;
+ async importSnapshot(snapshot,choices={}){this.assertContext(snapshot.context);return device.mutate(s=>{if(s.remoteId&&s.remoteId!==snapshot.remoteId)throw new Error('服务器工作区已改变，请勿将不同工作区混合。');const conflicts=[];for(const r of snapshot.records){const old=s.records.find(x=>x.id===r.id);if(old&&compareRecord(old,r,s.bases[r.id])==='conflict'&&(!choices[r.id]||choices[r.id].expected!==canonical(syncRecord(old))))conflicts.push({local:syncRecord(old),remote:r});}if(conflicts.length)return {conflicts};validateTaskReferences(snapshot.records,[...s.records,...snapshot.records]);s.remoteId=snapshot.remoteId;
    for(const r of snapshot.records){const old=s.records.find(x=>x.id===r.id),status=old?compareRecord(old,r,s.bases[r.id]):'pull';if(old&&(status==='push'||status==='new'))continue;if(old&&choices[r.id]?.choice==='local'){(s.revisions[old.id]??=[]).unshift(structuredClone(old));old.version=Math.max(old.version,r.version)+1;old.updatedAt=new Date().toISOString();if(['note','summary','brief'].includes(old.type))old.data.review=null;s.bases[r.id]=canonical(syncRecord(r));continue;}
     if(!old)s.records.push(structuredClone(r));else if(status!=='same'){(s.revisions[r.id]??=[]).unshift(structuredClone(old));const parts=old.data.localParts,last=old.data.lastSavedAt;Object.assign(old,structuredClone(r));if(parts&&!r.data.deletedAt){old.data.localParts=parts;old.data.lastSavedAt=last;}}
     s.bases[r.id]=canonical(syncRecord(r));

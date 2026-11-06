@@ -54,7 +54,7 @@ async function localRequest(path,method,d,context){
   if(path==='/settings'){if(!Number.isInteger(d.retentionDays)||d.retentionDays<7||d.retentionDays>365)throw new Error('候选期限须为 7–365 天');s.workspace.retentionDays=d.retentionDays;return s.workspace;}
   if(path==='/audit')return {events:s.events.slice(0,100)};
   if(path==='/records'&&method==='POST'){
-   const {type,encounterId='',data}=d;if(!editable.has(type)||['summary','brief'].includes(type))throw new Error('记录类型不允许');if(type!=='encounter'&&(type!=='reflection'||encounterId))linked(encounterId);validate(type,data);
+   const {type,encounterId='',data}=d;if(!editable.has(type)||['summary','brief'].includes(type))throw new Error('记录类型不允许');if(type!=='encounter'&&(type!=='reflection'||encounterId))linked(encounterId);validate(type,data,encounterId,s.records);
    if(type==='note'){data.review=null;checkSources(data,encounterId);}
    if(type==='review'){const summary=get(data.summaryId,'summary');if(summary.encounterId!==encounterId||data.summaryVersion!==summary.version||!summary.data.review||sourcesChanged(summary,s.records))throw new Error('请先完成当前摘要的医生核对');if(!['confirmed','corrections','unable','declined'].includes(data.status)||!data.scope?.trim()||!data.participant?.trim())throw new Error('请记录参与者、核对范围和状态');}
    if(type==='resolution'){const r=get(data.reviewId,'review');if(r.encounterId!==encounterId||r.data.status!=='corrections'||!data.action?.trim())throw new Error('请记录修正、解释及处理结果');data.clinician=s.workspace.clinician;}
@@ -71,7 +71,7 @@ async function localRequest(path,method,d,context){
   if(m){const r=get(m[1]);if(m[2]==='history')return {revisions:s.revisions[r.id]||[]};
    if(m[2]==='link'){linked(d.encounterId);if(r.type!=='reflection'||r.encounterId)throw new Error('此复盘已关联患者，不能重新分配');update(r,d.version,r.data);r.encounterId=d.encounterId;return r;}
    if(m[2]==='verify'){if(!['note','summary','brief'].includes(r.type))throw new Error('该类型不能签认');if(r.type==='brief'&&briefStale(r,s.records)||r.type==='summary'&&sourcesChanged(r,s.records))throw new Error('来源已变更，请重新生成摘要后核对');if(r.type==='brief'&&!briefHasContent(r.data)||r.type==='summary'&&!r.data.text.trim())throw new Error('摘要不能为空');return update(r,d.version,{...r.data,review:{clinician:s.workspace.clinician,time:now()}});}
-   if(method==='PUT'){if(!editable.has(r.type)||['review','resolution'].includes(r.type))throw new Error('此记录不能直接修改');if(r.type==='brief')d.data=editBrief(r.data,d.data?.fields||{});else d.data=preserveHandoff(r.data,d.data);validate(r.type,d.data);if(['note','summary'].includes(r.type)){d.data.review=null;if(r.type==='summary'){d.data.sources=r.data.sources;d.data.pendingTaskSnapshot=r.data.pendingTaskSnapshot;}checkSources(d.data,r.encounterId,r.type==='summary');}return update(r,d.version,d.data);}
+   if(method==='PUT'){if(!editable.has(r.type)||['review','resolution'].includes(r.type))throw new Error('此记录不能直接修改');if(r.type==='brief')d.data=editBrief(r.data,d.data?.fields||{});else d.data=preserveHandoff(r.data,d.data);validate(r.type,d.data,r.encounterId,s.records,r.data);if(['note','summary'].includes(r.type)){d.data.review=null;if(r.type==='summary'){d.data.sources=r.data.sources;d.data.pendingTaskSnapshot=r.data.pendingTaskSnapshot;}checkSources(d.data,r.encounterId,r.type==='summary');}return update(r,d.version,d.data);}
   }
   if(path==='/classify'){if(!['initial','daily'].includes(d.kind)||typeof d.text!=='string'||d.text.length>200000)throw new Error('转写文本不正确');return {proposals:classify(d.text,d.kind)};}
   if(path==='/voice-route-apply'){

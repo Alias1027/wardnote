@@ -4,7 +4,7 @@ import {composeBrief,currentBrief,briefStale,editBrief,briefHasContent} from './
 import {appliedEvidence} from './public/voice-evidence.js';
 import {authorizationService} from './lib/authorization.mjs';
 import {syncService} from './lib/sync-service.mjs';
-import {editable,validate} from './public/record-validation.js';
+import {editable,validate,validateTaskReferences} from './public/record-validation.js';
 import {isLanguage,isReportLanguage,localeAssets} from './public/languages.js';
 import {modelDraft,modelConfig,modelStatus} from './lib/model-service.mjs';
 import http from 'node:http';
@@ -82,7 +82,7 @@ function createWorkspace(options={}) {
         if(path==='/api/device-authorizations'&&req.method==='POST')return json(await authorization.submit((await body(req,100000)).events));
         if(path==='/api/device-model'&&req.method==='POST'){const d=await body(req);if(d.confirmed!==true||!['classify','summary'].includes(d.mode))throw new AppError(400,'请确认向已配置服务提交内容');return json(await modelDraft(d,config));}
         if(path==='/api/device-transcribe'&&req.method==='POST'){const mime=url.searchParams.get('mime')||'';if(!/^audio\/(webm|mp4|ogg|wav|x-wav|mpeg)(;.*)?$/.test(mime))throw new AppError(400,'不支持的音频格式');return json(await transcribe(await body(req,100*1024*1024,true),mime,{...config,language:url.searchParams.get('language')||'zh'}));}
-        if(path==='/api/device-send'&&req.method==='POST'){const d=await body(req,16*1024*1024),p=d.payload;if(d.confirmed!==true||p?.format!=='wardnote/1'||p.includesAudio!==false||!Array.isArray(p.records)||!p.records.length||p.records.some(r=>['reflection','voiceDraft','settings'].includes(r.type)))throw new AppError(400,'请先确认发送范围');if(p.records.length>2000)throw new AppError(400,'请先确认发送范围');const encounters=p.records.filter(r=>r.type==='encounter');if(encounters.length!==1||p.records.some(r=>r.id!==encounters[0].id&&r.encounterId!==encounters[0].id))throw new AppError(400,'来源属于其他患者');for(const r of p.records){if(!editable.has(r.type)&&r.type!=='recording')throw new AppError(400,'记录类型不允许');validate(r.type,r.data);}return json(await sendExport(p,config));}
+        if(path==='/api/device-send'&&req.method==='POST'){const d=await body(req,16*1024*1024),p=d.payload;if(d.confirmed!==true||p?.format!=='wardnote/1'||p.includesAudio!==false||!Array.isArray(p.records)||!p.records.length||p.records.some(r=>['reflection','voiceDraft','settings'].includes(r.type)))throw new AppError(400,'请先确认发送范围');if(p.records.length>2000)throw new AppError(400,'请先确认发送范围');const encounters=p.records.filter(r=>r.type==='encounter');if(encounters.length!==1||p.records.some(r=>r.id!==encounters[0].id&&r.encounterId!==encounters[0].id))throw new AppError(400,'来源属于其他患者');for(const r of p.records){if(!editable.has(r.type)&&r.type!=='recording')throw new AppError(400,'记录类型不允许');validate(r.type,r.data,r.encounterId);}validateTaskReferences(p.records);return json(await sendExport(p,config));}
         if(path==='/api/sync/census'&&req.method==='GET')return json({remoteId:sync.identity(),patients:vault.list().filter(r=>r.type==='encounter').map(r=>({id:r.id,displayName:r.data.displayName,caseId:r.data.caseId,bed:r.data.bed}))});
         if(path==='/api/sync/snapshot'&&req.method==='POST'){const d=await body(req);if(!Array.isArray(d.ids)||d.ids.length>100)throw new AppError(400,'请选择患者');return json({remoteId:sync.identity(),records:vault.list().filter(r=>(d.ids.includes(r.id)||d.ids.includes(r.encounterId))&&!['settings','voiceDraft','reflection'].includes(r.type)).map(r=>r.type==='recording'?{...r,data:{...r.data,audioMissing:!vault.audioInfo(r.id).length}}:r)});}
         if(path==='/api/sync/preview'&&req.method==='POST')return json(sync.preview(await body(req,16*1024*1024),session.token));
@@ -102,7 +102,7 @@ function createWorkspace(options={}) {
         if(path==='/api/records'&&req.method==='POST') {
           const {type,encounterId='',data}=await body(req); if(!editable.has(type)||['summary','brief'].includes(type)) throw new AppError(400,'记录类型不允许');
           if(type!=='encounter'&&(type!=='reflection'||encounterId))linked(encounterId);
-          validate(type,data); if(type==='note') {data.review=null;checkSources(data,encounterId);}
+          validate(type,data,encounterId,type==='task'?vault.list():undefined); if(type==='note') {data.review=null;checkSources(data,encounterId);}
           if(type==='review') {
             const s=mustGet(data.summaryId,'summary'); if(s.encounterId!==encounterId||data.summaryVersion!==s.version||!s.data.review||sourcesChanged(s,vault.list()))throw new AppError(409,'请先完成当前摘要的医生核对');
             if(!['confirmed','corrections','unable','declined'].includes(data.status)||!data.scope?.trim()||!data.participant?.trim())throw new AppError(400,'请记录参与者、核对范围和状态');
@@ -124,7 +124,7 @@ function createWorkspace(options={}) {
         let match=path.match(/^\/api\/records\/([\w-]+)$/);
         if(match&&req.method==='PUT') {
           const old=mustGet(match[1]); if(!editable.has(old.type)||['review','resolution'].includes(old.type))throw new AppError(400,'此记录不能直接修改');
-          const {version,data:inputData}=await body(req); const data=old.type==='brief'?editBrief(old.data,inputData?.fields||{}):preserveHandoff(old.data,inputData); validate(old.type,data);
+          const {version,data:inputData}=await body(req); const data=old.type==='brief'?editBrief(old.data,inputData?.fields||{}):preserveHandoff(old.data,inputData); validate(old.type,data,old.encounterId,old.type==='task'?vault.list():undefined,old.data);
           if(['note','summary'].includes(old.type)) {data.review=null; if(old.type==='summary'){data.sources=old.data.sources;data.pendingTaskSnapshot=old.data.pendingTaskSnapshot;} checkSources(data,old.encounterId,old.type==='summary');}
           const r=vault.update(old.id,version,data);vault.audit('record.updated',{id:r.id,version:r.version});return json(r);
         }

@@ -1,4 +1,6 @@
-# 使用许可与授权 / Licensing — WardNote 0.6.15 UI r1 + Android 0.1.2-preview
+# 使用许可与授权 / Licensing — WardNote 0.6.17 UI r1 + Android 0.1.6-preview
+
+本轮为本地审阅构建，尚未发布；条款保持不变。 / This local review build is unpublished; licensing terms are unchanged.
 
 权利人 / Licensor: **Junhui Liu M.D.**  
 Email: [junhuiliu1025@gmail.com](mailto:junhuiliu1025@gmail.com)  

@@ -5,6 +5,49 @@ const text=v=>typeof v==='string'?v.trim():'';
 const live=r=>!r.data.deletedAt;
 const ordered=rs=>[...rs].sort((a,b)=>(b.data.date||'').localeCompare(a.data.date||'')||b.createdAt.localeCompare(a.createdAt)||b.id.localeCompare(a.id));
 export const dailyNotes=(records,id)=>ordered(records.filter(r=>r.encounterId===id&&r.type==='note'&&r.data.kind==='daily'&&live(r)));
+// Optional manual task links retain the selected source, never match by diagnosis text.
+const problemSnapshot=p=>Object.fromEntries(['title','assessment','plan','monitor','contingency'].map(key=>[key,text(p?.[key])]));
+export function validProblemReference(ref){
+ return !!ref&&typeof ref==='object'&&!Array.isArray(ref)&&ref.format==='wardnote-task-problem/1'&&
+  ['encounterId','noteId'].every(k=>typeof ref[k]==='string'&&ref[k].length>0&&ref[k].length<=100)&&
+  Number.isSafeInteger(ref.problemIndex)&&ref.problemIndex>=0&&ref.problemIndex<1000&&Number.isSafeInteger(ref.sourceVersion)&&ref.sourceVersion>0&&
+  ['sourceUpdatedAt','linkedAt'].every(k=>typeof ref[k]==='string'&&Number.isFinite(Date.parse(ref[k])))&&
+  typeof ref.noteDate==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(ref.noteDate)&&
+  !!ref.problem&&typeof ref.problem==='object'&&!Array.isArray(ref.problem)&&
+  ['title','assessment','plan','monitor','contingency'].every(k=>typeof ref.problem[k]==='string'&&ref.problem[k].length<=50000)&&!!ref.problem.title.trim();
+}
+export function taskProblemChoices(records,encounterId){
+ return ordered(records.filter(r=>r.encounterId===encounterId&&r.type==='note'&&['initial','daily'].includes(r.data.kind)&&live(r)))
+  .flatMap(note=>(note.data.problems||[]).map((problem,index)=>({note,index,problem})).filter(({problem})=>text(problem.title)));
+}
+export function captureProblemReference(records,encounterId,noteId,problemIndex,now=new Date().toISOString()){
+ const source=records.find(r=>r.id===noteId&&r.encounterId===encounterId&&r.type==='note'&&['initial','daily'].includes(r.data.kind)&&live(r));
+ if(!source||!Number.isSafeInteger(problemIndex)||!source.data.problems?.[problemIndex]||!text(source.data.problems[problemIndex].title))throw new Error('关联来源已变化，请重新选择问题。');
+ const ref={format:'wardnote-task-problem/1',encounterId,noteId,problemIndex,sourceVersion:source.version,noteDate:source.data.date,sourceUpdatedAt:source.updatedAt,linkedAt:now,problem:problemSnapshot(source.data.problems[problemIndex])};
+ if(!validProblemReference(ref))throw new Error('关联来源已变化，请重新选择问题。');
+ return ref;
+}
+export function problemReferenceState(task,records,encounterId=task?.encounterId){
+ const ref=task?.data?.problemRef;
+ if(!ref)return {state:'none',reference:null,source:null};
+ if(!validProblemReference(ref)||task.type!=='task'||task.encounterId!==encounterId||ref.encounterId!==encounterId)return {state:'unavailable',reference:null,source:null};
+ const actual=records.find(r=>r.id===ref.noteId);
+ if(actual&&(actual.encounterId!==encounterId||actual.type!=='note'||!['initial','daily'].includes(actual.data.kind)))return {state:'unavailable',reference:null,source:null};
+ const source=actual&&live(actual)?actual:null;
+ if(!source)return {state:'unavailable',reference:ref,source:null};
+ const same=source.version===ref.sourceVersion&&source.updatedAt===ref.sourceUpdatedAt&&JSON.stringify(problemSnapshot(source.data.problems?.[ref.problemIndex]))===JSON.stringify(ref.problem);
+ return {state:same?'current':'changed',reference:ref,source};
+}
+export function roundFeedback(records,encounterId,noteId,now=new Date().toISOString()){
+ const changes=roundChanges(records,encounterId,noteId,now);
+ if(!changes.previous)return {previous:null,plans:[],linked:[]};
+ const previous=changes.previous;
+ const plans=(previous.data.problems||[]).map((problem,index)=>({index,...problemSnapshot(problem)})).filter(p=>p.title||p.plan||p.monitor);
+ const linked=records.filter(r=>r.type==='task'&&r.encounterId===encounterId&&live(r)&&r.data.problemRef?.noteId===previous.id&&r.updatedAt<=changes.to)
+  .map(task=>({task,...problemReferenceState(task,records,encounterId)})).filter(item=>item.reference)
+  .sort((a,b)=>(a.task.data.done?1:0)-(b.task.data.done?1:0)||(b.task.updatedAt||'').localeCompare(a.task.updatedAt||''));
+ return {previous,plans,linked};
+}
 export function roundChanges(records,id,noteId,now=new Date().toISOString()){
  const notes=dailyNotes(records,id),index=notes.findIndex(r=>r.id===noteId),current=notes[index],previous=notes[index+1];
  if(!current||!previous)return {current,previous,fields:[],missing:[],events:[]};

@@ -1,5 +1,7 @@
 # Android native shell / Android 原生容器
 
+当前整体预发布 / Current combined pre-release: **Web 0.6.17 UI r1 / Android 0.1.6-preview** · 2026-11-06 · [v0.6.17-preview.1](https://github.com/Alias1027/wardnote/releases/tag/v0.6.17-preview.1). [本轮改动与边界 / Changes and limitations](../browser-pwa/docs/REASONING-UPDATE.md)。
+
 This preview packages the WardNote web assets inside an Android application. It does not require a deployed website for first use. The fixed origin `https://appassets.androidplatform.net/` is intercepted locally; it is not a remote server. Web assets are updated only by installing a compatible APK. The existing browser/PWA distribution is separate.
 
 本预览版将网页资源封装到 Android 安装包，首次使用无需部署网站。固定地址由应用本地拦截，并非远程服务器；资源更新通过兼容的 APK 完成。现有浏览器与 PWA 交付保留独立。
