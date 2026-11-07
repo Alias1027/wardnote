@@ -113,6 +113,8 @@
   "app/tests/feedback-api.test.mjs",
   "app/tests/feedback-browser.mjs",
   "app/tests/feedback.test.mjs",
+  "app/tests/launcher-test-support.mjs",
+  "app/tests/launcher-test-support.test.mjs",
   "app/tests/localization-browser.mjs",
   "app/tests/localization.test.mjs",
   "app/tests/navigation-browser.mjs",

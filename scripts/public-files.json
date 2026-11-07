@@ -144,6 +144,8 @@
     "browser-pwa/app/tests/feedback-api.test.mjs",
     "browser-pwa/app/tests/feedback-browser.mjs",
     "browser-pwa/app/tests/feedback.test.mjs",
+    "browser-pwa/app/tests/launcher-test-support.mjs",
+    "browser-pwa/app/tests/launcher-test-support.test.mjs",
     "browser-pwa/app/tests/localization-browser.mjs",
     "browser-pwa/app/tests/localization.test.mjs",
     "browser-pwa/app/tests/navigation-browser.mjs",

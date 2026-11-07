@@ -573,6 +573,16 @@
       "sha256": "1493cd20635344b36128cdcb157c0a5d08344b6772977b24fe96a07d3938f124"
     },
     {
+      "path": "app/tests/launcher-test-support.mjs",
+      "size": 1444,
+      "sha256": "64ec36ce1904b415b53c57959b8b9456277e9c58823be615bc3b0e47796b942b"
+    },
+    {
+      "path": "app/tests/launcher-test-support.test.mjs",
+      "size": 2765,
+      "sha256": "02665398a38ec7c5963b24d4b23072b6da93ae01fdde83887eaf7f360e70e4d2"
+    },
+    {
       "path": "app/tests/localization-browser.mjs",
       "size": 18259,
       "sha256": "3d15fee8b7398dcc8fdb63da2b53b430e50643a4bdeffd72f7f98854da860546"
@@ -609,8 +619,8 @@
     },
     {
       "path": "app/tests/portable.test.mjs",
-      "size": 7736,
-      "sha256": "1c76823bb9b843218a27c3fe7079e81fdf1464c5ee757d9ae8421b711cba71ef"
+      "size": 8384,
+      "sha256": "593229476ac420237959efeceaf03a5a4d502c15a8bfbe50965e5b62a3c3f954"
     },
     {
       "path": "app/tests/project-introduction.test.mjs",
@@ -929,8 +939,8 @@
     },
     {
       "path": "scripts/release-files.json",
-      "size": 6382,
-      "sha256": "f1de21e94182592f17eeab94017aca98b90c0d8e656e9e09534ea662ab0a9bf0"
+      "size": 6469,
+      "sha256": "7c7844e17f712e674524cf99ba9a71e1fa8bc4976a79d6f2e6dc8332fa668105"
     },
     {
       "path": "scripts/release.mjs",
