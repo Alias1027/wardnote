@@ -57,3 +57,9 @@ The main branch carries source maintenance. The [v0.6.17-preview.1](https://gith
 真实设备、完整班次、低配置设备、母语临床审校及临床使用效果仍留待后续反馈。
 
 Physical-device and full-shift operation, low-resource performance, native clinical-language review and clinical outcomes remain for subsequent feedback.
+
+## 最终文档核验 / Final documentation check
+
+首次推送后的 Android 托管检查发现 README 首页英文区与独立英文 README 的“当前发布”及“源码维护”段落顺序不一致。本机使用原有文档测试复现后统一段落顺序，保持严格全文一致性断言。最终源码包重新按修正提交逐文件核验；早先已通过的应用流程不因这一文档修正而变更。
+
+The first post-push Android check found that the current-release and source-maintenance paragraphs appeared in different orders in the homepage English section and the standalone English README. The existing documentation test reproduced the mismatch locally. The paragraph order was aligned without weakening the full-text equality assertion. The final source package is reverified against the corrected commit; this documentation correction does not change application behavior.

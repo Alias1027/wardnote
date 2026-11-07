@@ -127,9 +127,9 @@ WardNote 是一款便携式临床记录与工作备忘工具，旨在为初诊�
 
 ## English
 
-**Source maintenance (2026-11-07):** The main branch includes improved Windows cold-start test diagnostics, safer browser-test port allocation and this round’s self-check record. Application runtime code remains identical to the published v0.6.17-preview.1 release; no reinstall is needed for this test-only maintenance. Existing downloads and checksums are unchanged. See the [self-check and work log](docs/SELF-CHECK-20261107.md).
-
 Current combined pre-release: **Web 0.6.17 UI r1 / Android 0.1.6-preview (2026-11-06)**, tagged **v0.6.17-preview.1**. This release improves sample-time accuracy, review of prior plans and outcomes, unresolved issues in the brief, and optional teaching prompts while reusing existing sections. Downloads below correspond to this release. Historical assets and original V007 PDFs are preserved. See [changes and limitations](browser-pwa/docs/REASONING-UPDATE.md).
+
+**Source maintenance (2026-11-07):** The main branch includes improved Windows cold-start test diagnostics, safer browser-test port allocation and this round’s self-check record. Application runtime code remains identical to the published v0.6.17-preview.1 release; no reinstall is needed for this test-only maintenance. Existing downloads and checksums are unchanged. See the [self-check and work log](docs/SELF-CHECK-20261107.md).
 
 ### TL;DR
 
