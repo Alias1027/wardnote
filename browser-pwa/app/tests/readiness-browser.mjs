@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 import {createRequire} from 'node:module';
 import {mkdtempSync,mkdirSync,rmSync,writeFileSync} from 'node:fs';
@@ -9,7 +10,7 @@ import {LANGUAGES,languageCodes} from '../public/languages.js';
 import {translate} from '../public/locale-core.js';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
 const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});const temp=mkdtempSync(join(qa,'readiness-browser-'));process.env.TEMP=temp;process.env.TMP=temp;
-const app=createApp({dataDir:join(temp,'data')});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${app.server.address().port}`,password='synthetic-readiness-password';
+const app=createApp({dataDir:join(temp,'data')});await listenForBrowser(app.server);const base=`http://127.0.0.1:${app.server.address().port}`,password='synthetic-readiness-password';
 const checks=[],errors=[];let browser,context,page;
 const mark=text=>{checks.push(text);console.log('PASS '+text);};
 const switchLanguage=async code=>{await page.locator('[data-ui-language]').selectOption(code);await page.waitForFunction(({lang,dir})=>document.documentElement.lang===lang&&document.documentElement.dir===dir&&!document.querySelector('[data-ui-language]')?.disabled,{lang:LANGUAGES[code].locale,dir:LANGUAGES[code].dir});};

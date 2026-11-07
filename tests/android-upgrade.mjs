@@ -1,3 +1,4 @@
+import {listenForBrowser} from '../browser-pwa/app/tests/browser-test-server.mjs';
 // Same-origin desktop storage/asset upgrade simulation, NOT an Android package install.
 import {createServer} from 'node:http';
 import {readFileSync,writeFileSync,mkdirSync,rmSync} from 'node:fs';
@@ -11,7 +12,7 @@ if(!oldWeb)throw Error('Set WARDNOTE_PREVIOUS_ANDROID_WEB to the retained previo
 mkdirSync(profile,{recursive:true});process.env.TEMP=join(root,'.test-tmp');process.env.TMP=process.env.TEMP;
 let assetRoot=resolve(oldWeb),context,page;const checks=[],errors=[];const mark=s=>{checks.push(s);console.log('PASS '+s);};
 const server=createServer((req,res)=>{const path=decodeURIComponent(req.url.split('?')[0]),file=resolve(assetRoot,'.'+(path==='/'?'/index.html':path));if(!file.startsWith(assetRoot+sep)){res.writeHead(403).end();return;}try{res.writeHead(200,{'Cache-Control':'no-store','Content-Type':{'.html':'text/html','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.json':'application/json'}[extname(file)]||'application/octet-stream'}).end(readFileSync(file));}catch{res.writeHead(404).end();}});
-await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin=`http://127.0.0.1:${server.address().port}`,password='Synthetic-upgrade-password';
+await listenForBrowser(server);const origin=`http://127.0.0.1:${server.address().port}`,password='Synthetic-upgrade-password';
 const launch=async()=>{
  const ctx=await chromium.launchPersistentContext(profile,{executablePath:process.env.NOTE_BROWSER_EXECUTABLE||join(process.env.ProgramFiles||'C:/Program Files','Google/Chrome/Application/chrome.exe'),headless:true,viewport:{width:390,height:844}});
  await ctx.addInitScript(()=>{window.WardNoteNative={postMessage(raw){const {id,method}=JSON.parse(raw);queueMicrotask(()=>window.__wardnoteNativeResult({id,ok:true,result:method==='info'?{platform:'android',assets:true}:{}}));}};});

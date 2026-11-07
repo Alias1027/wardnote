@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 // Synthetic microphone + isolated accounts only; no real patient or audio input.
 import {createRequire} from 'node:module';
@@ -8,7 +9,7 @@ import {createApp} from '../server.mjs';
 import {localJson,seed,reloadAndUnlock} from './browser-support.mjs';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
 const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});const temp=mkdtempSync(join(qa,'capture-context-'));process.env.TEMP=temp;process.env.TMP=temp;
-const app=createApp({dataDir:join(temp,'server')});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+app.server.address().port;
+const app=createApp({dataDir:join(temp,'server')});await listenForBrowser(app.server);const base='http://127.0.0.1:'+app.server.address().port;
 const checks=[],errors=[],external=[],password='synthetic-capture-context-password';let browser,page;
 const mark=s=>{checks.push(s);console.log('PASS '+s);};
 const recordings=async()=> (await localJson(page,'/records')).records.filter(r=>r.type==='recording');

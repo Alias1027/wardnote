@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 // Synthetic-only checks against the actual exported site; no WardNote backend runs.
 import {createRequire} from 'node:module';
@@ -9,7 +10,7 @@ import {createStatic,previewServer,verifyStatic} from '../../scripts/deploy-stat
 import {VERSION} from '../public/domain.js';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
 const root=resolve(import.meta.dirname,'../..'),qa=join(root,'work/qa');mkdirSync(qa,{recursive:true});const temp=mkdtempSync(join(qa,'static-browser-'));process.env.TEMP=temp;process.env.TMP=temp;
-const exported=join(temp,'package');createStatic(root,exported);verifyStatic(exported);const server=previewServer(exported),apiRequests=[];server.on('request',req=>{if(req.url.startsWith('/api'))apiRequests.push(req.url);});await new Promise(r=>server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+server.address().port;
+const exported=join(temp,'package');createStatic(root,exported);verifyStatic(exported);const server=previewServer(exported),apiRequests=[];server.on('request',req=>{if(req.url.startsWith('/api'))apiRequests.push(req.url);});await listenForBrowser(server);const base='http://127.0.0.1:'+server.address().port;
 const checks=[],errors=[],password='synthetic-static-test-password';let browser,context,page;
 const mark=text=>{checks.push(text);console.log('PASS '+text);};
 const local=(path,method='GET',data={})=>page.evaluate(async({path,method,data})=>(await(await import('/offline-api.js')).localApi(path,method,data)).json(),{path,method,data});

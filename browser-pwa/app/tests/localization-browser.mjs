@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 import {PROJECT_NOTICE,PROJECT_REFERENCES,START_GUIDE} from '../public/project-info.js';
 import {PROJECT_INTRODUCTIONS} from '../public/project-introduction.js';
 import {installLocalProbe,localJson,seed,localRecord,reloadAndUnlock,failDeviceWrites,authorizeConnection} from './browser-support.mjs';
@@ -14,7 +15,7 @@ import {translate} from '../public/locale-core.js';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
 const root=resolve(import.meta.dirname,'../../work/qa');mkdirSync(root,{recursive:true});
 const temp=mkdtempSync(join(root,'localization-test-'));process.env.TEMP=temp;process.env.TMP=temp;
-const app=createApp({dataDir:join(temp,'data')});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));
+const app=createApp({dataDir:join(temp,'data')});await listenForBrowser(app.server);
 const base=`http://127.0.0.1:${app.server.address().port}`,checks=[],errors=[];let context;
 const mark=(language,check)=>{checks.push({language,check});console.log('PASS '+language+' '+check);};
 const original='患者原文 / لا ألم / दर्द नहीं / درد نہیں / no pain; 1.2 mg/dL; BP 120/70; 2026-10-13';

@@ -1,7 +1,8 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 import {createRequire} from 'node:module';import {mkdirSync,mkdtempSync,writeFileSync,rmSync} from 'node:fs';import {resolve,join,relative,sep} from 'node:path';import assert from 'node:assert/strict';
 import {createApp} from '../server.mjs';import {localJson,seed,reloadAndUnlock,failDeviceWrites} from './browser-support.mjs';import {languageCodes} from '../public/languages.js';import {translate} from '../public/locale-core.js';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright'),qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});const temp=mkdtempSync(join(qa,'routing-'));process.env.TEMP=temp;process.env.TMP=temp;
-const app=createApp({dataDir:join(temp,'server')});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+app.server.address().port;
+const app=createApp({dataDir:join(temp,'server')});await listenForBrowser(app.server);const base='http://127.0.0.1:'+app.server.address().port;
 let browser,page;const checks=[],errors=[],requests=[],mark=s=>{checks.push(s);console.log('PASS '+s);};
 const all=async()=> (await localJson(page,'/records')).records,submit=()=>page.locator('#modal button[type=submit]').click(),cancel=()=>page.locator('#modal [data-action=close-modal]').first().click();
 const openVoice=async()=>{if(!await page.locator('#float-voice').count())await page.locator('.tool-rail [data-panel=voice]').click();};

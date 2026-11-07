@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 // Synthetic component environment; never opens an existing workspace or asks for microphone permission.
 import {createRequire} from 'node:module';
@@ -8,7 +9,7 @@ import {createApp} from '../server.mjs';
 import {languageCodes,LANGUAGES} from '../public/languages.js';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
 const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});const temp=mkdtempSync(join(qa,'easy-start-'));process.env.TEMP=temp;process.env.TMP=temp;
-const app=createApp({dataDir:join(temp,'server')});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${app.server.address().port}`;
+const app=createApp({dataDir:join(temp,'server')});await listenForBrowser(app.server);const base=`http://127.0.0.1:${app.server.address().port}`;
 const checks=[],errors=[],external=[];let browser,page;
 const mark=value=>{checks.push(value);console.log('PASS '+value);};
 const mount=options=>page.evaluate(options=>window.mountEasy(options),options);

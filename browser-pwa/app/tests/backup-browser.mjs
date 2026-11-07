@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 import {createRequire} from 'node:module';
 import {mkdtempSync,mkdirSync,rmSync,writeFileSync,readFileSync,statSync} from 'node:fs';
@@ -7,7 +8,7 @@ import {createApp} from '../server.mjs';
 import {VERSION} from '../public/domain.js';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
 const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});const temp=mkdtempSync(join(qa,'backup-browser-'));process.env.TEMP=temp;process.env.TMP=temp;
-const app=createApp({dataDir:join(temp,'data')});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${app.server.address().port}`,password='synthetic-backup-password';
+const app=createApp({dataDir:join(temp,'data')});await listenForBrowser(app.server);const base=`http://127.0.0.1:${app.server.address().port}`,password='synthetic-backup-password';
 const checks=[],errors=[],metrics={};let browser,context,page;
 const mark=text=>{checks.push(text);console.log('PASS '+text);};
 const input=async(p,files)=>{await p.evaluate(()=>{if(!document.querySelector('#backup-test-files')){const e=document.createElement('input');e.id='backup-test-files';e.type='file';e.multiple=true;document.body.append(e);}});await p.locator('#backup-test-files').setInputFiles(files);};

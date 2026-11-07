@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 import {installLocalProbe,localJson,seed,localRecord,reloadAndUnlock,failDeviceWrites,authorizeConnection} from './browser-support.mjs';
 import {createRequire} from 'node:module';
 import {mkdirSync,writeFileSync,rmSync,mkdtempSync} from 'node:fs';
@@ -13,7 +14,7 @@ const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:tr
 const temp=mkdtempSync(join(qa,'browser-test-'));
 process.env.TEMP=temp;process.env.TMP=temp;
 const app=createApp({dataDir:join(temp,'data')});
-await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${app.server.address().port}`;
+await listenForBrowser(app.server);const base=`http://127.0.0.1:${app.server.address().port}`;
 const executable=process.env.NOTE_BROWSER||undefined;
 let context;const errors=[],checks=[];
 const mark=s=>{checks.push(s);console.log('PASS '+s);};

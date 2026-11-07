@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 import {installLocalProbe,localJson,seed,localRecord,reloadAndUnlock,failDeviceWrites,authorizeConnection} from './browser-support.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 import {createRequire} from 'node:module';
@@ -10,7 +11,7 @@ const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE
 const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});const temp=mkdtempSync(join(qa,'panels-test-'));process.env.TEMP=temp;process.env.TMP=temp;
 let requests=0;
 const mock=http.createServer(async(req,res)=>{let raw='';for await(const c of req)raw+=c;const body=JSON.parse(raw);requests++;const summary=body.messages[0].content.includes('"text":"summary');res.setHeader('Content-Type','application/json');res.end(JSON.stringify({choices:[{finish_reason:'stop',message:{content:JSON.stringify(summary?{text:'Reviewed source summary. No chest pain. Onset remains uncertain.'}:{proposals:[{section:'course',text:'No chest pain. Onset remains uncertain.',quotes:[body.messages[1].content]}]})}}]}));});
-await new Promise(r=>mock.listen(0,'127.0.0.1',r));const app=createApp({dataDir:join(temp,'data'),config:{llm:{enabled:true,provider:'custom',baseUrl:`http://127.0.0.1:${mock.address().port}`,model:'fictional-model',token:'TEST_SECRET_NOT_FOR_BROWSER'}}});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${app.server.address().port}`;
+await listenForBrowser(mock);const app=createApp({dataDir:join(temp,'data'),config:{llm:{enabled:true,provider:'custom',baseUrl:`http://127.0.0.1:${mock.address().port}`,model:'fictional-model',token:'TEST_SECRET_NOT_FOR_BROWSER'}}});await listenForBrowser(app.server);const base=`http://127.0.0.1:${app.server.address().port}`;
 app.vault.setup('separate-network-password','Synthetic server');
 let context;const checks=[],errors=[];const mark=s=>{checks.push(s);console.log('PASS '+s);};
 try{

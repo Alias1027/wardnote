@@ -434,8 +434,8 @@
     },
     {
       "path": "app/tests/accounts-browser.mjs",
-      "size": 9493,
-      "sha256": "0ed6db2ca481011c9dfbeb9a3c2653b03fe3eef2dec483e2d66484761f9fc2bf"
+      "size": 9532,
+      "sha256": "dd3ebcf9f5b3563e4cba9cc21c2ccc73292f2a4ddeac6a7d47a60594d5567d28"
     },
     {
       "path": "app/tests/assistance.test.mjs",
@@ -444,8 +444,8 @@
     },
     {
       "path": "app/tests/backup-browser.mjs",
-      "size": 22334,
-      "sha256": "349b30882101c1e65da5b81393f93aa48a1afc944f73ba4c186ab133a5bbdc5a"
+      "size": 22373,
+      "sha256": "287b4d56fa58451e6fc67c8ca73eb6b5e5e136c75fa2f1cd24e583eeb961eeab"
     },
     {
       "path": "app/tests/brief-api.test.mjs",
@@ -454,8 +454,8 @@
     },
     {
       "path": "app/tests/brief-browser.mjs",
-      "size": 13583,
-      "sha256": "ec30d2b215795d43b2b1d0452d97aa1f37ff59951527262a356d587ee08dbe07"
+      "size": 13621,
+      "sha256": "b733e6f5e5824b6f410a2ee3daaa6231e92bbb23a127e747fa0974fbad5ef2b4"
     },
     {
       "path": "app/tests/brief.test.mjs",
@@ -468,19 +468,29 @@
       "sha256": "eaee2dbd56ca865a72f12ae8c49348de51c06cdadbc03cb1cac7d95e51938924"
     },
     {
+      "path": "app/tests/browser-test-server.mjs",
+      "size": 1703,
+      "sha256": "ab2ac90fb4738fbc5252f640b2329891aea22a8be57bc420e9abb5fff183b879"
+    },
+    {
+      "path": "app/tests/browser-test-server.test.mjs",
+      "size": 4229,
+      "sha256": "cda155022713b922c73f60409739d0bf62246adac3a1baa2def8d9c8fe2e03c4"
+    },
+    {
       "path": "app/tests/browser.mjs",
-      "size": 32477,
-      "sha256": "ef75301546cce68d2312411281b37b2e0ff07b4e9f63c0cf5b9a6ecfa29d214e"
+      "size": 32516,
+      "sha256": "ca32ef09f16d7dc2474dadb3a486bd7db23bbd25cde706202bc8a35d12d8afcd"
     },
     {
       "path": "app/tests/capture-context-browser.mjs",
-      "size": 8416,
-      "sha256": "b9e40ebffff108edefc87810d044bebeb80d3fe208f830da09bf0524ab1d0df4"
+      "size": 8454,
+      "sha256": "46f6b943cd43477f7fb91615d0dd8bb6fc883edb0e790f39554b136151dfdf4e"
     },
     {
       "path": "app/tests/capture-storage-browser.mjs",
-      "size": 4869,
-      "sha256": "ff2b4f0196ad363ad72212c1461d59e12641360ad18351b487f2040f4d47396d"
+      "size": 4907,
+      "sha256": "8c7dd07b594b8e634b9ffc1a00e9a4454ece24076ed4cd58aa8f81124cd0bac4"
     },
     {
       "path": "app/tests/capture-storage.test.mjs",
@@ -494,8 +504,8 @@
     },
     {
       "path": "app/tests/continuity-browser.mjs",
-      "size": 12064,
-      "sha256": "42efc42085c7745783a31b9867694bf2e3d328f6f5d095b1253c2bbb939b14be"
+      "size": 12103,
+      "sha256": "551dc06f83f7fad679a6cf89f0654df7c575da68f28573d3dd3036dac09c3d9d"
     },
     {
       "path": "app/tests/continuity.test.mjs",
@@ -504,8 +514,8 @@
     },
     {
       "path": "app/tests/conversation-browser.mjs",
-      "size": 7683,
-      "sha256": "627f6731e49016e3c9354edc8310ca9cbff476e52b694b6380590bd847045fd1"
+      "size": 7721,
+      "sha256": "f63a0d9aa31e2c745a89ceb35042258271828bc7358797fcd28a4cbeff225b2b"
     },
     {
       "path": "app/tests/conversation.test.mjs",
@@ -519,8 +529,8 @@
     },
     {
       "path": "app/tests/deploy-static-browser.mjs",
-      "size": 10887,
-      "sha256": "0c9deeda6029fb36a9fddaa4f6ec88d59d800004c07b24269679361112f632a1"
+      "size": 10926,
+      "sha256": "c380348454220c98aa1f71c9422de850effcef6b69392f6c231cf7f8e8a25c8d"
     },
     {
       "path": "app/tests/deploy-static.test.mjs",
@@ -529,13 +539,13 @@
     },
     {
       "path": "app/tests/device-consistency-browser.mjs",
-      "size": 13513,
-      "sha256": "6837031b24bf4502333c4ae4004230bd5a462c7da0c9b807dbc3145919ef4fe3"
+      "size": 13551,
+      "sha256": "bb51409554b5e20799e76c81784b93da41b2d824fafdbf55764859cd719b1641"
     },
     {
       "path": "app/tests/easy-start-browser.mjs",
-      "size": 15456,
-      "sha256": "9c4fff7fd782b8a09f60aa482258eeff7226f45385e78e7b1be28d942240b2b4"
+      "size": 15494,
+      "sha256": "aafa018596d535ec33b3665142ed005401c93563a491f69a4414d677c911b678"
     },
     {
       "path": "app/tests/easy-start.test.mjs",
@@ -549,8 +559,8 @@
     },
     {
       "path": "app/tests/evidence-browser.mjs",
-      "size": 9813,
-      "sha256": "7e454afb48437ea3c40e377f34ce4cfdc548a2b490d449c4d65de4949bd4a04e"
+      "size": 9851,
+      "sha256": "955a55a5577237439ab62affe677ece32a919fd045bc00f669744969b812ff85"
     },
     {
       "path": "app/tests/evidence.test.mjs",
@@ -564,8 +574,8 @@
     },
     {
       "path": "app/tests/feedback-browser.mjs",
-      "size": 9710,
-      "sha256": "cfdccf90437df609142b630ca0e55152086419844107b7197997d64452e6d8ff"
+      "size": 9748,
+      "sha256": "fc8f1ce909fb506cf71a4695c98bf83f4e0af63118d16f335c4ec2de2273c4b9"
     },
     {
       "path": "app/tests/feedback.test.mjs",
@@ -584,8 +594,8 @@
     },
     {
       "path": "app/tests/localization-browser.mjs",
-      "size": 18259,
-      "sha256": "3d15fee8b7398dcc8fdb63da2b53b430e50643a4bdeffd72f7f98854da860546"
+      "size": 18298,
+      "sha256": "bb686fb642a63921eada36aeb59bec3abf2b8e474f00b803174990f9f0b51e3b"
     },
     {
       "path": "app/tests/localization.test.mjs",
@@ -594,18 +604,18 @@
     },
     {
       "path": "app/tests/navigation-browser.mjs",
-      "size": 12638,
-      "sha256": "ce5985c7531b4495899d3b2812626f85a576baa1bec011303e83bac80ca3bbaf"
+      "size": 12677,
+      "sha256": "889a22f9e2cfab3f6f0787b1446bb5621f459f4e13db9d6d932be93e5f908bc2"
     },
     {
       "path": "app/tests/note-tools-browser.mjs",
-      "size": 9737,
-      "sha256": "443e50eb445a77e7c747cdc3e40ff5b659f4ad2f05dfa6f160aca002185ec2d2"
+      "size": 9775,
+      "sha256": "f706db0175ee3c9197ecf495064194cb549c5735426030377b81ec562475fa9c"
     },
     {
       "path": "app/tests/offline-browser.mjs",
-      "size": 16325,
-      "sha256": "20cfff193268dbb0c2953e89c0ac6f24ad9f67b01644427e094c369eb813a1b6"
+      "size": 16364,
+      "sha256": "8539355c70317aa3e8f00331ed1a26990952f4f9c4a5a93ace5524a6fa252c0d"
     },
     {
       "path": "app/tests/offline-sync.test.mjs",
@@ -614,8 +624,8 @@
     },
     {
       "path": "app/tests/panels-browser.mjs",
-      "size": 14843,
-      "sha256": "af7080f4b7d14f64e9d00fa95c7a358ae2e13245041b0c04c8222363b94f7361"
+      "size": 14860,
+      "sha256": "f590a4e8a93e8820f505dd9a7459355a8cd9df2b8b70e5f451d7bc0dfe08cef1"
     },
     {
       "path": "app/tests/portable.test.mjs",
@@ -629,8 +639,8 @@
     },
     {
       "path": "app/tests/readiness-browser.mjs",
-      "size": 13545,
-      "sha256": "d5d5032c92a36b0f80bfbc033cb9dc8b72335ba31b77568b03e7fec1c3555e66"
+      "size": 13584,
+      "sha256": "95e98e43dc12bdd6bad85ae1b37199ce7e30a95fe1ff98c769645511bd774b31"
     },
     {
       "path": "app/tests/readiness.test.mjs",
@@ -644,8 +654,8 @@
     },
     {
       "path": "app/tests/regions-browser.mjs",
-      "size": 11334,
-      "sha256": "cf0e0ec99ed36ea3bc3cb8b8c7dadf82b97cda9cd6af2a7c154db59a199653a1"
+      "size": 11372,
+      "sha256": "bad6eab31b5983387024445216f54abc38dd5f043b3871be6aadc5abeab262b0"
     },
     {
       "path": "app/tests/release.test.mjs",
@@ -654,8 +664,8 @@
     },
     {
       "path": "app/tests/time-authenticity-browser.mjs",
-      "size": 10534,
-      "sha256": "26a89caa70e145617f04f234fa4db502a123013437e0968036244bd4ecf37497"
+      "size": 10573,
+      "sha256": "221d616e59bfaf37ae4c14fcf44e8318ed48e51d37474ef718b3bb8a6e348e89"
     },
     {
       "path": "app/tests/time-authenticity.test.mjs",
@@ -664,8 +674,8 @@
     },
     {
       "path": "app/tests/update-browser.mjs",
-      "size": 26067,
-      "sha256": "675db2cd3c2b2a7a27482c9ed7d4b6b6ba25f3de5ca68e6d4e5259dc48ba9b4e"
+      "size": 26106,
+      "sha256": "41b4d01a75eae7d12f8eafd5066cfa4863c4dc92ed11e0340af4e390465b2fa5"
     },
     {
       "path": "app/tests/update.test.mjs",
@@ -679,13 +689,13 @@
     },
     {
       "path": "app/tests/v007-browser.mjs",
-      "size": 8200,
-      "sha256": "9f194469385efec26d307a6517e253201d48da55a91f325f25bf7c5e5ea9ddec"
+      "size": 8239,
+      "sha256": "d8cc51726e0897f60d7d6a8e4a9521b49ad58e4c7926735365e087131d94242c"
     },
     {
       "path": "app/tests/voice-memo-browser.mjs",
-      "size": 12605,
-      "sha256": "9a848ff2a9ee77155e457af2459ae91eb00e70f673acac8681e93a534ce20387"
+      "size": 12622,
+      "sha256": "be2bd4164a32e634d885c3732b610b7f8edb579e787baaf6e8f684861a422c5d"
     },
     {
       "path": "app/tests/voice-routing-api.test.mjs",
@@ -694,8 +704,8 @@
     },
     {
       "path": "app/tests/voice-routing-browser.mjs",
-      "size": 12913,
-      "sha256": "40d6b300bae9848afd33592b5d61012dc2a5c39cfc3a85e36a1f9cd24cb8547d"
+      "size": 12951,
+      "sha256": "acd91f9440b4542aabe1fc447a5369e733c3ef3c1f1b8c5a9702e2051739f168"
     },
     {
       "path": "app/tests/voice-routing.test.mjs",
@@ -939,8 +949,8 @@
     },
     {
       "path": "scripts/release-files.json",
-      "size": 6469,
-      "sha256": "7c7844e17f712e674524cf99ba9a71e1fa8bc4976a79d6f2e6dc8332fa668105"
+      "size": 6552,
+      "sha256": "43aedfbf35af89db2beee6e2fc0f6c16097f0d8ce57dfa94c9c297b3b4d8967e"
     },
     {
       "path": "scripts/release.mjs",

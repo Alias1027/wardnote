@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 // Synthetic same-origin release transitions: no live service, real recordings or patient data.
 import {createRequire} from 'node:module';
@@ -18,7 +19,7 @@ app.server.removeAllListeners('request');app.server.on('request',(req,res)=>{
  if(path==='/synthetic-missing-resource.js'){res.statusCode=503;res.end('Synthetic interruption');return;}
  originalHandler(req,res);
 });
-await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+app.server.address().port;
+await listenForBrowser(app.server);const base='http://127.0.0.1:'+app.server.address().port;
 const checks=[],errors=[],external=[],password='synthetic-update-password';let browser,page,context,migrationContext,standaloneContext;
 const mark=s=>{checks.push(s);console.log('PASS '+s);};
 const unlock=async()=>{await page.locator('#username').fill('test-user');await page.locator('#password').fill(password);await page.locator('#auth-form button[type=submit]').click();await page.locator('.shell').waitFor();};

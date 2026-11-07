@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 import {createRequire} from 'node:module';
 import {mkdirSync,mkdtempSync,rmSync,writeFileSync} from 'node:fs';
@@ -11,7 +12,7 @@ import {REGION_KEY} from '../public/region-settings.js';
 import {seed,localRecord,reloadAndUnlock} from './browser-support.mjs';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
 const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});const temp=mkdtempSync(join(qa,'regions-'));process.env.TEMP=temp;process.env.TMP=temp;
-const app=createApp({dataDir:join(temp,'server')});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+app.server.address().port;
+const app=createApp({dataDir:join(temp,'server')});await listenForBrowser(app.server);const base='http://127.0.0.1:'+app.server.address().port;
 const checks=[],errors=[],external=[],password='synthetic-regions-password';let browser,page;
 const mark=s=>{checks.push(s);console.log('PASS '+s);};
 const paperBox=pdf=>{const m=/\/MediaBox\s*\[\s*0\s+0\s+([\d.]+)\s+([\d.]+)\s*\]/.exec(pdf.toString('latin1'));assert.ok(m,'PDF must expose page dimensions');return m.slice(1).map(Number);};

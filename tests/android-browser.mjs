@@ -1,3 +1,4 @@
+import {listenForBrowser} from '../browser-pwa/app/tests/browser-test-server.mjs';
 // Desktop Chromium + deterministic native bridge double. This is NOT Android device validation.
 import {createServer} from 'node:http';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
@@ -10,7 +11,7 @@ const tmp=join(root,'.test-tmp');mkdirSync(tmp,{recursive:true});process.env.TEM
 const baseWeb=process.env.WARDNOTE_BASE_WEB;if(!baseWeb)throw Error('Set WARDNOTE_BASE_WEB to the preserved WardNote 0.6.15 app/public directory for compatibility checks.');
 const origins={};
 function server(dir){return createServer((req,res)=>{let name=decodeURIComponent(req.url.split('?')[0]);if(name==='/')name='/index.html';const p=resolve(dir,'.'+name);if(!p.startsWith(resolve(dir)+'\\')){res.writeHead(403).end();return;}try{const type={'.html':'text/html','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.json':'application/json'}[extname(p)]||'application/octet-stream';res.writeHead(200,{'Content-Type':type, 'Cache-Control':'no-store','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob: data:; connect-src 'self'; frame-src 'none'; object-src 'none'; worker-src 'none'; base-uri 'self'; form-action 'none'"}).end(readFileSync(p));}catch{res.writeHead(404).end();}});}
-const app=server(join(root,'web')),original=server(baseWeb);await Promise.all([new Promise(r=>app.listen(0,'127.0.0.1',r)),new Promise(r=>original.listen(0,'127.0.0.1',r))]);
+const app=server(join(root,'web')),original=server(baseWeb);await Promise.all([listenForBrowser(app),listenForBrowser(original)]);
 const base=`http://127.0.0.1:${app.address().port}`,oldBase=`http://127.0.0.1:${original.address().port}`;
 const checks=[],errors=[],requests=[];const mark=s=>{checks.push(s);console.log('PASS '+s);};let browser,page;
 const password='Android-test-password-2026';

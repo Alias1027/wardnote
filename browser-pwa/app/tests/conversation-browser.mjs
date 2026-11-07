@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 import {createRequire} from 'node:module';
 import {mkdirSync,mkdtempSync,writeFileSync,rmSync} from 'node:fs';
 import {resolve,join,relative,sep} from 'node:path';
@@ -9,7 +10,7 @@ import {translate} from '../public/locale-core.js';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
 const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});
 const temp=mkdtempSync(join(qa,'conversation-'));process.env.TEMP=temp;process.env.TMP=temp;
-const app=createApp({dataDir:join(temp,'server')});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+app.server.address().port;
+const app=createApp({dataDir:join(temp,'server')});await listenForBrowser(app.server);const base='http://127.0.0.1:'+app.server.address().port;
 let browser,page;const checks=[],errors=[],remote=[];const mark=s=>{checks.push(s);console.log('PASS '+s);};
 const source='Doctor: Good morning.\nPatient: My daughter moved out. I live alone.\nPatient: My brother had a heart attack last year.\nDoctor: If fever persists, we may consider further tests.\nSpeaker A: [inaudible] 15 or 50 mg?';
 const all=async()=>(await localJson(page,'/records')).records;

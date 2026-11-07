@@ -1,5 +1,7 @@
 # 整体发布验证 / Combined publication validation
 
+2026-11-07 源码维护自检 / Source-maintenance self-check: [Dot 记录复核、Windows 冷启动诊断与本轮回归 / Dot review, Windows cold-start diagnostics and regression](SELF-CHECK-20261107.md). 应用版本及历史附件不变 / Runtime versions and historical assets are unchanged.
+
 当前修订 / Current revision: **Web 0.6.17 UI r1 / Android 0.1.6-preview** · [v0.6.17-preview.1](RELEASE-v0.6.17-preview.1.md). 本次本地验证见 [VALIDATION](VALIDATION.md)；托管结果以发布标签对应提交的 GitHub Actions 为准。 / See VALIDATION for local results and GitHub Actions for hosted checks on the tagged commit.
 
 历史修订 / Historical revision: **Web 0.6.16 UI r1 / Android 0.1.5-preview**. [本轮变化 / Changes](RELEASE-v0.6.16-preview.1.md). 下方旧验证保留原日期和范围 / Historical evidence below retains its original date and scope.

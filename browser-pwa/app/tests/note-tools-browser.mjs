@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 import {createRequire} from 'node:module';
 import {mkdirSync,mkdtempSync,rmSync,writeFileSync,readFileSync} from 'node:fs';
@@ -10,7 +11,7 @@ import {translate} from '../public/locale-core.js';
 import {seed,localJson,localRecord,reloadAndUnlock,failDeviceWrites} from './browser-support.mjs';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
 const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});const temp=mkdtempSync(join(qa,'note-tools-'));process.env.TEMP=temp;process.env.TMP=temp;
-const app=createApp({dataDir:join(temp,'server')});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${app.server.address().port}`;
+const app=createApp({dataDir:join(temp,'server')});await listenForBrowser(app.server);const base=`http://127.0.0.1:${app.server.address().port}`;
 const checks=[],errors=[],password='note-tools-test-password';const mark=s=>{checks.push(s);console.log('PASS '+s);};let browser,page;
 try{
  browser=await chromium.launch({headless:true,executablePath:process.env.NOTE_BROWSER||undefined,args:['--disable-background-networking','--no-first-run']});const context=await browser.newContext({viewport:{width:1366,height:1000},acceptDownloads:true});page=await context.newPage();page.on('pageerror',e=>{errors.push(e.message);console.error(e.stack);});

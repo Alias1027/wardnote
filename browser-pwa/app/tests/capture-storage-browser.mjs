@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 import {createRequire} from 'node:module';
 import {mkdirSync,mkdtempSync,rmSync,writeFileSync} from 'node:fs';
@@ -8,7 +9,7 @@ import {localJson} from './browser-support.mjs';
 const {chromium}=createRequire(import.meta.url)(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
 const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});
 const temp=mkdtempSync(join(qa,'capture-storage-'));const app=createApp({dataDir:join(temp,'data'),config:{}});
-await new Promise(r=>app.server.listen(0,'127.0.0.1',r));
+await listenForBrowser(app.server);
 const checks=[],errors=[],requests=[];let browser,page;
 const mark=s=>{checks.push(s);console.log('PASS '+s);};
 try{

@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 import {createRequire} from 'node:module';
 import {mkdirSync,mkdtempSync,rmSync,readFileSync,writeFileSync} from 'node:fs';
@@ -10,7 +11,7 @@ import {languageCodes} from '../public/languages.js';
 import {translate} from '../public/locale-core.js';
 const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE_PLAYWRIGHT_MODULE||'playwright');
 const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});const temp=mkdtempSync(join(qa,'time-browser-'));process.env.TEMP=temp;process.env.TMP=temp;
-const app=createApp({dataDir:join(temp,'server')});await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+app.server.address().port;
+const app=createApp({dataDir:join(temp,'server')});await listenForBrowser(app.server);const base='http://127.0.0.1:'+app.server.address().port;
 let browser,page;const errors=[],checks=[],external=[],password='synthetic-time-password';const mark=s=>{checks.push(s);console.log('PASS '+s);};
 try{
  browser=await chromium.launch({headless:true,executablePath:process.env.NOTE_BROWSER||undefined,args:['--disable-background-networking','--no-first-run']});

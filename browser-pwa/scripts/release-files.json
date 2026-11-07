@@ -92,6 +92,8 @@
   "app/tests/brief-browser.mjs",
   "app/tests/brief.test.mjs",
   "app/tests/browser-support.mjs",
+  "app/tests/browser-test-server.mjs",
+  "app/tests/browser-test-server.test.mjs",
   "app/tests/browser.mjs",
   "app/tests/capture-context-browser.mjs",
   "app/tests/capture-storage-browser.mjs",

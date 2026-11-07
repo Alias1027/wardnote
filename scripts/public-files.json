@@ -1,8 +1,8 @@
 {
   "format": "wardnote-public-files-v1",
   "version": "0.1.6-preview",
-  "publicationRevision": "reasoning-pre-release-20261106",
-  "scope": "Combined pre-release v0.6.17-preview.1, Web 0.6.17 UI r1 and Android 0.1.6-preview",
+  "publicationRevision": "source-maintenance-20261107",
+  "scope": "Source maintenance after v0.6.17-preview.1; runtime versions and published assets unchanged",
   "files": [
     ".github/ISSUE_TEMPLATE/bug.yml",
     ".github/ISSUE_TEMPLATE/config.yml",
@@ -123,6 +123,8 @@
     "browser-pwa/app/tests/brief-browser.mjs",
     "browser-pwa/app/tests/brief.test.mjs",
     "browser-pwa/app/tests/browser-support.mjs",
+    "browser-pwa/app/tests/browser-test-server.mjs",
+    "browser-pwa/app/tests/browser-test-server.test.mjs",
     "browser-pwa/app/tests/browser.mjs",
     "browser-pwa/app/tests/capture-context-browser.mjs",
     "browser-pwa/app/tests/capture-storage-browser.mjs",
@@ -249,6 +251,7 @@
     "docs/SECURITY-ALIGNMENT-0.1.2.diff",
     "docs/SECURITY-REVIEW-0.1.2.md",
     "docs/SELF-CHECK-0.1.1.md",
+    "docs/SELF-CHECK-20261107.md",
     "docs/SKILLS-ROADMAP.md",
     "docs/V007-UPDATE-WORKLOG.md",
     "docs/VALIDATION.md",

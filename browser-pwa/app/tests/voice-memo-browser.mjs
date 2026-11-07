@@ -1,3 +1,4 @@
+import {listenForBrowser} from './browser-test-server.mjs';
 // SPDX-License-Identifier: LicenseRef-WardNote-Personal-Noncommercial-1.0
 import {createRequire} from 'node:module';
 import {mkdirSync,mkdtempSync,rmSync,writeFileSync} from 'node:fs';
@@ -12,8 +13,8 @@ const require=createRequire(import.meta.url),{chromium}=require(process.env.NOTE
 const qa=resolve(import.meta.dirname,'../../work/qa');mkdirSync(qa,{recursive:true});const temp=mkdtempSync(join(qa,'voice-memo-'));process.env.TEMP=temp;process.env.TMP=temp;
 const transcript='Memo: No chest pain; onset uncertain. DEMO TRANSCRIPT';let calls=0,failNext=false,holdNext=false,awaitingASR=false,releaseASR=null;
 const mock=http.createServer(async(req,res)=>{let bytes=0;for await(const part of req)bytes+=part.length;calls++;assert.ok(bytes>0);if(holdNext){holdNext=false;awaitingASR=true;await new Promise(resolve=>{releaseASR=resolve;});awaitingASR=false;}res.setHeader('Content-Type','application/json');if(failNext){failNext=false;res.writeHead(503);res.end('{}');}else res.end(JSON.stringify({text:transcript}));});
-await new Promise(r=>mock.listen(0,'127.0.0.1',r));
-const app=createApp({dataDir:join(temp,'server'),config:{transcribeUrl:'http://127.0.0.1:'+mock.address().port}});app.vault.setup('separate-network-password','Synthetic server');await new Promise(r=>app.server.listen(0,'127.0.0.1',r));const base='http://127.0.0.1:'+app.server.address().port;
+await listenForBrowser(mock);
+const app=createApp({dataDir:join(temp,'server'),config:{transcribeUrl:'http://127.0.0.1:'+mock.address().port}});app.vault.setup('separate-network-password','Synthetic server');await listenForBrowser(app.server);const base='http://127.0.0.1:'+app.server.address().port;
 const checks=[],errors=[],requests=[];let browser,page;const mark=s=>{checks.push(s);console.log('PASS '+s);};
 const all=async()=> (await localJson(page,'/records')).records;
 const submit=()=>page.locator('#modal button[type=submit]').click();
